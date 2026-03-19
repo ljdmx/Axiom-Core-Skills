@@ -1,8 +1,8 @@
 # 🌌 Axiom Core Skills (公理核心引擎)
 
-[![架构层级](https://img.shields.io/badge/Architecture-V10%20Agentic-purple?style=for-the-badge)](https://github.com/your-username/Axiom-Core-Skills)
-[![编译保护](https://img.shields.io/badge/AST%20Dry--Run-Protected-success?style=for-the-badge)](https://github.com/your-username/Axiom-Core-Skills)
-[![设计哲学](https://img.shields.io/badge/Philosophy-SOUL%20Manifesto-blue?style=for-the-badge)](https://github.com/your-username/Axiom-Core-Skills)
+[![架构层级](https://img.shields.io/badge/Architecture-V10%20Agentic-purple?style=for-the-badge)](https://github.com/ljdmx/Axiom-Core-Skills)
+[![编译保护](https://img.shields.io/badge/AST%20Dry--Run-Protected-success?style=for-the-badge)](https://github.com/ljdmx/Axiom-Core-Skills)
+[![设计哲学](https://img.shields.io/badge/Philosophy-SOUL%20Manifesto-blue?style=for-the-badge)](https://github.com/ljdmx/Axiom-Core-Skills)
 
 > *深入全栈协同，专注于高级 AI Agent 与项目架构生成。*  
 > Axiom Core Skills 是一套高可用、模块化的底层技能编排框架。它旨在使单一 LLM Agent 具备跨端开发、视觉一致性约束、自动化防呆测试及自适应架构的综合能力。

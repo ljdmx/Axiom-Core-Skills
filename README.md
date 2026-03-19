@@ -1,8 +1,8 @@
 # 🌌 Axiom Core Skills
 
-[![Architecture Tier](https://img.shields.io/badge/Architecture-V10%20Agentic-purple?style=for-the-badge)](https://github.com/your-username/Axiom-Core-Skills)
-[![Zero-Error Shield](https://img.shields.io/badge/AST%20Dry--Run-Protected-success?style=for-the-badge)](https://github.com/your-username/Axiom-Core-Skills)
-[![Philosophy](https://img.shields.io/badge/Philosophy-SOUL%20Manifesto-blue?style=for-the-badge)](https://github.com/your-username/Axiom-Core-Skills)
+[![Architecture Tier](https://img.shields.io/badge/Architecture-V10%20Agentic-purple?style=for-the-badge)](https://github.com/ljdmx/Axiom-Core-Skills)
+[![Zero-Error Shield](https://img.shields.io/badge/AST%20Dry--Run-Protected-success?style=for-the-badge)](https://github.com/ljdmx/Axiom-Core-Skills)
+[![Philosophy](https://img.shields.io/badge/Philosophy-SOUL%20Manifesto-blue?style=for-the-badge)](https://github.com/ljdmx/Axiom-Core-Skills)
 
 > *Beyond simple code generation. Comprehensive Agent-Oriented Architecture.*  
 > Axiom Core Skills is an advanced, modular framework designed to equip any LLM Agent with the tools for autonomous orchestration, self-correction, and robust Full-Stack development.
