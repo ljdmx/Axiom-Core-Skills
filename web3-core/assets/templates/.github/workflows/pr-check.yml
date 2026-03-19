@@ -1,0 +1,83 @@
+# .github/workflows/pr-check.yml
+# PR Gas Diff Check + Storage Layout Compatibility Validation
+# Copy this file to your project's .github/workflows/ directory
+
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  # ────────────────────────────────────────────────────────────
+  # Gas Diff Report (Automatically displays Gas changes in PR comments)
+  # ────────────────────────────────────────────────────────────
+  gas-diff:
+    name: Gas Diff Report
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write   # Allow writing to PR comments
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0       # Full history required to compare with base branch
+
+      - uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Run gas snapshot on PR branch
+        run: forge snapshot --no-match-test "invariant|fuzz"
+
+      - name: Compare with base branch
+        uses: zgorizzo69/foundry-gas-diff@v1
+        with:
+          summaryQuantile: 0.9   # Only report top 10% functions with largest Gas changes
+          ignore: "test/"
+
+  # ────────────────────────────────────────────────────────────
+  # Upgradeable Contract Storage Layout Compatibility Check (Prevents overwriting old data on upgrade)
+  # ────────────────────────────────────────────────────────────
+  upgrade-safety:
+    name: Upgrade Safety Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+
+      - name: Check upgrade safety (OZ Upgrades)
+        run: |
+          # If the project uses upgradeable contracts, run this check.
+          # Requires check-upgrades.ts in scripts/ directory:
+          # import { defender } from "@openzeppelin/hardhat-upgrades";
+          # await defender.validateUpgrade(PROXY_ADDRESS, NewImpl);
+          if [ -f scripts/check-upgrades.ts ]; then
+            npx hardhat run scripts/check-upgrades.ts
+          else
+            echo "No upgrade check script found, skipping"
+          fi
+
+  # ────────────────────────────────────────────────────────────
+  # Contract Size Check (Prevents exceeding 24KB limit)
+  # ────────────────────────────────────────────────────────────
+  contract-size:
+    name: Contract Size Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { submodules: recursive }
+      - uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Build and check sizes
+        run: |
+          forge build --sizes 2>&1 | tee sizes.txt
+          # Check if there are contracts exceeding 24KB (24576 bytes)
+          if grep -E "[0-9]{5,}" sizes.txt | grep -v "Test\|Mock\|Script"; then
+            echo "⚠️  Warning: Large contracts detected, check sizes.txt"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contract-sizes
+          path: sizes.txt
