@@ -1,5 +1,5 @@
 {
-  "_comment": "FSPC Capabilities Registry â€?defines all high-order AI capabilities with their activation hooks. Add new capabilities here to enable plug-and-play extension without modifying SKILL.md.",
+  "_comment": "FSPC Capabilities Registry â€”defines all high-order AI capabilities with their activation hooks. Add new capabilities here to enable plug-and-play extension without modifying SKILL.md.",
   "_version": "1.0",
   "_last_updated": "2026-02-28",
 
@@ -9,8 +9,8 @@
       "name": "Strategic Persona Advisor",
       "description": "Activates Startup Founder / Growth Hacker / Enterprise Architect cognitive persona based on Scale Tier.",
       "source_file": "governance/strategic_advisory.md",
-      "activation_hook": "Â§0 Step C â€?view_file on classification",
-      "activation_condition": "ALWAYS â€?required for every FSPC session",
+      "activation_hook": "Â§0 Step C â€”view_file on classification",
+      "activation_condition": "ALWAYS â€”required for every FSPC session",
       "status": "ACTIVE"
     },
     {
@@ -27,7 +27,7 @@
       "name": "Sovereign Pivot Intelligence",
       "description": "Detects persistent tech-stack blockers and proactively proposes alternative technology pivots with migration cost estimates.",
       "source_file": "references/pivot-intelligence.md",
-      "activation_hook": "Auto-triggered on â‰? consecutive build failures or >30min blocker",
+      "activation_hook": "Auto-triggered on â‰¥  consecutive build failures or >30min blocker",
       "activation_condition": "AUTOMATIC during EXECUTION phase",
       "status": "ACTIVE"
     },
@@ -46,7 +46,7 @@
       "description": "GitHub Actions + GitLab CI + k6 load test pipeline templates for automated delivery.",
       "source_file": "templates/ci-cd-pipelines.md",
       "activation_hook": "EXECUTION Step 9 Handoff",
-      "activation_condition": "ALWAYS â€?every project ships with CI/CD",
+      "activation_condition": "ALWAYS â€”every project ships with CI/CD",
       "status": "ACTIVE"
     },
     {
@@ -73,9 +73,9 @@
       "name": "Brainstorm Multi-Session Partner",
       "description": "Collaborative ideation partner for product feature exploration, pivot analysis, and user persona development.",
       "source_file": "../../brainstorm/SKILL.md",
-      "activation_hook": "FSPC Â§0 Dynamic Skill Graph â€?activate when user requests creative exploration",
+      "activation_hook": "FSPC Â§0 Dynamic Skill Graph â€”activate when user requests creative exploration",
       "activation_condition": "User prompt contains 'brainstorm', 'explore', 'ideate', or 'pivot options'",
-      "status": "AVAILABLE â€?activate on demand"
+      "status": "AVAILABLE â€”activate on demand"
     }
   ]
 }

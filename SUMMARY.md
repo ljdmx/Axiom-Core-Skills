@@ -1,6 +1,6 @@
 # 💎 Axiom Core v2.0: Zenith Release Manifest
 
-## 🏛�?Ecosystem Status
+## 🏛️ Ecosystem Status
 - **Version**: v2.0.1 (Zenith Edition)
 - **Engine Status**: OPTIMIZED [10.0/10]
 - **Design Pattern**: 5 Agent Skill Design Patterns (2026 Compliant)
@@ -8,7 +8,7 @@
 
 ---
 
-## 🛠�?Skill Matrix
+## 🛠️ Skill Matrix
 
 | Skill | Version | ADK Pattern | Mission |
 |:---|:---|:---|:---|
@@ -41,9 +41,9 @@
 
 ---
 
-## �?Quality Gates
+## ✅ Quality Gates
 - [x] **Zero Placeholders**: All Blueprints and Scripts are executable.
 - [x] **Pattern Integrity**: 100% compliant with ADK 2026 design standards.
 - [x] **Visual Sovereign**: DDFM v10.0 aesthetics enforced.
 
-*Axiom Core Protocol �?The zenith of autonomous AI skill orchestration.*
+*Axiom Core Protocol — The zenith of autonomous AI skill orchestration.*

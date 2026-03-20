@@ -28,14 +28,14 @@ const personalInfoSchema = z.object({
   firstName: z.string().min(2),
   lastName: z.string().min(2),
   email: z.string().email(),
-  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/),
+  phone: z.string().regex(/^\+â€”[1-9]\d{1,14}$/),
 });
 
 const addressSchema = z.object({
   street: z.string().min(5),
   city: z.string().min(2),
   state: z.string().length(2),
-  zipCode: z.string().regex(/^\d{5}(-\d{4})?$/),
+  zipCode: z.string().regex(/^\d{5}(-\d{4})â€”$/),
   country: z.string().min(2),
 });
 
@@ -388,7 +388,7 @@ export function ProgressBar({ currentStep, totalSteps }: { currentStep: number; 
                   transition-all duration-300
                 `}
               >
-                {currentStep > step.number ? (
+                {currentStep > step.number â€” (
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
@@ -419,11 +419,11 @@ export function ProgressBar({ currentStep, totalSteps }: { currentStep: number; 
 
 ## Features
 
-âœ?**Type-Safe**: Full TypeScript + Zod validation  
-âœ?**Accessible**: ARIA labels and keyboard navigation  
-âœ?**Resilient**: State persists across refreshes  
-âœ?**Animated**: Smooth transitions with Framer Motion  
-âœ?**Optimistic**: Shows progress before server confirms  
+âœ…**Type-Safe**: Full TypeScript + Zod validation  
+âœ…**Accessible**: ARIA labels and keyboard navigation  
+âœ…**Resilient**: State persists across refreshes  
+âœ…**Animated**: Smooth transitions with Framer Motion  
+âœ…**Optimistic**: Shows progress before server confirms  
 
 ## Customization
 

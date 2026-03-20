@@ -10,11 +10,11 @@ Serverless-optimized API demonstrating MVP/prototype ADBM patterns with Cloud Da
 app/
 ├── main.py                    # FastAPI application
 ├── routers/
-�?  └── users.py               # Route handlers
+│    └── users.py               # Route handlers
 ├── services/
-�?  └── user_service.py        # Business logic
+│    └── user_service.py        # Business logic
 ├── models/
-�?  └── user.py                # Pydantic models
+│    └── user.py                # Pydantic models
 ├── database.py                # Database client
 └── middleware/
     ├── error_handler.py       # Exception handling
@@ -44,11 +44,11 @@ uvicorn app.main:app --reload
 
 ## Features
 
-�?**FastAPI**: Modern, fast Python framework  
-�?**Cloud Database**: Instant backend (Auth + Persistence)  
-�?**Pydantic**: Type-safe data validation  
-�?**Auto-Docs**: Interactive OpenAPI documentation  
-�?**Serverless Ready**: AWS Lambda / Vercel compatible
+✅**FastAPI**: Modern, fast Python framework  
+✅**Cloud Database**: Instant backend (Auth + Persistence)  
+✅**Pydantic**: Type-safe data validation  
+✅**Auto-Docs**: Interactive OpenAPI documentation  
+✅**Serverless Ready**: AWS Lambda / Vercel compatible
 
 ---
 

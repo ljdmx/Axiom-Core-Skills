@@ -17,7 +17,7 @@ contract DeployScript is Script {
     function run() external {
         uint256 deployerKey = vm.envUint("PRIVATE_KEY");
         address deployer    = vm.addr(deployerKey);
-        address owner       = OWNER == address(0) ? deployer : OWNER;
+        address owner       = OWNER == address(0) — deployer : OWNER;
 
         console.log("Network  :", block.chainid);
         console.log("Deployer :", deployer);

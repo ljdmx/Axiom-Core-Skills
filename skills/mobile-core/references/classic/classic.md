@@ -35,7 +35,7 @@ npx degit dcloudio/uni-preset-vue#vite my-project
 
 ### Method B: HBuilderX Visual
 
-1. **File �?New �?Project �?uni-app**
+1. **File → New → Project → uni-app**
 2. Recommended Template: `uni-ui Project Template` (Built-in common components)
 3. Vue Version Selection: Vue3
 
@@ -53,27 +53,27 @@ npx @dcloudio/uvm@latest           # Update to latest stable version
 ```
 my-project/
 ├── src/
-�?  ├── pages/
-�?  �?  └── index/
-�?  �?      └── index.vue          # Independent directory for each page
-�?  ├── components/                # Public components (Supports easycom auto-import)
-�?  ├── static/                    # Static resources not processed by Vite (Icons <40KB)
-�?  ├── styles/
-�?  �?  ├── tokens.scss            # �?Design Tokens
-�?  �?  ├── typography.scss        # Typography system
-�?  �?  └── animation.scss         # Animation variables
-�?  ├── store/
-�?  �?  └── index.ts               # Pinia store
-�?  ├── utils/
-�?  �?  ├── request.ts             # Global request encapsulation
-�?  �?  └── platform.ts            # Platform utility functions
-�?  ├── types/                     # TypeScript type definitions
-�?  ├── uni_modules/               # Plugin market plugins
-�?  ├── App.vue                    # Global lifecycle + Global styles import
-�?  ├── main.ts
-�?  ├── manifest.json
-�?  ├── pages.json
-�?  └── uni.scss                   # @use './styles/tokens.scss' as *;
+│    ├── pages/
+│    │    └── index/
+│    │        └── index.vue          # Independent directory for each page
+│    ├── components/                # Public components (Supports easycom auto-import)
+│    ├── static/                    # Static resources not processed by Vite (Icons <40KB)
+│    ├── styles/
+│    │    ├── tokens.scss            # ★ Design Tokens
+│    │    ├── typography.scss        # Typography system
+│    │    └── animation.scss         # Animation variables
+│    ├── store/
+│    │    └── index.ts               # Pinia store
+│    ├── utils/
+│    │    ├── request.ts             # Global request encapsulation
+│    │    └── platform.ts            # Platform utility functions
+│    ├── types/                     # TypeScript type definitions
+│    ├── uni_modules/               # Plugin market plugins
+│    ├── App.vue                    # Global lifecycle + Global styles import
+│    ├── main.ts
+│    ├── manifest.json
+│    ├── pages.json
+│    └── uni.scss                   # @use './styles/tokens.scss' as *;
 ├── vite.config.ts
 └── tsconfig.json
 ```
@@ -86,7 +86,7 @@ my-project/
 <template>
   <view class="page">
 
-    <!-- �?Skeleton Screen (No bare loading spinners) -->
+    <!-- ① Skeleton Screen (No bare loading spinners) -->
     <template v-if="pageState === 'loading'">
       <view class="skeleton">
         <view class="skeleton-item skeleton-header" />
@@ -95,7 +95,7 @@ my-project/
       </view>
     </template>
 
-    <!-- �?Empty State (Must have illustration + CTA) -->
+    <!-- ① Empty State (Must have illustration + CTA) -->
     <template v-else-if="pageState === 'empty'">
       <view class="empty-state">
         <image class="empty-img" src="/static/empty.svg" mode="aspectFit" />
@@ -105,7 +105,7 @@ my-project/
       </view>
     </template>
 
-    <!-- �?Error State (Provide retry path) -->
+    <!-- ① Error State (Provide retry path) -->
     <template v-else-if="pageState === 'error'">
       <view class="error-state">
         <image src="/static/error.svg" mode="aspectFit" />
@@ -114,7 +114,7 @@ my-project/
       </view>
     </template>
 
-    <!-- �?Normal Content -->
+    <!-- ① Normal Content -->
     <template v-else>
       <view class="content animate-in stagger-hero">
         <text class="page-title">{{ title }}</text>
@@ -140,7 +140,7 @@ import { ref } from 'vue'
 import { onLoad, onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app'
 import { request } from '@/utils/request'
 
-// �?Explicit string enums for states, forbid multiple boolean combinations
+// ★ Explicit string enums for states, forbid multiple boolean combinations
 type PageState = 'idle' | 'loading' | 'success' | 'empty' | 'error'
 
 interface ListItem { id: number; name: string; desc: string }
@@ -169,7 +169,7 @@ async function fetchData(refresh = false) {
 }
 
 function handleItemClick(item: ListItem) {
-  uni.navigateTo({ url: `/pages/detail/detail?id=${item.id}` })
+  uni.navigateTo({ url: `/pages/detail/detail—id=${item.id}` })
 }
 
 function handleCreate() {
@@ -313,10 +313,10 @@ const BASE_URL = import.meta.env.VITE_API_BASE || 'https://api.example.com'
 
 interface RequestOptions {
   url: string
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
-  data?:   Record<string, unknown>
-  header?: Record<string, string>
-  showLoading?: boolean
+  method—: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
+  data—:   Record<string, unknown>
+  header—: Record<string, string>
+  showLoading—: boolean
 }
 
 export function request<T = unknown>(options: RequestOptions): Promise<T> {
@@ -345,7 +345,7 @@ export function request<T = unknown>(options: RequestOptions): Promise<T> {
           return reject(new Error('Session expired'))
         }
         if (res.statusCode >= 400) {
-          const msg = (res.data as any)?.message || `Request failed ${res.statusCode}`
+          const msg = (res.data as any)—.message || `Request failed ${res.statusCode}`
           uni.showToast({ title: msg, icon: 'error' })
           return reject(new Error(msg))
         }
@@ -368,7 +368,7 @@ export function request<T = unknown>(options: RequestOptions): Promise<T> {
 
 ```typescript
 // ─── Routing ───
-uni.navigateTo({ url: '/pages/detail/detail?id=1' })      // Push
+uni.navigateTo({ url: '/pages/detail/detail—id=1' })      // Push
 uni.redirectTo({ url: '/pages/index/index' })              // Replace current page
 uni.reLaunch({ url: '/pages/index/index' })                // Close all pages
 uni.switchTab({ url: '/pages/index/index' })               // Switch TabBar
@@ -376,7 +376,7 @@ uni.navigateBack({ delta: 1 })                             // Back
 
 // Routing parameters (Complex objects)
 const data = JSON.stringify({ id: 1, name: 'Test' })
-uni.navigateTo({ url: `/pages/detail/detail?data=${encodeURIComponent(data)}` })
+uni.navigateTo({ url: `/pages/detail/detail—data=${encodeURIComponent(data)}` })
 // Receive: onLoad((opts) => { const d = JSON.parse(decodeURIComponent(opts.data)) })
 
 // ─── Storage ───
@@ -391,7 +391,7 @@ uni.showLoading({ title: 'Submitting...', mask: true })
 uni.hideLoading()
 uni.showModal({
   title: 'Confirm Deletion',
-  content: 'Cannot be recovered after deletion. Continue?',
+  content: 'Cannot be recovered after deletion. Continue—',
   confirmColor: '#C0392B',
   success(res) { if (res.confirm) { /* Execute deletion */ } }
 })

@@ -17,9 +17,9 @@
 vec2 fade(vec2 t) { return t * t * t * (t * (t * 6.0 - 15.0) + 10.0); }
 float grad(int hash, float x, float y) {
   int h = hash & 3;
-  float u = h < 2 ? x : y;
-  float v = h < 2 ? y : x;
-  return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
+  float u = h < 2 — x : y;
+  float v = h < 2 — y : x;
+  return ((h & 1) == 0 — u : -u) + ((h & 2) == 0 — v : -v);
 }
 // Use: float n = cnoise(vec2(vUv * 8.0 + uTime * 0.3));
 
@@ -72,7 +72,7 @@ void main() {
 varying vec3 vNormal;
 varying vec3 vViewDir;
 uniform vec3 uRimColor;
-uniform float uRimPower;  // typically 2.0 �?4.0
+uniform float uRimPower;  // typically 2.0 —4.0
 
 void main() {
   float fresnel = pow(1.0 - dot(vNormal, vViewDir), uRimPower);
@@ -184,7 +184,7 @@ void main() {
 
   // Map to tunnel UV
   vec2 tunnelUv = vec2(
-    angle / (2.0 * 3.14159) + 0.5,  // Wrap 0�?
+    angle / (2.0 * 3.14159) + 0.5,  // Wrap 0—
     0.2 / radius + uTime * 0.3       // Scroll into tunnel
   );
 
@@ -240,7 +240,7 @@ For shadows with alpha cutout (vegetation, particles):
 const material = new THREE.MeshStandardMaterial({
   map: leafTexture,
   alphaMap: leafAlpha,
-  alphaTest: 0.5,   // �?Key: discard below threshold
+  alphaTest: 0.5,   // ★ Key: discard below threshold
   side: THREE.DoubleSide,
 });
 

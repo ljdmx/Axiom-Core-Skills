@@ -1,7 +1,7 @@
 # FSPC Execution & Handoff Gates (On-Demand)
-## ¬ß6‚Äì¬?5 Delivery Quality Rules
+## ¬ß6-15 Delivery Quality Rules
 
-> **Status**: ACTIVE ‚Ä?Loaded on-demand by FSPC SKILL.md.
+> **Status**: ACTIVE ‚ÄîLoaded on-demand by FSPC SKILL.md.
 > **Purpose**: Defines all delivery quality gates for the Execution and Handoff phases of a product build. These rules apply AFTER Phase 0C scaffold is complete.
 > **Load Trigger**: Entering the EXECUTION phase OR any HANDOFF milestone.
 > **Usage**: `view_file(references/product-execution-gates.md)`
@@ -24,9 +24,9 @@ Testing is not the final step; it is the blueprint.
 
   | Layer | When to Write | Min Coverage |
   |---|---|---|
-  | Unit (pure functions, utils, validators) | Alongside business logic | ‚â?80% of logic functions |
-  | Integration (DB + Queue + Cache interactions) | After service layer | ‚â?60% of critical paths |
-  | E2E (complete user-role flows) | After M1 delivery | ‚â?3 full business workflows |
+  | Unit (pure functions, utils, validators) | Alongside business logic | ‚â• 80% of logic functions |
+  | Integration (DB + Queue + Cache interactions) | After service layer | ‚â• 60% of critical paths |
+  | E2E (complete user-role flows) | After M1 delivery | ‚â• 3 full business workflows |
   | Contract (service-to-service API agreements) | Before Quantitative Gate | 100% of inter-service calls |
   | **A11y Scan** (`@axe-core/playwright` assertions) | Alongside E2E tests | **0 critical violations** |
 
@@ -55,14 +55,14 @@ A module cannot pass the gate unless it meets hard numerical limits:
 - **Anti-Generic Copy Rules**:
   - **Empty States**: NEVER output `"No data available"`, `"Nothing here yet"`, or `"No items found"`. MUST write a domain-specific, slightly poetic call-to-action:
     ```
-    ‚ù?"No devices found"
-    ‚ú?"Your fleet is quiet. Add the first sensor to start listening to your infrastructure."
+    ‚ùå "No devices found"
+    ‚úÖ "Your fleet is quiet. Add the first sensor to start listening to your infrastructure."
 
-    ‚ù?"No reports generated yet"
-    ‚ú?"Your analytics canvas is clean. Run the first report to reveal what's beneath the surface."
+    ‚ùå "No reports generated yet"
+    ‚úÖ "Your analytics canvas is clean. Run the first report to reveal what's beneath the surface."
     ```
   - **Error Messages**: NEVER output `"An error occurred"` or `"Something went wrong"`. ALL error messages MUST explain the cause and the immediate user action (enforces ADBM ¬ß2 `human_readable_cause` + `suggested_action`).
-  - **Loading States**: NEVER use bare spinners. Loading skeletons MUST be accompanied by a micro-message that reduces anxiety (e.g., `"Syncing your data‚Ä?`, `"Building your report‚Ä?`).
+  - **Loading States**: NEVER use bare spinners. Loading skeletons MUST be accompanied by a micro-message that reduces anxiety (e.g., `"Syncing your data‚Äî`, `"Building your report‚Äî`).
   - **Button Labels**: NEVER use generic verbs (`Submit`, `OK`, `Click here`). Every button label MUST be a specific action-outcome pair (e.g., `"Send Invitation"`, `"Publish Changes"`, `"Download as PDF"`).
 - **Fake-Name Prohibition**: User names in seed data, demo accounts, and default avatars MUST NOT be `John Doe`, `Test User`, `Admin`, or `user@example.com`. Use culturally diverse, memorable personas (e.g., `Amara Osei`, `Liu Kaiyuan`, `Isabelle Morin`).
 
@@ -72,12 +72,12 @@ A module cannot pass the gate unless it meets hard numerical limits:
 
   | Link / Interaction | Acceptable Implementation | HARD BLOCK Condition |
   |---|---|---|
-  | "Forgot password?" link | Functional flow: enter email ‚Ü?receive OTP/link ‚Ü?reset | `href="#"` or `console.log()` |
+  | "Forgot password? " link | Functional flow: enter email ‚Üí receive OTP/link ‚Üí reset | `href="#"` or `console.log()` |
   | "Help / Documentation" link | Opens doc page, modal, or email link | `href="#"` or 404 |
   | "Account Settings" link | Navigates to settings page with at least profile + password change | Empty shell page |
   | "Back" / breadcrumb navigation | Working browser history pop or explicit route navigation | No back affordance |
   | "Cancel" buttons in modals | Closes modal with no side effects | No `onClick` handler |
-  | "Delete" confirmation dialogs | Full confirm ‚Ü?delete ‚Ü?success toast ‚Ü?redirect flow | Partial implementation |
+  | "Delete" confirmation dialogs | Full confirm ‚Üí delete ‚Üí success toast ‚Üí redirect flow | Partial implementation |
   | Pagination / Load More | Functional with correct page boundaries | Hardcoded page 1 only |
   | Social login buttons (if present) | Fully wired OAuth flow OR removed entirely | Styled but non-functional |
 
@@ -92,7 +92,7 @@ A module cannot pass the gate unless it meets hard numerical limits:
   |---|---|---|
   | `docker-compose.yml` | Local full-stack orchestration | App + DB + Redis + Nginx/Caddy + optional Queue worker |
   | `.env.dev` / `.env.production.example` | Environment variable documentation | ALL variables documented, NO secrets committed |
-  | `.github/workflows/ci.yml` | CI pipeline | Lint ‚Ü?Typecheck ‚Ü?Test ‚Ü?Build ‚Ü?Docker push |
+  | `.github/workflows/ci.yml` | CI pipeline | Lint ‚Üí Typecheck ‚Üí Test ‚Üí Build ‚Üí Docker push |
   | `DEPLOY.md` | Deployment runbook | Step-by-step deploy to target platform (Vercel/Render/Fly.io/Docker) |
   | `ROLLBACK_RUNBOOK.md` | (from ¬ß11) | Must include DB rollback decision tree |
 
@@ -103,10 +103,10 @@ A module cannot pass the gate unless it meets hard numerical limits:
 - **Mandate**: For every component that fetches data from an API, AI MUST generate exactly **three companion visual states** alongside the primary "success" state. A component without all three companions is incomplete and will not pass the Handoff gate.
 - **The Four Required States** (auto-generated for EVERY data-fetching component):
   ```
-  [State: loading]  ‚Ü?Exact-dimension Skeleton (matches success layout geometry, no generic spinner)
-  [State: empty]    ‚Ü?Illustrated Empty State + domain-specific CTA (no "No data" text allowed)
-  [State: error]    ‚Ü?Error Fallback + action button ("Try Again") + Error Boundary wrap
-  [State: success]  ‚Ü?Primary content (the component itself)
+  [State: loading]  ‚Üí Exact-dimension Skeleton (matches success layout geometry, no generic spinner)
+  [State: empty]    ‚Üí Illustrated Empty State + domain-specific CTA (no "No data" text allowed)
+  [State: error]    ‚Üí Error Fallback + action button ("Try Again") + Error Boundary wrap
+  [State: success]  ‚Üí Primary content (the component itself)
   ```
 - **Skeleton Geometry Contract**: The skeleton MUST replicate the exact spatial layout of the loaded state. If the success state has a 48px avatar + title + 2 body lines, the skeleton MUST have: a `48px circle` + a `200px wide bar` + two bars at `80%` and `60%` width. Generic full-width bars are NOT acceptable.
 - **Error Boundary Wrap**: EVERY data-fetching section MUST be wrapped in a React/Vue Error Boundary. Unhandled JS runtime errors MUST trigger the `[error]` state component, not a global white screen.

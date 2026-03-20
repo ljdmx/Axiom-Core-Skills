@@ -92,7 +92,7 @@ class DeploymentWizard {
         log(`Selected: ${this.config.environment}`, 'green');
 
         if (this.config.environment === 'production') {
-            const confirm = await question('\n⚠️  Deploying to PRODUCTION. Are you sure? (yes/no): ');
+            const confirm = await question('\n⚠️  Deploying to PRODUCTION. Are you sure— (yes/no): ');
             if (confirm.toLowerCase() !== 'yes') {
                 log('Deployment cancelled', 'yellow');
                 process.exit(0);
@@ -136,7 +136,7 @@ class DeploymentWizard {
             const result = await check.fn();
             if (!result) {
                 log(`\n⚠️  Check failed: ${check.name}`, 'yellow');
-                const proceed = await question('Continue anyway? (yes/no): ');
+                const proceed = await question('Continue anyway— (yes/no): ');
                 if (proceed.toLowerCase() !== 'yes') {
                     log('Deployment cancelled', 'yellow');
                     process.exit(0);
@@ -256,7 +256,7 @@ class DeploymentWizard {
         );
 
         // Push to registry
-        const pushImage = await question('Push to registry? (yes/no): ');
+        const pushImage = await question('Push to registry— (yes/no): ');
         if (pushImage.toLowerCase() === 'yes') {
             const registry = await question('Registry URL: ');
             execCommand(
@@ -270,7 +270,7 @@ class DeploymentWizard {
         }
 
         // Run container
-        const runLocal = await question('Run container locally? (yes/no): ');
+        const runLocal = await question('Run container locally— (yes/no): ');
         if (runLocal.toLowerCase() === 'yes') {
             const port = await question('Port mapping (e.g., 3000:3000): ');
             execCommand(

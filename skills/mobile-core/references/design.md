@@ -21,7 +21,7 @@
 9. [Zero-AI-Aesthetic Protocol](#9-zero-ai-aesthetic-protocol)
 10. [Failure Contingency & Design Red Lines](#10-failure-contingency--design-red-lines)
 
-> For advanced content (Materials/Lighting/Wide Screen/Performance/A11y) �?`references/design-advanced.md`
+> For advanced content (Materials/Lighting/Wide Screen/Performance/A11y) → `references/design-advanced.md`
 
 ---
 
@@ -56,15 +56,15 @@ Before drawing a single pixel, you must perform a 3-axis calibration on the soul
 
 ## 2. Complete Design Token Implementation
 
-### uni-app Classic �?`src/styles/tokens.scss`
+### uni-app Classic —`src/styles/tokens.scss`
 
 ```scss
 // ════════════════════════════════════
-// �?COLOR TOKENS �?Light & Dark Sets
+// ★ COLOR TOKENS —Light & Dark Sets
 // ════════════════════════════════════
 
 // ── Light Mode ──
-$color-brand:          #1A1A1A;     // Brand Color (Full screen �?%)
+$color-brand:          #1A1A1A;     // Brand Color (Full screen ≥ %)
 $color-brand-subtle:   #333333;
 
 $color-bg-base:        #F8F8F4;    // Page Background (Warmth, not pure white)
@@ -73,12 +73,12 @@ $color-bg-elevated:    #EFEFE9;    // Hover/Interactive Background
 $color-bg-overlay:     rgba(0,0,0,0.4); // Overlay/Mask
 
 $color-text-primary:   rgba(0, 0, 0, 0.88);
-$color-text-secondary: rgba(0, 0, 0, 0.55);   // �?Use opacity, not gray hex
+$color-text-secondary: rgba(0, 0, 0, 0.55);   // ★ Use opacity, not gray hex
 $color-text-tertiary:  rgba(0, 0, 0, 0.35);
 $color-text-disabled:  rgba(0, 0, 0, 0.25);
 $color-text-inverse:   rgba(255, 255, 255, 0.95);
 
-// Semantic Colors (Emotionally precise �?Not pure green/red/blue)
+// Semantic Colors (Emotionally precise —Not pure green/red/blue)
 $color-success:        #2D7D46;    // Calm Confirmation (Dark green, not neon)
 $color-warning:        #B86800;    // Gentle Warning (Amber, not orange)
 $color-error:          #C0392B;    // Restrained Error (Brick red, not fire engine red)
@@ -88,13 +88,13 @@ $color-delight:        #6B46C1;    // Surprise/Celebration Exclusive (Violet)
 $color-border:         rgba(0, 0, 0, 0.08);
 $color-border-strong:  rgba(0, 0, 0, 0.15);
 
-// ── Dark Mode —�?Independent Deduction, Not Simple Inversion ──
+// ── Dark Mode ——Independent Deduction, Not Simple Inversion ──
 // ⚠️ It is strictly forbidden to directly define static SCSS variables (like `$color-bg-dark`) expecting them to auto-switch at runtime!
 // SCSS is a compile-time language and cannot hot-reload when users switch dark mode.
 // We will demonstrate later: Dark mode solutions for both tracks (CSS vars for H5/MP, Class overrides for App uvue).
 
 // ════════════════════════════════════
-// �?SPACING TOKENS �?8pt Grid
+// ★ SPACING TOKENS —8pt Grid
 // ════════════════════════════════════
 $space-1:  8rpx;     // Micro spacing (Between icon and text)
 $space-2:  16rpx;    // Compact (Tag padding)
@@ -107,7 +107,7 @@ $space-10: 80rpx;    // Chapter spacing
 $space-12: 96rpx;    // Extra large void (Empty state/Hero area)
 
 // ════════════════════════════════════
-// �?BORDER RADIUS TOKENS
+// ★ BORDER RADIUS TOKENS
 // ════════════════════════════════════
 $radius-xs:   4rpx;
 $radius-sm:   8rpx;
@@ -118,7 +118,7 @@ $radius-2xl:  40rpx;
 $radius-full: 9999rpx;  // Pill shape
 
 // ════════════════════════════════════
-// �?OPTICAL AMBIENT SHADOWS
+// ★ OPTICAL AMBIENT SHADOWS
 // ════════════════════════════════════
 // Reject pure black shadows. Extract brand or surface color as the glow base, blending a soft tulle feel.
 $shadow-sm:  0 2rpx 8rpx rgba(26,26,26,0.06), 0 1rpx 2rpx rgba(26,26,26,0.04);
@@ -126,25 +126,25 @@ $shadow-md:  0 4rpx 16rpx rgba(26,26,26,0.08), 0 2rpx 4rpx rgba(26,26,26,0.05);
 $shadow-lg:  0 8rpx 32rpx rgba(26,26,26,0.12), 0 4rpx 8rpx rgba(26,26,26,0.06);
 $shadow-xl:  0 16rpx 48rpx rgba(26,26,26,0.16), 0 8rpx 16rpx rgba(26,26,26,0.08);
 
-// �?Dark Mode Ambient Color & Hue Shifting
+// ★ Dark Mode Ambient Color & Hue Shifting
 // Pure black shadows are forbidden in dark mode; they must carry a cool/warm bias (e.g., black with a hint of purple-blue, cool and deep, with high transparency diffusion).
 $shadow-dark-sm:  0 2rpx 8rpx rgba(15, 10, 25, 0.40);
 $shadow-dark-md:  0 4rpx 16rpx rgba(15, 10, 25, 0.55);
 $shadow-dark-lg:  0 8rpx 32rpx rgba(15, 10, 25, 0.65);
 
 // ════════════════════════════════════
-// �?Z-INDEX TOKENS �?Strict Layering (5 Layers Only)
+// ★ Z-INDEX TOKENS —Strict Layering (5 Layers Only)
 // ════════════════════════════════════
 $z-base:    0;
 $z-sticky:  10;    // Sticky Nav
 $z-overlay: 20;    // Dropdowns
 $z-modal:   30;    // Modals
 $z-toast:   40;    // Global Toasts
-// �?Arbitrary magic numbers like z-index: 9999 are forbidden.
+// ❌Arbitrary magic numbers like z-index: 9999 are forbidden.
 
 // ════════════════════════════════════
-// �?TYPOGRAPHY TOKENS
-// �?Fluid Typographic Scale - Major Third 1.250x
+// ★ TYPOGRAPHY TOKENS
+// ★ Fluid Typographic Scale - Major Third 1.250x
 // Preferably use CSS `clamp` function so font sizes transition perfectly like fluid when the screen stretches.
 // For ucss that doesn't support `clamp`, hardcode the optimal value for the screen or calculate dynamically via UTS computed.
 $text-xs:      clamp(20rpx, 16rpx + 0.53vw, 24rpx);   // (Base / 1.56)
@@ -156,7 +156,7 @@ $text-2xl:     clamp(56rpx, 48rpx + 1.06vw, 64rpx);   // (Base * 2.00)
 $text-display: clamp(76rpx, 64rpx + 1.59vw, 88rpx);   // (Base * 2.66)
 $text-hero:    clamp(100rpx, 80rpx + 2.66vw, 120rpx); // (Base * 3.55)
 
-// Font Weight (�?3 levels)
+// Font Weight (≥ 3 levels)
 $font-regular:  400;
 $font-medium:   500;
 $font-semibold: 600;
@@ -197,7 +197,7 @@ $ease-exit:    cubic-bezier(0.4, 0, 1, 1);
 - **Ambient Light Tracking**: All Surfaces must undergo slight Hue Shifting based on the underlying background, creating frosted glass and true depth perception.
 
 ```scss
-// �?OKLCH Haute Couture Palette Example
+// ★ OKLCH Haute Couture Palette Example
 $brand-base: oklch(0.6 0.18 256); // Brand Primary (Perceptual Blue)
 $surface-tint: oklch(0.98 0.01 256); // Background with a hint of brand warmth
 ```
@@ -214,16 +214,16 @@ All text/icon color combinations must run on top of the Contrast Formula (WCAG 2
 // Human Perception Contrast Calculation Concept:
 // L = 0.2126 * R + 0.7152 * G + 0.0722 * B
 // Contrast Ratio = (max(L1, L2) + 0.05) / (min(L1, L2) + 0.05)
-// Must satisfy: Normal Body �?4.5:1, Large Titles/Graphics �?3.0:1
+// Must satisfy: Normal Body ≥ 4.5:1, Large Titles/Graphics ≥ 3.0:1
 ```
 
 ### 3.2 Color Proportion Rule (Mandatory)
 
 ```text
-Background Layers    60�?0%   �?$color-bg-base / $color-bg-surface
-Main Content         20�?0%   �?$color-text-primary / Icons / Content Area
-Emphasized Info       5�?5%   �?$color-text-secondary / Tags / Aux Info
-Brand Color           �?5%    �?Logos / Main CTA Buttons ONLY  ←★ Most Important
+Background Layers    60—0%   → $color-bg-base / $color-bg-surface
+Main Content         20—0%   → $color-text-primary / Icons / Content Area
+Emphasized Info       5—5%   → $color-text-secondary / Tags / Aux Info
+Brand Color           ≥ 5%    → Logos / Main CTA Buttons ONLY  ←★ Most Important
 ```
 
 ### Button Hierarchy (Only 1 primary button per screen)
@@ -237,14 +237,14 @@ Brand Color           �?5%    �?Logos / Main CTA Buttons ONLY  ←★ Most Imp
   // It is forbidden to have a second solid filled button on the same screen
 }
 
-// Secondary Actions �?Outlined buttons
+// Secondary Actions → Outlined buttons
 .btn-secondary {
   background-color: transparent;
   border: 2rpx solid $color-brand;
   // Use this style for competitive actions
 }
 
-// Low Priority �?Pure text
+// Low Priority → Pure text
 .btn-ghost {
   background-color: transparent;
   // Cancel/Back/Secondary links
@@ -325,7 +325,7 @@ Every crucial state should be equipped with "silent-level" sound effect Tokens (
 - **Error**: A 200Hz low-frequency thud with damping.
 - **Interaction**: Extremely light Friction Sound feedback.
 
-### 4.2 Haptic Semantics �?Guardian Semantic Library
+### 4.2 Haptic Semantics —Guardian Semantic Library
 Not just physical vibrations, but semantic feedback tied to mental states.
 When calling `guardian.haptic(label)`, the skill package should generate code based on the following semantics:
 
@@ -365,10 +365,10 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
 
 ## 5. Typography System & Optical Alignment
 
-### Hierarchy Rules (Pages must have �?3 visual weight levels)
+### Hierarchy Rules (Pages must have ≥ 3 visual weight levels)
 
 ```scss
-// �?High-Order Typography Role Separation System
+// ★ High-Order Typography Role Separation System
 // The world's best design systems (like Apple SF Pro, Inter) distinguish spacing for Display vs Body Text.
 
 // [1] Display Role (For titles above 32rpx): Extremely tight letter spacing, minimal line height, heavy font weight
@@ -380,7 +380,7 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
   color: $color-text-primary;
 }
 
-// Heading �?Page/Module Titles (High Weight)
+// Heading —Page/Module Titles (High Weight)
 .text-heading {
   font-size: $text-xl;
   font-weight: $font-bold;
@@ -389,18 +389,18 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
   color: $color-text-primary;
 }
 
-// Subheading �?(Medium Weight)
+// Subheading —(Medium Weight)
 .text-subheading {
   font-size: $text-lg;
   font-weight: $font-semibold;
   color: $color-text-primary;
 }
 
-// �?Typeface Pairing Protocol
+// ★ Typeface Pairing Protocol
 // .text-display { font-family: 'InstrumentSerif', serif; }
 // .text-body { font-family: system-ui, -apple-system, sans-serif; }
 
-// �?Optical Alignment
+// ★ Optical Alignment
 .optical-hang {
   margin-left: -0.4em; // Offset default whitespace of leading quotes or giant characters
 }
@@ -414,14 +414,14 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
   color: $color-text-primary;
 }
 
-// Caption �?Aux explanations (Low weight, demoted via opacity)
+// Caption —Aux explanations (Low weight, demoted via opacity)
 .text-caption {
   font-size: $text-sm;
   color: $color-text-secondary;   // rgba opacity, not gray hex
   line-height: $leading-normal;
 }
 
-// Meta �?Lowest weight (Timestamps/Annotations)
+// Meta —Lowest weight (Timestamps/Annotations)
 .text-meta {
   font-size: $text-xs;
   color: $color-text-tertiary;
@@ -444,16 +444,16 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
 ### Void (Negative Space) Rules
 
 ```
-�?Any Hero area or feature block must have at least 25% conscious whitespace.
-�?If removing a decorative element makes it quieter, remove it.
-�?Use background color differentials (rgba diff < 0.04) instead of divider lines.
-�?Use spacing instead of borders.
+★ Any Hero area or feature block must have at least 25% conscious whitespace.
+★ If removing a decorative element makes it quieter, remove it.
+★ Use background color differentials (rgba diff < 0.04) instead of divider lines.
+★ Use spacing instead of borders.
 ```
 
 ### Mobile Asymmetric Bento Grid
 
 ```vue
-<!-- C-Level �?Asymmetric Bento Layout (Strictly forbid symmetrical layouts like equal 3-grids) -->
+<!-- C-Level —Asymmetric Bento Layout (Strictly forbid symmetrical layouts like equal 3-grids) -->
 <!-- ⚠️ Warning: uni-app x (ucss/App) absolutely DOES NOT support flex-wrap and gap. Avoid them entirely. -->
 <template>
   <view class="bento-grid">
@@ -486,7 +486,7 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
 <style lang="scss">
 @use '@/uni.scss' as *;
 
-// �?Asymmetric Grid: Largest block �?2× size of the smallest block
+// ★ Asymmetric Grid: Largest block ≥ 2× size of the smallest block
 // This uses pure nested Flex (Cols inside Rows) perfectly tailored for uni-app x ucss, abandoning gap and flex-wrap
 .bento-grid {
   flex-direction: column;
@@ -498,7 +498,7 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
   margin-bottom: $space-3;
 }
 
-// �?Golden Ratio 1:1.618
+// ★ Golden Ratio 1:1.618
 // Sever the mediocrity of 2:1, use the absolute divine cut of 62% : 38%.
 .bento-hero  { 
   flex: 62; 
@@ -553,7 +553,7 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
 
 ## 7. Animation System
 
-> **Two Hard Rules: �?Spatial translation animation �?250ms; �?MUST respect prefers-reduced-motion**
+> **Two Hard Rules: ① Spatial translation animation ≥ 250ms; ① MUST respect prefers-reduced-motion**
 
 ### 7.1 Page Transitions & Gestures
 
@@ -563,7 +563,7 @@ When calling `guardian.haptic(label)`, the skill package should generate code ba
 ### 7.2 Soul Pulse Standards
 
 **[Hard Constraint: Unobtrusive Pulse]**
-- **Duration**: 100�?80ms (Never exceed 300ms).
+- **Duration**: 100—80ms (Never exceed 300ms).
 - **Easing Curve**: `Cubic-bezier(0.25, 0.1, 0.25, 1)` or `ease-out` (Pursue ultimate naturalness, linear is forbidden).
 - **Amplitude**: The maximum amplitude of opacity/scale/translation is constrained within 8%.
 - **Trigger**: Auto-play is strictly forbidden. Must be triggered by user action or natural state flow.
@@ -675,11 +675,11 @@ function fadeIn() : void {
 
 | Refusal Criteria | Soul Damage Point | Alternative (Guardian Path) |
 | :--- | :--- | :--- |
-| **Introducing unnecessary visual stimuli?** | Destroys the peace of the "base background". | Use micro-gradients or noise textures to simulate physical materiality. |
-| **Chasing short-term trends (e.g. Neon/3D)?** | Harms the "Long-lasting" principle. | Stick to neutral, Haute Couture Design Tokens. |
-| **Transferring cognitive load to users?** | Harms "Sense of Being Understood". | Predict user intent, provide a zero-curve intuitive path. |
-| **Feature bloat / Fragmented logic?** | Causes the App's soul to die, degrading to a mere tool. | Extreme restraint, less is better, merge redundant portals. |
-| **Sacrificing Honesty, Ecology, or Inclusivity?** | Ethical collapse, harms "Sense of Respect". | Default WCAG AA, Accessibility First, transparent privacy. |
+| **Introducing unnecessary visual stimuli—** | Destroys the peace of the "base background". | Use micro-gradients or noise textures to simulate physical materiality. |
+| **Chasing short-term trends (e.g. Neon/3D)—** | Harms the "Long-lasting" principle. | Stick to neutral, Haute Couture Design Tokens. |
+| **Transferring cognitive load to users—** | Harms "Sense of Being Understood". | Predict user intent, provide a zero-curve intuitive path. |
+| **Feature bloat / Fragmented logic—** | Causes the App's soul to die, degrading to a mere tool. | Extreme restraint, less is better, merge redundant portals. |
+| **Sacrificing Honesty, Ecology, or Inclusivity—** | Ethical collapse, harms "Sense of Respect". | Default WCAG AA, Accessibility First, transparent privacy. |
 
 ---
 

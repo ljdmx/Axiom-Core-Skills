@@ -9,22 +9,22 @@ Complete production-ready implementation demonstrating all ADBM principles.
 ```
 src/
 ├── modules/                    # Domain modules (feature-based organization)
-�?  └── users/
-�?      ├── users.controller.ts       # REST API endpoints
-�?      ├── users.service.ts          # Business logic + caching
-�?      ├── users.repository.ts       # Data access layer
-�?      ├── dto/create-user.dto.ts    # Input validation
-�?      ├── dto/user-response.dto.ts  # Output serialization
-�?      └── entities/user.entity.ts   # Domain model
+│    └── users/
+│        ├── users.controller.ts       # REST API endpoints
+│        ├── users.service.ts          # Business logic + caching
+│        ├── users.repository.ts       # Data access layer
+│        ├── dto/create-user.dto.ts    # Input validation
+│        ├── dto/user-response.dto.ts  # Output serialization
+│        └── entities/user.entity.ts   # Domain model
 ├── common/                     # Shared infrastructure
-�?  ├── filters/global-exception.filter.ts
-�?  ├── interceptors/logging.interceptor.ts
-�?  ├── guards/jwt-auth.guard.ts
-�?  ├── guards/roles.guard.ts
-�?  └── decorators/roles.decorator.ts
+│    ├── filters/global-exception.filter.ts
+│    ├── interceptors/logging.interceptor.ts
+│    ├── guards/jwt-auth.guard.ts
+│    ├── guards/roles.guard.ts
+│    └── decorators/roles.decorator.ts
 ├── config/
-�?  ├── database.config.ts
-�?  └── cache.config.ts
+│    ├── database.config.ts
+│    └── cache.config.ts
 └── app.module.ts              # Root module
 
 ```
@@ -58,13 +58,13 @@ Due to length constraints, core files are provided below. Full project structure
 
 ### Key Features Demonstrated
 
-�?**Contract-First**: OpenAPI schema auto-generated  
-�?**Layered Architecture**: Controller �?Service �?Repository �?Entity  
-�?**Error Handling**: Custom exceptions + Global filter  
-�?**Caching**: Redis Cache-Aside pattern  
-�?**Observability**: Structured logging + Prometheus metrics  
-�?**Security**: JWT auth + RBAC + input validation  
-�?**Performance**: Connection pooling + query optimization
+✅**Contract-First**: OpenAPI schema auto-generated  
+✅**Layered Architecture**: Controller → Service → Repository → Entity  
+✅**Error Handling**: Custom exceptions + Global filter  
+✅**Caching**: Redis Cache-Aside pattern  
+✅**Observability**: Structured logging + Prometheus metrics  
+✅**Security**: JWT auth + RBAC + input validation  
+✅**Performance**: Connection pooling + query optimization
 
 ---
 

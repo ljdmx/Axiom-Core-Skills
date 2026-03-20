@@ -4,11 +4,11 @@
 
 | Level | Meaning | Consequence of Violation |
 |---|---|---|
-| **MUST / MUST NOT** | Non-negotiable requirement | HARD BLOCK �?do not proceed |
+| **MUST / MUST NOT** | Non-negotiable requirement | HARD BLOCK —do not proceed |
 | **SHOULD / SHOULD NOT** | Strongly recommended | Deviation requires explicit justification in ADR |
 | **MAY** | Context-dependent, optional | Apply based on project scale & needs |
 
-## 1️⃣�?️⃣ & 1️⃣0️⃣ Core Backend Protocols (High-Density)
+## 1️⃣-3️⃣ & 1️⃣0️⃣ Core Backend Protocols (High-Density)
 
 | Section | Mandate | Implementation / Execution |
 |---|---|---|

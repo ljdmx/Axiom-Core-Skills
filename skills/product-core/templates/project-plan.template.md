@@ -15,7 +15,7 @@
 
 ---
 
-## 🏗�?Tech Stack Decision
+## 🏗️—Tech Stack Decision
 
 ### Frontend
 - **Framework**: [React/Vue/Next.js] + [Vite/Next]
@@ -24,7 +24,7 @@
 - **Aesthetic**: [Minimalist/Industrial/Editorial/Biophilic]
 - **Testing**: [Vitest + Testing Library]
 
-**Rationale**: [Why this stack? Based on DDFM decision engine]
+**Rationale**: [Why this stack— Based on DDFM decision engine]
 
 ### Backend
 - **Architecture**: [Serverless/Modular Monolith/Microservices]
@@ -35,7 +35,7 @@
 - **Auth**: [JWT + Passport/FastAPI Security]
 - **Testing**: [Jest/Pytest/Go test]
 
-**Rationale**: [Why this stack? Based on ADBM decision engine and scale]
+**Rationale**: [Why this stack— Based on ADBM decision engine and scale]
 
 ### Infrastructure
 - **Development**: Docker Compose
@@ -136,7 +136,7 @@ TOTAL: [X+Y+Z+T+1] days
 
 ## 🔗 Dependencies & Coordination Points
 
-### Frontend �?Backend Dependencies
+### Frontend → Backend Dependencies
 
 ```mermaid
 graph LR

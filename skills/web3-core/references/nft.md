@@ -24,7 +24,7 @@
 
 ## 2. ERC-721 Production Implementation
 
-> See `solidity.md` �?Detailed ERC-721 implementation (Including royalties, reveal, whitelists, etc.)
+> See `solidity.md` → Detailed ERC-721 implementation (Including royalties, reveal, whitelists, etc.)
 
 ### ERC-721A (Gas-Optimized Batch Minting)
 
@@ -117,7 +117,7 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
-/// @title GameItems �?ERC-1155 Game Item Contract
+/// @title GameItems —ERC-1155 Game Item Contract
 contract GameItems is ERC1155, ERC1155Supply, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
@@ -263,7 +263,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-/// @title OnchainNFT �?100% on-chain stored NFT
+/// @title OnchainNFT —100% on-chain stored NFT
 contract OnchainNFT is ERC721 {
     using Strings for uint256;
 
@@ -372,7 +372,7 @@ import { createWalletClient, http } from 'viem';
 import { mainnet } from 'viem/chains';
 
 // Initialization (At App Entry)
-getClient()?.configure({
+getClient()—.configure({
     chains: [{ id: 1, baseApiUrl: 'https://api.reservoir.tools', active: true }],
     source: 'my-dapp.xyz',
     apiKey: process.env.NEXT_PUBLIC_RESERVOIR_API_KEY,
@@ -381,15 +381,15 @@ getClient()?.configure({
 // ── Query NFT Floor Price ──────────────────────────────────────────
 async function getFloorPrice(contractAddr: string): Promise<number> {
     const res = await fetch(
-        `https://api.reservoir.tools/collections/v7?id=${contractAddr}`,
+        `https://api.reservoir.tools/collections/v7—id=${contractAddr}`,
         { headers: { 'x-api-key': process.env.RESERVOIR_API_KEY! } }
     );
     const { collections } = await res.json();
-    return collections[0]?.floorAsk?.price?.amount?.usd ?? 0;
+    return collections[0]—.floorAsk—.price—.amount—.usd —— 0;
 }
 
 // ── Query NFT Listings (Active) ────────────────────────────────────
-async function getListings(contractAddr: string, tokenId?: string) {
+async function getListings(contractAddr: string, tokenId—: string) {
     const url = new URL('https://api.reservoir.tools/orders/asks/v5');
     url.searchParams.set('contracts', contractAddr);
     if (tokenId) url.searchParams.set('tokenSetId', `token:${contractAddr}:${tokenId}`);
@@ -449,7 +449,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-/// @title DynamicNFT �?Evolves SVG/Metadata based on on-chain state
+/// @title DynamicNFT —Evolves SVG/Metadata based on on-chain state
 contract DynamicNFT is ERC721, Ownable {
     using Strings for uint256;
 

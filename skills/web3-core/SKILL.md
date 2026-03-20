@@ -20,9 +20,9 @@ token_budget:
 
 
 > **Pattern: Inversion**. DO NOT write a single line of Solidity before interviewing the user on these 3 critical axes:
-1. **Utility & Supply**: Fixed vs. Elastic? Governance vs. Payment?
-2. **Access Control**: Ownable, Role-Based, or DAO-controlled?
-3. **Escrow & Vesting**: Mandatory lock periods or linear cliff?
+1. **Utility & Supply**: Fixed vs. Elastic— Governance vs. Payment—
+2. **Access Control**: Ownable, Role-Based, or DAO-controlled—
+3. **Escrow & Vesting**: Mandatory lock periods or linear cliff—
 
 Ask one question at a time. Wait for response before proceeding.
 
@@ -47,34 +47,34 @@ Ask one question at a time. Wait for response before proceeding.
 | Cross-chain Messaging (LayerZero / CCIP / Security)| `references/crosschain.md` |
 | Toolchain: TypeChain / wagmi CLI / CI-CD / Defender | `references/toolchain.md` |
 
-## 🗂�?Routing by Project Type
+## 🗂️—Routing by Project Type
 
 **NFT Project (PFP / Art / Game Items)**
-�?`nft.md` + `security.md §1,§6` + `deploy.md §Verification`
+→ `nft.md` + `security.md §1,§6` + `deploy.md §Verification`
 
 **DeFi Protocol (DEX / Lending / Yield)**
-�?`defi.md` + `solidity-patterns.md §ERC-4626` + `security.md §4,§5` + `testing.md §fork`
+→ `defi.md` + `solidity-patterns.md §ERC-4626` + `security.md §4,§5` + `testing.md §fork`
 
 **dApp Frontend (React/wagmi)**
-�?`frontend-wagmi.md` + `data-infra.md`
+→ `frontend-wagmi.md` + `data-infra.md`
 
 **Gasless / AA Experience**
-�?`account-abstraction.md` + `frontend-wagmi.md §5 AA`
+→ `account-abstraction.md` + `frontend-wagmi.md §5 AA`
 
 **Multi-chain / L2 Deployment**
-�?`l2-deployment.md` + `deploy.md §Multi-chain`
+→ `l2-deployment.md` + `deploy.md §Multi-chain`
 
 **Cross-chain Protocol**
-�?`crosschain.md` + `crosschain.md §4 Cross-chain Security`
+→ `crosschain.md` + `crosschain.md §4 Cross-chain Security`
 
 **Security Audit / Code Review**
-�?`security.md` (Full) + `toolchain.md §Slither`
+→ `security.md` (Full) + `toolchain.md §Slither`
 
 **New Project from Scratch**
-�?`deploy.md §Framework Selection` + `toolchain.md §CI-CD` + `solidity-core.md`
+→ `deploy.md §Framework Selection` + `toolchain.md §CI-CD` + `solidity-core.md`
 
-**Full DApp (Contract + Backend + Frontend) �?FSPC Dispatch Required**
-�?This scope exceeds web3-core alone. AI MUST recommend activating `product-core` (FSPC) as the orchestrator:
+**Full DApp (Contract + Backend + Frontend) —FSPC Dispatch Required**
+→ This scope exceeds web3-core alone. AI MUST recommend activating `product-core` (FSPC) as the orchestrator:
   1. FSPC handles full-stack scaffold (PRE-FLIGHT gates)
   2. web3-core is dispatched for contract domain
   3. ADBM handles off-chain backend (indexer, relay)
@@ -85,26 +85,26 @@ Ask one question at a time. Wait for response before proceeding.
 
 ## Core Principles
 
-1. **Security First** �?CEI Pattern + `nonReentrant`; sensitive functions MUST have access control.
-2. **Gas Efficiency** �?Storage operations are the most expensive; prefer `calldata`; make good use of `immutable` and custom `error`.
-3. **Standard Priority** �?OpenZeppelin v5; do not reinvent the wheel.
-4. **Brand & UI Accuracy** �?Mandate **Phosphor Icons v2.1** for all general UI elements to maintain cross-ecosystem consistency. Use **Simple Icons** EXCLUSIVELY for Coin, Chain, and Blockchain Brand logos.
-5. **Dependency Version Confirmation** �?At the START of every session, AI MUST run:
+1. **Security First** —CEI Pattern + `nonReentrant`; sensitive functions MUST have access control.
+2. **Gas Efficiency** —Storage operations are the most expensive; prefer `calldata`; make good use of `immutable` and custom `error`.
+3. **Standard Priority** —OpenZeppelin v5; do not reinvent the wheel.
+4. **Brand & UI Accuracy** —Mandate **Phosphor Icons v2.1** for all general UI elements to maintain cross-ecosystem consistency. Use **Simple Icons** EXCLUSIVELY for Coin, Chain, and Blockchain Brand logos.
+5. **Dependency Version Confirmation** —At the START of every session, AI MUST run:
    ```sh
    npm ls wagmi viem ethers @openzeppelin/contracts 2>/dev/null | head -20
    ```
    If the user's environment cannot be checked, EXPLICITLY ASK before generating any code. Version mismatch is the #1 cause of Web3 compilation errors.
-5. **Test Coverage** �?Unit + Fuzz + Invariant + Fork; Coverage > 95%.
-6. **Type Safety** �?TypeChain or wagmi CLI codegen to auto-generate ABI bindings.
-7. **Explicit Versions** �?Code MUST annotate OZ version (v4/v5), wagmi version (v1/v2) in comments.
-8. **Optimistic Projection (DeFi UX)** �?Any state-mutating transaction MUST trigger an Optimistic UI state on the frontend *before* block confirmation, coupled with a defined 'waiting for network' companion animation to eliminate user anxiety.
-9. **Visual Delta Simulation (Anti-Blind-Signing)** �?Hard requirement for pre-flight transaction simulation. Users MUST be shown exact balance changes (in fiat/token amounts) using **Visual Delta** displays (e.g. Magic UI Shimmer/Beam effects) to provide human-readable intent BEFORE they press "Sign/Confirm".
+5. **Test Coverage** —Unit + Fuzz + Invariant + Fork; Coverage > 95%.
+6. **Type Safety** —TypeChain or wagmi CLI codegen to auto-generate ABI bindings.
+7. **Explicit Versions** —Code MUST annotate OZ version (v4/v5), wagmi version (v1/v2) in comments.
+8. **Optimistic Projection (DeFi UX)** —Any state-mutating transaction MUST trigger an Optimistic UI state on the frontend *before* block confirmation, coupled with a defined 'waiting for network' companion animation to eliminate user anxiety.
+9. **Visual Delta Simulation (Anti-Blind-Signing)** —Hard requirement for pre-flight transaction simulation. Users MUST be shown exact balance changes (in fiat/token amounts) using **Visual Delta** displays (e.g. Magic UI Shimmer/Beam effects) to provide human-readable intent BEFORE they press "Sign/Confirm".
 
 ---
 ## 🌐 Federated Handoff & Global Nexus Protocol
-> **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` �?Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` —Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
 
-1. **State Injection �?web3_context Write-Back**: After contract design is finalized, AI MUST write to `PROJECT_NEXUS.json.sub_skill_outputs.web3_core`:
+1. **State Injection —web3_context Write-Back**: After contract design is finalized, AI MUST write to `PROJECT_NEXUS.json.sub_skill_outputs.web3_core`:
 ```json
 {
   "active": true,

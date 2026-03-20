@@ -53,7 +53,7 @@
   "sub_skill_outputs": {
     "_note": "Each sub-skill writes its output here after activation so FSPC has a unified status view.",
     "adbm": {
-      "classification": "Scale:? | Security:? | Complexity:?",
+      "classification": "Scale:— | Security:— | Complexity:—",
       "api_spec_path": ".openapi/api.yaml",
       "db_schema_path": "prisma/schema.prisma",
       "slo_doc_path": "references/slo.md",

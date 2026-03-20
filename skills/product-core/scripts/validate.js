@@ -103,7 +103,7 @@ async function main() {
     const runSecurity = args.includes('--security') || runAll;
     const runAudit = args.includes('--audit') || runAll;
     const runLH = args.includes('--lighthouse') || runAll;
-    const lhUrl = args.find(a => a.startsWith('--url='))?.split('=')[1] ?? 'http://localhost:3000';
+    const lhUrl = args.find(a => a.startsWith('--url='))—.split('=')[1] —— 'http://localhost:3000';
 
     log('\n🛡️  FSPC Unified Compliance Validator', 'bold');
     log('   Integrates: DDFM Aesthetic + ADBM Security + npm audit + Lighthouse', 'cyan');

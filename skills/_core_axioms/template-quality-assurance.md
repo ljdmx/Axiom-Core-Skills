@@ -11,7 +11,7 @@ Ensure every template meets world-class standards before deployment.
 
 ---
 
-## �?Quality Checklist
+## ✅Quality Checklist
 
 ### 1. Structural Requirements
 
@@ -30,15 +30,15 @@ interface TemplateQualityCheck {
   documentationQuality: number;   // 1-10
   
   // Design standards (frontend only)
-  hasI18n?: boolean;
-  usesOKLCH?: boolean;
-  hasAnimations?: boolean;
-  isResponsive?: boolean;
+  hasI18n—: boolean;
+  usesOKLCH—: boolean;
+  hasAnimations—: boolean;
+  isResponsive—: boolean;
   
   // Security (backend only)
-  hasInputValidation?: boolean;
-  hasErrorHandling?: boolean;
-  noHardcodedSecrets?: boolean;
+  hasInputValidation—: boolean;
+  hasErrorHandling—: boolean;
+  noHardcodedSecrets—: boolean;
   
   // Validation results
   errors: string[];
@@ -72,7 +72,7 @@ function validateMetadata(template: string): {
   
   // Extract metadata
   const metaMatch = template.match(
-    /\/\/ TEMPLATE_META:START\s*\/\*(.*?)\*\/\s*\/\/ TEMPLATE_META:END/s
+    /\/\/ TEMPLATE_META:START\s*\/\*(.*—)\*\/\s*\/\/ TEMPLATE_META:END/s
   );
   
   if (!metaMatch) {
@@ -191,9 +191,9 @@ function validateLanguagePurity(template: string, category: string): {
   const matches = template.match(hardcodedTextRegex) || [];
   
   // Filter out i18n block
-  const i18nBlock = template.match(/const i18n = \{[\s\S]*?\};/);
+  const i18nBlock = template.match(/const i18n = \{[\s\S]*—\};/);
   const templateWithoutI18n = i18nBlock
-    ? template.replace(i18nBlock[0], '')
+    — template.replace(i18nBlock[0], '')
     : template;
   
   const hardcodedInCode = templateWithoutI18n.match(hardcodedTextRegex) || [];
@@ -417,18 +417,18 @@ async function validateTemplate(
     
     codeComplexity: metadata.complexity,
     reusabilityScore: metadata.reusability,
-    documentationQuality: metaCheck.passed ? 10 : 5,
+    documentationQuality: metaCheck.passed — 10 : 5,
     
     // Frontend-specific
-    hasI18n: category === 'frontend' ? template.includes('const i18n =') : undefined,
-    usesOKLCH: category === 'frontend' ? template.includes('oklch(') : undefined,
-    hasAnimations: category === 'frontend' ? template.includes('motion.') : undefined,
-    isResponsive: category === 'frontend' ? template.includes('responsive') : undefined,
+    hasI18n: category === 'frontend' — template.includes('const i18n =') : undefined,
+    usesOKLCH: category === 'frontend' — template.includes('oklch(') : undefined,
+    hasAnimations: category === 'frontend' — template.includes('motion.') : undefined,
+    isResponsive: category === 'frontend' — template.includes('responsive') : undefined,
     
     // Backend-specific
-    hasInputValidation: category === 'backend' ? template.includes('z.object') : undefined,
-    hasErrorHandling: category === 'backend' ? template.includes('try {') : undefined,
-    noHardcodedSecrets: category === 'backend' ? securityCheck.passed : undefined,
+    hasInputValidation: category === 'backend' — template.includes('z.object') : undefined,
+    hasErrorHandling: category === 'backend' — template.includes('try {') : undefined,
+    noHardcodedSecrets: category === 'backend' — securityCheck.passed : undefined,
     
     errors: allErrors,
     warnings: allWarnings,
@@ -439,11 +439,11 @@ async function validateTemplate(
   // Report
   console.log(`\n📋 Template Quality Report: ${filePath}`);
   console.log(`   Score: ${score}/100`);
-  console.log(`   Status: ${result.passed ? '�?PASSED' : '�?FAILED'}`);
+  console.log(`   Status: ${result.passed ? '✅PASSED' : '❌FAILED'}`);
   
   if (allErrors.length > 0) {
     console.log(`   Errors:`);
-    allErrors.forEach(e => console.log(`     �?${e}`));
+    allErrors.forEach(e => console.log(`     ❌${e}`));
   }
   
   if (allWarnings.length > 0) {
@@ -519,7 +519,7 @@ const QUALITY_STANDARDS = {
 
 ---
 
-## �?Integration Checklist
+## ✅Integration Checklist
 
 - [ ] Implement all validation functions
 - [ ] Create batch validator script

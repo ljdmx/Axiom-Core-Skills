@@ -3,12 +3,12 @@
 ## Mobile Performance Checklist
 
 ```javascript
-// â‘?Detect device tier and configure accordingly
+// â‘  Detect device tier and configure accordingly
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-const dpr = Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2);
+const dpr = Math.min(window.devicePixelRatio, isMobile â€” 1.5 : 2);
 renderer.setPixelRatio(dpr);
 
-// â‘?Conditional features based on capability
+// â‘  Conditional features based on capability
 if (isMobile) {
   renderer.shadowMap.enabled = false;   // No shadows on mobile
   // Use ContactShadows (baked) instead
@@ -17,7 +17,7 @@ if (isMobile) {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 }
 
-// â‘?GPU Tier detection
+// â‘  GPU Tier detection
 import { getGPUTier } from 'detect-gpu';
 const { tier } = await getGPUTier();
 // tier 0: potato, tier 1: low, tier 2: mid, tier 3: high
@@ -47,7 +47,7 @@ function App() {
       <button onClick={() => store.enterAR()}>Enter AR</button>
       <Canvas>
         <XR store={store}>
-          {/* AR content here â€?placed in real world */}
+          {/* AR content here â€”placed in real world */}
           <mesh>
             <boxGeometry args={[0.1, 0.1, 0.1]} />
             <meshStandardMaterial color="hotpink" />

@@ -16,11 +16,11 @@
 
 ```
 Key Solidity Version Milestones:
-0.8.0   �?SafeMath is built-in; OpenZeppelin SafeMath no longer needed
-0.8.4   �?Custom errors introduced (Lower Gas than require with string)
-0.8.17  �?viaIR optimization became mature
-0.8.20  �?PUSH0 opcode (Note: Not supported by zkSync, downgrade to 0.8.19 for L2s)
-0.8.24  �?Transient Storage (EIP-1153), Recommended for production
+0.8.0   —SafeMath is built-in; OpenZeppelin SafeMath no longer needed
+0.8.4   —Custom errors introduced (Lower Gas than require with string)
+0.8.17  —viaIR optimization became mature
+0.8.20  —PUSH0 opcode (Note: Not supported by zkSync, downgrade to 0.8.19 for L2s)
+0.8.24  —Transient Storage (EIP-1153), Recommended for production
 
 Recommended:            pragma solidity ^0.8.24;
 L2 Compatible (zkSync): pragma solidity ^0.8.19;
@@ -34,23 +34,23 @@ Each Slot is 32 bytes. **Packing variables saves SLOAD/SSTORE Gas (Among the mos
 
 ```solidity
 contract StorageLayout {
-    // �?Packing Example: owner(20B) + paused(1B) + fee(8B) = 29B �?Share Slot 0
+    // ✅Packing Example: owner(20B) + paused(1B) + fee(8B) = 29B → Share Slot 0
     address public owner;    // 20 bytes
-    bool    public paused;   //  1 byte  �?Same slot as owner
-    uint64  public fee;      //  8 bytes �?Same slot, saves 2 SLOADs
+    bool    public paused;   //  1 byte  → Same slot as owner
+    uint64  public fee;      //  8 bytes → Same slot, saves 2 SLOADs
 
-    // �?Slot 1: uint128(16B) + uint128(16B) = 32B
+    // ✅Slot 1: uint128(16B) + uint128(16B) = 32B
     uint128 public reserveA;
     uint128 public reserveB;
 
-    // �?Anti-pattern: uint8 taking up an entire Slot (More expensive than uint256!)
-    uint256 public counter; // �?Use uint256 if occupying a full slot
-    uint8   public flag;    // �?Standing alone, wastes space and gas
+    // ❌Anti-pattern: uint8 taking up an entire Slot (More expensive than uint256!)
+    uint256 public counter; // ✅Use uint256 if occupying a full slot
+    uint8   public flag;    // ❌Standing alone, wastes space and gas
 
     // Dynamic Arrays: Slot N stores length, data starts at keccak256(N)
     uint256[] public arr;
 
-    // Mapping: Slot M acts as a base, value is at keccak256(key �?M)
+    // Mapping: Slot M acts as a base, value is at keccak256(key —M)
     mapping(address => uint256) public balances;
 
     // Upgradeable contracts MUST reserve a storage gap
@@ -69,15 +69,15 @@ cast storage <ADDR> 1 --rpc-url $RPC   # Slot 1
 ## 3. Data Locations
 
 ```solidity
-// calldata �?Read-only, unmodifiable, cheapest Gas (First choice for external args)
+// calldata —Read-only, unmodifiable, cheapest Gas (First choice for external args)
 function process(uint256[] calldata input) external pure { ... }
 
-// memory  �?Writable, temporary within function, medium Gas
+// memory  —Writable, temporary within function, medium Gas
 function compute(string memory name) public pure returns (bytes32) {
     return keccak256(bytes(name));
 }
 
-// storage �?Persistent, most expensive; cache to memory before loops
+// storage —Persistent, most expensive; cache to memory before loops
 function sum() external view returns (uint256 total) {
     uint256[] memory local = arr;   // Load everything in one SLOAD
     uint256 len = local.length;     // Cache length
@@ -96,19 +96,19 @@ function sum() external view returns (uint256 total) {
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-// �?Import Order: External Libs �?Internal Interfaces �?Internal Contracts
+// ① Import Order: External Libs → Internal Interfaces → Internal Contracts
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "./interfaces/IMyProtocol.sol";
 
-// �?Custom Errors (File-level, lower Gas than require + string)
+// ① Custom Errors (File-level, lower Gas than require + string)
 error InsufficientBalance(uint256 available, uint256 required);
 error Unauthorized(address caller);
 error ZeroAddress();
 
-// �?Interfaces (If any)
+// ① Interfaces (If any)
 // interface IMyProtocol { ... }
 
-// �?Main Contract
+// ① Main Contract
 contract MyContract is ReentrancyGuard {
     // Constants (Evaluated at compile-time, zero storage overhead)
     uint256 public constant VERSION = 1;
@@ -129,7 +129,7 @@ contract MyContract is ReentrancyGuard {
         _;
     }
 
-    // Function Order: constructor �?receive �?fallback �?external �?public �?internal �?private �?view
+    // Function Order: constructor → receive → fallback → external → public → internal → private → view
     constructor(address _factory, address _owner, uint96 _fee) {
         if (_factory == address(0) || _owner == address(0)) revert ZeroAddress();
         factory = _factory;
@@ -139,7 +139,7 @@ contract MyContract is ReentrancyGuard {
 
     receive() external payable {}
 
-    // CEI Pattern: Checks �?Effects �?Interactions
+    // CEI Pattern: Checks → Effects → Interactions
     function withdraw(uint256 amount) external nonReentrant {
         if (balances[msg.sender] < amount)                       // Checks
             revert InsufficientBalance(balances[msg.sender], amount);
@@ -159,7 +159,7 @@ contract MyContract is ReentrancyGuard {
 ## 5. Custom Errors & Events
 
 ```solidity
-// �?Custom Errors (Saves ~50% Gas compared to require with string)
+// ✅Custom Errors (Saves ~50% Gas compared to require with string)
 error InsufficientBalance(uint256 have, uint256 need);
 error Deadline(uint256 deadline, uint256 current);
 
@@ -167,16 +167,16 @@ error Deadline(uint256 deadline, uint256 current);
 if (balance < amount) revert InsufficientBalance(balance, amount);
 if (block.timestamp > deadline) revert Deadline(deadline, block.timestamp);
 
-// �?Event Design Principles
+// ✅Event Design Principles
 // indexed: Allow off-chain filtering/querying (Max 3)
 // non-indexed: For reading values directly
 event Transfer(
-    address indexed from,    // �?Iterable/Filterable
-    address indexed to,      // �?Iterable/Filterable
+    address indexed from,    // → Iterable/Filterable
+    address indexed to,      // → Iterable/Filterable
     uint256 value            // Values don't need indexed
 );
 
-// �?Anonymous Events (Slightly cheaper Gas, but cannot be filtered by name)
+// ✅Anonymous Events (Slightly cheaper Gas, but cannot be filtered by name)
 event DataStored(bytes32 indexed key, bytes value) anonymous;
 ```
 
@@ -207,7 +207,7 @@ bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 address public immutable factory;     // ~20x cheaper than storage
 uint256 public immutable deployTime;  // Assigned only in constructor
 constructor(address _factory) {
-    factory    = _factory;            // �?Assignment only permitted here
+    factory    = _factory;            // ✅Assignment only permitted here
     deployTime = block.timestamp;
 }
 
@@ -215,13 +215,13 @@ constructor(address _factory) {
 address public owner;                 // Incurs SLOAD payload
 
 // Selection Guide:
-// Value never changes             �?constant (Cheapest)
-// Value set to param at runtime once �?immutable (~20x cheaper than storage)
-// Ongoing alterations             �?storage (Most expensive, use sparingly)
+// Value never changes             → constant (Cheapest)
+// Value set to param at runtime once → immutable (~20x cheaper than storage)
+// Ongoing alterations             → storage (Most expensive, use sparingly)
 ```
 
 ```solidity
-// �?Batch Operations to save loop overhead
+// ✅Batch Operations to save loop overhead
 function batchMint(address[] calldata tos, uint256[] calldata amounts) external {
     uint256 len = tos.length;
     require(len == amounts.length, "Length mismatch");
@@ -231,7 +231,7 @@ function batchMint(address[] calldata tos, uint256[] calldata amounts) external 
     }
 }
 
-// �?Bitwise tracking for multiple bools (Replaces multiple bool vars in storage slots)
+// ✅Bitwise tracking for multiple bools (Replaces multiple bool vars in storage slots)
 uint256 private _flags;
 function _getFlag(uint8 bit) internal view returns (bool) { return _flags >> bit & 1 == 1; }
 function _setFlag(uint8 bit, bool val) internal {
@@ -251,7 +251,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 // ── B: Ownable2Step (Safe transfer, avoids fat-finger errors) ─────────────────────
 import "@openzeppelin/contracts/access/Ownable2Step.sol";
-// Takes 2 steps: transferOwnership �?acceptOwnership
+// Takes 2 steps: transferOwnership → acceptOwnership
 
 // ── C: AccessControl (Role-based System) ────────────────────────────────
 import "@openzeppelin/contracts/access/AccessControl.sol";

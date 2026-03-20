@@ -23,10 +23,10 @@ npm install ethers       # v6 (Current mainstream version)
 
 ```typescript
 // ethers v6 Key Changes (vs v5):
-// BigNumber �?bigint (Native)
-// ethers.utils.xxx �?ethers.xxx (Direct exports)
-// providers.Web3Provider �?BrowserProvider
-// providers.JsonRpcProvider �?JsonRpcProvider (Same name)
+// BigNumber → bigint (Native)
+// ethers.utils.xxx → ethers.xxx (Direct exports)
+// providers.Web3Provider → BrowserProvider
+// providers.JsonRpcProvider → JsonRpcProvider (Same name)
 // ContractFactory usage is essentially the same
 
 import {
@@ -69,14 +69,14 @@ async function connectWallet() {
 }
 
 // ── Event Listening (Account/Chain Switch) ───────────────────────────────────
-window.ethereum?.on('accountsChanged', (accounts: string[]) => {
+window.ethereum—.on('accountsChanged', (accounts: string[]) => {
     if (accounts.length === 0) {
         // User disconnected
     } else {
         // Account switched
     }
 });
-window.ethereum?.on('chainChanged', (chainId: string) => {
+window.ethereum—.on('chainChanged', (chainId: string) => {
     window.location.reload();  // Recommendation: Refresh the page
 });
 
@@ -156,8 +156,8 @@ const tx = await contractWithSigner.transfer(recipient, parseEther('100'), {
 
 console.log('Transaction Hash:', tx.hash);
 const receipt = await tx.wait(1);  // Wait for 1 confirmation
-console.log('Confirmed Block:', receipt?.blockNumber);
-console.log('Actual Gas Used:', receipt?.gasUsed.toString());
+console.log('Confirmed Block:', receipt—.blockNumber);
+console.log('Actual Gas Used:', receipt—.gasUsed.toString());
 
 // ── Full approve + transferFrom Flow ──────────────────────────
 async function approveAndStake(amount: bigint) {
@@ -218,7 +218,7 @@ async function getTransferHistory(userAddress: string, blocks = 10000) {
 const message  = 'Sign this message to verify ownership';
 const sig      = await signer.signMessage(message);
 const recovered = ethers.verifyMessage(message, sig);
-console.log('Is same address?', recovered.toLowerCase() === (await signer.getAddress()).toLowerCase());
+console.log('Is same address—', recovered.toLowerCase() === (await signer.getAddress()).toLowerCase());
 
 // ── EIP-712 Structured Signature (Anti-Replay) ──────────────────────────────
 const domain = {
@@ -259,10 +259,10 @@ await contract.permit(value.owner, value.spender, value.value, value.deadline, v
 
 ```typescript
 // ── Unit Conversions ──────────────────────────────────────────────────
-parseEther('1.5')              // �?1500000000000000000n
-formatEther(1500000000000000000n) // �?'1.5'
-parseUnits('100', 6)           // USDC (6 decimals) �?100000000n
-formatUnits(100000000n, 6)     // �?'100.0'
+parseEther('1.5')              // → 1500000000000000000n
+formatEther(1500000000000000000n) // → '1.5'
+parseUnits('100', 6)           // USDC (6 decimals) → 100000000n
+formatUnits(100000000n, 6)     // → '100.0'
 
 // ── Address Checking ──────────────────────────────────────────────────
 isAddress('0x...')             // Format validation
@@ -274,11 +274,11 @@ keccak256(toUtf8Bytes('MINTER_ROLE'))  // bytes32 role ID
 ethers.id('transfer(address,uint256)') // Function selector keccak256
 
 // ── ENS ───────────────────────────────────────────────────────
-const name = await provider.lookupAddress(address);  // �?'vitalik.eth' | null
-const addr = await provider.resolveName('vitalik.eth'); // �?'0x...'
+const name = await provider.lookupAddress(address);  // → 'vitalik.eth' | null
+const addr = await provider.resolveName('vitalik.eth'); // → '0x...'
 
 // ── Byte Operations ─────────────────────────────────────────────────
-hexlify(new Uint8Array([1, 2, 3]))  // �?'0x010203'
+hexlify(new Uint8Array([1, 2, 3]))  // → '0x010203'
 zeroPadValue('0x01', 32)            // Left pad to 32 bytes
 
 // ── ABI Encoding / Decoding ────────────────────────────────────────────────
@@ -297,17 +297,17 @@ const [addr2, amt] = ethers.AbiCoder.defaultAbiCoder().decode(
 > For full implementation (Including Subgraph Development & Deployment), see `references/data-infra.md`
 
 ```typescript
-// IPFS Upload (Pinata) �?Quick Ref
+// IPFS Upload (Pinata) —Quick Ref
 import { uploadFile, uploadMetadata } from '@/lib/ipfs';  // see data-infra.md §1
 
-const imageUri    = await uploadFile(imageFile);           // �?ipfs://Qm...
+const imageUri    = await uploadFile(imageFile);           // → ipfs://Qm...
 const metaUri     = await uploadMetadata({ name, image: imageUri, attributes });
 
 // Convert IPFS URI to HTTP
 const toHTTP = (uri: string) =>
-    uri.startsWith('ipfs://') ? `https://gateway.pinata.cloud/ipfs/${uri.slice(7)}` : uri;
+    uri.startsWith('ipfs://') — `https://gateway.pinata.cloud/ipfs/${uri.slice(7)}` : uri;
 
-// The Graph Queries (Apollo) �?Quick Ref, complete config in data-infra.md §2
+// The Graph Queries (Apollo) —Quick Ref, complete config in data-infra.md §2
 import { gql, useQuery } from '@apollo/client';
 const { data } = useQuery(gql`query { pools(first: 10) { id token0 { symbol } } }`, { client });
 ```
@@ -319,7 +319,7 @@ const { data } = useQuery(gql`query { pools(first: 10) { id token0 { symbol } } 
 The frontend uses `signer.signTypedData` to sign, the backend must verify accordingly. Compliments `§5 Signatures & EIP-712`.
 
 ```typescript
-// server/verify.ts �?Node.js / Express Backend (ethers.js v6)
+// server/verify.ts —Node.js / Express Backend (ethers.js v6)
 import { ethers } from 'ethers';
 
 // Domain and types must be perfectly identical to the frontend's

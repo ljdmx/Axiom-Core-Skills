@@ -1,17 +1,17 @@
 # DDFM Design Token System Standard
 ## Naming Conventions, Token Hierarchy & Governance Rules
 
-> **Status**: ACTIVE ‚Ä?Reference when creating or auditing a project's design token system.
+> **Status**: ACTIVE ‚ÄîReference when creating or auditing a project's design token system.
 > **Authority**: This document is the canonical naming standard for all DDFM-generated token systems.
 
 ---
 
-## üèóÔ∏?Token Hierarchy (3 Layers)
+## üèóÔ∏è‚ÄîToken Hierarchy (3 Layers)
 
 ```
-Layer 1: Primitive Tokens   ‚Ü?Raw values, named for what they ARE
-Layer 2: Semantic Tokens    ‚Ü?Named for what they DO (reference Primitives)
-Layer 3: Component Tokens   ‚Ü?Named for specific component usage (reference Semantics)
+Layer 1: Primitive Tokens   ‚Üí Raw values, named for what they ARE
+Layer 2: Semantic Tokens    ‚Üí Named for what they DO (reference Primitives)
+Layer 3: Component Tokens   ‚Üí Named for specific component usage (reference Semantics)
 ```
 
 **Example flow**:
@@ -72,7 +72,7 @@ Layer 3: Component Tokens   ‚Ü?Named for specific component usage (reference Sem
 --spacing-1:   4px;    /* xs */
 --spacing-2:   8px;    /* sm */
 --spacing-3:   12px;
---spacing-4:   16px;   /* md ‚Ä?default base */
+--spacing-4:   16px;   /* md ‚Äîdefault base */
 --spacing-5:   20px;
 --spacing-6:   24px;   /* lg */
 --spacing-8:   32px;   /* xl */
@@ -134,14 +134,14 @@ Layer 3: Component Tokens   ‚Ü?Named for specific component usage (reference Sem
 --radius-md:   8px;
 --radius-lg:   12px;
 --radius-xl:   16px;
---radius-full: 9999px;  /* Pill shape ‚Ä?use sparingly */
+--radius-full: 9999px;  /* Pill shape ‚Äîuse sparingly */
 
 /* Shadows (elevation tiers) */
 --shadow-card:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
 --shadow-hover:  0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.05);
 --shadow-modal:  0 20px 25px -5px rgba(0,0,0,0.15), 0 10px 10px -5px rgba(0,0,0,0.05);
 --shadow-overlay:0 25px 50px -12px rgba(0,0,0,0.25);
-/* Rule: shadow-depth MUST increase monotonically card ‚Ü?hover ‚Ü?modal ‚Ü?overlay */
+/* Rule: shadow-depth MUST increase monotonically card ‚Üí hover ‚Üí modal ‚Üí overlay */
 
 /* Dark mode inner highlight (per ¬ß7) */
 --shadow-inner-highlight: inset 0 1px 0 rgba(255,255,255,0.08);
@@ -164,7 +164,7 @@ Layer 3: Component Tokens   ‚Ü?Named for specific component usage (reference Sem
 
 ---
 
-## ‚ú?Token Linting Enforcement
+## ‚úÖToken Linting Enforcement
 
 ```json
 // .stylelintrc.json
@@ -187,4 +187,4 @@ Layer 3: Component Tokens   ‚Ü?Named for specific component usage (reference Sem
 
 | Version | Date | Summary |
 |---|---|---|
-| v1.0 | 2026-03-09 | Initial creation ‚Ä?complete 3-layer hierarchy, naming conventions for color/spacing/typography/shadow/z-index, stylelint enforcement |
+| v1.0 | 2026-03-09 | Initial creation ‚Äîcomplete 3-layer hierarchy, naming conventions for color/spacing/typography/shadow/z-index, stylelint enforcement |

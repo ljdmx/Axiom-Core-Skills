@@ -16,6 +16,6 @@ All interactive elements MUST reside in the **Natural Thumb Zone** (bottom 2/3 o
 ---
 
 ## 📋 Reviewer Check
-- [ ] Is every button >= 44x44px?
-- [ ] Is the primary action reachable with one hand?
-- [ ] Are animations < 300ms to prevent lag perception?
+- [ ] Is every button >= 44x44px—
+- [ ] Is the primary action reachable with one hand—
+- [ ] Are animations < 300ms to prevent lag perception—

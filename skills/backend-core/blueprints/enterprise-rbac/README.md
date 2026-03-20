@@ -36,68 +36,68 @@ npm run start:dev
 ```
 enterprise-rbac/
 ├── src/
-�?  ├── main.ts                      # Application entry point
-�?  ├── app.module.ts                # Root module
-�?  ├── config/
-�?  �?  ├── database.config.ts       # Database configuration
-�?  �?  └── redis.config.ts          # Redis cache config
-�?  ├── common/
-�?  �?  ├── decorators/
-�?  �?  �?  ├── current-user.decorator.ts
-�?  �?  �?  └── require-permission.decorator.ts
-�?  �?  ├── guards/
-�?  �?  �?  ├── jwt-auth.guard.ts
-�?  �?  �?  └── permission.guard.ts
-�?  �?  └── interceptors/
-�?  �?      └── audit-log.interceptor.ts
-�?  ├── auth/                        # Authentication module
-�?  �?  ├── auth.controller.ts
-�?  �?  ├── auth.service.ts
-�?  �?  ├── auth.module.ts
-�?  �?  ├── dto/
-�?  �?  �?  ├── login.dto.ts
-�?  �?  �?  └── register.dto.ts
-�?  �?  ├── entities/
-�?  �?  �?  └── refresh-token.entity.ts
-�?  �?  └── strategies/
-�?  �?      ├── jwt.strategy.ts
-�?  �?      └── local.strategy.ts
-�?  ├── rbac/                        # RBAC core module
-�?  �?  ├── rbac.controller.ts
-�?  �?  ├── rbac.service.ts
-�?  �?  ├── rbac.module.ts
-�?  �?  ├── entities/
-�?  �?  �?  ├── user.entity.ts
-�?  �?  �?  ├── role.entity.ts
-�?  �?  �?  ├── permission.entity.ts
-�?  �?  �?  └── user-role.entity.ts
-�?  �?  ├── dto/
-�?  �?  �?  ├── assign-role.dto.ts
-�?  �?  �?  └── create-permission.dto.ts
-�?  �?  └── services/
-�?  �?      ├── permission.service.ts
-�?  �?      └── permission-cache.service.ts
-�?  ├── blog/                        # Example resource module
-�?  �?  ├── blog.controller.ts
-�?  �?  ├── blog.service.ts
-�?  �?  ├── blog.module.ts
-�?  �?  ├── entities/
-�?  �?  �?  └── blog.entity.ts
-�?  �?  └── dto/
-�?  �?      ├── create-blog.dto.ts
-�?  �?      └── update-blog.dto.ts
-�?  └── audit/                       # Audit logging module
-�?      ├── audit.service.ts
-�?      ├── audit.module.ts
-�?      └── entities/
-�?          └── audit-log.entity.ts
+│    ├── main.ts                      # Application entry point
+│    ├── app.module.ts                # Root module
+│    ├── config/
+│    │    ├── database.config.ts       # Database configuration
+│    │    └── redis.config.ts          # Redis cache config
+│    ├── common/
+│    │    ├── decorators/
+│    │    │    ├── current-user.decorator.ts
+│    │    │    └── require-permission.decorator.ts
+│    │    ├── guards/
+│    │    │    ├── jwt-auth.guard.ts
+│    │    │    └── permission.guard.ts
+│    │    └── interceptors/
+│    │        └── audit-log.interceptor.ts
+│    ├── auth/                        # Authentication module
+│    │    ├── auth.controller.ts
+│    │    ├── auth.service.ts
+│    │    ├── auth.module.ts
+│    │    ├── dto/
+│    │    │    ├── login.dto.ts
+│    │    │    └── register.dto.ts
+│    │    ├── entities/
+│    │    │    └── refresh-token.entity.ts
+│    │    └── strategies/
+│    │        ├── jwt.strategy.ts
+│    │        └── local.strategy.ts
+│    ├── rbac/                        # RBAC core module
+│    │    ├── rbac.controller.ts
+│    │    ├── rbac.service.ts
+│    │    ├── rbac.module.ts
+│    │    ├── entities/
+│    │    │    ├── user.entity.ts
+│    │    │    ├── role.entity.ts
+│    │    │    ├── permission.entity.ts
+│    │    │    └── user-role.entity.ts
+│    │    ├── dto/
+│    │    │    ├── assign-role.dto.ts
+│    │    │    └── create-permission.dto.ts
+│    │    └── services/
+│    │        ├── permission.service.ts
+│    │        └── permission-cache.service.ts
+│    ├── blog/                        # Example resource module
+│    │    ├── blog.controller.ts
+│    │    ├── blog.service.ts
+│    │    ├── blog.module.ts
+│    │    ├── entities/
+│    │    │    └── blog.entity.ts
+│    │    └── dto/
+│    │        ├── create-blog.dto.ts
+│    │        └── update-blog.dto.ts
+│    └── audit/                       # Audit logging module
+│        ├── audit.service.ts
+│        ├── audit.module.ts
+│        └── entities/
+│            └── audit-log.entity.ts
 ├── migrations/
-�?  ├── 1706400000000-CreateRBACTables.ts
-�?  └── 1706400001000-SeedPermissions.ts
+│    ├── 1706400000000-CreateRBACTables.ts
+│    └── 1706400001000-SeedPermissions.ts
 ├── test/
-�?  ├── auth.e2e-spec.ts
-�?  ├── rbac.e2e-spec.ts
-�?  └── permission.e2e-spec.ts
+│    ├── auth.e2e-spec.ts
+│    ├── rbac.e2e-spec.ts
+│    └── permission.e2e-spec.ts
 ├── docker-compose.yml
 ├── .env.example
 ├── package.json
@@ -106,7 +106,7 @@ enterprise-rbac/
 
 ---
 
-## 🗄�?Database Schema
+## 🗄️—Database Schema
 
 ```sql
 -- Indexes for performance
@@ -471,7 +471,7 @@ volumes:
 
 ## 🔐 Security Best Practices
 
-�?**Implemented**:
+✅**Implemented**:
 - Password hashing with bcrypt (cost: 10)
 - JWT with short expiry (15 min access, 7 day refresh)
 - HTTPS only in production

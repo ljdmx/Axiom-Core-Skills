@@ -1,4 +1,4 @@
-# PRODUCT_SPEC.md ‚Ä?{Product Name}
+# PRODUCT_SPEC.md ‚Äî{Product Name}
 ## Product Requirements Document (PRD)
 
 > **Version**: 0.1 (Draft)  
@@ -15,21 +15,21 @@
 > *"{Product Name} is the {category} that helps {target user} {core outcome} without {key friction/pain}."*
 
 ### Soul Blueprint (FSPC ¬ß0 Mandate)
-1. **Core Soul**: {What emotional truth does this product embody?}
-2. **Wireframe Narrative**: {What is the product's "day in the life" story?}
-3. **Rams 10-Law Mapping**: {Which of the 10 laws (Innovative/Useful/Aesthetic...) is the primary anchor?}
-4. **Paradigm Lineage**: {Which existing products does this borrow from? e.g., "Linear's speed + Notion's calm"}
-5. **Anti-Mediocrity Oath**: {What will we NEVER do? What's your "forbidden" list?}
+1. **Core Soul**: {What emotional truth does this product embody‚Äî}
+2. **Wireframe Narrative**: {What is the product's "day in the life" story‚Äî}
+3. **Rams 10-Law Mapping**: {Which of the 10 laws (Innovative/Useful/Aesthetic...) is the primary anchor‚Äî}
+4. **Paradigm Lineage**: {Which existing products does this borrow from‚Äî e.g., "Linear's speed + Notion's calm"}
+5. **Anti-Mediocrity Oath**: {What will we NEVER do‚Äî What's your "forbidden" list‚Äî}
 
 ### Soul Scorecard
 | Axis | Score /10 | Notes |
 |---|:---:|---|
-| Understand (You get me) | ‚Ä?| |
-| Respect (No burden) | ‚Ä?| |
-| Companion (Warmth) | ‚Ä?| |
-| Delight (Surprise) | ‚Ä?| |
-| Ethics (No dark patterns) | ‚Ä?| |
-| **Overall** | **‚Ä?* | Target ‚â?7.0 |
+| Understand (You get me) | ‚Äî| |
+| Respect (No burden) | ‚Äî| |
+| Companion (Warmth) | ‚Äî| |
+| Delight (Surprise) | ‚Äî| |
+| Ethics (No dark patterns) | ‚Äî| |
+| **Overall** | **‚Äî* | Target ‚â• 7.0 |
 
 ---
 
@@ -44,20 +44,20 @@
 ### Role √ó Permission Matrix
 | Action | {Role 1} | {Role 2} | Admin | Guest |
 |---|:---:|:---:|:---:|:---:|
-| Create {Entity} | ‚ú?| ‚ù?| ‚ú?| ‚ù?|
-| Read {Entity} | ‚ú?| ‚ú?| ‚ú?| üîí |
-| Update {Entity} | ‚ú?| ‚ù?| ‚ú?| ‚ù?|
-| Delete {Entity} | ‚ù?| ‚ù?| ‚ú?| ‚ù?|
-| Export | üîí | ‚ù?| ‚ú?| ‚ù?|
-| Approve | ‚ù?| ‚ù?| ‚ú?| ‚ù?|
+| Create {Entity} | ‚úÖ| ‚ùå| ‚úÖ| ‚ùå|
+| Read {Entity} | ‚úÖ| ‚úÖ| ‚úÖ| üîí |
+| Update {Entity} | ‚úÖ| ‚ùå| ‚úÖ| ‚ùå|
+| Delete {Entity} | ‚ùå| ‚ùå| ‚úÖ| ‚ùå|
+| Export | üîí | ‚ùå| ‚úÖ| ‚ùå|
+| Approve | ‚ùå| ‚ùå| ‚úÖ| ‚ùå|
 
-> Legend: ‚ú?Allow | ‚ù?Deny | üîí Conditional (specify condition inline)
+> Legend: ‚úÖAllow | ‚ùåDeny | üîí Conditional (specify condition inline)
 
 ---
 
 ## üß© Core Entities (Minimum 5 Required)
 
-> *If fewer than 5 entities ‚Ä?FSPC Entity Threshold Gate is NOT met. Expand business depth first.*
+> *If fewer than 5 entities ‚ÄîFSPC Entity Threshold Gate is NOT met. Expand business depth first.*
 
 ```mermaid
 classDiagram
@@ -75,16 +75,16 @@ classDiagram
 
 ---
 
-## üí∞ Commercial Loop (MANDATORY ‚Ä?FSPC MVP Commercial Loop Gate)
+## üí∞ Commercial Loop (MANDATORY ‚ÄîFSPC MVP Commercial Loop Gate)
 
 > *EVERY product MUST define this loop. Missing = PRD REJECTED.*
 
 | Stage | Implementation | Metrics |
 |---|---|---|
 | **Acquisition** | {How users discover the product} | CAC, traffic source |
-| **Activation** | {First value moment ‚Ä?the Aha Moment} | Activation rate ‚â?60% |
+| **Activation** | {First value moment ‚Äîthe Aha Moment} | Activation rate ‚â• 60% |
 | **Monetization** | {Paywall / Quota / Subscription model} | ARPU, MRR |
-| **Retention** | {History / assets / saved state that creates switching cost} | D7 ‚â?25%, D30 ‚â?10% |
+| **Retention** | {History / assets / saved state that creates switching cost} | D7 ‚â• 25%, D30 ‚â• 10% |
 
 ### Pricing Architecture
 | Tier | Price | Feature Limits | Target User |
@@ -95,35 +95,35 @@ classDiagram
 
 ---
 
-## ‚ú?Features & Delight Moments
+## ‚úÖFeatures & Delight Moments
 
-### Core Feature Set (M1 ‚Ä?MVP)
+### Core Feature Set (M1 ‚ÄîMVP)
 
 | Feature | User Story | FSPC Gate | Status |
 |---|---|---|---|
-| **{F1}** | As a {role}, I want to {action} so that {outcome} | Soul ‚ú?/ Anti-Toy ‚ú?| ‚Ä?|
-| **{F2}** | | | ‚Ä?|
-| **{F3}** | | | ‚Ä?|
+| **{F1}** | As a {role}, I want to {action} so that {outcome} | Soul ‚úÖ/ Anti-Toy ‚úÖ| ‚Äî|
+| **{F2}** | | | ‚Äî|
+| **{F3}** | | | ‚Äî|
 
-### Delight Moments (DDFM ¬ß0 ‚Ä?MDP Protocol)
+### Delight Moments (DDFM ¬ß0 ‚ÄîMDP Protocol)
 > *At least 3 moments where the product surprises the user with unexpected warmth or magic*
 
-1. **{Delight 1}**: {When it happens} ‚Ü?{What the user feels}
+1. **{Delight 1}**: {When it happens} ‚Üí {What the user feels}
 2. **{Delight 2}**: ...
 3. **{Delight 3}**: ...
 
 ### Microcopy Decisions (FSPC ¬ß12)
 | Screen / State | Generic (BLOCKED) | Product-Approved Copy |
 |---|---|---|
-| Empty state ‚Ä?{Entity list} | "No items found" | "{Domain-specific, slightly poetic CTA}" |
+| Empty state ‚Äî{Entity list} | "No items found" | "{Domain-specific, slightly poetic CTA}" |
 | Error state | "Something went wrong" | "{Cause + action}" |
 | Loading | *bare spinner* | "{Contextual micro-message}" |
 
 ---
 
-## üèóÔ∏?Architecture Brief
+## üèóÔ∏è‚ÄîArchitecture Brief
 
-> *Filled during Phase 0B ‚Ä?not required before Phase 0A gate*
+> *Filled during Phase 0B ‚Äînot required before Phase 0A gate*
 
 | Decision | Choice | Rationale (ADR Link) |
 |---|---|---|
@@ -148,14 +148,14 @@ classDiagram
 
 | Flow Category | p99 Latency | Availability |
 |---|---|---|
-| Auth / Payment | ‚â?100ms | ‚â?99.99% |
-| Core CRUD | ‚â?200ms | ‚â?99.9% |
-| Reports / Exports | ‚â?5s | ‚â?99.5% |
-| Background Jobs | ‚â?60s | ‚â?99.0% |
+| Auth / Payment | ‚â• 100ms | ‚â• 99.99% |
+| Core CRUD | ‚â• 200ms | ‚â• 99.9% |
+| Reports / Exports | ‚â• 5s | ‚â• 99.5% |
+| Background Jobs | ‚â• 60s | ‚â• 99.0% |
 
-- **Error Rate SLO**: ‚â?0.1%
-- **RPO** (Recovery Point Objective): ‚â?{N} hours
-- **RTO** (Recovery Time Objective): ‚â?{N} hours
+- **Error Rate SLO**: ‚â• 0.1%
+- **RPO** (Recovery Point Objective): ‚â• {N} hours
+- **RTO** (Recovery Time Objective): ‚â• {N} hours
 
 ---
 
@@ -170,13 +170,13 @@ classDiagram
 
 ---
 
-## ‚ú?PRD Sign-Off
+## ‚úÖPRD Sign-Off
 
 > **PRD Lock Protocol**: This section is signed off by the USER. AI MUST receive explicit "Approve PRD" before executing `mkdir` or any code generation.
 
 | Reviewer | Status | Date | Notes |
 |---|---|---|---|
-| Product Owner | ‚è?Pending | ‚Ä?| |
-| Tech Lead | ‚è?Pending | ‚Ä?| |
+| Product Owner | ‚ÄîPending | ‚Äî| |
+| Tech Lead | ‚ÄîPending | ‚Äî| |
 
-**‚Ü?USER must reply "Approve PRD" to unlock code generation.**
+**‚Üí USER must reply "Approve PRD" to unlock code generation.**

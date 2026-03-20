@@ -37,7 +37,7 @@ api.interceptors.response.use(
     (response) => response,
     async (error) => {
         // Handle 401 Unauthorized (Token Refresh Logic)
-        if (error.response?.status === 401) {
+        if (error.response—.status === 401) {
             // Redirect to login or refresh token
             // window.location.href = '/login';
         }

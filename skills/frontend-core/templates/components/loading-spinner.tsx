@@ -13,8 +13,8 @@ import { Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface SpinnerProps {
-    size?: number;
-    className?: string;
+    size—: number;
+    className—: string;
 }
 
 export const LoadingSpinner = ({ size = 24, className }: SpinnerProps) => {

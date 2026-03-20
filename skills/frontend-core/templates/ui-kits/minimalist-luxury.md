@@ -1,6 +1,6 @@
 # Enterprise-Grade UI Design System - Minimalist Luxury
 
-> **DDFM Compliance**: âœ?OKLCH Color Space | âœ?CSS Custom Properties | âœ?No Magic Values
+> **DDFM Compliance**: âœ…OKLCH Color Space | âœ…CSS Custom Properties | âœ…No Magic Values
 > **Theme Philosophy**: Surgical precision, atmospheric depth, typographic sovereignty, extreme restraint.
 
 ---
@@ -8,14 +8,14 @@
 ## Design Philosophy
 
 ### Core Principles
-1. **Surgical Precision** â€?Every element has a purpose. Zero clutter.
-2. **Atmospheric Depth** â€?Subtle shadows and material layers to create "air."
-3. **Typographic Sovereignty** â€?Typography is the primary design element.
-4. **Restraint** â€?Less, but better. High-end aesthetic through deliberate absence.
+1. **Surgical Precision** â€”Every element has a purpose. Zero clutter.
+2. **Atmospheric Depth** â€”Subtle shadows and material layers to create "air."
+3. **Typographic Sovereignty** â€”Typography is the primary design element.
+4. **Restraint** â€”Less, but better. High-end aesthetic through deliberate absence.
 
 ---
 
-## Color System (DDFM Â§2 â€?OKLCH Compliant)
+## Color System (DDFM Â§2 â€”OKLCH Compliant)
 
 > All color values use the OKLCH color model as mandated by DDFM Â§2. This ensures perceptual linearity across light and dark modes without brightness drift.
 
@@ -32,10 +32,10 @@
   --text-muted:     oklch(65% 0.006 60);  /* Opacity-based for material adaptability */
 
   /* === Luxury Accents (Gold Spectrum) === */
-  --accent-gold:   oklch(72% 0.09 75);   /* Warm gold â€?primary luxury accent */
-  --accent-silver: oklch(88% 0.004 240); /* Cool silver â€?secondary */
+  --accent-gold:   oklch(72% 0.09 75);   /* Warm gold â€”primary luxury accent */
+  --accent-silver: oklch(88% 0.004 240); /* Cool silver â€”secondary */
 
-  /* === Semantic (DDFM Â§28 â€?Emotion-Accurate) === */
+  /* === Semantic (DDFM Â§28 â€”Emotion-Accurate) === */
   --semantic-success:     oklch(62% 0.15 148); /* Warm jade, not neon green */
   --semantic-destructive: oklch(52% 0.16 25);  /* Desaturated brick, not fire-engine red */
 
@@ -45,7 +45,7 @@
   --shadow-modal:  0 24px 80px oklch(20% 0.04 60 / 0.2);
 }
 
-/* Dark Mode â€?re-derived, NOT inverted */
+/* Dark Mode â€”re-derived, NOT inverted */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary:   oklch(12% 0.005 60);
@@ -62,7 +62,7 @@
 
 ---
 
-## Typography System (DDFM Â§24 â€?Cinematic Typography)
+## Typography System (DDFM Â§24 â€”Cinematic Typography)
 
 ```css
 :root {
@@ -106,7 +106,7 @@
 
 ---
 
-## Spacing System (DDFM Â§1 â€?Token Compliant)
+## Spacing System (DDFM Â§1 â€”Token Compliant)
 
 ```css
 :root {
@@ -118,7 +118,7 @@
   --space-8:  2rem;      /* 32px */
   --space-12: 3rem;      /* 48px */
   --space-16: 4rem;      /* 64px */
-  --space-24: 6rem;      /* 96px â€?editorial breathing room */
+  --space-24: 6rem;      /* 96px â€”editorial breathing room */
 }
 ```
 
@@ -144,7 +144,7 @@
   box-shadow:
     inset 0 1px 0 oklch(100% 0 0 / 0.08),
     var(--shadow-hover);
-  /* NO translateY â€?luxury is stillness, not bounce */
+  /* NO translateY â€”luxury is stillness, not bounce */
 }
 ```
 
@@ -152,8 +152,8 @@
 
 ## Summary
 
-âœ?**DDFM Â§1** â€?All values use CSS Custom Properties, zero magic strings
-âœ?**DDFM Â§2** â€?Full OKLCH color space compliance
-âœ?**DDFM Â§7** â€?Timeless (no neon, no trend-driven colors)
-âœ?**DDFM Â§24** â€?Cinematic dual-font role system
-âœ?**DDFM Â§28** â€?Emotion-accurate semantic tokens
+âœ…**DDFM Â§1** â€”All values use CSS Custom Properties, zero magic strings
+âœ…**DDFM Â§2** â€”Full OKLCH color space compliance
+âœ…**DDFM Â§7** â€”Timeless (no neon, no trend-driven colors)
+âœ…**DDFM Â§24** â€”Cinematic dual-font role system
+âœ…**DDFM Â§28** â€”Emotion-accurate semantic tokens

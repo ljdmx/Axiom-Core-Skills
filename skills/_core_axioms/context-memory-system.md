@@ -23,25 +23,25 @@ interface FileDigest {
   lastModifiedBy: 'AI' | 'user' | 'external';
   digest: {
     // For code files
-    imports?: string[];
-    exports?: string[];
-    functions?: string[];
-    classes?: string[];
+    imports—: string[];
+    exports—: string[];
+    functions—: string[];
+    classes—: string[];
     
     // For Prisma schema
-    models?: string[];
-    relations?: Record<string, string[]>;
+    models—: string[];
+    relations—: Record<string, string[]>;
     
     // For package.json
-    dependencies?: string[];
-    scripts?: string[];
+    dependencies—: string[];
+    scripts—: string[];
     
     // For React components
-    components?: string[];
-    props?: Record<string, string[]>;
+    components—: string[];
+    props—: Record<string, string[]>;
   };
   needsReview: boolean;
-  reviewReason?: string;
+  reviewReason—: string;
 }
 
 interface ContextCache {
@@ -50,7 +50,7 @@ interface ContextCache {
   createdAt: string;
   lastUpdated: string;
   fileDigests: Record<string, FileDigest>;
-  projectContext?: ProjectContext;
+  projectContext—: ProjectContext;
 }
 ```
 
@@ -69,13 +69,13 @@ function shouldReviewFile(
   const cache = loadCache();
   const digest = cache.fileDigests[filePath];
   
-  // 1. Never viewed �?MUST view
+  // 1. Never viewed → MUST view
   if (!digest) {
     return true;
   }
   
-  // 2. Error context �?View ONLY error region
-  if (reason === 'error' && currentError?.file === filePath) {
+  // 2. Error context → View ONLY error region
+  if (reason === 'error' && currentError—.file === filePath) {
     const errorLine = currentError.line;
     return {
       partial: true,
@@ -83,12 +83,12 @@ function shouldReviewFile(
     };
   }
   
-  // 3. User explicitly requested �?View
+  // 3. User explicitly requested → View
   if (reason === 'user-request') {
     return true;
   }
   
-  // 4. AI just modified + recent �?SKIP (trust own changes)
+  // 4. AI just modified + recent → SKIP (trust own changes)
   if (
     digest.lastModifiedBy === 'AI' &&
     isRecent(digest.viewedAt, '5 minutes')
@@ -96,12 +96,12 @@ function shouldReviewFile(
     return false; // Use cached digest
   }
   
-  // 5. Modified by user/external �?MUST review
+  // 5. Modified by user/external → MUST review
   if (digest.lastModifiedBy !== 'AI') {
     return true;
   }
   
-  // 6. Needs review flagged �?View
+  // 6. Needs review flagged → View
   if (digest.needsReview) {
     return true;
   }
@@ -121,9 +121,9 @@ function shouldReviewFile(
 interface ProjectContext {
   detected: boolean;
   framework: {
-    frontend?: 'React' | 'Vue' | 'Next.js' | 'Vite';
-    backend?: 'Express' | 'NestJS' | 'FastAPI' | 'Spring Boot';
-    database?: 'MySQL' | 'PostgreSQL' | 'MongoDB' | 'Supabase';
+    frontend—: 'React' | 'Vue' | 'Next.js' | 'Vite';
+    backend—: 'Express' | 'NestJS' | 'FastAPI' | 'Spring Boot';
+    database—: 'MySQL' | 'PostgreSQL' | 'MongoDB' | 'Supabase';
   };
   structure: {
     isMonorepo: boolean;
@@ -136,9 +136,9 @@ interface ProjectContext {
     backend: string[];
   };
   patterns: {
-    authStrategy?: 'JWT' | 'Session' | 'OAuth';
-    stateManagement?: 'Redux' | 'Zustand' | 'Context';
-    orm?: 'Prisma' | 'TypeORM' | 'Sequelize';
+    authStrategy—: 'JWT' | 'Session' | 'OAuth';
+    stateManagement—: 'Redux' | 'Zustand' | 'Context';
+    orm—: 'Prisma' | 'TypeORM' | 'Sequelize';
   };
   completedModules: {
     name: string;
@@ -157,7 +157,7 @@ async function initializeSession() {
   const cache = await loadOrCreateCache();
   
   // Build project context (ONE TIME)
-  if (!cache.projectContext?.detected) {
+  if (!cache.projectContext—.detected) {
     console.log('🔍 Building project context...');
     cache.projectContext = await buildProjectContext();
     await saveCache(cache);
@@ -208,7 +208,7 @@ async function buildProjectContext(): Promise<ProjectContext> {
   // 4. Cache everything
   saveCache({ projectContext: context });
   
-  console.log('�?Context built. Subsequent decisions will be instant.');
+  console.log('✅Context built. Subsequent decisions will be instant.');
   return context;
 }
 ```
@@ -221,10 +221,10 @@ async function buildProjectContext(): Promise<ProjectContext> {
 
 ```markdown
 **PRE-FLIGHT**:
-1. Load cache �?Check if file digest exists
-2. IF exists AND recent AND AI-modified �?Skip view, use digest
-3. IF error �?View ONLY error context (partial view)
-4. ELSE �?Full view
+1. Load cache → Check if file digest exists
+2. IF exists AND recent AND AI-modified → Skip view, use digest
+3. IF error → View ONLY error context (partial view)
+4. ELSE → Full view
 
 **EXECUTION**:
 1. View file (if needed based on cache)
@@ -249,7 +249,7 @@ const needsView = shouldReviewFile('package.json', 'normal');
 
 // 2. Use cached digest
 const deps = cache.fileDigests['package.json'].digest.dependencies;
-// ['@prisma/client', 'zod', 'express'] �?All present
+// ['@prisma/client', 'zod', 'express'] ✅All present
 
 // 3. Create controller (no redundant view)
 // Token saved: ~3K
@@ -277,7 +277,7 @@ const deps = cache.fileDigests['package.json'].digest.dependencies;
 
 ---
 
-## 🛠�?Implementation Checklist
+## 🛠️Implementation Checklist
 
 ### Phase 1: Core System
 - [ ] Create cache directory structure
@@ -309,8 +309,8 @@ const deps = cache.fileDigests['package.json'].digest.dependencies;
 ```
 ~/.gemini/antigravity/cache/
 ├── sessions/
-�?  ├── {session-id}-context.json
-�?  └── {session-id}-digests.json
+│    ├── {session-id}-context.json
+│    └── {session-id}-digests.json
 └── templates/
     └── registry.json
 ```

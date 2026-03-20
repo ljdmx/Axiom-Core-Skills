@@ -99,9 +99,9 @@ function filterCandidates(
     // 2. Framework compatibility
     if (template.framework) {
       const frontendMatch = 
-        projectContext.framework.frontend?.includes(template.framework);
+        projectContext.framework.frontend—.includes(template.framework);
       const backendMatch = 
-        projectContext.framework.backend?.includes(template.framework);
+        projectContext.framework.backend—.includes(template.framework);
       
       if (!frontendMatch && !backendMatch) {
         return false;
@@ -165,7 +165,7 @@ function calculateRelevance(
   score += (template.reusability / 10) * 0.1;
   
   // 5. Language match (5%)
-  if (template.customizationPoints?.includes('LANGUAGE')) {
+  if (template.customizationPoints—.includes('LANGUAGE')) {
     score += 0.05; // Supports i18n
   }
   
@@ -193,7 +193,7 @@ function selectBestTemplate(
   console.log(`🔍 Candidates: ${candidates.length} templates`);
   
   if (candidates.length === 0) {
-    console.log('�?No matching templates found');
+    console.log('❌No matching templates found');
     return null;
   }
   
@@ -208,7 +208,7 @@ function selectBestTemplate(
   const threshold = 0.7;
   
   if (best.score >= threshold) {
-    console.log(`�?Selected: ${best.template.name} (score: ${best.score.toFixed(2)})`);
+    console.log(`✅Selected: ${best.template.name} (score: ${best.score.toFixed(2)})`);
     return best.template;
   } else {
     console.log(`⚠️ Best score (${best.score.toFixed(2)}) below threshold (${threshold})`);
@@ -239,9 +239,9 @@ userRequest = "Create CRUD controller for Farm";
 
 // Step 2: Filter
 candidates = [
-  crud-controller,     // �?backend + CRUD tag
-  auth-controller,     // �?No CRUD tag
-  dashboard-layout     // �?frontend, not backend
+  crud-controller,     // ✅backend + CRUD tag
+  auth-controller,     // ❌No CRUD tag
+  dashboard-layout     // ❌frontend, not backend
 ]
 //Result: 1 candidate
 
@@ -252,10 +252,10 @@ crud-controller:
   Complexity: 0.15    (6 vs 6 = perfect)
   Reusability: 0.09   (9/10)
   Language: 0.05      (supports i18n)
-  TOTAL: 0.99 �?
+  TOTAL: 0.99 ⭐
 
 // Step 4: Select
-�?crud-controller (score: 0.99)
+✅crud-controller (score: 0.99)
 ```
 
 ---
@@ -273,14 +273,14 @@ userRequest = "创建用户登录页面";
   pattern: 'Auth',
   complexity: 6,
   keywords: ['用户', '登录', '页面'],
-  language: 'zh'      // �?Detected Chinese
+  language: 'zh'      // ✅Detected Chinese
 }
 
 // Step 2: Filter
 candidates = [
-  login-page,          // �?frontend + auth tag
-  auth-controller,     // �?backend, not page
-  data-table          // �?No auth tag
+  login-page,          // ✅frontend + auth tag
+  auth-controller,     // ❌backend, not page
+  data-table          // ❌No auth tag
 ]
 
 // Step 3: Score
@@ -289,12 +289,12 @@ login-page:
   Dependencies: 0.3
   Complexity: 0.15
   Reusability: 0.09
-  Language: 0.05      // �?Has i18n support
-  TOTAL: 0.99 �?
+  Language: 0.05      // ✅Has i18n support
+  TOTAL: 0.99 ⭐
 
 // Step 4: Customization
 Template will be filled with LANGUAGE = 'zh'
-Result: 100% Chinese UI �?
+Result: 100% Chinese UI ✅
 ```
 
 ---
@@ -317,9 +317,9 @@ userRequest = "Build admin dashboard with sidebar";
 
 // Step 2: Filter
 candidates = [
-  dashboard-layout,    // �?frontend + dashboard + sidebar tags
+  dashboard-layout,    // ✅frontend + dashboard + sidebar tags
   data-table,          // ⚠️ frontend but no dashboard tag
-  crud-controller      // �?backend
+  crud-controller      // ❌backend
 ]
 
 // Step 3: Score
@@ -329,10 +329,10 @@ dashboard-layout:
   Complexity: 0.15    (7 vs 7)
   Reusability: 0.10   (10/10 reusability)
   Language: 0.05
-  TOTAL: 1.00 �?PERFECT
+  TOTAL: 1.00 ⭐PERFECT
 
 // Step 4: Select
-�?dashboard-layout (score: 1.00)
+✅dashboard-layout (score: 1.00)
 ```
 
 ---
@@ -370,12 +370,12 @@ dashboard-layout:
 **Phase 2: Component Generation**
 1. **Template-First Approach**:
    ```
-   Request �?Analyze Intent �?Match Template
+   Request → Analyze Intent → Match Template
    
    IF match:
      Use template (2 min)
      Customize: BRAND_NAME, LANGUAGE, THEME_COLORS
-     Quality Gate �?Done
+     Quality Gate → Done
    ELSE:
      Build from scratch (15 min)
      Save as template if reusability > 7
@@ -434,7 +434,7 @@ if (best.score < 0.7 && best.score > 0.5) {
 ### Case 3: Ambiguous Intent
 
 ```typescript
-// Example: "Create auth" (controller or page?)
+// Example: "Create auth" (controller or page—)
 if (intent.entity === 'unknown') {
   // Check project context for hints
   if (projectContext.lastEntity === 'backend') {

@@ -10,7 +10,7 @@
 
 ## Context & Problem Statement
 
-> *What is the issue that motivates this decision? What is the context or state of the system at the time of this decision?*
+> *What is the issue that motivates this decisionâ€” What is the context or state of the system at the time of this decisionâ€”*
 
 {Describe the architectural challenge, the system state, and why a decision is needed now. Be specific about constraints (e.g., "Current p95 latency is 450ms; SLO requires 200ms").}
 
@@ -20,9 +20,9 @@
 
 ## Decision Drivers
 
-- {driver 1 â€?e.g., "Must support 10K RPS within 6 months"}
-- {driver 2 â€?e.g., "Team has no Go experience â€?TypeScript constraint"}
-- {driver 3 â€?e.g., "GDPR data residency requires EU-only infrastructure"}
+- {driver 1 â€”e.g., "Must support 10K RPS within 6 months"}
+- {driver 2 â€”e.g., "Team has no Go experience â€”TypeScript constraint"}
+- {driver 3 â€”e.g., "GDPR data residency requires EU-only infrastructure"}
 
 ---
 
@@ -38,7 +38,7 @@
 
 ## Decision Outcome
 
-**Chosen Option**: **Option {X}** â€?{one-line justification}
+**Chosen Option**: **Option {X}** â€”{one-line justification}
 
 ### Consequences
 
@@ -70,7 +70,7 @@
 
 ## Validation Criteria
 
-> *How will we know this decision was correct? What metrics confirm success?*
+> *How will we know this decision was correctâ€” What metrics confirm successâ€”*
 
 - [ ] {Metric}: {Target value} by {Date}
 - [ ] {Test}: {Expected result}

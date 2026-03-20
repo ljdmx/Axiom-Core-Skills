@@ -52,7 +52,7 @@ retroFiles.forEach(file => {
     const projectName = path.basename(path.dirname(file));
     
     // Naive parsing of Gate Metrics: FAIL sections
-    const failMatches = content.matchAll(/FAIL:\s*(.*?)(?=\n|$)/gi);
+    const failMatches = content.matchAll(/FAIL:\s*(.*—)(—=\n|$)/gi);
     for (const match of failMatches) {
         const rule = match[1].trim();
         if (!failureData[rule]) {

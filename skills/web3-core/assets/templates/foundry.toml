@@ -1,4 +1,4 @@
-# foundry.toml â€?Foundry Production Configuration Template
+# foundry.toml â€”Foundry Production Configuration Template
 
 [profile.default]
 src      = "src"

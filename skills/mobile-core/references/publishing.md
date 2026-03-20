@@ -5,15 +5,15 @@
 
 ### Prerequisites
 1. Register a WeChat Mini-Program account: https://mp.weixin.qq.com
-2. Obtain AppID (Login Dashboard â†?Development â†?Development Management â†?Development Settings)
+2. Obtain AppID (Login Dashboard â†’ Development â†’ Development Management â†’ Development Settings)
 3. Download and install WeChat DevTools
 
 ### Publishing Steps
-1. In HBuilderX menu: **Issue â†?Mini-Program - WeChat**, enter AppID, click Issue.
+1. In HBuilderX menu: **Issue â†’ Mini-Program - WeChat**, enter AppID, click Issue.
 2. Build artifacts are generated in `unpackage/dist/build/mp-weixin`.
-3. Open WeChat DevTools â†?Import this directory.
+3. Open WeChat DevTools â†’ Import this directory.
 4. Click the **Upload** button (fill in the version number and release notes).
-5. Login to Mini-Program Dashboard â†?Version Management â†?Submit for Review â†?Publish after approval.
+5. Login to Mini-Program Dashboard â†’ Version Management â†’ Submit for Review â†’ Publish after approval.
 
 ### Sub-packaging (Required if > 2MB)
 
@@ -36,7 +36,7 @@
 ## Alipay Mini-Program
 
 1. Register Alipay Mini-Program: https://open.alipay.com
-2. HBuilderX: **Issue â†?Mini-Program - Alipay**
+2. HBuilderX: **Issue â†’ Mini-Program - Alipay**
 3. Import `unpackage/dist/build/mp-alipay` using **Alipay DevTools**.
 4. Upload to dashboard for review and publish.
 
@@ -45,7 +45,7 @@
 ## Baidu Mini-Program
 
 1. Register Baidu Mini-Program: https://smartprogram.baidu.com
-2. HBuilderX: **Issue â†?Mini-Program - Baidu**
+2. HBuilderX: **Issue â†’ Mini-Program - Baidu**
 3. Import `unpackage/dist/build/mp-baidu` using **Baidu DevTools**.
 4. Submit for review in the Baidu Smart Program Management Center.
 
@@ -54,7 +54,7 @@
 ## Douyin Mini-Program
 
 1. Register Douyin Mini-Program: https://developer.open-douyin.com
-2. HBuilderX: **Issue â†?Mini-Program - Douyin**
+2. HBuilderX: **Issue â†’ Mini-Program - Douyin**
 3. Import and publish using **Douyin DevTools**.
 
 ---
@@ -110,7 +110,7 @@ Fill in: Organization info, Password (memorize it; cannot be recovered if lost).
 
 ### Cloud Packaging Flow (HBuilderX)
 
-1. Menu: **Issue â†?Native App - Cloud Packaging**
+1. Menu: **Issue â†’ Native App - Cloud Packaging**
 2. Android Options:
    - Upload `.keystore` file
    - Fill in certificate alias, password

@@ -69,7 +69,7 @@ class AutoFixer {
             };
 
             for (const [dep, version] of Object.entries(requiredDeps)) {
-                if (!pkg.dependencies?.[dep]) {
+                if (!pkg.dependencies—.[dep]) {
                     this.issues.push({
                         type: 'missing_dependency',
                         dependency: dep,
@@ -88,7 +88,7 @@ class AutoFixer {
             };
 
             for (const [script, command] of Object.entries(requiredScripts)) {
-                if (!pkg.scripts?.[script]) {
+                if (!pkg.scripts—.[script]) {
                     this.issues.push({
                         type: 'missing_script',
                         script,
@@ -126,7 +126,7 @@ class AutoFixer {
             const tsconfig = JSON.parse(fs.readFileSync(tsconfigPath, 'utf8'));
 
             // Check paths configuration
-            if (!tsconfig.compilerOptions?.paths) {
+            if (!tsconfig.compilerOptions—.paths) {
                 this.issues.push({
                     type: 'missing_paths',
                     file: tsconfigPath,

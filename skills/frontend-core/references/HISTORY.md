@@ -1,4 +1,4 @@
-# DDFM MANIFEST ¡ª ARCHIVED
+# DDFM MANIFEST â€” ARCHIVED
 
 > **Status**: ARCHIVED as of 2026-02-28 (v3.0)
 > All content from this file has been merged into the active `SKILL.md` ruleset.
@@ -7,12 +7,12 @@
 
 | Original Rule | Merged To |
 |---|---|
-| OKLCH Color Space | `SKILL.md ¡ì2` ¡ª active rule |
-| Spring Physics (stiffness: 400, damping: 30) | `SKILL.md ¡ì5` Spring Physics Reference table |
-| Frustration-Aware Kinetics (rage-click detection) | `SKILL.md ¡ì5` ¡ª active rule |
-| Hardware-Aware Degradation (60FPS targeting) | `SKILL.md ¡ì5` ¡ª active rule |
-| XState for complex flows | `SKILL.md ¡ì4` XState Mandate |
-| Phi-Based Spacing tokens | Covered by `SKILL.md ¡ì1` token system |
-| Zero-CLS aspect-ratio containers | Covered by `SKILL.md ¡ì6` Skeleton Protocol |
+| OKLCH Color Space | `SKILL.md Â§2` â€” active rule |
+| Spring Physics (stiffness: 400, damping: 30) | `SKILL.md Â§5` Spring Physics Reference table |
+| Frustration-Aware Kinetics (rage-click detection) | `SKILL.md Â§5` â€” active rule |
+| Hardware-Aware Degradation (60FPS targeting) | `SKILL.md Â§5` â€” active rule |
+| XState for complex flows | `SKILL.md Â§4` XState Mandate |
+| Phi-Based Spacing tokens | Covered by `SKILL.md Â§1` token system |
+| Zero-CLS aspect-ratio containers | Covered by `SKILL.md Â§6` Skeleton Protocol |
 
 > **Do not add rules here.** All new rules MUST go directly into `SKILL.md`.

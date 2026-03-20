@@ -13,13 +13,13 @@ cmd/
 
 internal/
 ├── handlers/
-�?  └── user_handler.go        # gRPC handlers
+│    └── user_handler.go        # gRPC handlers
 ├── services/
-�?  └── user_service.go        # Business logic
+│    └── user_service.go        # Business logic
 ├── repository/
-�?  └── user_repository.go     # Data access
+│    └── user_repository.go     # Data access
 ├── models/
-�?  └── user.go                # Domain models
+│    └── user.go                # Domain models
 └── middleware/
     ├── auth.go                # JWT validation
     └── logging.go             # Request logging
@@ -29,7 +29,7 @@ proto/
 
 pkg/
 ├── cache/
-�?  └── redis.go               # Cache abstraction
+│    └── redis.go               # Cache abstraction
 └── database/
     └── database.go            # DB connection pool
 ```
@@ -58,12 +58,12 @@ go run cmd/server/main.go
 
 ## Features
 
-�?**gRPC**: High-performance RPC communication  
-�?**SQL Database**: Production database with connection pooling  
-�?**Redis**: Caching layer  
-�?**JWT Auth**: Secure authentication  
-�?**OpenTelemetry**: Distributed tracing  
-�?**Prometheus**: Metrics collection
+✅**gRPC**: High-performance RPC communication  
+✅**SQL Database**: Production database with connection pooling  
+✅**Redis**: Caching layer  
+✅**JWT Auth**: Secure authentication  
+✅**OpenTelemetry**: Distributed tracing  
+✅**Prometheus**: Metrics collection
 
 ---
 

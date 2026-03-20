@@ -83,7 +83,7 @@ contract UniswapV3Integration {
         }));
     }
 
-    /// @notice Multi-hop swap (A �?B �?C)
+    /// @notice Multi-hop swap (A → B → C)
     function swapMultihop(
         address tokenIn, address tokenMid, address tokenOut,
         uint256 amountIn, uint256 amountOutMin
@@ -162,7 +162,7 @@ contract AaveV3Integration {
     // ── Account State ───────────────────────────────────────────────
     function getHealthFactor(address user) external view returns (uint256 healthFactor) {
         (,,,,, healthFactor) = pool.getUserAccountData(user);
-        // healthFactor < 1e18 �?Position can be liquidated!
+        // healthFactor < 1e18 → Position can be liquidated!
     }
 
     // ── Liquidation ───────────────────────────────────────────────────
@@ -193,7 +193,7 @@ contract AaveV3Integration {
 ```solidity
 import "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 
-// Price Feed Addresses (Full list �?https://docs.chain.link/data-feeds/price-feeds/addresses)
+// Price Feed Addresses (Full list → https://docs.chain.link/data-feeds/price-feeds/addresses)
 // Mainnet ETH/USD: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
 // Mainnet BTC/USD: 0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c
 // Mainnet USDC/USD:0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6
@@ -218,7 +218,7 @@ library ChainlinkLib {
     function getPriceWAD(address feed) internal view returns (uint256) {
         (int256 price, uint8 dec) = getPrice(feed);
         uint256 p = uint256(price);
-        return dec < 18 ? p * 10 ** (18 - dec) : p / 10 ** (dec - 18);
+        return dec < 18 — p * 10 ** (18 - dec) : p / 10 ** (dec - 18);
     }
 }
 ```
@@ -245,7 +245,7 @@ contract AaveFlashLoan is FlashLoanSimpleReceiverBase {
         POOL.flashLoanSimple(address(this), asset, amount, params, 0);
     }
 
-    /// @notice Aave Callback �?Implement arbitrage / liquidation / leverage logic here
+    /// @notice Aave Callback —Implement arbitrage / liquidation / leverage logic here
     function executeOperation(
         address asset,
         uint256 amount,
@@ -258,8 +258,8 @@ contract AaveFlashLoan is FlashLoanSimpleReceiverBase {
 
         // ══════════════════════════════════════════
         // Use the borrowed funds here:
-        // 1. Arbitrage: Buy low on Exchange A �?Sell high on Exchange B
-        // 2. Liquidation: Pay borrower's debt �?Receive collateral + bonus
+        // 1. Arbitrage: Buy low on Exchange A → Sell high on Exchange B
+        // 2. Liquidation: Pay borrower's debt → Receive collateral + bonus
         // 3. Leveraged Position (Looping supply/borrow)
         // ══════════════════════════════════════════
         (address strategy) = abi.decode(params, (address));
@@ -382,14 +382,14 @@ npm install @uniswap/v4-core @uniswap/v4-periphery
 
 ```
 V3 Architecture: Each Pool = Independent Contract (Unique Address)
-V4 Architecture: All Pools �?PoolManager Singleton Contract (ERC-6909 Accounting)
-                 Custom Logic �?Hook Contract (Triggered at PoolManager hook points)
+V4 Architecture: All Pools → PoolManager Singleton Contract (ERC-6909 Accounting)
+                 Custom Logic → Hook Contract (Triggered at PoolManager hook points)
 
 Hook Trigger Points:
-  beforeInitialize / afterInitialize    �?On pool creation
-  beforeAddLiquidity / afterAddLiquidity �?Adding liquidity
+  beforeInitialize / afterInitialize    —On pool creation
+  beforeAddLiquidity / afterAddLiquidity —Adding liquidity
   beforeRemoveLiquidity / afterRemoveLiquidity
-  beforeSwap / afterSwap                �?Before/After swaps (Most common)
+  beforeSwap / afterSwap                —Before/After swaps (Most common)
   beforeDonate / afterDonate
 ```
 
@@ -406,7 +406,7 @@ import { PoolKey }        from "@uniswap/v4-core/src/types/PoolKey.sol";
 import { BalanceDelta }   from "@uniswap/v4-core/src/types/BalanceDelta.sol";
 import { BeforeSwapDelta, BeforeSwapDeltaLibrary } from "@uniswap/v4-core/src/types/BeforeSwapDelta.sol";
 
-/// @title DynamicFeeHook �?Dynamically adjusts trading fees based on volatility
+/// @title DynamicFeeHook —Dynamically adjusts trading fees based on volatility
 contract DynamicFeeHook is BaseHook {
     uint24 public constant BASE_FEE  = 3_000;   // 0.3%
     uint24 public constant HIGH_FEE  = 10_000;  // 1.0% (High volatility)
@@ -423,7 +423,7 @@ contract DynamicFeeHook is BaseHook {
             afterAddLiquidity:        false,
             beforeRemoveLiquidity:    false,
             afterRemoveLiquidity:     false,
-            beforeSwap:               true,   // �?Enabled
+            beforeSwap:               true,   // ✅Enabled
             afterSwap:                false,
             beforeDonate:             false,
             afterDonate:              false,
@@ -441,7 +441,7 @@ contract DynamicFeeHook is BaseHook {
         IPoolManager.SwapParams calldata,
         bytes calldata
     ) external override returns (bytes4, BeforeSwapDelta, uint24) {
-        uint24 fee = isHighVolatility ? HIGH_FEE : BASE_FEE;
+        uint24 fee = isHighVolatility — HIGH_FEE : BASE_FEE;
 
         // Override pool dynamic fee (Requires setting fee = 0x800000 dynamic flag on pool init)
         return (
@@ -456,14 +456,14 @@ contract DynamicFeeHook is BaseHook {
 }
 ```
 
-### Hook Deployment —�?Address Mining (Crucial!)
+### Hook Deployment ——Address Mining (Crucial!)
 
 ```
 ⚠️ V4 Hook Contract addresses MUST contain Hook permission bits:
    The lowest 14 bits of the address correspond to the 14 Hook trigger point on/off switches.
    PoolManager determines which Hook functions to call by checking the lowest bits of the address.
 
-   beforeSwap = 7th bit (From right) �?Address lowest byte must have corresponding bit.
+   beforeSwap = 7th bit (From right) → Address lowest byte must have corresponding bit.
 
 Tool: HookMiner (Official from Uniswap)
 ```
@@ -506,7 +506,7 @@ PoolKey memory key = PoolKey({
     hooks:     IHooks(hookAddress),    // Our Hook contract
 });
 
-// Initialize pool (sqrtPriceX96 = �?price) × 2^96)
+// Initialize pool (sqrtPriceX96 = √price) × 2^96)
 uint160 sqrtPriceX96 = 79228162514264337593543950336; // 1:1
 poolManager.initialize(key, sqrtPriceX96);
 ```

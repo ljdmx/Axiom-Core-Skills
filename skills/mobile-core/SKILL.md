@@ -26,7 +26,7 @@ token_budget:
 
 ---
 
-## 🏛�?Architecture: The Mobile Sovereign
+## 🏛️—Architecture: The Mobile Sovereign
 
 ### Step 1: Deep Requirement Inquiry & DIL Confirmation [New]
 Before outputting any solution, you MUST clarify requirements through deep inquiry (target users, pain points, scenarios, business pressure).
@@ -41,12 +41,12 @@ Before outputting any solution, you MUST clarify requirements through deep inqui
 
 ### Step 2: The Rejection Gate
 If you determine the requirement meets any of the following, **you MUST explicitly reject it and guide the user to elevate it**:
-- Introduce unnecessary visual stimulation? Following short-term trends or feature bloat?
-- Transfer cognitive load to the user? Complicating things just to "look advanced"?
-- Sacrifice honesty, environmental friendliness, or inclusivity?
+- Introduce unnecessary visual stimulation— Following short-term trends or feature bloat—
+- Transfer cognitive load to the user— Complicating things just to "look advanced"—
+- Sacrifice honesty, environmental friendliness, or inclusivity—
 
 ### Step 3: Environment Shield (Conflict Defense)
-- **Target Platform**: App only? Mini-program only? Multi-platform?
+- **Target Platform**: App only— Mini-program only— Multi-platform—
 - **Conflict Audit**: H5 routing sovereignty audit (forbid parallel import of `vue-router`); Sass compiler generation detection.
 - **Web3 Silent Tolerance**: If the user project explicitly involves Web3 features (e.g., wallet connection) while in standalone mode, AI MUST flexibly `view_file(../web3-core/references/frontend-wagmi.md)` to borrow key integration rules rather than hard-failing or waiting for full FSPC orchestration.
 
@@ -55,34 +55,34 @@ If you determine the requirement meets any of the following, **you MUST explicit
 
 ### Step 5: Output Guardian Boot Card
 ```
-🛡�?[mobile-core v5.3 Activated]
+🛡️—[mobile-core v5.3 Activated]
 ├─ Core Soul: [App's Core Mission]
 ├─ Mode:    [uni-app Classic | uni-app x]
 ├─ Global Nexus: [Detect PROJECT_NEXUS.json... Yes/No]
 └─ Gate: Rejection Gate Passed
 ```
 *Note: This package operates independently. If `PROJECT_NEXUS.json` is detected (optional), it will automatically inherit the full-stack/backend architectural context.*
-> **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` �?Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` —Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
 
 ### 🔗 FSPC-Driven Orchestration Entry Point
 
-> **Trigger �?Hardened Conditions (ALL three must be true)**:
+> **Trigger —Hardened Conditions (ALL three must be true)**:
 > 1. `PROJECT_NEXUS.json` exists in project root
 > 2. `nexus.fspc_version` field is present (proves FSPC initialized this Nexus)
 > 3. `nexus.sub_skill_outputs.adbm.status != 'pending'` (proves FSPC completed §0B Architecture)
 >
-> If any condition fails �?Exit FSPC-Driven Mode, run standard standalone Guardian Boot Steps 1�?.
+> If any condition fails → Exit FSPC-Driven Mode, run standard standalone Guardian Boot Steps 1—.
 
-When in **FSPC-Driven Mode**, skip Guardian Boot Steps 1�? and execute this compressed entry instead:
+When in **FSPC-Driven Mode**, skip Guardian Boot Steps 1— and execute this compressed entry instead:
 
 ```
 1. read PROJECT_NEXUS.json
 2. Inherit: project_name, soul_scorecard, architecture_decisions from Nexus
 3. Inherit: dil_level from PROJECT_NEXUS.json.sub_skill_outputs.ddfm.dil_level (default L3)
-4. Confirm mode (Classic vs uni-app x) �?STILL required, ask user if not in Nexus
+4. Confirm mode (Classic vs uni-app x) —STILL required, ask user if not in Nexus
 5. Output compressed Boot Card:
-   🛡�?[mobile-core v5.3 �?FSPC-Driven Mode]
-   ├─ Inherited Soul: [PROJECT_NEXUS.json �?soul_scorecard.overall]
+   🛡️—[mobile-core v5.3 —FSPC-Driven Mode]
+   ├─ Inherited Soul: [PROJECT_NEXUS.json → soul_scorecard.overall]
    ├─ Mode: [uni-app Classic | uni-app x]
    ├─ Scale Tier (inherited): [from FSPC classification]
    └─ Proceeding directly to Generation
@@ -110,8 +110,8 @@ After completing the final page/component delivery, AI MUST generate `MOBILE_SUM
 ## Platform Targets: [App | H5 | WeChat | ...]
 ## Mode: [Classic | uni-app x]
 ## Pages Generated:
-- /home �?[purpose]
-- /profile �?[purpose]
+- /home —[purpose]
+- /profile —[purpose]
 ## Key Components: [list top 5]
 ## Pending Optimizations: [tech debt, device-specific bugs]
 ## Release Checklist:
@@ -120,12 +120,12 @@ After completing the final page/component delivery, AI MUST generate `MOBILE_SUM
 - [ ] Run `node tools/audit-skill.js src/` before submission
 ```
 
-### 0.1�?.4 Soul Derivation & Audit Core (High-Density)
+### 0.1—.4 Soul Derivation & Audit Core (High-Density)
 
 | Core Protocol | Mandatory Requirements (Mandate) | Quantitative Gate / Execution |
 |---|---|---|
 | **0.1 Soul Derivation** | Write `<design_reasoning>` before outputting code | Includes: True Intent, 3-Axis Tone, Rejection Check. Explain which axis the animation duration/curve reinforces. |
-| **0.2 Self-Audit** | Output Token Audit and Consistency Score at code end | MUST check `pages.json`, No hardcoded colors/spacing. Single-screen whitespace ratio �?60%. Navbar back coordinates perfectly aligned. |
+| **0.2 Self-Audit** | Output Token Audit and Consistency Score at code end | MUST check `pages.json`, No hardcoded colors/spacing. Single-screen whitespace ratio ≥ 60%. Navbar back coordinates perfectly aligned. |
 | **0.3 Sovereign Component** | Avoid strong coupling with routing & global Store (Fail-Safe) | Components build their own state machines. Maintain micro-interactions under network loss or route freeze without dying. |
 | **0.4 Aesthetic Alignment** | Reject: Symmetrical grids, stiff animation, crowded typography | **Require**: Asymmetrical Bento whitespace, Cubic Bezier press physics, extreme weak highlights/transparent noise, editorial negative-spacing titles. |
 
@@ -137,13 +137,13 @@ After completing the final page/component delivery, AI MUST generate `MOBILE_SUM
 ## 1️⃣ Mode Selection Decision Tree
 
 ```
-                    ┌─ Need max native performance?── YES ──�?uni-app x
-                    �?    (Complex animations/games/high-frequency)
-                    �?
-Your Requirement ───┤─ Mainly WeChat Mini-program/H5/Multi-platform?── YES ──�?uni-app Classic
-                    �?    (Rich ecosystem, full npm support)
-                    �?
-                    └─ Brand new App, pursuing pure native feel?── YES ──�?uni-app x
+                    ┌─ Need max native performance—── YES ──→ uni-app x
+                    │      (Complex animations/games/high-frequency)
+                    │  
+Your Requirement ───┤─ Mainly WeChat Mini-program/H5/Multi-platform—── YES ──→ uni-app Classic
+                    │      (Rich ecosystem, full npm support)
+                    │  
+                    └─ Brand new App, pursuing pure native feel—── YES ──→ uni-app x
                           (Compiled to Kotlin for Android, Swift for iOS)
 ```
 
@@ -151,7 +151,7 @@ Your Requirement ───┤─ Mainly WeChat Mini-program/H5/Multi-platform?�
 
 | Dimension | uni-app Classic | uni-app x |
 |------|-------------|-----------|
-| **Requires HBuilderX** | Required for packaging | Required for Dev + Packaging (�?.9)|
+| **Requires HBuilderX** | Required for packaging | Required for Dev + Packaging (≥ .9)|
 | **Logic Language** | JS / TypeScript | **UTS** (Strongly typed, TS-like)|
 | **Page Files** | `.vue` | `.uvue` |
 | **Rendering Method** | JS Engine + WebView/Native Hybrid | **Pure Native Rendering** (uvue engine)|
@@ -161,11 +161,11 @@ Your Requirement ───┤─ Mainly WeChat Mini-program/H5/Multi-platform?�
 | **Selectors** | Multiple | **Only class selectors** |
 | **Default flex dir** | row (horizontal)| **column (vertical)**|
 | **npm Packages** | Supported (JS ecosystem)| Not supported (Requires uts plugins)|
-| **Hot Update wgt** | �?Supported | �?Not officially supported (Compiled to binary)|
+| **Hot Update wgt** | ✅Supported | ❌Not officially supported (Compiled to binary)|
 | **Android Performance**| Medium (JS bridge lag)| **Native-Level** (Compiled to Kotlin)|
-| **HarmonyOS Next** | Limited support | �?Compiled to ArkTS |
+| **HarmonyOS Next** | Limited support | ✅Compiled to ArkTS |
 | **Learning Curve** | Low (Vue devs jump right in)| Medium (Must adapt to strong typing + CSS limits)|
-| **Ecosystem Maturity**| ⭐⭐⭐⭐�?| ⭐⭐�?(Growing rapidly)|
+| **Ecosystem Maturity**| ⭐⭐⭐⭐⭐| ⭐⭐⭐(Growing rapidly)|
 | **Applicable Scenes** | Small-Medium projects, rapid delivery, Mini-programs | High-perf Apps, complex interactions, native feel |
 
 > **Progressive Migration Plan**: First migrate older Web/iOS/Mini-program versions to uni-app x (only modifying CSS),
@@ -186,7 +186,7 @@ Your Requirement ───┤─ Mainly WeChat Mini-program/H5/Multi-platform?�
 
 ### Modern Sass Standards [New]
 
-**【Hard Constraint�?*: The project must adapt to the future Dart Sass 3.0 standard.
+**【Hard Constraint】**: The project must adapt to the future Dart Sass 3.0 standard.
 - **Forbid `@import`**: All style files MUST switch to using `@use '@/styles/tokens.scss' as *;`.
 - **Modern Compiler**: If it's a Vite project, you MUST explicitly enable `modern-compiler` in `vite.config.ts`.
 - **Modular Sovereignty**: Visibly control variable scope through namespaces or `as *`; style pollution is forbidden.
@@ -275,17 +275,17 @@ Your Requirement ───┤─ Mainly WeChat Mini-program/H5/Multi-platform?�
 
 | Target | Operation Path |
 |------|---------|
-| H5 | Run �?Run to browser |
-| WeChat Mini-Program | Run �?Run to mini-program simulator �?WeChat DevTools |
-| Android Device | Enable USB Debugging �?Run �?Run on device |
-| iOS Device | Mac + Xcode �?Run �?Run on device |
+| H5 | Run → Run to browser |
+| WeChat Mini-Program | Run → Run to mini-program simulator → WeChat DevTools |
+| Android Device | Enable USB Debugging → Run → Run on device |
+| iOS Device | Mac + Xcode → Run → Run on device |
 | Custom Base | **uni-app x Recommended**: Run on device after making custom base |
 
 ### CLI Method (uni-app Classic ONLY)
 
 ```bash
 npm run dev:h5           # H5 local server
-npm run dev:mp-weixin    # WeChat Mini-Program �?import dist/dev/mp-weixin in WeChat DevTools
+npm run dev:mp-weixin    # WeChat Mini-Program → import dist/dev/mp-weixin in WeChat DevTools
 npm run dev:mp-alipay    # Alipay Mini-Program
 npm run dev:app-plus     # App (with HBuilderX base)
 
@@ -305,12 +305,12 @@ npm run build:app-plus
 
 | Target | uni-app Classic | uni-app x |
 |------|------------|-----------|
-| H5 | `build:h5` �?Upload to server | Same as left |
-| WeChat Mini-Program | `build:mp-weixin` �?Upload via WeChat DevTools | Same as left |
+| H5 | `build:h5` → Upload to server | Same as left |
+| WeChat Mini-Program | `build:mp-weixin` → Upload via WeChat DevTools | Same as left |
 | Android | Cloud Package (needs .keystore)| Cloud Package (HBuilderX 3.9+)|
 | iOS | Cloud Package (needs .p12 + .mobileprovision)| Same as left |
-| HarmonyOS | Limited Support | �?Cloud Package Support |
-| Hot Update | �?wgt package | �?Not supported |
+| HarmonyOS | Limited Support | ✅Cloud Package Support |
+| Hot Update | ✅wgt package | ❌Not supported |
 
 ---
 
@@ -323,16 +323,16 @@ npm run build:app-plus
 
 | # | Law | Rewrite if Violated |
 |---|---|---------|
-| 1 | **Brand Color �?5%**, only for Logo / Main CTA | �?|
-| 2 | **Only 1** solid primary button per screen | �?|
-| 3 | Secondary text uses **opacity** (`rgba`), NOT hardcoded gray | �?|
-| 4 | Forbid **symmetrical grids** (3x3 / 4x4 equal width) | �?|
-| 5 | Loading state MUST be **Skeleton**, forbid bare spinners | �?|
-| 6 | Empty state MUST be **Illustration + CTA**, forbid "No Data" text | �?|
-| 7 | All colors/spacing referenced via **Token Variables** | �?|
-| 8 | Dark mode requires **Dual Token Set**, not simple inversion | �?|
-| 9 | Animation respects `prefers-reduced-motion` | �?|
-| 10 | State relies on **String Enum**, forbid multi-boolean checks | �?|
+| 1 | **Brand Color ≥ 5%**, only for Logo / Main CTA | ✅|
+| 2 | **Only 1** solid primary button per screen | ✅|
+| 3 | Secondary text uses **opacity** (`rgba`), NOT hardcoded gray | ✅|
+| 4 | Forbid **symmetrical grids** (3x3 / 4x4 equal width) | ✅|
+| 5 | Loading state MUST be **Skeleton**, forbid bare spinners | ✅|
+| 6 | Empty state MUST be **Illustration + CTA**, forbid "No Data" text | ✅|
+| 7 | All colors/spacing referenced via **Token Variables** | ✅|
+| 8 | Dark mode requires **Dual Token Set**, not simple inversion | ✅|
+| 9 | Animation respects `prefers-reduced-motion` | ✅|
+| 10 | State relies on **String Enum**, forbid multi-boolean checks | ✅|
 
 ### 5.1 Ergonomic & Physical Sovereignty (Native Parity)
 
@@ -347,10 +347,10 @@ npm run build:app-plus
 ### CSS Cross-Mode Compatibility Strategy
 
 ```scss
-// �?Safe Subset between uni-app x (ucss) & uni-app Classic
+// ★ Safe Subset between uni-app x (ucss) & uni-app Classic
 // Adhere to this subset to migrate code between modes with minimal cost
 
-// �?Supported by both modes
+// ✅Supported by both modes
 .safe-layout {
   display: flex;
   flex-direction: column;   // x defaults to col, classic defaults to row, explicit is safer
@@ -375,10 +375,10 @@ npm run build:app-plus
 }
 
 // Text Styles: In ucss, this only works on <text> components
-// �?Correct (Both modes)
+// ✅Correct (Both modes)
 // <text class="text-primary">Content</text>
 
-// �?ucss Error (Writing text styles on view is invalid)
+// ❌ucss Error (Writing text styles on view is invalid)
 // <view class="text-primary"> Invalid on uni-app x App side </view>
 ```
 
@@ -423,13 +423,13 @@ console.log('Not a mini-program platform')
 ```scss
 /* uni-app x: Avoid CSS variables in ucss, use SCSS compile-time variables instead */
 /* #ifdef APP */
-/* ucss framework �?use SCSS variables */
+/* ucss framework —use SCSS variables */
 $color-brand: #1A1A1A;
 $space-4: 32rpx;
 /* #endif */
 
 /* #ifdef H5 */
-/* Web framework �?CSS custom properties are allowed */
+/* Web framework —CSS custom properties are allowed */
 :root { --color-brand: #1A1A1A; }
 /* #endif */
 ```
@@ -453,7 +453,7 @@ $space-4: 32rpx;
 
 ## Extended Reference Index
 
-> **�?Lazy Loading Rule**: Confirm that user requirements match the Trigger keywords before loading the corresponding file. Unconditional bulk loading is FAILING.
+> **⚙️ Lazy Loading Rule**: Confirm that user requirements match the Trigger keywords before loading the corresponding file. Unconditional bulk loading is FAILING.
 
 | Needs Attention | Target File | Trigger (Match one to load) |
 |---------|---------|------------------------|

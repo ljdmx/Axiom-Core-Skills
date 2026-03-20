@@ -7,7 +7,7 @@
 # [Product Name] - Product Brief
 
 ## 📋 Vision
-[One sentence: What problem does this solve and for whom?]
+[One sentence: What problem does this solve and for whom—]
 
 Example: "Help busy professionals build lasting habits through simple daily tracking and motivating progress visualization."
 
@@ -57,8 +57,8 @@ Format: "As a [persona], I can [action] so that [benefit]"
 
 ### Won't Have (Out of Scope)
 *Explicitly excluded to manage scope*
-- �?Feature 8
-- �?Feature 9
+- ❌Feature 8
+- ❌Feature 9
 
 ---
 
@@ -113,7 +113,7 @@ Format: "As a [persona], I can [action] so that [benefit]"
 
 ---
 
-## 🗓�?Roadmap
+## 🗓️—Roadmap
 
 | Phase | Timeline | Key Features |
 |-------|----------|--------------|
@@ -123,9 +123,9 @@ Format: "As a [persona], I can [action] so that [benefit]"
 
 ---
 
-## �?Success Criteria
+## ✅Success Criteria
 
-*How do we know we succeeded?*
+*How do we know we succeeded—*
 
 - [ ] All MVP user stories implemented
 - [ ] Success metrics instrumented (can track MAU, retention, etc.)

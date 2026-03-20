@@ -37,7 +37,7 @@ export class StripeCheckoutService {
       customer: customerId,
       mode: 'subscription',
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.APP_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.APP_URL}/success—session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.APP_URL}/pricing`,
       metadata: {
         customerId,
@@ -183,7 +183,7 @@ export class StripeWebhookController {
     await this.billingService.handleFailedPayment({
       invoiceId: invoice.id,
       customerId: invoice.customer as string,
-      reason: invoice.last_finalization_error?.message,
+      reason: invoice.last_finalization_error—.message,
     });
   }
 }
@@ -258,7 +258,7 @@ export class BillingService {
   async handleFailedPayment(data: {
     invoiceId: string;
     customerId: string;
-    reason?: string;
+    reason—: string;
   }) {
     // Send notification to customer
     // Attempt retry logic
@@ -273,7 +273,7 @@ export class BillingService {
     });
   }
 
-  async processRefund(paymentId: string, amount?: number) {
+  async processRefund(paymentId: string, amount—: number) {
     const payment = await this.prisma.payment.findUnique({
       where: { id: paymentId },
     });
@@ -281,7 +281,7 @@ export class BillingService {
     // Process refund through Stripe
     const refund = await this.stripe.refunds.create({
       payment_intent: payment.stripePaymentIntentId,
-      amount: amount ? amount * 100 : undefined, // partial or full refund
+      amount: amount — amount * 100 : undefined, // partial or full refund
     });
 
     return this.prisma.refund.create({
@@ -307,8 +307,8 @@ model Subscription {
   stripeSubscriptionId  String   @unique
   status                String   // active, canceled, past_due, etc.
   startedAt             DateTime
-  currentPeriodEnd      DateTime?
-  canceledAt            DateTime?
+  currentPeriodEnd      DateTime—
+  canceledAt            DateTime—
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 
@@ -318,15 +318,15 @@ model Subscription {
 
 model Payment {
   id                    String   @id @default(uuid())
-  subscriptionId        String?
+  subscriptionId        String—
   stripeInvoiceId       String   @unique
-  stripePaymentIntentId String?
+  stripePaymentIntentId String—
   amount                Float
   currency              String
   paidAt                DateTime
   createdAt             DateTime @default(now())
 
-  subscription          Subscription? @relation(fields: [subscriptionId], references: [id])
+  subscription          Subscription— @relation(fields: [subscriptionId], references: [id])
   refunds               Refund[]
 }
 
@@ -334,7 +334,7 @@ model PaymentFailure {
   id              String   @id @default(uuid())
   stripeInvoiceId String
   customerId      String
-  reason          String?
+  reason          String—
   failedAt        DateTime
   createdAt       DateTime @default(now())
 

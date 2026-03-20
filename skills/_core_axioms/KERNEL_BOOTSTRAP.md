@@ -1,4 +1,4 @@
-# Axiom Core Skills â€?Kernel Bootstrap
+# Axiom Core Skills â€”Kernel Bootstrap
 > This document contains the universal sovereign rules spanning all AI skills in the ecosystem. Read this ONCE to govern all sub-skills.
 
 ## 1. Global Nexus Protocol

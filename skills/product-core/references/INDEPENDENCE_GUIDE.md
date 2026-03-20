@@ -1,8 +1,8 @@
-# Axiom OS �?Skill Package Independence Guide
+# Axiom OS —Skill Package Independence Guide
 
 Welcome to the skill ecosystem. This guide explains how to properly utilize the 5 core AI skill packages either independently (Mode-A) or orchestrated together (Mode-B).
 
-## 🔀 When to use which skill?
+## 🔀 When to use which skill—
 
 ### 1. Pure Backend API / Microservice
 **Target Skill**: `backend-core`
@@ -40,7 +40,7 @@ Welcome to the skill ecosystem. This guide explains how to properly utilize the 
 ## 🧬 Dual-Mode Architecture
 
 Our core skills are designed to operate in two modes, identified by YAML tags in their `SKILL.md`:
-- `standalone_ready: true` �?The skill has its own Boot Protocol and Classification Layer.
-- `fspc_compatible: true` �?The skill can detect `PROJECT_NEXUS.json` and seamlessly integrate into `product-core`'s workflow, inheriting project scale/compliance directly.
+- `standalone_ready: true` —The skill has its own Boot Protocol and Classification Layer.
+- `fspc_compatible: true` —The skill can detect `PROJECT_NEXUS.json` and seamlessly integrate into `product-core`'s workflow, inheriting project scale/compliance directly.
 
 When building a complete product, always start by activating `product-core` and letting it orchestrate the others. When building an isolated component or service, rely on the specific domain skill directly.

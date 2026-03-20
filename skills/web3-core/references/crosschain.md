@@ -25,7 +25,7 @@
 
 ## 2. LayerZero V2
 
-### OApp (Omnichain Application) â€”â€?Messaging
+### OApp (Omnichain Application) â€”â€”Messaging
 
 ```bash
 npm install @layerzerolabs/lz-evm-oapp-v2
@@ -94,7 +94,7 @@ contract CrossChainMessenger is OApp {
 }
 ```
 
-### OFT (Omnichain Fungible Token) â€”â€?Cross-Chain Token Standard
+### OFT (Omnichain Fungible Token) â€”â€”Cross-Chain Token Standard
 
 OFT uses a burn-mint model (not lock-release), which is naturally resistant to liquidity drainage attacks.
 
@@ -324,14 +324,14 @@ Cross-chain interaction is the attack surface causing the heaviest losses in DeF
 
 ```solidity
 contract SafeCrossChainReceiver {
-    // âœ?1. Strict origin verification: Double check srcChainId + srcSender
+    // âœ…1. Strict origin verification: Double check srcChainId + srcSender
     mapping(uint32 => mapping(address => bool)) public trustedRemotes;
 
-    // âœ?2. Deduplicate messageId to prevent replays
+    // âœ…2. Deduplicate messageId to prevent replays
     mapping(bytes32 => bool) public processedMessages;
     error AlreadyProcessed(bytes32 messageId);
 
-    // âœ?3. Amount limits: Single tx + Daily cumulative
+    // âœ…3. Amount limits: Single tx + Daily cumulative
     uint256 public constant MAX_SINGLE   = 100_000e6;   // Max $100k USDC single tx
     uint256 public constant MAX_DAILY    = 1_000_000e6; // Max $1M daily
     uint256 public dailyVolume;
@@ -351,7 +351,7 @@ contract SafeCrossChainReceiver {
         // Execute business logic...
     }
 
-    // âœ?4. Emergency Pause (Triggered after Defender Sentinel detects anomalies)
+    // âœ…4. Emergency Pause (Triggered after Defender Sentinel detects anomalies)
     bool public paused;
     modifier whenNotPaused() { require(!paused, "Paused"); _; }
 }
@@ -361,9 +361,9 @@ contract SafeCrossChainReceiver {
 
 ```
 Production cross-chain protocols MUST monitor:
-  1. OpenZeppelin Defender Sentinel  â€?Monitor abnormally large cross-chain events
-  2. LayerZero Scan                  â€?https://layerzeroscan.com
-  3. CCIP Explorer                   â€?https://ccip.chain.link
+  1. OpenZeppelin Defender Sentinel  â€”Monitor abnormally large cross-chain events
+  2. LayerZero Scan                  â€”https://layerzeroscan.com
+  3. CCIP Explorer                   â€”https://ccip.chain.link
   4. Set alert thresholds: Single tx > $50k triggers PagerDuty/Slack
   5. Preconfigure emergency pause multi-sig operations (Safe + Timelock)
 ```

@@ -1,7 +1,7 @@
 # DDFM Accessibility Checklist (WCAG 2.1 AA)
 ## Complete A11y Verification Protocol
 
-> **Status**: ACTIVE �?Run before every component handoff.
+> **Status**: ACTIVE —Run before every component handoff.
 > **Standard**: WCAG 2.1 Level AA (Level AAA for Compliance-grade UIs per §0).
 > **Automated Check**: `npx axe-core` + `@axe-core/playwright` in E2E tests.
 
@@ -10,9 +10,9 @@
 ## 🎨 Perceivable
 
 ### Color & Contrast
-- [ ] Normal text (< 18px): contrast ratio �?**4.5:1** against background
-- [ ] Large text (�?18px or 14px bold): contrast ratio �?**3:1**
-- [ ] UI components (borders, icons, focus rings): contrast �?**3:1**
+- [ ] Normal text (< 18px): contrast ratio ≥ **4.5:1** against background
+- [ ] Large text (≥ 18px or 14px bold): contrast ratio ≥ **3:1**
+- [ ] UI components (borders, icons, focus rings): contrast ≥ **3:1**
 - [ ] Information is NEVER conveyed by color alone (e.g., error states also use icons + text)
 - [ ] Dark mode: re-verified all ratios against dark background tokens (not just light mode)
 - [ ] `--semantic-*` tokens validated in both light AND dark mode (DDFM §28)
@@ -24,14 +24,14 @@
 - [ ] No information conveyed by image alone without text equivalent
 
 ### Typography & Readability
-- [ ] Base font size �?16px (allows browser zoom without breaking layout)
-- [ ] Line height �?1.5 for body text
+- [ ] Base font size ≥ 16px (allows browser zoom without breaking layout)
+- [ ] Line height ≥ 1.5 for body text
 - [ ] Text can be resized to 200% without horizontal scrolling on desktop
 - [ ] `clamp()` fluid type scales verified at minimum and maximum viewport sizes
 
 ---
 
-## 🕹�?Operable
+## 🕹️—Operable
 
 ### Keyboard Navigation
 - [ ] ALL interactive elements reachable via Tab in logical DOM order
@@ -47,7 +47,7 @@
 - [ ] `prefers-reduced-motion`: ALL animations disabled/reduced when active
 - [ ] No auto-playing media that cannot be paused
 - [ ] No content that flashes more than 3 times per second (seizure risk)
-- [ ] Time-limited sessions warn user �?20 seconds before expiry with option to extend
+- [ ] Time-limited sessions warn user ≥ 20 seconds before expiry with option to extend
 
 ---
 
@@ -71,7 +71,7 @@
 
 ---
 
-## 🛡�?Robust
+## 🛡️—Robust
 
 ### Semantic HTML
 - [ ] Use semantic elements: `<nav>`, `<main>`, `<aside>`, `<header>`, `<footer>`, `<section>`, `<article>`
@@ -116,4 +116,4 @@ node tools/aesthetic-scorer.js --contrast-check
 
 | Version | Date | Summary |
 |---|---|---|
-| v1.0 | 2026-03-09 | Initial creation �?WCAG 2.1 AA complete checklist aligned with DDFM §5, §8, §10, §11, §17 rules |
+| v1.0 | 2026-03-09 | Initial creation —WCAG 2.1 AA complete checklist aligned with DDFM §5, §8, §10, §11, §17 rules |

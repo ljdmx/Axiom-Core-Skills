@@ -3,7 +3,7 @@
 
 ---
 
-## 🏗�?1. Skill Evolution Directory Structure
+## 🏗️—1. Skill Evolution Directory Structure
 
 To support the new "Sovereign" capabilities, we must restructure the `.agent/skills` directory.
 Old structure was flat. New structure is **Modular & Intelligent**.
@@ -11,43 +11,43 @@ Old structure was flat. New structure is **Modular & Intelligent**.
 ```
 .agent/skills/
 ├── _core_axioms/                🌌 Core Universe (Manifestos, Shared & Global)
-�?  ├── SOUL_MANIFESTO.md        # Supreme Aesthetic Code
-�?  ├── NEXUS_PROTOCOL.md        # Federated Project Handoff Rules
-�?  ├── KERNEL_BOOTSTRAP.md      # Shared Logic Start Point
-�?  ├── memory/                  🧠 Global Cognitive Grid (RAG)
-�?  �?  ├── user_profile.json    # User preferences & style
-�?  �?  ├── project_graph.json   # Cross-project relationships
-�?  �?  ├── snippet_vault.json   # Reusable code patterns
-�?  �?  └── vector_vault/        🌌 Semantic AST History (NEW)
-�?  �?      └── schema.json      # RAG memory layout
-�?  └── evolution/               💎 Kinetic Intelligence
-�?      ├── patch_history.json   # Tracked mutations
-�?      └── analytics.json       # Usage stats & rejection rates
-�?
+│    ├── SOUL_MANIFESTO.md        # Supreme Aesthetic Code
+│    ├── NEXUS_PROTOCOL.md        # Federated Project Handoff Rules
+│    ├── KERNEL_BOOTSTRAP.md      # Shared Logic Start Point
+│    ├── memory/                  🧠 Global Cognitive Grid (RAG)
+│    │    ├── user_profile.json    # User preferences & style
+│    │    ├── project_graph.json   # Cross-project relationships
+│    │    ├── snippet_vault.json   # Reusable code patterns
+│    │    └── vector_vault/        🌌 Semantic AST History (NEW)
+│    │        └── schema.json      # RAG memory layout
+│    └── evolution/               💎 Kinetic Intelligence
+│        ├── patch_history.json   # Tracked mutations
+│        └── analytics.json       # Usage stats & rejection rates
+│  
 ├── backend-core/
-�?  ├── templates/               # (Existing)
-�?  ├── red_team/                🛡�?Adversarial QA Support (NEW)
-�?  �?  ├── fuzzing_vectors.json
-�?  �?  └── security_audit.ts
-�?  └── SKILL.md
-�?
+│    ├── templates/               # (Existing)
+│    ├── red_team/                🛡️—Adversarial QA Support (NEW)
+│    │    ├── fuzzing_vectors.json
+│    │    └── security_audit.ts
+│    └── SKILL.md
+│  
 ├── frontend-core/
-�?  ├── templates/               # (Existing)
-�?  ├── design_engine/           🎨 Sovereign Design Engine (NEW)
-�?  �?  ├── theme_dna_schema.json
-�?  �?  └── component_synth.ts
-�?  └── SKILL.md
-�?
+│    ├── templates/               # (Existing)
+│    ├── design_engine/           🎨 Sovereign Design Engine (NEW)
+│    │    ├── theme_dna_schema.json
+│    │    └── component_synth.ts
+│    └── SKILL.md
+│  
 └── product-core/
     ├── governance/              🏢 Enterprise Specs (NEW)
-    �?  ├── regulatory_blueprints/
-    �?  └── architecture_rules.json
+    │    ├── regulatory_blueprints/
+    │    └── architecture_rules.json
     └── SKILL.md
 ```
 
 ---
 
-## 🕸�?2. Knowledge Graph Schema (Detailed)
+## 🕸️—2. Knowledge Graph Schema (Detailed)
 
 This schema defines how the AI "thinks" about the user's projects and history.
 
@@ -160,7 +160,7 @@ Tracks how the user modifies templates, enabling Kinetic Intelligence.
           "location": "RegisterSchema",
           "content": "phone: z.string().optional()",
           "frequency": 8, // Hotspot! 66% of usages add 'phone'
-          "suggestion": "Should we add 'phone' to the base template?"
+          "suggestion": "Should we add 'phone' to the base template—"
         },
         {
           "type": "change_value",
@@ -183,7 +183,7 @@ Tracks how the user modifies templates, enabling Kinetic Intelligence.
           "from": "w-72",
           "to": "w-64",
           "frequency": 4, // 80% usage
-          "suggestion": "Update default sidebar width to w-64?"
+          "suggestion": "Update default sidebar width to w-64—"
         }
       ]
     }

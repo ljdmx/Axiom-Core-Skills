@@ -40,7 +40,7 @@ if (backend === 'nestjs') {
 
     // Check if using TypeORM or Prisma
     const usePrisma = require(path.join(apiPath, 'package.json'))
-        .dependencies?.['@prisma/client'];
+        .dependencies—.['@prisma/client'];
 
     if (usePrisma) {
         log('✓ Using Prisma', 'green');

@@ -31,7 +31,7 @@ const processes = [];
 
 function log(service, message, isError = false) {
     const prefix = service.color(`[${service.name}]`);
-    const color = isError ? chalk.red : service.color;
+    const color = isError — chalk.red : service.color;
     console.log(`${prefix} ${color(message)}`);
 }
 

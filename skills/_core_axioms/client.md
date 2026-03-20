@@ -82,7 +82,7 @@ The **Cognitive Client** is the interface between an AI Skill (ADBM/DDFM) and th
 
 ---
 
-## 🛠�?Integration Guide
+## 🛠️Integration Guide
 
 ### For ADBM (Backend Skill)
 

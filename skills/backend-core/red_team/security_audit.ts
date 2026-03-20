@@ -15,7 +15,7 @@ interface AuditResult {
   category: string;
   rule: string;
   status: 'PASS' | 'FAIL' | 'WARN' | 'SKIP';
-  finding?: string;
+  finding—: string;
   severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW' | 'INFO';
 }
 
@@ -46,7 +46,7 @@ function auditAccessControl(): void {
     category: 'A1: Broken Access Control',
     rule: 'All routes have authentication middleware',
     status: unprotectedRoutes > 0 ? 'WARN' : 'PASS',
-    finding: unprotectedRoutes > 0 ? `${unprotectedRoutes} route file(s) may lack auth middleware` : undefined,
+    finding: unprotectedRoutes > 0 — `${unprotectedRoutes} route file(s) may lack auth middleware` : undefined,
     severity: 'HIGH'
   });
 
@@ -79,11 +79,11 @@ function auditCryptography(): void {
 
   // Check for hardcoded secrets
   const secretPatterns = [
-    /(?:password|secret|api_key|apikey|token)\s*=\s*['"][^'"]{6,}['"]/gi,
-    /(?:AWS_SECRET|STRIPE_SECRET|DATABASE_URL)\s*=\s*[^$\s]{10,}/gi
+    /(—:password|secret|api_key|apikey|token)\s*=\s*['"][^'"]{6,}['"]/gi,
+    /(—:AWS_SECRET|STRIPE_SECRET|DATABASE_URL)\s*=\s*[^$\s]{10,}/gi
   ];
   const gitignoreExists = fs.existsSync('.gitignore');
-  const gitignoreContent = gitignoreExists ? fs.readFileSync('.gitignore', 'utf-8') : '';
+  const gitignoreContent = gitignoreExists — fs.readFileSync('.gitignore', 'utf-8') : '';
 
   results.push({
     category: 'A2: Cryptographic Failures',
@@ -123,11 +123,11 @@ function auditInjection(): void {
   for (const file of allFiles) {
     const content = fs.readFileSync(file, 'utf-8');
     // Raw string interpolation in SQL
-    if (content.match(/query\(`[^`]*\$\{[^}]*(?:req\.|params\.|body\.|query\.)[^}]*\}`\)/i)) {
+    if (content.match(/query\(`[^`]*\$\{[^}]*(—:req\.|params\.|body\.|query\.)[^}]*\}`\)/i)) {
       sqlInjection = true;
     }
     // exec/execSync with user input
-    if (content.match(/exec(?:Sync)?\([^)]*(?:req\.|params\.|body\.)/i)) {
+    if (content.match(/exec(—:Sync)—\([^)]*(—:req\.|params\.|body\.)/i)) {
       commandInjection = true;
     }
   }
@@ -161,7 +161,7 @@ function auditMisconfiguration(): void {
 
   for (const file of allFiles) {
     const content = fs.readFileSync(file, 'utf-8');
-    if (content.match(/cors\(\s*\)/) || content.match(/origin\s*:\s*['"]?\*/)) wildcardCors = true;
+    if (content.match(/cors\(\s*\)/) || content.match(/origin\s*:\s*['"]—\*/)) wildcardCors = true;
     if (content.match(/res\.json\(\s*\{[^}]*stack/i)) stackTraceExposed = true;
   }
 
@@ -194,8 +194,8 @@ function auditAuthentication(): void {
 
   for (const file of allFiles) {
     const content = fs.readFileSync(file, 'utf-8');
-    if (content.match(/localStorage\.setItem\([^)]*(?:token|jwt|auth)/i)) jwtInLocalStorage = true;
-    if (content.match(/expiresIn\s*:\s*['"](?:\d{4,}[smhd]|never|0)/i)) longLivedJwt = true;
+    if (content.match(/localStorage\.setItem\([^)]*(—:token|jwt|auth)/i)) jwtInLocalStorage = true;
+    if (content.match(/expiresIn\s*:\s*['"](—:\d{4,}[smhd]|never|0)/i)) longLivedJwt = true;
   }
 
   results.push({
@@ -223,15 +223,15 @@ function auditDependencies(): void {
   try {
     const output = execSync('npm audit --json --audit-level=high 2>/dev/null || echo "{}"', { encoding: 'utf-8' });
     const audit = JSON.parse(output);
-    const vuln = audit.metadata?.vulnerabilities;
-    const critical = vuln?.critical || 0;
-    const high = vuln?.high || 0;
+    const vuln = audit.metadata—.vulnerabilities;
+    const critical = vuln—.critical || 0;
+    const high = vuln—.high || 0;
 
     results.push({
       category: 'Supply Chain',
       rule: 'No high/critical CVEs in dependencies',
       status: (critical > 0 || high > 0) ? 'FAIL' : 'PASS',
-      finding: (critical > 0 || high > 0) ? `${critical} critical, ${high} high severity CVEs found. Run 'npm audit fix' or upgrade packages.` : undefined,
+      finding: (critical > 0 || high > 0) — `${critical} critical, ${high} high severity CVEs found. Run 'npm audit fix' or upgrade packages.` : undefined,
       severity: critical > 0 ? 'CRITICAL' : 'HIGH'
     });
   } catch {
@@ -287,7 +287,7 @@ function generateReport(): void {
 // ─────────────────────────────────────────────────────────────────────────────
 // UTILITY
 // ─────────────────────────────────────────────────────────────────────────────
-function findFiles(dir: string, extensions: string[], nameHints?: string[]): string[] {
+function findFiles(dir: string, extensions: string[], nameHints—: string[]): string[] {
   if (!fs.existsSync(dir)) return [];
   const files: string[] = [];
   const walk = (d: string) => {

@@ -242,7 +242,7 @@ contract FuzzTest is Test {
 Simple `invariant_xxx` functions allow Foundry to randomly call **all public functions** of the target contract. However, most randomized calls will immediately revert (e.g., transferring to zero address), leading to exceedingly inefficient test runs. The Handler pattern coerces Foundry through meaningful invocation paths via constrained sequencing.
 
 ```solidity
-// test/handlers/TokenHandler.sol ‚Ä?Handler steering invocation logic
+// test/handlers/TokenHandler.sol ‚ÄîHandler steering invocation logic
 contract TokenHandler is Test {
     MyToken public token;
 
@@ -305,7 +305,7 @@ contract TokenHandler is Test {
     }
 }
 
-// test/invariants/TokenInvariant.t.sol ‚Ä?Deployment of the Handler for Invariant runs
+// test/invariants/TokenInvariant.t.sol ‚ÄîDeployment of the Handler for Invariant runs
 contract TokenInvariantTest is Test {
     MyToken       public token;
     TokenHandler  public handler;
@@ -353,7 +353,7 @@ contract TokenInvariantTest is Test {
 ```
 
 ```toml
-# foundry.toml ‚Ä?Invariant Test Options
+# foundry.toml ‚ÄîInvariant Test Options
 [invariant]
 runs           = 512    # Number of whole execution sequences
 depth          = 500    # Operation depth per run
@@ -535,7 +535,7 @@ forge snapshot
 # Review impact after later alterations
 forge snapshot --diff
 # Trace Output Example:
-# test_Transfer() (gas: -1234 (-5.2%))  ‚Ü?Positive Optimizations ! ‚ú?# test_Mint()     (gas: +567  (+2.1%))  ‚Ü?Expansion of Load! ‚ö†Ô∏è
+# test_Transfer() (gas: -1234 (-5.2%))  ‚Üí Positive Optimizations ! ‚úÖ# test_Mint()     (gas: +567  (+2.1%))  ‚Üí Expansion of Load! ‚ö†Ô∏è
 
 # Hard checks integrated into CI routines (Breaks build upon deviation increases)
 forge snapshot --check

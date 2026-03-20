@@ -16,7 +16,7 @@
 | | Arbitrum One | Optimism / Base | zkSync Era | Polygon zkEVM |
 |--|--|--|--|--|
 | Type | Optimistic Rollup | Optimistic Rollup | ZK Rollup | ZK Rollup |
-| EVM Compat | �?Complete | �?Complete | ⚠️ Close (See §4) | �?Near Complete |
+| EVM Compat | ✅Complete | ✅Complete | ⚠️ Close (See §4) | ✅Near Complete |
 | Withdrawal | 7-day challenge | 7-day challenge | ZK proofs instant | ZK proofs instant |
 | Ecosystem | Largest TVL | Base growing fastest | Native AA | Polygon ecosystem |
 | Gas | Extremely low | Extremely low (Post-EIP-4844) | Extremely low | Extremely low |
@@ -45,11 +45,11 @@ contract ArbitrumAware {
 
     // ⚠️ block.difficulty / block.prevrandao mapped to 1 on Arbitrum
     //    CANNOT be used as a source of randomness! Use Chainlink VRF
-    // �?block.timestamp is generally accurate (close to L1, safe for timelocks)
+    // ✅block.timestamp is generally accurate (close to L1, safe for timelocks)
 }
 ```
 
-### L1 �?L2 Messaging (Retryable Tickets)
+### L1 → L2 Messaging (Retryable Tickets)
 
 ```solidity
 import "@arbitrum/nitro-contracts/src/bridge/IInbox.sol";
@@ -63,7 +63,7 @@ contract L1ToArbitrum {
     function sendToL2(
         address l2Target,
         bytes   calldata data,
-        uint256 maxSubmissionCost,  // L1 �?L2 submission fee (Estimate with Inbox.calculateRetryableSubmissionFee)
+        uint256 maxSubmissionCost,  // L1 → L2 submission fee (Estimate with Inbox.calculateRetryableSubmissionFee)
         uint256 maxGas,             // L2 Gas limit for execution
         uint256 gasPriceBid         // L2 Gas price (Usually starts at 0.1 gwei)
     ) external payable returns (uint256 ticketId) {
@@ -111,7 +111,7 @@ interface IL1Block {
 }
 address constant L1_BLOCK = 0x4200000000000000000000000000000000000015;
 
-// L1 �?L2 Messaging (CrossDomainMessenger)
+// L1 → L2 Messaging (CrossDomainMessenger)
 import { ICrossDomainMessenger } from "@eth-optimism/contracts/libraries/bridge/ICrossDomainMessenger.sol";
 
 contract OPL1Sender {
@@ -152,35 +152,35 @@ forge script script/Deploy.s.sol \
 ```
 Key differences between zkSync Era and standard EVM:
 
-�?Unsuppported:
-  SELFDESTRUCT    �?Not supported on zkSync (Still available on other L2s)
-  PUSH0           �?Requires Solidity �?0.8.19 (0.8.20 introduced PUSH0)
-  CREATE2 Address �?Different calculation algorithm; cannot predict zkSync addresses from L1
+❌Unsuppported:
+  SELFDESTRUCT    —Not supported on zkSync (Still available on other L2s)
+  PUSH0           —Requires Solidity ≥ 0.8.19 (0.8.20 introduced PUSH0)
+  CREATE2 Address —Different calculation algorithm; cannot predict zkSync addresses from L1
 
 ⚠️ Behavior Differences:
-  msg.sender      �?Can be a contract address (Due to Native AA)
-  tx.origin       �?ALWAYS the Bootloader address (0x8001), ABSOLUTELY DO NOT use for auth!
-  block.chainid   �?Returns 324 (Mainnet) / 300 (Sepolia)
-  gasPrice        �?L2 gas + L1 data cost; calculated differently
+  msg.sender      —Can be a contract address (Due to Native AA)
+  tx.origin       —ALWAYS the Bootloader address (0x8001), ABSOLUTELY DO NOT use for auth!
+  block.chainid   —Returns 324 (Mainnet) / 300 (Sepolia)
+  gasPrice        —L2 gas + L1 data cost; calculated differently
 
-�?Advantages:
+✅Advantages:
   Native AA (See below)
   All accounts support EIP-712 structured signatures by default
-  L1 �?L2 native communication is cheaper than OP Stack
+  L1 → L2 native communication is cheaper than OP Stack
 ```
 
 ### zkSync Native AA vs EIP-4337
 
 ```
 EIP-4337 (Ethereum / Arbitrum / Optimism / Base):
-  ┌────────────────────────────────────────────�?  �? EOA private key signs �?Send UserOperation�?  �? Bundler packs �?EntryPoint routes         �?  �? Smart Account contract executes           �?  └────────────────────────────────────────────�?  �?Requires additional EntryPoint contract
-  �?Standard EOAs and Smart Accounts are two different account types
-  �?ERC-4337 operates on top of the protocol layer
+  ┌────────────────────────────────────────────│    │   EOA private key signs → Send UserOperation│    │   Bundler packs → EntryPoint routes         │    │   Smart Account contract executes           │    └────────────────────────────────────────────│    ● Requires additional EntryPoint contract
+  ● Standard EOAs and Smart Accounts are two different account types
+  ● ERC-4337 operates on top of the protocol layer
 
 zkSync Native AA (Built into Protocol Layer):
-  ┌────────────────────────────────────────────�?  �? All accounts (EOA + Contract) use same tx flow�?  �? EOA = Built-in default Smart Account      �?  �? Validation logic customized by account contract (validateTransaction)�?  └────────────────────────────────────────────�?  �?No EntryPoint contract needed; Bootloader calls directly
-  �?tx.origin == Bootloader (⚠️ Do not use tx.origin for auth)
-  �?Multi-sig, social recovery, etc., possible without extra EntryPoint
+  ┌────────────────────────────────────────────│    │   All accounts (EOA + Contract) use same tx flow│    │   EOA = Built-in default Smart Account      │    │   Validation logic customized by account contract (validateTransaction)│    └────────────────────────────────────────────│    ● No EntryPoint contract needed; Bootloader calls directly
+  ● tx.origin == Bootloader (⚠️ Do not use tx.origin for auth)
+  ● Multi-sig, social recovery, etc., possible without extra EntryPoint
 
 Migration Note:
   EIP-4337 contracts can run on zkSync, but are less efficient than Native AA.
@@ -238,8 +238,8 @@ How it works:
   L2 can arbitrarily read Blobs before deletion; afterwards, relies on archive nodes
 
 Impact on contract development:
-  �?Massive L2 Gas fee reductions benefit users; developers don't need to change contracts
-  �?Cannot read Blob content inside EVM (Can only verify commitments via blobhash())
+  ✅Massive L2 Gas fee reductions benefit users; developers don't need to change contracts
+  ✅Cannot read Blob content inside EVM (Can only verify commitments via blobhash())
   ⚠️ To trace historical Blob data, archive nodes or Blobscan must be used
 
 Accessing Blob hashes in contracts (Cancun EVM / Solidity 0.8.24):
@@ -257,6 +257,6 @@ contract BlobVerifier {
 
 ```bash
 # View Blob data
-# https://blobscan.com      �?Blob block explorer
-# cast blob <txhash>        �?cast CLI tool (Foundry v0.2.0+)
+# https://blobscan.com      —Blob block explorer
+# cast blob <txhash>        —cast CLI tool (Foundry v0.2.0+)
 ```

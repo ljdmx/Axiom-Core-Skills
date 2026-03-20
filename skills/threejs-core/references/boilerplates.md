@@ -4,7 +4,7 @@ This document contains standardized boilerplates previously located in `SKILL.md
 
 ## 1. Scene Setup & Hierarchy
 
-### 1.1 Vanilla Three.js �?Production Boilerplate
+### 1.1 Vanilla Three.js —Production Boilerplate
 ```javascript
 import * as THREE from 'three';
 
@@ -15,22 +15,22 @@ const renderer = new THREE.WebGLRenderer({
   powerPreference: 'high-performance',
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // �?Cap at 2× �?never raw DPR
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // ★ Cap at 2× —never raw DPR
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.ACESFilmicToneMapping; // �?Always ACES �?LinearToneMapping is flat
+renderer.toneMapping = THREE.ACESFilmicToneMapping; // ★ Always ACES —LinearToneMapping is flat
 renderer.toneMappingExposure = 1.0;
-renderer.outputColorSpace = THREE.SRGBColorSpace;   // �?Mandatory r152+
+renderer.outputColorSpace = THREE.SRGBColorSpace;   // ★ Mandatory r152+
 document.body.appendChild(renderer.domElement);
 
 // ── Scene ─────────────────────────────────────────────────────────
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0a0a0f); // Near-black with subtle hue bias �?never pure black
+scene.background = new THREE.Color(0x0a0a0f); // Near-black with subtle hue bias —never pure black
 scene.fog = new THREE.FogExp2(0x0a0a0f, 0.025); // Fog adds depth and atmosphere
 
 // ── Camera ────────────────────────────────────────────────────────
 const camera = new THREE.PerspectiveCamera(
-  60,                                       // 45�?5 range; 60 is natural; see visual-language.md §4
+  60,                                       // 45—5 range; 60 is natural; see visual-language.md §4
   window.innerWidth / window.innerHeight,
   0.1,                                      // Near: as large as workable
   100,                                      // Far: as small as workable (depth precision)
@@ -48,13 +48,13 @@ window.addEventListener('resize', onResize);
 
 // ── Render Loop ───────────────────────────────────────────────────
 const clock = new THREE.Clock();
-// Pre-allocate reusable objects �?NEVER new inside animate()
+// Pre-allocate reusable objects —NEVER new inside animate()
 const _tmpVec = new THREE.Vector3();
 const _tmpColor = new THREE.Color();
 
 const animate = () => {
   requestAnimationFrame(animate);
-  const delta = clock.getDelta();       // �?Always delta-time �?never fixed increment
+  const delta = clock.getDelta();       // ★ Always delta-time —never fixed increment
   const elapsed = clock.getElapsedTime();
   controls.update();                    // Required if damping enabled
   // scene updates here...
@@ -67,18 +67,18 @@ animate();
 ```
 Scene
 ├── Lights (single dominant key + minimal fill/rim)
-├── Environment (HDR env map �?mandatory for PBR)
+├── Environment (HDR env map —mandatory for PBR)
 ├── Atmosphere (fog volume, background gradient)
 ├── Objects Group
-�?  ├── Hero (main subject �?highest material fidelity)
-�?  ├── Supporting Cast (mid fidelity)
-�?  └── Atmospheric Elements (particles, ground, skybox)
-└── PostProcessing (EffectComposer �?always last)
+│    ├── Hero (main subject —highest material fidelity)
+│    ├── Supporting Cast (mid fidelity)
+│    └── Atmospheric Elements (particles, ground, skybox)
+└── PostProcessing (EffectComposer —always last)
 ```
 
 ## 2. Geometry & PBR Materials
 
-### 2.1 MeshStandardMaterial �?Defaults
+### 2.1 MeshStandardMaterial —Defaults
 ```javascript
 const heroMat = new THREE.MeshPhysicalMaterial({
   metalness: 0.9, roughness: 0.05,
@@ -96,7 +96,7 @@ const glassMat = new THREE.MeshPhysicalMaterial({
 });
 ```
 
-### 2.2 Geometry �?Segment Budget
+### 2.2 Geometry —Segment Budget
 ```javascript
 const sphere = new THREE.SphereGeometry(1, 32, 32);
 const cylinder = new THREE.CylinderGeometry(0.5, 0.5, 2, 32);

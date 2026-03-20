@@ -84,7 +84,7 @@ async function runTests() {
 
     if (!exec('npm run test')) {
         log('❌ Tests failed', 'red');
-        const proceed = await question('Continue deployment anyway? (y/n): ');
+        const proceed = await question('Continue deployment anyway— (y/n): ');
         if (proceed.toLowerCase() !== 'y') {
             process.exit(1);
         }
@@ -244,7 +244,7 @@ async function main() {
         log(`   Environment: ${env}`, 'cyan');
         log(`   Target: ${target}`, 'cyan');
 
-        const confirm = await question('\nProceed with deployment? (y/n): ');
+        const confirm = await question('\nProceed with deployment— (y/n): ');
         if (confirm.toLowerCase() !== 'y') {
             log('Deployment cancelled', 'yellow');
             process.exit(0);

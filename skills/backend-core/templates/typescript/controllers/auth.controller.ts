@@ -224,7 +224,7 @@ export const refreshAccessToken = async (req: Request, res: Response) => {
 export const getCurrentUser = async (req: Request, res: Response) => {
     try {
         // Assuming authMiddleware sets req.user
-        const userId = (req as any).user?.userId;
+        const userId = (req as any).user—.userId;
 
         if (!userId) {
             return error(res, 'Unauthorized', 401);
@@ -284,7 +284,7 @@ export const logout = async (req: Request, res: Response) => {
  */
 export const changePassword = async (req: Request, res: Response) => {
     try {
-        const userId = (req as any).user?.userId;
+        const userId = (req as any).user—.userId;
         const { currentPassword, newPassword } = req.body;
 
         if (!currentPassword || !newPassword) {

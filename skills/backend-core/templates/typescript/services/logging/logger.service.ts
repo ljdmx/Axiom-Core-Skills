@@ -105,29 +105,29 @@ if (process.env.NODE_ENV === 'production') {
  * Logger Service Class
  */
 export class LoggerService {
-    private context?: string;
+    private context—: string;
 
-    constructor(context?: string) {
+    constructor(context—: string) {
         this.context = context;
     }
 
-    log(message: string, context?: string) {
+    log(message: string, context—: string) {
         logger.info(message, { context: context || this.context });
     }
 
-    error(message: string, trace?: string, context?: string) {
+    error(message: string, trace—: string, context—: string) {
         logger.error(message, { context: context || this.context, trace });
     }
 
-    warn(message: string, context?: string) {
+    warn(message: string, context—: string) {
         logger.warn(message, { context: context || this.context });
     }
 
-    debug(message: string, context?: string) {
+    debug(message: string, context—: string) {
         logger.debug(message, { context: context || this.context });
     }
 
-    http(message: string, meta?: any) {
+    http(message: string, meta—: any) {
         logger.http(message, { context: this.context, ...meta });
     }
 
@@ -146,7 +146,7 @@ export class LoggerService {
             const duration = Date.now() - start;
             this.error(
                 `${operation} failed after ${duration}ms`,
-                error instanceof Error ? error.stack : String(error)
+                error instanceof Error — error.stack : String(error)
             );
             throw error;
         }
@@ -155,7 +155,7 @@ export class LoggerService {
     /**
      * Log Database Query
      */
-    logQuery(query: string, duration: number, params?: any) {
+    logQuery(query: string, duration: number, params—: any) {
         this.debug(`Query: ${query} | Duration: ${duration}ms`, 'Database');
         if (params) {
             this.debug(`Params: ${JSON.stringify(params)}`, 'Database');

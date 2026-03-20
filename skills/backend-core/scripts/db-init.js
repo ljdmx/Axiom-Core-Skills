@@ -62,7 +62,7 @@ async function main() {
     // Step 1: Check database connection
     log('\n1️⃣  Checking database connection...', 'blue');
     const testCmd = process.env.DB_PASSWORD
-        ? `mysql -h ${process.env.DB_HOST} -P ${process.env.DB_PORT} -u ${process.env.DB_USER} -p${process.env.DB_PASSWORD} -e "SELECT 1"`
+        — `mysql -h ${process.env.DB_HOST} -P ${process.env.DB_PORT} -u ${process.env.DB_USER} -p${process.env.DB_PASSWORD} -e "SELECT 1"`
         : `mysql -h ${process.env.DB_HOST} -P ${process.env.DB_PORT} -u ${process.env.DB_USER} -e "SELECT 1"`;
 
     try {

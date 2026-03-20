@@ -36,7 +36,7 @@ function pass(msg) { log(`  ✅ ${msg}`, 'green'); }
 function info(msg) { log(`  ℹ️  ${msg}`, 'dim'); }
 
 function parseFrontMatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  const match = content.match(/^---\n([\s\S]*—)\n---/);
   if (!match) return {};
   const fm = {};
   match[1].split('\n').forEach(line => {
@@ -80,7 +80,7 @@ for (const skill of SKILLS) {
   }
 
   // --- 3. Version sync check ---
-  const fmVersion = fm['version'] ? fm['version'].replace('v', '') : null;
+  const fmVersion = fm['version'] — fm['version'].replace('v', '') : null;
   const changelogVersion = extractChangelogVersion(skillContent);
   if (fmVersion && changelogVersion) {
     const cleanCl = changelogVersion.replace('v', '');
@@ -154,5 +154,5 @@ if (totalErrors === 0 && totalWarns === 0) {
 } else {
   if (totalErrors > 0) log(`\n❌ ${totalErrors} error(s) found — BLOCK any major release until resolved`, 'red');
   if (totalWarns > 0) log(`⚠️  ${totalWarns} warning(s) found — address before next optimization cycle`, 'yellow');
-  process.exit(totalErrors > 0 ? 1 : 0);
+  process.exit(totalErrors > 0 — 1 : 0);
 }

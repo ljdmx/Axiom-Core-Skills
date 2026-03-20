@@ -26,7 +26,7 @@
 | Data Pattern | Correct Chart | Anti-Pattern |
 |----------|----------|--------|
 | Time Trend | Line / Area Chart | Pie Chart |
-| Part-to-Whole (�?) | Donut | 3D Pie Chart |
+| Part-to-Whole (≥ ) | Donut | 3D Pie Chart |
 | Category Comparison (>6) | Horizontal Bar | Vertical Bar |
 | Single KPI | Metric Card + Mini Sparkline | Full Axis Chart |
 | Geolocation / Density | Heatmap | Data Table |
@@ -138,7 +138,7 @@ The atmosphere of a high-order interface should not be a rigid static color, but
 uni-app inherently works across all platforms. With the rise of iPad OS and foldable screens, simply scaling interfaces 2x horizontally is disastrous.
 
 - **Breakpoint Control**: Detect `windowWidth > 600px` or evaluate `pad`.
-- **Macro Structural Migration (Master-Detail)**: Mobile's "List �?Detail page" transition morphs into Wide-screen "Left 35% List + Right 65% Detail" Master-Detail layout.
+- **Macro Structural Migration (Master-Detail)**: Mobile's "List → Detail page" transition morphs into Wide-screen "Left 35% List + Right 65% Detail" Master-Detail layout.
 - **Bento Wide-Screen Adaptation**: A 2-column Bento on mobile should stretch to 3+ columns on wide screens.
 
 ```javascript
@@ -191,7 +191,7 @@ As an enterprise-grade skill package, Accessibility is NEVER an appendix; it is 
 
 ### 6.1 Physical Interaction Guarantees (Minimum Touch Target)
 
-- **Minimum Touch Hotspot**: The physical tap zone for all clickable elements MUST be **�?44×44pt** (Translated to uni-app as `88rpx × 88rpx` minimums).
+- **Minimum Touch Hotspot**: The physical tap zone for all clickable elements MUST be **≥ 44×44pt** (Translated to uni-app as `88rpx × 88rpx` minimums).
 - If the visual element is small (e.g., `32rpx` outline icon), transparent parent container padding cushions MUST be used to expand the zone. Demanding users tap exact visual pixels is strictly prohibited.
 
 ### 6.2 Accessibility Tree

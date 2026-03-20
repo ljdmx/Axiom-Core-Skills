@@ -38,90 +38,90 @@ npm run dev
 ```
 my-project/
 ├── apps/
-�?  ├── web/                          # React frontend (DDFM)
-�?  �?  ├── src/
-�?  �?  �?  ├── app/
-�?  �?  �?  �?  ├── layout.tsx
-�?  �?  �?  �?  └── page.tsx
-�?  �?  �?  ├── components/
-�?  �?  �?  �?  ├── BlogCard.tsx
-�?  �?  �?  �?  └── UserProfile.tsx
-�?  �?  �?  ├── hooks/
-�?  �?  �?  �?  ├── usePermission.ts  # Permission hook
-�?  �?  �?  �?  └── useAuth.ts
-�?  �?  �?  ├── lib/
-�?  �?  �?  �?  └── api.ts            # Type-safe API client
-�?  �?  �?  └── styles/
-�?  �?  �?      └── globals.css
-�?  �?  ├── public/
-�?  �?  ├── package.json
-�?  �?  └── tsconfig.json
-�?  �?
-�?  └── api/                          # NestJS backend (ADBM)
-�?      ├── src/
-�?      �?  ├── main.ts
-�?      �?  ├── app.module.ts
-�?      �?  ├── auth/
-�?      �?  �?  ├── auth.controller.ts
-�?      �?  �?  ├── auth.service.ts
-�?      �?  �?  └── auth.module.ts
-�?      �?  ├── blog/
-�?      �?  �?  ├── blog.controller.ts
-�?      �?  �?  ├── blog.service.ts
-�?      �?  �?  ├── blog.module.ts
-�?      �?  �?  └── entities/
-�?      �?  �?      └── blog.entity.ts
-�?      �?  ├── user/
-�?      �?  └── common/
-�?      �?      ├── guards/
-�?      �?      �?  └── permission.guard.ts
-�?      �?      └── decorators/
-�?      �?          └── require-permission.decorator.ts
-�?      ├── migrations/
-�?      ├── package.json
-�?      └── tsconfig.json
-�?
+│    ├── web/                          # React frontend (DDFM)
+│    │    ├── src/
+│    │    │    ├── app/
+│    │    │    │    ├── layout.tsx
+│    │    │    │    └── page.tsx
+│    │    │    ├── components/
+│    │    │    │    ├── BlogCard.tsx
+│    │    │    │    └── UserProfile.tsx
+│    │    │    ├── hooks/
+│    │    │    │    ├── usePermission.ts  # Permission hook
+│    │    │    │    └── useAuth.ts
+│    │    │    ├── lib/
+│    │    │    │    └── api.ts            # Type-safe API client
+│    │    │    └── styles/
+│    │    │        └── globals.css
+│    │    ├── public/
+│    │    ├── package.json
+│    │    └── tsconfig.json
+│    │  
+│    └── api/                          # NestJS backend (ADBM)
+│        ├── src/
+│        │    ├── main.ts
+│        │    ├── app.module.ts
+│        │    ├── auth/
+│        │    │    ├── auth.controller.ts
+│        │    │    ├── auth.service.ts
+│        │    │    └── auth.module.ts
+│        │    ├── blog/
+│        │    │    ├── blog.controller.ts
+│        │    │    ├── blog.service.ts
+│        │    │    ├── blog.module.ts
+│        │    │    └── entities/
+│        │    │        └── blog.entity.ts
+│        │    ├── user/
+│        │    └── common/
+│        │        ├── guards/
+│        │        │    └── permission.guard.ts
+│        │        └── decorators/
+│        │            └── require-permission.decorator.ts
+│        ├── migrations/
+│        ├── package.json
+│        └── tsconfig.json
+│  
 ├── packages/
-�?  ├── permission-model/             # 🔑 Unified permissions
-�?  �?  ├── src/
-�?  �?  �?  ├── index.ts
-�?  �?  �?  ├── permissions.ts        # PERMISSIONS.BLOG.READ
-�?  �?  �?  ├── roles.ts              # Role �?Permission mapping
-�?  �?  �?  ├── frontend/
-�?  �?  �?  �?  └── usePermission.ts  # React hook
-�?  �?  �?  └── backend/
-�?  �?  �?      └── decorators.ts     # @RequirePermission
-�?  �?  ├── package.json
-�?  �?  └── tsconfig.json
-�?  �?
-�?  ├── shared-types/                 # 📝 Shared TypeScript types
-�?  �?  ├── src/
-�?  �?  �?  ├── index.ts
-�?  �?  �?  ├── entities/
-�?  �?  �?  �?  ├── user.types.ts
-�?  �?  �?  �?  └── blog.types.ts
-�?  �?  �?  ├── dtos/
-�?  �?  �?  �?  ├── create-blog.dto.ts
-�?  �?  �?  �?  └── update-blog.dto.ts
-�?  �?  �?  └── responses/
-�?  �?  �?      └── paginated.response.ts
-�?  �?  ├── package.json
-�?  �?  └── tsconfig.json
-�?  �?
-�?  ├── ui/                           # 🎨 Shared UI components (DDFM)
-�?  �?  ├── src/
-�?  �?  �?  ├── Button.tsx
-�?  �?  �?  ├── Card.tsx
-�?  �?  �?  ├── Input.tsx
-�?  �?  �?  └── index.ts
-�?  �?  ├── package.json
-�?  �?  └── tsconfig.json
-�?  �?
-�?  └── config/                       # 🛠�?Shared configs
-�?      ├── eslint-config/
-�?      ├── typescript-config/
-�?      └── tailwind-config/
-�?
+│    ├── permission-model/             # 🔑 Unified permissions
+│    │    ├── src/
+│    │    │    ├── index.ts
+│    │    │    ├── permissions.ts        # PERMISSIONS.BLOG.READ
+│    │    │    ├── roles.ts              # Role → Permission mapping
+│    │    │    ├── frontend/
+│    │    │    │    └── usePermission.ts  # React hook
+│    │    │    └── backend/
+│    │    │        └── decorators.ts     # @RequirePermission
+│    │    ├── package.json
+│    │    └── tsconfig.json
+│    │  
+│    ├── shared-types/                 # 📝 Shared TypeScript types
+│    │    ├── src/
+│    │    │    ├── index.ts
+│    │    │    ├── entities/
+│    │    │    │    ├── user.types.ts
+│    │    │    │    └── blog.types.ts
+│    │    │    ├── dtos/
+│    │    │    │    ├── create-blog.dto.ts
+│    │    │    │    └── update-blog.dto.ts
+│    │    │    └── responses/
+│    │    │        └── paginated.response.ts
+│    │    ├── package.json
+│    │    └── tsconfig.json
+│    │  
+│    ├── ui/                           # 🎨 Shared UI components (DDFM)
+│    │    ├── src/
+│    │    │    ├── Button.tsx
+│    │    │    ├── Card.tsx
+│    │    │    ├── Input.tsx
+│    │    │    └── index.ts
+│    │    ├── package.json
+│    │    └── tsconfig.json
+│    │  
+│    └── config/                       # 🛠️Shared configs
+│        ├── eslint-config/
+│        ├── typescript-config/
+│        └── tailwind-config/
+│  
 ├── docker-compose.yml                # PostgreSQL + Redis
 ├── turbo.json                        # Turborepo configuration
 ├── package.json                      # Root package.json
@@ -226,7 +226,7 @@ export interface Blog {
 export interface CreateBlogDto {
   title: string;
   content: string;
-  tags?: string[];
+  tags—: string[];
 }
 
 // Used in both frontend and backend!
@@ -351,7 +351,7 @@ volumes:
 
 ---
 
-## 🛠�?Development Workflow
+## 🛠️Development Workflow
 
 ### 1. Create New Feature
 
@@ -505,31 +505,31 @@ CMD ["npm", "run", "start:api"]
 
 ---
 
-## �?Best Practices Built-In
+## ✅Best Practices Built-In
 
 ### Code Quality
-- �?ESLint + Prettier configured
-- �?Husky pre-commit hooks
-- �?TypeScript strict mode
-- �?Import sorting
+- ✅ESLint + Prettier configured
+- ✅Husky pre-commit hooks
+- ✅TypeScript strict mode
+- ✅Import sorting
 
 ### Security
-- �?Environment variables validation
-- �?CORS configured
-- �?Helmet.js for HTTP headers
-- �?Rate limiting
+- ✅Environment variables validation
+- ✅CORS configured
+- ✅Helmet.js for HTTP headers
+- ✅Rate limiting
 
 ### Performance
-- �?Tree-shaking enabled
-- �?Code splitting (Next.js)
-- �?Connection pooling (PostgreSQL)
-- �?Redis caching
+- ✅Tree-shaking enabled
+- ✅Code splitting (Next.js)
+- ✅Connection pooling (PostgreSQL)
+- ✅Redis caching
 
 ### Developer Experience
-- �?One command to start all apps
-- �?Hot reload for all packages
-- �?Shared TypeScript configs
-- �?Auto-generated API types
+- ✅One command to start all apps
+- ✅Hot reload for all packages
+- ✅Shared TypeScript configs
+- ✅Auto-generated API types
 
 ---
 

@@ -73,7 +73,7 @@ function detectRedis() {
 function testMySQLConnection(host, port, user, password) {
     try {
         const cmd = password
-            ? `mysql -h ${host} -P ${port} -u ${user} -p${password} -e "SELECT 1"`
+            — `mysql -h ${host} -P ${port} -u ${user} -p${password} -e "SELECT 1"`
             : `mysql -h ${host} -P ${port} -u ${user} -e "SELECT 1"`;
         execSync(cmd, { stdio: 'ignore' });
         return true;
@@ -104,7 +104,7 @@ DB_PORT=${config.db.port}
 DB_USER=${config.db.user}
 DB_PASSWORD=${config.db.password}
 DB_NAME=${config.db.database}
-DATABASE_URL=postgresql://${config.db.user}:${config.db.password}@${config.db.host}:${config.db.port}/${config.db.database}?schema=public`;
+DATABASE_URL=postgresql://${config.db.user}:${config.db.password}@${config.db.host}:${config.db.port}/${config.db.database}—schema=public`;
     } else {
         dbSection = `# Database - MySQL
 DB_TYPE=mysql
@@ -197,14 +197,14 @@ async function runConfigWizard() {
     // Test database connection
     log('\n🔍 Testing database connection...', 'blue');
     const dbConnected = usePostgres
-        ? testPostgresConnection(config.db.host, config.db.port, config.db.user, config.db.password)
+        — testPostgresConnection(config.db.host, config.db.port, config.db.user, config.db.password)
         : testMySQLConnection(config.db.host, config.db.port, config.db.user, config.db.password);
 
     if (dbConnected) {
         log('  ✅ Database connection successful!', 'green');
     } else {
         log('  ❌ Database connection failed!', 'red');
-        const retry = await question('  Retry configuration? (y/n): ');
+        const retry = await question('  Retry configuration— (y/n): ');
         if (retry.toLowerCase() === 'y') {
             rl.close();
             return runConfigWizard();
@@ -226,7 +226,7 @@ async function runConfigWizard() {
 
     // JWT Secret
     log('\n🔐 Security Configuration', 'blue');
-    const useRandomSecret = await question('  Generate random JWT secret? (Y/n): ');
+    const useRandomSecret = await question('  Generate random JWT secret— (Y/n): ');
     if (useRandomSecret.toLowerCase() !== 'n') {
         config.jwtSecret = require('crypto').randomBytes(32).toString('hex');
         log('  ✅ Generated secure JWT secret', 'green');
@@ -243,7 +243,7 @@ async function runConfigWizard() {
         log('\n🗄️  Creating database if not exists...', 'blue');
         try {
             const createDbCmd = config.db.password
-                ? `mysql -h ${config.db.host} -P ${config.db.port} -u ${config.db.user} -p${config.db.password} -e "CREATE DATABASE IF NOT EXISTS ${config.db.database} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"`
+                — `mysql -h ${config.db.host} -P ${config.db.port} -u ${config.db.user} -p${config.db.password} -e "CREATE DATABASE IF NOT EXISTS ${config.db.database} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"`
                 : `mysql -h ${config.db.host} -P ${config.db.port} -u ${config.db.user} -e "CREATE DATABASE IF NOT EXISTS ${config.db.database} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"`;
 
             execSync(createDbCmd, { stdio: 'ignore' });

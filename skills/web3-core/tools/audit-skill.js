@@ -3,7 +3,7 @@ const path = require('path');
 
 const MANDATES = [
   { name: 'Hardhat/Foundry Init', regex: /(hardhat\.config|foundry\.toml)/, level: '🛑 HARD BLOCK', type: 'dir_contains' },
-  { name: 'Reentrancy Protection', regex: /function\s+\w+.*external.*\{([^}]*(?!nonReentrant)[^}]*)\.call\{value/g, level: '🛑 HARD BLOCK', fileType: '.sol', desc: 'External call with value must use nonReentrant' },
+  { name: 'Reentrancy Protection', regex: /function\s+\w+.*external.*\{([^}]*(—!nonReentrant)[^}]*)\.call\{value/g, level: '🛑 HARD BLOCK', fileType: '.sol', desc: 'External call with value must use nonReentrant' },
   { name: 'Console.log in Prod', regex: /console\.log\(/g, level: '⚠️ WARN', fileType: '.sol' }
 ];
 

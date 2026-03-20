@@ -14,7 +14,7 @@ metadata:
 # Three.js Â· React Three Fiber
 > **Visual Manifest**: [Axiom Core Zenith Billboard](../_core_axioms/zenith_billboard.html)
 
-## World-Class 3D Skill Pack â€?Soul Edition
+## World-Class 3D Skill Pack â€”Soul Edition
 
 
 > Every scene you build must be a living entity with a soul.
@@ -22,39 +22,39 @@ metadata:
 > Core Mission: Produce 3D experiences that make observers stop scrolling and hold their breath.
 
 **Version Coverage**: Three.js `r152+` Â· React Three Fiber `8+` Â· WebGPU `r163+`
-> Before upgrading â†?`references/diagnostics.md Â§4` â€?Breaking Change Map
+> Before upgrading â†’ `references/diagnostics.md Â§4` â€”Breaking Change Map
 
-> **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` â€?Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` â€”Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
 
 ---
 
-## â˜?Intent Decision Tree â€?Find Your Path in 10 Seconds
+## â˜… Intent Decision Tree â€”Find Your Path in 10 Seconds
 
 ```
-What are you building?
-â”?â”œâ”€ Product / Jewelry / Watch showcase
-â”?  â””â”€ R3F + PresentationControls + ContactShadows + Environment
-â”?     â†?patterns-catalog.md Â§1
-â”?â”œâ”€ Data visualization (globe / network / statistics)
-â”?  â””â”€ Vanilla Three.js + InstancedMesh + CustomShader
-â”?     â†?patterns-catalog.md Â§2, Â§8
-â”?â”œâ”€ Hero background / WebGL landing page FX
-â”?  â””â”€ Vanilla Three.js + PostProcessing + Bloom
-â”?     â†?patterns-catalog.md Â§4, Â§6, Â§7
-â”?â”œâ”€ Game / Physics interaction
-â”?  â””â”€ R3F + @react-three/rapier + useFrame
-â”?     â†?references/physics.md
-â”?â”œâ”€ 100K+ particles / GPU simulation
-â”?  â””â”€ WebGPU + Compute Shader (r163+), or InstancedMesh (WebGL fallback)
-â”?     â†?references/webgpu.md Â§4, references/particles.md
-â”?â”œâ”€ Custom shader / special material FX
-â”?  â””â”€ ShaderMaterial (WebGL) or TSL NodeMaterial (WebGL + WebGPU)
-â”?     â†?references/advanced-shaders.md, references/webgpu.md Â§2â€?
-â”?â”œâ”€ Scroll-driven narrative page
-â”?  â””â”€ GSAP ScrollTrigger + R3F or Vanilla
-â”?     â†?patterns-catalog.md Â§5, this doc Â§5.2
-â”?â””â”€ Performance problem / black screen / color shift / missing shadows
-    â””â”€ references/diagnostics.md â€?30-Second Triage Guide
+What are you buildingâ€”
+â”‚  â”œâ”€ Product / Jewelry / Watch showcase
+â”‚    â””â”€ R3F + PresentationControls + ContactShadows + Environment
+â”‚       â†’ patterns-catalog.md Â§1
+â”‚  â”œâ”€ Data visualization (globe / network / statistics)
+â”‚    â””â”€ Vanilla Three.js + InstancedMesh + CustomShader
+â”‚       â†’ patterns-catalog.md Â§2, Â§8
+â”‚  â”œâ”€ Hero background / WebGL landing page FX
+â”‚    â””â”€ Vanilla Three.js + PostProcessing + Bloom
+â”‚       â†’ patterns-catalog.md Â§4, Â§6, Â§7
+â”‚  â”œâ”€ Game / Physics interaction
+â”‚    â””â”€ R3F + @react-three/rapier + useFrame
+â”‚       â†’ references/physics.md
+â”‚  â”œâ”€ 100K+ particles / GPU simulation
+â”‚    â””â”€ WebGPU + Compute Shader (r163+), or InstancedMesh (WebGL fallback)
+â”‚       â†’ references/webgpu.md Â§4, references/particles.md
+â”‚  â”œâ”€ Custom shader / special material FX
+â”‚    â””â”€ ShaderMaterial (WebGL) or TSL NodeMaterial (WebGL + WebGPU)
+â”‚       â†’ references/advanced-shaders.md, references/webgpu.md Â§2â€”
+â”‚  â”œâ”€ Scroll-driven narrative page
+â”‚    â””â”€ GSAP ScrollTrigger + R3F or Vanilla
+â”‚       â†’ patterns-catalog.md Â§5, this doc Â§5.2
+â”‚  â””â”€ Performance problem / black screen / color shift / missing shadows
+    â””â”€ references/diagnostics.md â€”30-Second Triage Guide
 ```
 
 ---
@@ -86,19 +86,19 @@ What are you building?
 6. [Postprocessing & Visual FX](#6-postprocessing--visual-fx)
 7. [Performance Budgets & Optimization](#7-performance-budgets--optimization)
 8. [GLSL Shader Protocol](#8-glsl-shader-protocol)
-9. [Asset Loading â€?KTX2, GLTF, HDR](#9-asset-loading--ktx2-gltf-hdr)
+9. [Asset Loading â€”KTX2, GLTF, HDR](#9-asset-loading--ktx2-gltf-hdr)
 10. [React Three Fiber Patterns](#10-react-three-fiber-patterns)
 11. [Soul Quality Red Lines](#11-soul-quality-red-lines)
 
 ---
 
-### Step 0 â€?Scene Archetype Selection [Generator]
+### Step 0 â€”Scene Archetype Selection [Generator]
 
 > **Pattern: Generator**. Choose a base archetype before building:
 1. **Showcase**: `templates/init-scene.js` -> Optimal for product detail pages.
 2. **Narrative**: `templates/camera-emotional-script.js` -> Optimal for landing pages.
 
-### Step 1 â€?Scene Hydration & Soul Integration
+### Step 1 â€”Scene Hydration & Soul Integration
 1. **Load Blueprint**: Populate the chosen template with custom geometry/textures.
 2. **Reviewer Pass**: Run A11y and Performance audit (Reviewer pattern) to ensure 60FPS.
 
@@ -113,15 +113,15 @@ What are you building?
 ### Soul Axis Pre-Check (from SOUL_MANIFESTO.md)
 
 Before choosing any technical approach, identify the scene's dominant soul axis:
-- **Understanding** â†?Camera starts at the user's expected viewpoint; zero learning curve interaction
-- **Respect** â†?No forced auto-rotation; no motion that can't be paused; WCAG AA contrast
-- **Companionship** â†?Float animations at breathing frequency (~0.25 Hz); warm material palette
+- **Understanding** â†’ Camera starts at the user's expected viewpoint; zero learning curve interaction
+- **Respect** â†’ No forced auto-rotation; no motion that can't be paused; WCAG AA contrast
+- **Companionship** â†’ Float animations at breathing frequency (~0.25 Hz); warm material palette
 
 ---
 
 ## 1. Scene Architecture & Setup
 
-### 1.1 Vanilla Three.js â€?Production Boilerplate
+### 1.1 Vanilla Three.js â€”Production Boilerplate
 
 > Loading the standard scene boilerplate is mandatory for vanilla projects.
 > ```javascript
@@ -138,13 +138,13 @@ Before choosing any technical approach, identify the scene's dominant soul axis:
 
 ## 2. Geometry & PBR Materials
 
-### 2.1 MeshStandardMaterial â€?Defaults
+### 2.1 MeshStandardMaterial â€”Defaults
 
 > ```javascript
 > view_file(references/boilerplates.md) // See Â§2.1
 > ```
 
-### 2.2 Geometry â€?Segment Budget
+### 2.2 Geometry â€”Segment Budget
 
 > ```javascript
 > view_file(references/boilerplates.md) // See Â§2.2
@@ -156,15 +156,15 @@ Before choosing any technical approach, identify the scene's dominant soul axis:
 
 | Tier | Role | Roughness | Metalness | envMapIntensity |
 |:---|:---|:---:|:---:|:---:|
-| Hero | Main subject | 0.0â€?.2 | 0.7â€?.0 | 1.5â€?.5 |
-| Supporting | Secondary objects | 0.3â€?.5 | 0.2â€?.5 | 0.6â€?.0 |
-| Background | Atmospheric fill | 0.7â€?.0 | 0.0â€?.1 | 0.1â€?.3 |
+| Hero | Main subject | 0.0â€”.2 | 0.7â€”.0 | 1.5â€”.5 |
+| Supporting | Secondary objects | 0.3â€”.5 | 0.2â€”.5 | 0.6â€”.0 |
+| Background | Atmospheric fill | 0.7â€”.0 | 0.0â€”.1 | 0.1â€”.3 |
 
 ---
 
 ## 3. Lighting System Design
 
-> Read `references/visual-language.md Â§1â€?` before implementing any lights.
+> Read `references/visual-language.md Â§1â€”` before implementing any lights.
 > **Single dominant key light = all dramatic tension. Equal multi-light = CAD model, no soul.**
 
 ### 3.1 Dominant Key Light Setup
@@ -191,9 +191,9 @@ Before choosing any technical approach, identify the scene's dominant soul axis:
 ### 3.4 Light Pollution Clearance Protocol
 
 Before adding any light, ask three questions:
-1. **Whose drama does it steal?** Does it reduce the key light's shadow direction?
-2. **What dead black does it fix?** Is it truly unreadable shadow, or dramatic shadow being misread?
-3. **Is the scene quieter without it?** If yes â€?remove it.
+1. **Whose drama does it stealâ€”** Does it reduce the key light's shadow directionâ€”
+2. **What dead black does it fixâ€”** Is it truly unreadable shadow, or dramatic shadow being misreadâ€”
+3. **Is the scene quieter without itâ€”** If yes â€”remove it.
 
 ---
 
@@ -202,10 +202,10 @@ Before adding any light, ask three questions:
 ### 4.1 Delta-Time (Mandatory)
 
 ```javascript
-// â?Anti-pattern: fixed increment â€?speed is framerate-dependent
-mesh.rotation.y += 0.01; // 60fps â‰?144fps speed
+// âŒAnti-pattern: fixed increment â€”speed is framerate-dependent
+mesh.rotation.y += 0.01; // 60fps â‰¥ 144fps speed
 
-// âœ?Correct: delta-time ensures frame-rate independence
+// âœ…Correct: delta-time ensures frame-rate independence
 const clock = new THREE.Clock();
 function animate() {
   const delta = clock.getDelta();
@@ -214,7 +214,7 @@ function animate() {
   mesh.rotation.y += delta * Math.PI * 0.5; // 90Â°/sec regardless of FPS
 
   // Companionship: breathing float at human respiratory frequency
-  // ~0.25 Hz = 12â€?8 breaths/min = 4s cycle â†?reinforces Companionship axis
+  // ~0.25 Hz = 12â€”8 breaths/min = 4s cycle â†’ reinforces Companionship axis
   mesh.position.y = Math.sin(elapsed * Math.PI * 0.5) * 0.08; // 8% amplitude max
 
   renderer.render(scene, camera);
@@ -223,7 +223,7 @@ function animate() {
 
 ### 4.2 Soul Animation Principles (DDFM-Aligned)
 
-All animations must pass these gates â€?violation = immediate refusal:
+All animations must pass these gates â€”violation = immediate refusal:
 
 | Use Case | Architecture | Validation Rule |
 |:---|:---|:---|
@@ -235,14 +235,14 @@ All animations must pass these gates â€?violation = immediate refusal:
 
 | Rule | Limit | Rationale |
 |:---|:---|:---|
-| Duration | 100â€?00ms | Above 300ms feels sluggish; below 100ms feels mechanical |
+| Duration | 100â€”00ms | Above 300ms feels sluggish; below 100ms feels mechanical |
 | Easing | ease-out / cubic-bezier | Linear = robotic; bounce/spring = childish |
-| Amplitude | â‰?8% of rest value | More = anxiety, not delight |
+| Amplitude | â‰¥ 8% of rest value | More = anxiety, not delight |
 | Trigger | User action or state change only | Auto-playing loops = disrespect |
 | Reduced motion | Always respected | Inclusivity is non-negotiable |
 
 ```javascript
-// â˜?Soul Microinteraction #1 â€?Understanding Axis
+// â˜… Soul Microinteraction #1 â€”Understanding Axis
 // Input focus pulse: "The app is gently listening"
 // On focus, single 600ms box-shadow breath (not repeated)
 element.addEventListener('focus', () => {
@@ -251,7 +251,7 @@ element.addEventListener('focus', () => {
       onComplete: () => gsap.to(mesh.material, { emissiveIntensity: 0, duration: 0.4 }) });
 });
 
-// â˜?Soul Microinteraction #2 â€?Respect Axis
+// â˜… Soul Microinteraction #2 â€”Respect Axis
 // Tap confirmation ripple: "My intent is solemnly confirmed"
 // 180ms outward diffusion from touch point, then natural dissipation
 function tapRipple(origin) {
@@ -264,7 +264,7 @@ function tapRipple(origin) {
   });
 }
 
-// â˜?Soul Microinteraction #3 â€?Companionship Axis
+// â˜… Soul Microinteraction #3 â€”Companionship Axis
 // Content soft float-up: "Gliding into view like an old friend"
 // 220ms fade-in + 8% upward slide on page transition
 function enterScene(objects) {
@@ -278,7 +278,7 @@ function enterScene(objects) {
   });
 }
 
-// â˜?Reduced motion respect â€?mandatory
+// â˜… Reduced motion respect â€”mandatory
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (prefersReduced) {
   gsap.globalTimeline.timeScale(0); // Stop all GSAP
@@ -291,7 +291,7 @@ if (prefersReduced) {
 ```javascript
 import gsap from 'gsap';
 
-// Three-stage scene entry ritual (Understanding â†?Respect â†?Companionship)
+// Three-stage scene entry ritual (Understanding â†’ Respect â†’ Companionship)
 const entryTl = gsap.timeline({ delay: 0.3 });
 entryTl
   // Stage 1: Environment establishes (space exists before subject)
@@ -326,10 +326,10 @@ entryTl
 
 ### 5.3 FOV Emotional Grammar
 
-> FOV is emotional distance â€?see `references/visual-language.md Â§4` for full grammar.
+> FOV is emotional distance â€”see `references/visual-language.md Â§4` for full grammar.
 > ```javascript
-> camera.fov = 20;  // Compressed epic â€?monumental, distant, reverent
-> camera.fov = 35;  // Cinema standard â€?natural, refined, premium
+> camera.fov = 20;  // Compressed epic â€”monumental, distant, reverent
+> camera.fov = 35;  // Cinema standard â€”natural, refined, premium
 > // ...
 > camera.updateProjectionMatrix();
 > ```
@@ -358,14 +358,14 @@ entryTl
 
 | Platform | Draw Calls | Triangles | Shadow Maps | Post FX |
 |:---|:---|:---|:---|:---|
-| **Desktop** | â‰?200 | â‰?500K | 2â€? Ã— 2048 | Full stack |
-| **Mobile** | â‰?50 | â‰?100K | 0â€? Ã— 1024 | None or 1 pass |
-| **Low-end** | â‰?20 | â‰?50K | Off | Off |
+| **Desktop** | â‰¥ 200 | â‰¥ 500K | 2K Ã— 2048 | Full stack |
+| **Mobile** | â‰¥ 50 | â‰¥ 100K | 1K Ã— 1024 | None or 1 pass |
+| **Low-end** | â‰¥ 20 | â‰¥ 50K | Off | Off |
 
 ### 7.2 Core Techniques
 
 > InstancedMesh, LOD, GC Defense, and Raycaster throttling are detailed in `references/boilerplates.md`.
-> Full diagnosis â†?`references/diagnostics.md Â§1`
+> Full diagnosis â†’ `references/diagnostics.md Â§1`
 
 ### 7.3 Quick Diagnostics
 
@@ -416,20 +416,20 @@ const material = new THREE.ShaderMaterial({
   `,
 });
 
-// Update in render loop â€?never forget this
+// Update in render loop â€”never forget this
 material.uniforms.uTime.value = clock.getElapsedTime();
 ```
 
-> For advanced GLSL: noise functions, SDF raymarching, holographic â†?`references/advanced-shaders.md`
-> For TSL Node Materials (WebGL + WebGPU) â†?`references/webgpu.md Â§2â€?`
+> For advanced GLSL: noise functions, SDF raymarching, holographic â†’ `references/advanced-shaders.md`
+> For TSL Node Materials (WebGL + WebGPU) â†’ `references/webgpu.md Â§2â€”`
 
 ---
 
-## 9. Asset Loading â€?KTX2, GLTF, HDR
+## 9. Asset Loading â€”KTX2, GLTF, HDR
 
-### 9.0 Texture Compression â€?KTX2 (Required for Mobile)
+### 9.0 Texture Compression â€”KTX2 (Required for Mobile)
 
-> **Without KTX2, mobile scenes crash from texture memory overflow. This is not an optimization â€?it is a requirement.**
+> **Without KTX2, mobile scenes crash from texture memory overflow. This is not an optimization â€”it is a requirement.**
 
 > ```javascript
 > view_file(references/boilerplates.md) // See Â§9.0
@@ -528,11 +528,11 @@ const useSceneStore = create((set) => ({
   setAnimating: (v)  => set({ isAnimating: v }),
 }));
 
-// â˜?Read Zustand state in useFrame via .getState() â€?zero re-renders
+// â˜… Read Zustand state in useFrame via .getState() â€”zero re-renders
 function AnimatedMesh() {
   const meshRef = useRef();
   useFrame((state, delta) => {
-    // getState() does not subscribe â€?no re-render triggered
+    // getState() does not subscribe â€”no re-render triggered
     if (!useSceneStore.getState().isAnimating) return;
     meshRef.current.rotation.y += delta * 0.5;
   });
@@ -551,90 +551,90 @@ WebGPU and complex WebGL shaders fail on low-end or older mobile devices. AI MUS
 
 ## 11. Soul Quality Red Lines
 
-### âœ?Always
+### âœ…Always
 
 ```
 RENDERER:
-â–?setPixelRatio(Math.min(devicePixelRatio, 2))   â€?cap at 2Ã—
-â–?ACESFilmicToneMapping                          â€?cinematic tone
-â–?SRGBColorSpace output (r152+)                  â€?correct colors
-â–?Color textures: colorSpace = SRGBColorSpace
-â–?Normal/roughness textures: colorSpace = LinearSRGBColorSpace
+âœ…setPixelRatio(Math.min(devicePixelRatio, 2))   â€”cap at 2Ã—
+âœ…ACESFilmicToneMapping                          â€”cinematic tone
+âœ…SRGBColorSpace output (r152+)                  â€”correct colors
+âœ…Color textures: colorSpace = SRGBColorSpace
+âœ…Normal/roughness textures: colorSpace = LinearSRGBColorSpace
 
 LIGHTING:
-â–?Single dominant key light (intensity > 3.0)
-â–?Fill light â‰?10% of key intensity
-â–?envMap set on scene for all PBR materials
-â–?shadow.bias tuned per scene (-0.0005 start)
+âœ…Single dominant key light (intensity > 3.0)
+âœ…Fill light â‰¥ 10% of key intensity
+âœ…envMap set on scene for all PBR materials
+âœ…shadow.bias tuned per scene (-0.0005 start)
 
 ANIMATION:
-â–?All animations use delta-time
-â–?Breathing float: ~0.25Hz, â‰?8% amplitude
-â–?prefers-reduced-motion respected
-â–?Auto-rotate stops on pointer enter
+âœ…All animations use delta-time
+âœ…Breathing float: ~0.25Hz, â‰¥ 8% amplitude
+âœ…prefers-reduced-motion respected
+âœ…Auto-rotate stops on pointer enter
 
 ASSETS:
-â–?KTX2 textures (mobile production)
-â–?DRACO/Meshopt for models > 500KB
-â–?Geometry/material/texture disposed on unmount
-â–?Loading complete before scene reveal
+âœ…KTX2 textures (mobile production)
+âœ…DRACO/Meshopt for models > 500KB
+âœ…Geometry/material/texture disposed on unmount
+âœ…Loading complete before scene reveal
 ```
 
-### â?Never
+### âŒNever
 
 ```
 TECHNICAL:
-â–?setPixelRatio(window.devicePixelRatio)   â€?crashes 3Ã— screens
-â–?mesh.rotation.y += 0.01                  â€?framerate-dependent
-â–?new THREE.Vector3() inside animate()     â€?GC spikes
-â–?raycaster.intersectObjects() every frame â€?throttle to 50ms
-â–?LinearToneMapping                        â€?flat, lifeless
+âœ…setPixelRatio(window.devicePixelRatio)   â€”crashes 3Ã— screens
+âœ…mesh.rotation.y += 0.01                  â€”framerate-dependent
+âœ…new THREE.Vector3() inside animate()     â€”GC spikes
+âœ…raycaster.intersectObjects() every frame â€”throttle to 50ms
+âœ…LinearToneMapping                        â€”flat, lifeless
 
 VISUAL:
-â–?Equal intensity tri-light                â€?cancels all drama
-â–?AmbientLight(0xffffff, 1.0)             â€?kills all depth
-â–?Bloom threshold = 0 (everything glows)  â€?cheap phone filter
-â–?Pure black/white backgrounds             â€?no atmosphere
-â–?Missing outputColorSpace                 â€?washed-out or oversaturated
+âœ…Equal intensity tri-light                â€”cancels all drama
+âœ…AmbientLight(0xffffff, 1.0)             â€”kills all depth
+âœ…Bloom threshold = 0 (everything glows)  â€”cheap phone filter
+âœ…Pure black/white backgrounds             â€”no atmosphere
+âœ…Missing outputColorSpace                 â€”washed-out or oversaturated
 
 SOUL (triggers immediate rewrite):
-â–?Blue-purple spinning orb               â€?AI demo clichÃ©
-â–?Perfectly symmetric geometric grids    â€?no organic tension
-â–?Equal-size/speed/color particles       â€?pixel grid, not particles
-â–?OrbitControls without damping shipped  â€?cheap feel
-â–?Objects appearing instantly on load    â€?missing entry ritual
-â–?Auto-rotate never pauses               â€?disrespectful to user intent
-â–?helvetiker font (Three.js default)     â€?1990s feel
-â–?**Flat AI Textures**: Uniform, noise-free material fills. Mandate `Noise Overlay` for all surfaces.
+âœ…Blue-purple spinning orb               â€”AI demo clichÃ©
+âœ…Perfectly symmetric geometric grids    â€”no organic tension
+âœ…Equal-size/speed/color particles       â€”pixel grid, not particles
+âœ…OrbitControls without damping shipped  â€”cheap feel
+âœ…Objects appearing instantly on load    â€”missing entry ritual
+âœ…Auto-rotate never pauses               â€”disrespectful to user intent
+âœ…helvetiker font (Three.js default)     â€”1990s feel
+âœ…**Flat AI Textures**: Uniform, noise-free material fills. Mandate `Noise Overlay` for all surfaces.
 ```
 
 ### Pre-Ship Soul Audit
 
 ```
 Visual Layer:
-â–?Single dominant light creates clear shadow direction
-â–?Materials: 3 distinct fidelity tiers (Hero / Supporting / Background)
-â–?**Texture Noise Blueprint**: High-fidelity grain/noise applied to all materials (from Phase 1.5).
-â–?Background has atmospheric depth (fog / subtle gradient / hue)
-â–?Bloom: only intended emitters glow, threshold tuned
-â–?Camera FOV matches emotional intent (product=35, epic=20, game=75)
+âœ…Single dominant light creates clear shadow direction
+âœ…Materials: 3 distinct fidelity tiers (Hero / Supporting / Background)
+âœ…**Texture Noise Blueprint**: High-fidelity grain/noise applied to all materials (from Phase 1.5).
+âœ…Background has atmospheric depth (fog / subtle gradient / hue)
+âœ…Bloom: only intended emitters glow, threshold tuned
+âœ…Camera FOV matches emotional intent (product=35, epic=20, game=75)
 
 Motion Layer:
-â–?Hero object breathes at ~0.25Hz â‰?8% amplitude
-â–?All camera transitions are smoothly interpolated
-â–?User interactions respond within 100ms perceived latency
-â–?Auto-rotation pauses on user touch
+âœ…Hero object breathes at ~0.25Hz â‰¥ 8% amplitude
+âœ…All camera transitions are smoothly interpolated
+âœ…User interactions respond within 100ms perceived latency
+âœ…Auto-rotation pauses on user touch
 
 Technical Layer:
-â–?Loading has visual progress feedback
-â–?Resize handler updates camera.aspect and renderer.size
-â–?Mobile: renderer.info.render.calls < 50
-â–?prefers-reduced-motion handled
+âœ…Loading has visual progress feedback
+âœ…Resize handler updates camera.aspect and renderer.size
+âœ…Mobile: renderer.info.render.calls < 50
+âœ…prefers-reduced-motion handled
 
 Soul Axis Confirmation (from soul-framework.md):
-â–?Understanding: camera opens at user's expected viewpoint
-â–?Respect: no forced animation, no motion they can't stop
-â–?Companionship: scene has at least one breathing/living element
+âœ…Understanding: camera opens at user's expected viewpoint
+âœ…Respect: no forced animation, no motion they can't stop
+âœ…Companionship: scene has at least one breathing/living element
 ```
 
 ---

@@ -18,25 +18,25 @@
 
 ```
 Traditional EOA Model:
-  User Private Key �?Sign Transaction �?Pay Gas �?Execute
+  User Private Key → Sign Transaction → Pay Gas → Execute
 
 EIP-4337 Model:
-  UserOperation �?Bundler bundles �?EntryPoint Contract �?Contract Wallet Executes
-                                    �?                             Paymaster sponsors Gas (Optional)
+  UserOperation → Bundler bundles → EntryPoint Contract → Contract Wallet Executes
+                                    →                              Paymaster sponsors Gas (Optional)
 
 Key Roles:
-  UserOperation  �?User intent (Similar to a transaction, but more flexible)
-  EntryPoint     �?0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789 (Unified address across all chains)
-  Smart Account  �?User's contract wallet (SimpleAccount / Safe / Kernel etc.)
-  Bundler        �?Collects UserOps, bundles them into a real transaction, and submits on-chain
-  Paymaster      �?Optional, pays Gas on behalf of the user (Supports ERC-20 Gas payment)
+  UserOperation  —User intent (Similar to a transaction, but more flexible)
+  EntryPoint     —0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789 (Unified address across all chains)
+  Smart Account  —User's contract wallet (SimpleAccount / Safe / Kernel etc.)
+  Bundler        —Collects UserOps, bundles them into a real transaction, and submits on-chain
+  Paymaster      —Optional, pays Gas on behalf of the user (Supports ERC-20 Gas payment)
 
 Mainstream AA Providers:
-  Pimlico        �?permissionless.js, supports the most chains
-  Biconomy       �?Enterprise-grade, comes with its own SDK
-  ZeroDev        �?Kernel account, plugin-based
-  Alchemy        �?aa-sdk, backed by a major company
-  Safe           �?Most secure, Safe{Core} AA SDK
+  Pimlico        —permissionless.js, supports the most chains
+  Biconomy       —Enterprise-grade, comes with its own SDK
+  ZeroDev        —Kernel account, plugin-based
+  Alchemy        —aa-sdk, backed by a major company
+  Safe           —Most secure, Safe{Core} AA SDK
 ```
 
 ---
@@ -47,9 +47,9 @@ Paymaster solves Web3's biggest UX problem: Users no longer need to hold ETH to 
 
 ```
 Paymaster Types:
-  Verifying Paymaster   �?Project team signs authorization, sponsoring Gas for specific operations
-  ERC-20 Paymaster      �?Users pay Gas with tokens like USDC/DAI
-  Staked Paymaster      �?Paymaster stakes ETH at the EntryPoint
+  Verifying Paymaster   —Project team signs authorization, sponsoring Gas for specific operations
+  ERC-20 Paymaster      —Users pay Gas with tokens like USDC/DAI
+  Staked Paymaster      —Paymaster stakes ETH at the EntryPoint
 
 Flow (Using Pimlico Verifying Paymaster as an example):
   1. Frontend constructs UserOperation
@@ -64,12 +64,12 @@ Flow (Using Pimlico Verifying Paymaster as an example):
 ## 3. Pimlico SDK
 
 ```bash
-# permissionless.js v0.2 (Note: v0.1 �?v0.2 has breaking changes)
+# permissionless.js v0.2 (Note: v0.1 → v0.2 has breaking changes)
 npm install permissionless@^0.2 viem
 ```
 
 ```typescript
-// lib/aa.ts �?permissionless.js v0.2 Correct API
+// lib/aa.ts —permissionless.js v0.2 Correct API
 import { createSmartAccountClient }  from 'permissionless';
 import { toSimpleSmartAccount }       from 'permissionless/accounts';
 import { createPimlicoClient }        from 'permissionless/clients/pimlico';
@@ -78,7 +78,7 @@ import { base }                       from 'viem/chains';
 import { entryPoint07Address }        from 'viem/account-abstraction';
 
 const PIMLICO_KEY = process.env.NEXT_PUBLIC_PIMLICO_API_KEY!;
-const BUNDLER_URL = `https://api.pimlico.io/v2/base/rpc?apikey=${PIMLICO_KEY}`;
+const BUNDLER_URL = `https://api.pimlico.io/v2/base/rpc—apikey=${PIMLICO_KEY}`;
 
 // EntryPoint v0.7 (Recommended for new projects)
 // EntryPoint v0.6: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789' (Legacy compatibility)
@@ -100,9 +100,9 @@ export async function createAAClient(walletClient: any) {
         owner:   walletClient,   // Pass wagmi walletClient directly
         entryPoint: { address: EP_ADDRESS, version: '0.7' },
         // Alternative Account Types:
-        // toSafeSmartAccount       �?Safe account (Most secure)
-        // toKernelSmartAccount     �?ZeroDev Kernel (Plugin-based)
-        // toNexusSmartAccount      �?Biconomy Nexus (v0.7 Native)
+        // toSafeSmartAccount       —Safe account (Most secure)
+        // toKernelSmartAccount     —ZeroDev Kernel (Plugin-based)
+        // toNexusSmartAccount      —Biconomy Nexus (v0.7 Native)
     });
 
     console.log('Smart Account Address (counterfactual):', account.address);
@@ -136,7 +136,7 @@ export async function sendGaslessOp(
 ### React Hook Encapsulation (v0.2 Correct Syntax)
 
 ```tsx
-// hooks/useSmartAccount.ts �?permissionless.js v0.2
+// hooks/useSmartAccount.ts —permissionless.js v0.2
 import { useState, useEffect } from 'react';
 import { useWalletClient }     from 'wagmi';
 import { createAAClient, sendGaslessOp } from '@/lib/aa';
@@ -213,7 +213,7 @@ const { transactionHash } = await waitForTxHash();
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
-// SimpleAccount �?EIP-4337 minimal contract wallet implementation (For learning purposes only, use Safe/Kernel in production)
+// SimpleAccount —EIP-4337 minimal contract wallet implementation (For learning purposes only, use Safe/Kernel in production)
 
 import "@account-abstraction/contracts/core/BaseAccount.sol";
 import "@account-abstraction/contracts/interfaces/IEntryPoint.sol";
@@ -299,7 +299,7 @@ const hash = await smartAccountClient.sendTransactions({
                 args: [UNISWAP_ROUTER, parseUnits('100', 6)],
             }),
         },
-        // swap USDC �?ETH
+        // swap USDC → ETH
         {
             to: UNISWAP_ROUTER as `0x${string}`,
             data: encodeFunctionData({
@@ -354,13 +354,13 @@ contract RecoverableAccount is SimpleAccount {
 Making existing contracts support AA users (no contract modifications needed; AA is transparent at the EntryPoint layer):
 
 ```solidity
-// �?No special changes needed for contracts, AA user's msg.sender = Contract Wallet Address
+// ✅No special changes needed for contracts, AA user's msg.sender = Contract Wallet Address
 // Just ensure access control logic uses msg.sender instead of tx.origin
 
-// �?Incorrect: tx.origin will expose the Bundler address
+// ❌Incorrect: tx.origin will expose the Bundler address
 require(tx.origin == owner, "Not owner");  // DANGEROUS
 
-// �?Correct: msg.sender = Smart Account Address
+// ✅Correct: msg.sender = Smart Account Address
 require(msg.sender == owner, "Not owner");
 ```
 
@@ -381,26 +381,26 @@ zkSync Era natively supports AA; all accounts are smart contracts by default. Th
 ```
 EIP-4337 (Ethereum / Arbitrum / Optimism / Base):
 ─────────────────────────────────────────────────
-  User �?UserOperation �?Bundler �?EntryPoint �?Smart Account
+  User → UserOperation → Bundler → EntryPoint → Smart Account
 
-  �?Runs above the protocol layer, requires an extra EntryPoint contract
-  �?EOA and Smart Account are two distinct account types
-  �?tx.origin = EOA (Secure)
-  �?Deployment: Normal CREATE2
+  ● Runs above the protocol layer, requires an extra EntryPoint contract
+  ● EOA and Smart Account are two distinct account types
+  ● tx.origin = EOA (Secure)
+  ● Deployment: Normal CREATE2
 
 zkSync Native AA (Built into Protocol Layer):
 ─────────────────────────────────────────────────
-  User �?Transaction �?Bootloader (System Contract) �?Account Contract
+  User → Transaction → Bootloader (System Contract) → Account Contract
 
-  �?Directly built into the protocol layer, no EntryPoint needed
-  �?All accounts (including EOAs) = Contract accounts
-  �?tx.origin = Bootloader Address (0x8001) ⚠️ NEVER use tx.origin for authentication!
-  �?Deployment: zkSync-specific CREATE2 (Different address calculation)
+  ● Directly built into the protocol layer, no EntryPoint needed
+  ● All accounts (including EOAs) = Contract accounts
+  ● tx.origin = Bootloader Address (0x8001) ⚠️ NEVER use tx.origin for authentication!
+  ● Deployment: zkSync-specific CREATE2 (Different address calculation)
 
 Selection Guide:
-  Ethereum / Arbitrum / Base / Optimism �?EIP-4337 (Sections §3-§7 of this doc)
-  zkSync Era �?Native AA (Implements IAccount interface)
-  Deploying on both simultaneously �?Use respective solutions for each chain, do not mix
+  Ethereum / Arbitrum / Base / Optimism → EIP-4337 (Sections §3-§7 of this doc)
+  zkSync Era → Native AA (Implements IAccount interface)
+  Deploying on both simultaneously → Use respective solutions for each chain, do not mix
 ```
 
 ### zkSync Native AA Contract Interface
@@ -438,7 +438,7 @@ contract ZkSyncAccount is IAccount {
         address recovered   = ECDSA.recover(signedHash, _transaction.signature);
 
         magic = recovered == owner
-            ? ACCOUNT_VALIDATION_SUCCESS_MAGIC
+            — ACCOUNT_VALIDATION_SUCCESS_MAGIC
             : bytes4(0);
     }
 

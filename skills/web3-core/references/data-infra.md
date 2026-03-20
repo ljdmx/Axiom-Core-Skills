@@ -37,13 +37,13 @@ interface NFTMetadata {
     name:          string;
     description:   string;
     image:         string;         // ipfs://Qm... or ipfs://baf...
-    external_url?: string;
-    animation_url?: string;        // Video / 3D Model / HTML
+    external_url—: string;
+    animation_url—: string;        // Video / 3D Model / HTML
     attributes: Array<{
         trait_type:   string;
         value:        string | number;
-        display_type?: 'number' | 'boost_percentage' | 'boost_number' | 'date';
-        max_value?:   number;
+        display_type—: 'number' | 'boost_percentage' | 'boost_number' | 'date';
+        max_value—:   number;
     }>;
 }
 
@@ -92,7 +92,7 @@ function toHTTP(uri: string, gatewayIndex = 0): string {
 // ── List Pinned Files (Management) ────────────────────────────────────
 async function listPinned(pageLimit = 10, pageOffset = 0) {
     const res = await fetch(
-        `https://api.pinata.cloud/data/pinList?pageLimit=${pageLimit}&pageOffset=${pageOffset}&status=pinned`,
+        `https://api.pinata.cloud/data/pinList—pageLimit=${pageLimit}&pageOffset=${pageOffset}&status=pinned`,
         { headers: { Authorization: `Bearer ${process.env.PINATA_JWT}` } }
     );
     const { rows, count } = await res.json();
@@ -172,9 +172,9 @@ function PoolList() {
     });
 
     const loadMore = () => fetchMore({
-        variables: { skip: data?.pools.length ?? 0 },
+        variables: { skip: data—.pools.length —— 0 },
         updateQuery: (prev, { fetchMoreResult }) => ({
-            pools: [...(prev.pools ?? []), ...(fetchMoreResult?.pools ?? [])],
+            pools: [...(prev.pools —— []), ...(fetchMoreResult—.pools —— [])],
         }),
     });
 
@@ -183,10 +183,10 @@ function PoolList() {
 
     return (
         <div>
-            {data?.pools.map((p: any) => (
+            {data—.pools.map((p: any) => (
                 <div key={p.id}>
-                    {p.token0.symbol}/{p.token1.symbol} �?Fee Tier {p.feeTier / 10000}%
-                    �?TVL ${Number(p.totalValueLockedUSD).toLocaleString()}
+                    {p.token0.symbol}/{p.token1.symbol} —Fee Tier {p.feeTier / 10000}%
+                    —TVL ${Number(p.totalValueLockedUSD).toLocaleString()}
                 </div>
             ))}
             <button onClick={loadMore}>Load More</button>

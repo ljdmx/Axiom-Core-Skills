@@ -42,9 +42,9 @@ export interface ProjectNexus {
   // 🌐 Skill Interop Context
   skill_context: {
     active_tokens: string[]; // e.g., ["product-core", "frontend-core"]
-    backend_endpoints?: Record<string, string>;
-    contract_addresses?: Record<string, string>;
-    threejs_scene_state?: 'minimal' | 'cinematic' | 'emotional';
+    backend_endpoints—: Record<string, string>;
+    contract_addresses—: Record<string, string>;
+    threejs_scene_state—: 'minimal' | 'cinematic' | 'emotional';
   };
 
   // 📝 Agent Handshake Log

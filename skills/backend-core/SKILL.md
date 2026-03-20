@@ -18,7 +18,7 @@ token_budget:
 # API-Driven Backend Manifesto (ADBM)
 > **Visual Manifest**: [Axiom Core Zenith Billboard](../_core_axioms/zenith_billboard.html)
 
-> **MUST READ**: `view_file(references/domain-infra/protocols.md)` â€?RFC 2119 Rules and Core Protocols.
+> **MUST READ**: `view_file(references/domain-infra/protocols.md)` â€”RFC 2119 Rules and Core Protocols.
 > **Sovereign Interface**: Load `view_file(divine_interface.md)` for high-order API design patterns and zero-placeholder mandates.
 
 ## 5 - 10 Enterprise Data & Security (High-Density)
@@ -48,9 +48,9 @@ token_budget:
 ## 13 Breaking Change Detector Protocol
 - **Trigger**: Fires when AI modifies any of: endpoint path, HTTP method, request schema, response schema, status codes, or auth requirements.
 - **Mandatory Actions (before committing)**:
-  1. Scan codebase: `grep -rn "old_endpoint_path" ./` â€?enumerate all callers (frontend, tests, other services).
+  1. Scan codebase: `grep -rn "old_endpoint_path" ./` â€”enumerate all callers (frontend, tests, other services).
   2. Output **Breaking Change Impact Report**: `{ endpoint, change_type, affected_files[], migration_action }`.
-  3. If callers found without migration path â€?**HARD BLOCK**. Propose backward-compatible alternative (e.g., add `/v2/` alongside `/v1/`).
+  3. If callers found without migration path â€”**HARD BLOCK**. Propose backward-compatible alternative (e.g., add `/v2/` alongside `/v1/`).
 - **Contract Registration**: Document in `tests/contracts/` (Pact/Dredd) before merging to `main`.
 
 ## 14 - 15 Advanced Rules: DLQ & LLM Protocol (On-Demand)
@@ -98,21 +98,21 @@ token_budget:
 - **Mandate**: The primary role of a backend is NOT to expose raw DB row arrays to the frontend. Serving raw relational data and expecting the frontend to compute charts, aggregates, and stat cards causes main-thread blockage, visible jank, and ruined UX.
 - **Implementation**: For every dashboard panel, chart, or KPI stat card identified in the PRD or UI wireframe, AI MUST generate a dedicated, aggregated **View-Model endpoint** alongside the base CRUD API:
   ```typescript
-  // â?GET /api/v1/telemetry (returns 10k raw rows) -> ðŸ›‘ BLOCK
-  // âœ?GET /api/v1/metrics/trend-chart (returns pre-aggregated series) 
+  // âŒGET /api/v1/telemetry (returns 10k raw rows) -> ðŸ›‘ BLOCK
+  // âœ…GET /api/v1/metrics/trend-chart (returns pre-aggregated series) 
   ```
 - **Naming Convention**: View-Model endpoints MUST live under `/metrics/`, `/analytics/`, or `/summaries/` namespaces to distinguish them from standard CRUD endpoints.
 - **BFF Visual Sync (Loading Companionship)**: View-Model endpoints MUST include meta-headers estimating rendering complexity (e.g., `X-Expected-Render-Complexity: High`). This serves as a contract allowing the frontend (DDFM) to preemptively prepare deep, accurate skeleton structures rather than generic spinners.
 - **Caching Mandate**: All View-Model endpoints MUST be cached in Redis with a sensible TTL (`60s` for real-time dashboards, `1h` for daily reports). Cache invalidation MUST be triggered by the corresponding mutation events (not just TTL expiry).
-- **Anti-Pattern Enforcement**: Any frontend component that iterates a large array (> 100 items) purely for aggregation purposes (`.reduce()`, `.filter().length`, `_.groupBy()`) is a HARD BLOCK signal â€?refactor into a server-side View-Model endpoint instead.
+- **Anti-Pattern Enforcement**: Any frontend component that iterates a large array (> 100 items) purely for aggregation purposes (`.reduce()`, `.filter().length`, `_.groupBy()`) is a HARD BLOCK signal â€”refactor into a server-side View-Model endpoint instead.
 - **Trace Visualization Mandate**: For complex business logic or multi-step sagas, AI MUST generate a **Mermaid-based Trace Diagram** within the handler's documentation/comments to provide visual structural clarity.
 
 ## 22 Cinematic Database Seeding (Production Demo Fidelity)
 - **Mandate**: A database seeded with `User 1`, `Product 2`, `Test Title` is a failed product. The seed data is the product's first impression. It MUST be indistinguishable from real production data at first glance.
 - **Hyper-Realistic Data Constraints**:
-  1. **Names & Identities**: Use culturally diverse, real-sounding full names (not `John Doe`). Avatars MUST use specific, high-quality Unsplash photo IDs (e.g., `https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop`) â€?never use generated avatars or placeholder squares.
+  1. **Names & Identities**: Use culturally diverse, real-sounding full names (not `John Doe`). Avatars MUST use specific, high-quality Unsplash photo IDs (e.g., `https://images.unsplash.com/photo-1494790108377-be9c29b29330â€”w=200&h=200&fit=crop`) â€”never use generated avatars or placeholder squares.
   2. **Content & Copy**: Algorithmically generated gibberish (e.g., "Lorem Ipsum", random strings) is STRICTLY FORBIDDEN. Seed data MUST map to curated, high-fidelity JSON dictionaries appropriate to the specific domain. Article titles, product descriptions, and notification messages MUST be domain-accurate. For a SaaS product: use realistic feature names, changelog entries, and user feedback. For IoT: use real device model names, realistic sensor readings within plausible ranges.
-  3. **Data Volume & Distribution**: Seed data MUST represent a realistic usage curve (e.g., 20% power users with 500+ items, 60% average users with 10â€?0 items, 20% new users with < 5 items). A flat distribution is not realistic.
+  3. **Data Volume & Distribution**: Seed data MUST represent a realistic usage curve (e.g., 20% power users with 500+ items, 60% average users with 10-100 items, 20% new users with < 5 items). A flat distribution is not realistic.
   4. **Timestamps**: MUST be backfilled realistically (e.g., `created_at` values distributed over the past 6 months, not all within 1 second).
 - **Execution**: The `seed.ts` / `seed.py` script MUST be runnable via `npm run seed` / `python seed.py` in ONE command from a fresh clone, with no manual configuration required.
 
@@ -122,8 +122,8 @@ token_budget:
   ```
   1. Client POSTs {filename, size, type} -> 2. Server validates & returns S3 PUT url & upload_id -> 3. Client PUTs to S3 directly -> 4. Client POSTs confirm {upload_id} -> 5. Server saves CDN URL.
   ```
-- **Security Requirements**: The presigned URL endpoint MUST require authentication. The `content_type` MUST be strictly validated against an allowlist (`image/jpeg`, `image/png`, `image/webp`, etc.). File `size_bytes` MUST be validated server-side before presign generation â€?client-side claims are not trusted.
-- **CDN Delivery**: All public assets MUST be served via a CDN (CloudFront, Cloudflare) â€?never via a direct S3 bucket URL. The `public_cdn_url` stored in the DB is always the CDN URL.
+- **Security Requirements**: The presigned URL endpoint MUST require authentication. The `content_type` MUST be strictly validated against an allowlist (`image/jpeg`, `image/png`, `image/webp`, etc.). File `size_bytes` MUST be validated server-side before presign generation â€”client-side claims are not trusted.
+- **CDN Delivery**: All public assets MUST be served via a CDN (CloudFront, Cloudflare) â€”never via a direct S3 bucket URL. The `public_cdn_url` stored in the DB is always the CDN URL.
 - **Fallback Rule (Startup Tier)**: If the project is classified as `Scale = Startup` with no cloud budget, AI MUST use `Cloudflare R2` as default (generous free tier, S3-compatible API). Do NOT use local filesystem storage as a temporary shortcut.
 
 ## 24 OpenAPI Spec-First Protocol (â€œContract Before Controller"
@@ -133,7 +133,7 @@ token_budget:
   Step A -> Generate `.openapi/api.yaml` (OpenAPI 3.1) for ALL endpoints
   Step B -> Run `npx @stoplight/spectral-cli lint .openapi/api.yaml` -> HARD BLOCK on errors
   Step C -> Generate server-side type definitions from spec (`openapi-typescript` / `fastapi-codegen`)
-  Step D -> Write controller code, referencing ONLY the generated types â€?no freehand type declarations
+  Step D -> Write controller code, referencing ONLY the generated types â€”no freehand type declarations
   Step E -> Validate running implementation: `dredd .openapi/api.yaml http://localhost:3000`
   ```
 - **Spec Quality Rules**: The `.openapi/api.yaml` MUST define, for every endpoint: `operationId`, all possible response schemas (including `4XX` and `5XX`), `security` requirements, and at least 1 `example` per request/response body.
@@ -186,15 +186,15 @@ token_budget:
   ```
 - **Migration Path: Separate Schema -> Separate Database**:
   - Follow the same 3-phase pattern, replacing schema boundaries with full DB instance boundaries.
-  - MUST use a message queue (BullMQ/Celery) to orchestrate the multi-step process as durable async jobs â€?never as a one-shot script that can fail mid-way.
+  - MUST use a message queue (BullMQ/Celery) to orchestrate the multi-step process as durable async jobs â€”never as a one-shot script that can fail mid-way.
 - **Rollback Clause**: Every migration phase MUST define an explicit rollback condition and rollback procedure BEFORE execution begins. No migration proceeds without a tested rollback plan.
 - **Pre-Migration Checklist**: AI MUST output this checklist before any tenant migration execution:
   ```
-  â–?Backup verified: {timestamp}
-  â–?Migration tested on staging with production data copy
-  â–?Rollback procedure documented and tested
-  â–?Customer notified (if migration requires maintenance window)
-  â–?On-call engineer designated for 4h post-migration monitoring window
+  âœ…Backup verified: {timestamp}
+  âœ…Migration tested on staging with production data copy
+  âœ…Rollback procedure documented and tested
+  âœ…Customer notified (if migration requires maintenance window)
+  âœ…On-call engineer designated for 4h post-migration monitoring window
   ```
 
 ---
@@ -212,7 +212,7 @@ Apply when user requests: API/backend creation, enterprise architecture, databas
 > **Smart Config Pre-Check**: If the project has complex environment configuration or multi-cloud deployment targets, read `scripts/smart-config.js` to auto-generate environment-specific config. Trigger: user mentions 'multi-env', 'staging/prod parity', or 'cloud config'.
 
 
-> **Multimodal Input Pre-Check** (before Step 1): If the user provides an **image** (architecture diagram, whiteboard), **audio transcript**, or **URL** as input â€?FIRST read `divine_interface.md` for the multimodal input handling protocol before proceeding to Step 1.
+> **Multimodal Input Pre-Check** (before Step 1): If the user provides an **image** (architecture diagram, whiteboard), **audio transcript**, or **URL** as input â€”FIRST read `divine_interface.md` for the multimodal input handling protocol before proceeding to Step 1.
 
 1. **Blueprint Scan**: Use `list_dir` on the `[Blueprints Directory](blueprints/)`. ALWAYS copy the blueprint scaffold. Do NOT write from scratch if a blueprint exists.
 2. **DDD Pre-Schema**: Output Aggregate Root Tree -> Define State Enums -> Record Time-Series split strategy BEFORE writing any schema file.
@@ -226,7 +226,7 @@ Apply when user requests: API/backend creation, enterprise architecture, databas
 **âš ï¸ FAILURE DECISION TREE**:
 - Step 1-3 fail -> retry x 2 -> human. Step 4-5 fail -> isolate+retry x 2. Step 6 fail -> disable cache. Step 7 fail -> WARN+continue. Step 8 fail -> HARD BLOCK.
 
-## ðŸ› ï¸?Admin Protocols (Ecosystem, Health, Evolution)
+## ðŸ› ï¸Admin Protocols (Ecosystem, Health, Evolution)
 1. **Routing & Health**: Use `blueprints/` and `red_team/security_audit.ts`. **Mandatory Audit**: Run `node tools/audit-skill.js [target_path]` before handoff. Verify Gate 0C security compliance.
 2. **Evolution**: If a rule causes repeated Retrospective failure or tools >18mo old, generate `skill-amendment-proposal.md`.
 ---
@@ -236,5 +236,5 @@ Apply when user requests: API/backend creation, enterprise architecture, databas
 | Version | Date | Summary |
 |---|---|---|
 | v8.2 | 2026-03-09 | Added Global Nexus Protocol sync mandate |
-| v8.1 | 2026-03-09 | Â§11â€?2 (Contract Testing/GraphQL), Â§14â€?5 (DLQ/LLM), Â§19â€?0 (Sync/Privacy) extracted to `references/backend-rules-advanced.md` (saves ~6K tokens). Fixed duplicate Â§26 â€?Multi-Tenant Migration Ladder renamed to Â§27. Expanded `red_team/security_audit.ts` to full OWASP Top 10 coverage. Added smart-config.js trigger. Created `references/adr-template.md` and `references/tech-debt-template.md`. |
+| v8.1 | 2026-03-09 | Â§11-12 (Contract Testing/GraphQL), Â§14-15 (DLQ/LLM), Â§19-20 (Sync/Privacy) extracted to `references/backend-rules-advanced.md` (saves ~6K tokens). Fixed duplicate Â§26 â€”Multi-Tenant Migration Ladder renamed to Â§27. Expanded `red_team/security_audit.ts` to full OWASP Top 10 coverage. Added smart-config.js trigger. Created `references/adr-template.md` and `references/tech-debt-template.md`. |
 | v8.0 | 2026-02-28 | OpenAPI Spec-First (Â§24), Panic-Recovery Paradigm (Â§25), Tech Debt Quantification (Â§26), Multi-Tenant Migration Ladder. LLM Protocol (Â§15), Object Storage (Â§23), Cinematic Seeding (Â§22). |

@@ -25,8 +25,8 @@ const i18n = {
         passwordLabel: 'Password',
         passwordPlaceholder: 'Enter your password',
         loginButton: 'Sign In',
-        forgotPassword: 'Forgot password?',
-        noAccount: "Don't have an account?",
+        forgotPassword: 'Forgot password—',
+        noAccount: "Don't have an account—",
         signUp: 'Sign up',
         loggingIn: 'Signing in...'
     },
@@ -137,7 +137,7 @@ export default function Login({ onLogin }: LoginProps) {
                             disabled={loading}
                             className="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {loading ? t.loggingIn : t.loginButton}
+                            {loading — t.loggingIn : t.loginButton}
                         </button>
                     </form>
 

@@ -20,55 +20,55 @@ Before declaring a task "done", verify:
 
 ```
 TECHNICAL:
-â–?Renderer respects devicePixelRatio (capped at 2)
-â–?Use Frame loop is unblocked (<16ms compute)
-â–?No geometries/materials recreated in loops
-â–?ACESFilmicToneMapping                          â€?cinematic tone
-â–?SRGBColorSpace output (r152+)                  â€?correct colors
-â–?Color textures: colorSpace = SRGBColorSpace
-â–?Normal/roughness textures: colorSpace = LinearSRGBColorSpace
+âœ…Renderer respects devicePixelRatio (capped at 2)
+âœ…Use Frame loop is unblocked (<16ms compute)
+âœ…No geometries/materials recreated in loops
+âœ…ACESFilmicToneMapping                          â€”cinematic tone
+âœ…SRGBColorSpace output (r152+)                  â€”correct colors
+âœ…Color textures: colorSpace = SRGBColorSpace
+âœ…Normal/roughness textures: colorSpace = LinearSRGBColorSpace
 
 LIGHTING:
-â–?Single dominant key light (intensity > 3.0)
-â–?Fill light â‰?10% of key intensity
-â–?envMap set on scene for all PBR materials
-â–?shadow.bias tuned per scene (-0.0005 start)
+âœ…Single dominant key light (intensity > 3.0)
+âœ…Fill light â‰¥ 10% of key intensity
+âœ…envMap set on scene for all PBR materials
+âœ…shadow.bias tuned per scene (-0.0005 start)
 
 ANIMATION:
-â–?All animations use delta-time
-â–?Breathing float: ~0.25Hz, â‰?8% amplitude
-â–?prefers-reduced-motion respected
-â–?Auto-rotate stops on pointer enter
+âœ…All animations use delta-time
+âœ…Breathing float: ~0.25Hz, â‰¥ 8% amplitude
+âœ…prefers-reduced-motion respected
+âœ…Auto-rotate stops on pointer enter
 
 ASSETS:
-â–?KTX2 textures (mobile production)
-â–?DRACO/Meshopt for models > 500KB
-â–?Geometry/material/texture disposed on unmount
-â–?Loading complete before scene reveal
+âœ…KTX2 textures (mobile production)
+âœ…DRACO/Meshopt for models > 500KB
+âœ…Geometry/material/texture disposed on unmount
+âœ…Loading complete before scene reveal
 ```
 
-### â?Never
+### âŒNever
 ```
 TECHNICAL:
-â–?setPixelRatio(window.devicePixelRatio)   â€?crashes 3Ã— screens
-â–?mesh.rotation.y += 0.01                  â€?framerate-dependent
-â–?new THREE.Vector3() inside animate()     â€?GC spikes
-â–?raycaster.intersectObjects() every frame â€?throttle to 50ms
-â–?LinearToneMapping                        â€?flat, lifeless
+âœ…setPixelRatio(window.devicePixelRatio)   â€”crashes 3Ã— screens
+âœ…mesh.rotation.y += 0.01                  â€”framerate-dependent
+âœ…new THREE.Vector3() inside animate()     â€”GC spikes
+âœ…raycaster.intersectObjects() every frame â€”throttle to 50ms
+âœ…LinearToneMapping                        â€”flat, lifeless
 
 VISUAL:
-â–?Equal intensity tri-light                â€?cancels all drama
-â–?AmbientLight(0xffffff, 1.0)             â€?kills all depth
-â–?Bloom threshold = 0 (everything glows)  â€?cheap phone filter
-â–?Pure black/white backgrounds             â€?no atmosphere
-â–?Missing outputColorSpace                 â€?washed-out or oversaturated
+âœ…Equal intensity tri-light                â€”cancels all drama
+âœ…AmbientLight(0xffffff, 1.0)             â€”kills all depth
+âœ…Bloom threshold = 0 (everything glows)  â€”cheap phone filter
+âœ…Pure black/white backgrounds             â€”no atmosphere
+âœ…Missing outputColorSpace                 â€”washed-out or oversaturated
 
 SOUL (triggers immediate rewrite):
-â–?Blue-purple spinning orb               â€?AI demo clichÃ©
-â–?Perfectly symmetric geometric grids    â€?no organic tension
-â–?Equal-size/speed/color particles       â€?pixel grid, not particles
-â–?OrbitControls without damping shipped  â€?cheap feel
-â–?Objects appearing instantly on load    â€?missing entry ritual
-â–?Auto-rotate never pauses               â€?disrespectful to user intent
-â–?helvetiker font (Three.js default)     â€?1990s feel
+âœ…Blue-purple spinning orb               â€”AI demo clichÃ©
+âœ…Perfectly symmetric geometric grids    â€”no organic tension
+âœ…Equal-size/speed/color particles       â€”pixel grid, not particles
+âœ…OrbitControls without damping shipped  â€”cheap feel
+âœ…Objects appearing instantly on load    â€”missing entry ritual
+âœ…Auto-rotate never pauses               â€”disrespectful to user intent
+âœ…helvetiker font (Three.js default)     â€”1990s feel
 ```

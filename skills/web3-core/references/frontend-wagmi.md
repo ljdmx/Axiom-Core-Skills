@@ -111,7 +111,7 @@ const { data } = useReadContracts({
     allowFailure: true,   // One failure doesn't affect the rest
     query: { enabled: !!address },
 });
-const [name, totalSupply, balance] = data?.map(r => r.result) ?? [];
+const [name, totalSupply, balance] = data—.map(r => r.result) —— [];
 
 // ── Chain Guard ───────────────────────────────────────────────────
 const chainId = useChainId();
@@ -125,7 +125,7 @@ if (chainId !== mainnet.id) {
 ## 4. Complete Contract Interaction Flow
 
 ```tsx
-// Best Practice: simulate �?write �?wait
+// Best Practice: simulate → write → wait
 import { useState } from 'react';
 import { useSimulateContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther } from 'viem';
@@ -156,12 +156,12 @@ function TransferToken() {
     });
 
     const handleTransfer = () => {
-        if (!simData?.request) return;
+        if (!simData—.request) return;
         writeContract(simData.request);
     };
 
     // Error Handling
-    const errorMsg = simError?.message || writeError?.message;
+    const errorMsg = simError—.message || writeError—.message;
 
     return (
         <div>
@@ -170,16 +170,16 @@ function TransferToken() {
 
             <button
                 onClick={handleTransfer}
-                disabled={!simData?.request || isPending || isConfirming}
+                disabled={!simData—.request || isPending || isConfirming}
             >
                 {isPending     ? 'Please confirm in wallet...' :
                  isConfirming  ? 'Confirming on-chain...' :
                                  'Transfer'}
             </button>
 
-            {isSuccess  && <p>�?Success! <a href={`https://etherscan.io/tx/${hash}`}>View Transaction</a></p>}
+            {isSuccess  && <p>✅Success! <a href={`https://etherscan.io/tx/${hash}`}>View Transaction</a></p>}
             {simError   && <p>⚠️ Pre-check Failed: {errorMsg}</p>}
-            {writeError && <p>�?Send Failed: {errorMsg}</p>}
+            {writeError && <p>❌Send Failed: {errorMsg}</p>}
         </div>
     );
 }
@@ -204,7 +204,7 @@ function useTransferHistory(address: `0x${string}`) {
         });
         return logs.map(l => ({
             from: l.args.from,
-            value: formatEther(l.args.value ?? 0n),
+            value: formatEther(l.args.value —— 0n),
             txHash: l.transactionHash,
         }));
     };
@@ -234,8 +234,8 @@ function EventFeed() {
         <ul>
             {events.map((e, i) => (
                 <li key={i}>
-                    {e.args.from?.slice(0,6)}... �?{e.args.to?.slice(0,6)}...
-                    : {formatEther(e.args.value ?? 0n)} tokens
+                    {e.args.from—.slice(0,6)}... → {e.args.to—.slice(0,6)}...
+                    : {formatEther(e.args.value —— 0n)} tokens
                 </li>
             ))}
         </ul>
@@ -255,7 +255,7 @@ npm install permissionless@^0.2 viem
 ```
 
 ```tsx
-// hooks/useSmartAccount.ts �?permissionless.js v0.2 + wagmi v2
+// hooks/useSmartAccount.ts —permissionless.js v0.2 + wagmi v2
 import { useState, useEffect }    from 'react';
 import { useWalletClient, usePublicClient } from 'wagmi';
 import { createSmartAccountClient }  from 'permissionless';
@@ -266,7 +266,7 @@ import { base }                       from 'viem/chains';
 import { entryPoint07Address }        from 'viem/account-abstraction';
 
 const PIMLICO_KEY = process.env.NEXT_PUBLIC_PIMLICO_API_KEY!;
-const BUNDLER_URL = `https://api.pimlico.io/v2/base/rpc?apikey=${PIMLICO_KEY}`;
+const BUNDLER_URL = `https://api.pimlico.io/v2/base/rpc—apikey=${PIMLICO_KEY}`;
 
 export function useSmartAccount() {
     const { data: walletClient } = useWalletClient();
@@ -312,7 +312,7 @@ export function useSmartAccount() {
     };
 
     // Batch Operations (AA Core Advantage: Multi-step combined into one tx)
-    const sendBatch = async (calls: { to: `0x${string}`; data: `0x${string}`; value?: bigint }[]) => {
+    const sendBatch = async (calls: { to: `0x${string}`; data: `0x${string}`; value—: bigint }[]) => {
         if (!aaClient) throw new Error('SmartAccount not initialized');
         const hash    = await aaClient.sendTransactions({ transactions: calls });
         const receipt = await aaClient.waitForTransactionReceipt({ hash });
@@ -408,14 +408,14 @@ const usd = (val: number) =>
 
 // ── ENS Resolution ──────────────────────────────────────────────────
 const publicClient = usePublicClient();
-const name = await publicClient!.getEnsName({ address });         // 0x... �?vitalik.eth
+const name = await publicClient!.getEnsName({ address });         // 0x... → vitalik.eth
 const addr = await publicClient!.getEnsAddress({ name: 'vitalik.eth' });
 
 // ── Chain Guard Component ───────────────────────────────────────────────
 function RequireChain({ chainId, children }: { chainId: number; children: React.ReactNode }) {
     const { chain } = useAccount();
     const { switchChain, isPending } = useSwitchChain();
-    if (chain?.id === chainId) return <>{children}</>;
+    if (chain—.id === chainId) return <>{children}</>;
     return (
         <button onClick={() => switchChain({ chainId })} disabled={isPending}>
             {isPending ? 'Switching...' : `Switch to ${chainId === 1 ? 'Ethereum' : 'L2'}`}
@@ -424,7 +424,7 @@ function RequireChain({ chainId, children }: { chainId: number; children: React.
 }
 
 // ── ABI Type Safety (wagmi CLI codegen, see toolchain.md details) ────────
-// wagmi.config.ts �?npm run wagmi:generate �?Auto-generates typed hooks
+// wagmi.config.ts → npm run wagmi:generate → Auto-generates typed hooks
 // Afterwards you can use: import { useReadMyContractBalance } from './generated'
 ```
 

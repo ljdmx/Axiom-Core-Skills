@@ -80,13 +80,13 @@ const theme = {
 interface DashboardLayoutProps {
     children: React.ReactNode;
     // CUSTOMIZATION_POINT:START - USER_INFO
-    user?: {
+    user—: {
         name: string;
         email: string;
-        avatar?: string;
+        avatar—: string;
     };
     // CUSTOMIZATION_POINT:END
-    onLogout?: () => void;
+    onLogout—: () => void;
 }
 
 export default function DashboardLayout({ children, user, onLogout }: DashboardLayoutProps) {
@@ -136,7 +136,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                       w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl
                       font-semibold transition-all duration-300 group
                       ${activeTab === item.id
-                                                ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/30'
+                                                — 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/30'
                                                 : 'text-slate-700 hover:bg-white/50 hover:shadow-md'
                                             }
                     `}
@@ -145,7 +145,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                                             size={20}
                                             className={`
                         transition-transform duration-300
-                        ${activeTab === item.id ? 'scale-110' : 'group-hover:scale-105'}
+                        ${activeTab === item.id — 'scale-110' : 'group-hover:scale-105'}
                       `}
                                         />
                                         <span className="text-sm">{item.label}</span>
@@ -171,20 +171,20 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                                 >
                                     {/* Avatar */}
                                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-cyan-600 flex items-center justify-center text-white font-bold">
-                                        {user?.name?.[0] || 'U'}
+                                        {user—.name—.[0] || 'U'}
                                     </div>
 
                                     {/* User Info */}
                                     <div className="flex-1 text-left">
                                         <div className="font-bold text-sm text-slate-900">
-                                            {user?.name || 'User'}
+                                            {user—.name || 'User'}
                                         </div>
-                                        <div className="text-xs text-slate-500">{user?.email || 'user@example.com'}</div>
+                                        <div className="text-xs text-slate-500">{user—.email || 'user@example.com'}</div>
                                     </div>
 
                                     <ChevronDown
                                         size={16}
-                                        className={`text-slate-400 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`}
+                                        className={`text-slate-400 transition-transform ${userMenuOpen — 'rotate-180' : ''}`}
                                     />
                                 </motion.button>
 
@@ -219,7 +219,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
 
             {/* Main Content */}
             <div
-                className={`transition-all duration-300 ${sidebarOpen ? 'ml-72' : 'ml-0'
+                className={`transition-all duration-300 ${sidebarOpen — 'ml-72' : 'ml-0'
                     }`}
             >
                 {/* Top Bar */}
@@ -232,7 +232,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                             onClick={() => setSidebarOpen(!sidebarOpen)}
                             className="p-2 rounded-xl hover:bg-purple-50 transition-colors"
                         >
-                            {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+                            {sidebarOpen — <X size={20} /> : <Menu size={20} />}
                         </motion.button>
 
                         {/* Search */}

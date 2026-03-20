@@ -1,31 +1,31 @@
 # WebGPU Â· TSL Node Materials Â· Compute Shader
 ## Three.js Modern Rendering Path (r163+)
 
-> WebGPU is not the future â€?it is the present. Production-ready since r163.
+> WebGPU is not the future â€”it is the present. Production-ready since r163.
 > TSL (Three.js Shading Language) is the cross-WebGL/WebGPU unified shading system.
-> Write node materials today â€?your code runs on both WebGL and WebGPU unchanged.
+> Write node materials today â€”your code runs on both WebGL and WebGPU unchanged.
 
 ---
 
 ## Table of Contents
 
-1. [WebGPURenderer â€?Migration Path](#1-webgpurenderer--migration-path)
-2. [TSL Node Materials â€?Fundamentals](#2-tsl-node-materials--fundamentals)
-3. [TSL Advanced â€?Custom Node Shaders](#3-tsl-advanced--custom-node-shaders)
-4. [Compute Shader â€?GPU Particle Simulation](#4-compute-shader--gpu-particle-simulation)
+1. [WebGPURenderer â€”Migration Path](#1-webgpurenderer--migration-path)
+2. [TSL Node Materials â€”Fundamentals](#2-tsl-node-materials--fundamentals)
+3. [TSL Advanced â€”Custom Node Shaders](#3-tsl-advanced--custom-node-shaders)
+4. [Compute Shader â€”GPU Particle Simulation](#4-compute-shader--gpu-particle-simulation)
 5. [WebGL vs WebGPU Capability Matrix](#5-webgl-vs-webgpu-capability-matrix)
 6. [Graceful Degradation Strategy](#6-graceful-degradation-strategy)
 
 ---
 
-## 1. WebGPURenderer â€?Migration Path
+## 1. WebGPURenderer â€”Migration Path
 
 ```javascript
 // â”€â”€ Setup (Three.js r163+) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 import WebGPURenderer from 'three/addons/renderers/webgpu/WebGPURenderer.js';
 
 const renderer = new WebGPURenderer({ antialias: true, powerPreference: 'high-performance' });
-await renderer.init(); // â˜?WebGPU requires async initialization
+await renderer.init(); // â˜… WebGPU requires async initialization
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -43,34 +43,34 @@ animate();
 
 ```
 Changes required:
-â–?new WebGLRenderer() â†?new WebGPURenderer()
-â–?Add: await renderer.init()
-â–?EffectComposer (WebGL) â†?PostProcessing (WebGPU, optional)
+âœ…new WebGLRenderer() â†’ new WebGPURenderer()
+âœ…Add: await renderer.init()
+âœ…EffectComposer (WebGL) â†’ PostProcessing (WebGPU, optional)
 
 Unchanged (fully compatible):
-âœ?Scene, Camera, all geometry types
-âœ?MeshStandardMaterial, MeshPhysicalMaterial, MeshBasicMaterial
-âœ?All light types (DirectionalLight, SpotLight, etc.)
-âœ?OrbitControls, GLTFLoader, all texture loaders
-âœ?GSAP animations (they operate on JS objects, renderer-agnostic)
-âœ?Most @react-three/drei components
-âœ?Shadow maps, fog, environment maps
+âœ…Scene, Camera, all geometry types
+âœ…MeshStandardMaterial, MeshPhysicalMaterial, MeshBasicMaterial
+âœ…All light types (DirectionalLight, SpotLight, etc.)
+âœ…OrbitControls, GLTFLoader, all texture loaders
+âœ…GSAP animations (they operate on JS objects, renderer-agnostic)
+âœ…Most @react-three/drei components
+âœ…Shadow maps, fog, environment maps
 ```
 
 ---
 
-## 2. TSL Node Materials â€?Fundamentals
+## 2. TSL Node Materials â€”Fundamentals
 
 ### Why TSL Instead of Raw GLSL
 
 ```
 Raw ShaderMaterial (GLSL strings):
-  vertexShader:   `...GLSL...`   â€?WebGL only, not composable, hard to debug
-  fragmentShader: `...GLSL...`   â€?must rewrite for WebGPU
+  vertexShader:   `...GLSL...`   â€”WebGL only, not composable, hard to debug
+  fragmentShader: `...GLSL...`   â€”must rewrite for WebGPU
 
 TSL NodeMaterial (composable nodes):
-  colorNode = mix(colorA, colorB, t)  â€?WebGL + WebGPU, composable, type-safe
-  positionNode = position.add(offset)  â€?Can be combined, shared, reused
+  colorNode = mix(colorA, colorB, t)  â€”WebGL + WebGPU, composable, type-safe
+  positionNode = position.add(offset)  â€”Can be combined, shared, reused
 ```
 
 ### Core Nodes Reference
@@ -107,8 +107,8 @@ import {
   texture,  // texture(map, uv())
 
   // Dynamic values
-  uniform,    // uniform(0.5) â€?JS-readable/writable
-  attribute,  // attribute('aPhase', 'float') â€?vertex attribute
+  uniform,    // uniform(0.5) â€”JS-readable/writable
+  attribute,  // attribute('aPhase', 'float') â€”vertex attribute
 
   // Material nodes
   MeshStandardNodeMaterial,
@@ -130,13 +130,13 @@ import { MeshStandardNodeMaterial, timerGlobal, sin, float, color, mix }
 
 const mat = new MeshStandardNodeMaterial();
 
-// t oscillates 0â†?â†? over time (period ~6.28s)
+// t oscillates 0â†’ â†’  over time (period ~6.28s)
 const t = sin(timerGlobal).mul(0.5).add(0.5);
 
 // Color node: mix between orange-red and blue in time
 mat.colorNode = mix(color(0xff4400), color(0x0044ff), t);
 
-// â˜?No uniform updates needed â€?TSL updates automatically each frame
+// â˜… No uniform updates needed â€”TSL updates automatically each frame
 scene.add(new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), mat));
 ```
 
@@ -151,7 +151,7 @@ import {
 
 const mat = new MeshStandardNodeMaterial({ metalness: 0.8, roughness: 0.2 });
 
-// Uniforms â€?modifiable from JS at runtime
+// Uniforms â€”modifiable from JS at runtime
 const uAmplitude  = uniform(0.2);
 const uFrequency  = uniform(3.0);
 
@@ -162,7 +162,7 @@ const wave = sin(
 
 mat.positionNode = positionLocal.add(normalLocal.mul(wave));
 
-// Runtime update from JS â€?no .uniforms.uAmplitude.value syntax needed
+// Runtime update from JS â€”no .uniforms.uAmplitude.value syntax needed
 window.addEventListener('mousemove', (e) => {
   uAmplitude.value = (e.clientX / window.innerWidth) * 0.4;
 });
@@ -170,7 +170,7 @@ window.addEventListener('mousemove', (e) => {
 
 ---
 
-## 3. TSL Advanced â€?Custom Node Shaders
+## 3. TSL Advanced â€”Custom Node Shaders
 
 ### Reusable Fresnel Node
 
@@ -180,7 +180,7 @@ import {
   normalize, dot, sub, clamp, pow, float,
 } from 'three/addons/nodes/Nodes.js';
 
-// Encapsulated as reusable function â€?use in any material
+// Encapsulated as reusable function â€”use in any material
 const fresnel = Fn(([power]) => {
   const viewDir = normalize(sub(cameraPosition, positionWorld));
   return pow(clamp(float(1).sub(dot(normalWorld, viewDir)), 0, 1), power);
@@ -229,9 +229,9 @@ hologram.side = THREE.DoubleSide;
 
 ---
 
-## 4. Compute Shader â€?GPU Particle Simulation
+## 4. Compute Shader â€”GPU Particle Simulation
 
-> Compute shaders are WebGPU-exclusive. 100,000 particles simulated on the GPU â€?zero CPU overhead.
+> Compute shaders are WebGPU-exclusive. 100,000 particles simulated on the GPU â€”zero CPU overhead.
 
 ```javascript
 import WebGPURenderer from 'three/addons/renderers/webgpu/WebGPURenderer.js';
@@ -248,7 +248,7 @@ const COUNT = 100_000;
 const posBuffer = new StorageInstancedBufferAttribute(COUNT, 4); // x,y,z,pad
 const velBuffer = new StorageInstancedBufferAttribute(COUNT, 4); // vx,vy,vz,life
 
-// Initialize on CPU â€?then GPU takes over
+// Initialize on CPU â€”then GPU takes over
 for (let i = 0; i < COUNT; i++) {
   const angle = Math.random() * Math.PI * 2;
   const r     = Math.sqrt(Math.random()) * 5;
@@ -321,7 +321,7 @@ scene.add(new THREE.Mesh(geo, spriteMat));
 async function animate() {
   requestAnimationFrame(animate);
   uDelta.value = Math.min(clock.getDelta(), 0.033);
-  await renderer.computeAsync(computeParticles); // â˜?GPU compute before render
+  await renderer.computeAsync(computeParticles); // â˜… GPU compute before render
   renderer.render(scene, camera);
 }
 animate();
@@ -333,14 +333,14 @@ animate();
 
 | Capability | WebGL 2.0 | WebGPU |
 |:---|:---:|:---:|
-| Compute Shader | â?| âœ?|
-| Storage Buffer (large R/W) | â?| âœ?|
-| GPU particle simulation (100K+) | Difficult | âœ?Native |
-| TSL Node Materials | âœ?(transpiled) | âœ?Native |
-| Multi-draw indirect | â?| âœ?|
-| Traditional GLSL | âœ?| WGSL (TSL abstracts it) |
-| Browser support (2026) | Universal | Chrome/Edge/Firefox âœ? Safari partial |
-| Mobile support | Universal | Chrome Android âœ? iOS Safari partial |
+| Compute Shader | âŒ| âœ…|
+| Storage Buffer (large R/W) | âŒ| âœ…|
+| GPU particle simulation (100K+) | Difficult | âœ…Native |
+| TSL Node Materials | âœ…(transpiled) | âœ…Native |
+| Multi-draw indirect | âŒ| âœ…|
+| Traditional GLSL | âœ…| WGSL (TSL abstracts it) |
+| Browser support (2026) | Universal | Chrome/Edge/Firefox âœ… Safari partial |
+| Mobile support | Universal | Chrome Android âœ… iOS Safari partial |
 
 ---
 
@@ -356,14 +356,14 @@ async function createRenderer(canvas) {
       );
       const r = new WebGPURenderer({ canvas, antialias: true });
       await r.init();
-      console.info('âœ?WebGPU renderer');
+      console.info('âœ…WebGPU renderer');
       return { renderer: r, isWebGPU: true };
     } catch (e) {
       console.warn('WebGPU init failed, falling back to WebGL:', e.message);
     }
   }
   const r = new THREE.WebGLRenderer({ canvas, antialias: true });
-  console.info('âœ?WebGL renderer');
+  console.info('âœ…WebGL renderer');
   return { renderer: r, isWebGPU: false };
 }
 

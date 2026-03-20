@@ -9,25 +9,25 @@ Production-grade Java Spring Boot modular monolith demonstrating all ADBM princi
 ```
 src/main/java/com/adbm/api/
 ├── controller/
-�?  └── UserController.java          # REST endpoints
+│    └── UserController.java          # REST endpoints
 ├── service/
-�?  └── UserService.java             # Business logic + caching
+│    └── UserService.java             # Business logic + caching
 ├── repository/
-�?  └── UserRepository.java          # JPA data access
+│    └── UserRepository.java          # JPA data access
 ├── entity/
-�?  └── User.java                    # JPA entity
+│    └── User.java                    # JPA entity
 ├── dto/
-�?  ├── CreateUserDto.java           # Request validation
-�?  └── UserResponseDto.java         # Response serialization
+│    ├── CreateUserDto.java           # Request validation
+│    └── UserResponseDto.java         # Response serialization
 ├── exception/
-�?  ├── BusinessException.java       # Custom exceptions
-�?  ├── NotFoundException.java
-�?  └── GlobalExceptionHandler.java  # @ControllerAdvice
+│    ├── BusinessException.java       # Custom exceptions
+│    ├── NotFoundException.java
+│    └── GlobalExceptionHandler.java  # @ControllerAdvice
 ├── config/
-�?  ├── SecurityConfig.java          # Spring Security + JWT
-�?  ├── CacheConfig.java             # Redis configuration
-�?  ├── DatabaseConfig.java          # JPA/Hikari settings
-�?  └── SwaggerConfig.java           # OpenAPI docs
+│    ├── SecurityConfig.java          # Spring Security + JWT
+│    ├── CacheConfig.java             # Redis configuration
+│    ├── DatabaseConfig.java          # JPA/Hikari settings
+│    └── SwaggerConfig.java           # OpenAPI docs
 └── AdbmApplication.java             # Main entry point
 
 src/main/resources/
@@ -95,9 +95,9 @@ This blueprint uses **Spring Data JPA** by default. For teams preferring SQL-fir
 | **Example** | `repository.findById(id)` | `mapper.selectById(id)` |
 
 **Choose MyBatis Plus if**:
-- �?Team has strong SQL expertise
-- �?Need complex, optimized queries
-- �?Prefer explicit SQL control
+- ✅Team has strong SQL expertise
+- ✅Need complex, optimized queries
+- ✅Prefer explicit SQL control
 
 **See**: [Complete MyBatis Plus Implementation](../../references/databases/mybatis-plus-guide.md)
 
@@ -105,16 +105,16 @@ This blueprint uses **Spring Data JPA** by default. For teams preferring SQL-fir
 
 ## Key Features Demonstrated
 
-�?**Layered Architecture**: Controller �?Service �?Repository �?Entity  
-�?**Spring Security**: JWT authentication + RBAC authorization  
-�?**Global Exception Handling**: @ControllerAdvice centralized errors  
-�?**Redis Caching**: @Cacheable/@CacheEvict annotations  
-�?**Bean Validation**: @Valid, @NotNull, @Email, custom validators  
-�?**Auto API Docs**: Swagger/OpenAPI via SpringDoc  
-�?**Actuator Endpoints**: Health checks, metrics, info  
-�?**Database Migrations**: Version-controlled schema with Flyway  
-�?**Connection Pooling**: HikariCP optimized configuration  
-�?**JPA Auditing**: Automatic createdAt/updatedAt timestamps
+✅**Layered Architecture**: Controller → Service → Repository → Entity  
+✅**Spring Security**: JWT authentication + RBAC authorization  
+✅**Global Exception Handling**: @ControllerAdvice centralized errors  
+✅**Redis Caching**: @Cacheable/@CacheEvict annotations  
+✅**Bean Validation**: @Valid, @NotNull, @Email, custom validators  
+✅**Auto API Docs**: Swagger/OpenAPI via SpringDoc  
+✅**Actuator Endpoints**: Health checks, metrics, info  
+✅**Database Migrations**: Version-controlled schema with Flyway  
+✅**Connection Pooling**: HikariCP optimized configuration  
+✅**JPA Auditing**: Automatic createdAt/updatedAt timestamps
 
 ---
 
@@ -452,7 +452,7 @@ CREATE TABLE users (
     deleted_at TIMESTAMP NULL,
     INDEX idx_email (email),
     INDEX idx_status_created (status, created_at)
-) ENGINE=StorageEngine DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
 ---
@@ -527,19 +527,19 @@ artillery run load-test.yml
 
 📖 See [SKILL.md](../../SKILL.md) for detailed ADBM principles
 
-�?**Contract-First**: Auto-generated OpenAPI docs  
-�?**Layered Architecture**: Clear separation of concerns  
-�?**Exception Strategy**: Centralized @ControllerAdvice  
-�?**Cache-Aside**: Spring Cache with Redis  
-�?**Observability**: Micrometer + Prometheus metrics  
-�?**Security**: Spring Security + JWT + RBAC  
-�?**Performance**: HikariCP pooling, query optimization
+✅**Contract-First**: Auto-generated OpenAPI docs  
+✅**Layered Architecture**: Clear separation of concerns  
+✅**Exception Strategy**: Centralized @ControllerAdvice  
+✅**Cache-Aside**: Spring Cache with Redis  
+✅**Observability**: Micrometer + Prometheus metrics  
+✅**Security**: Spring Security + JWT + RBAC  
+✅**Performance**: HikariCP pooling, query optimization
 
 ---
 
 ## Alternative: MyBatis Plus
 
-Prefer SQL-first development? See **[MyBatis Plus Guide](../../references/databases/mybatis-plus-guide.md)** for:
+Prefer SQL-first development— See **[MyBatis Plus Guide](../../references/databases/mybatis-plus-guide.md)** for:
 - BaseMapper with auto CRUD operations
 - QueryWrapper for dynamic queries
 - Pagination and soft delete built-in

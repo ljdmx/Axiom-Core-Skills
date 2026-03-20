@@ -2,7 +2,7 @@
     "snippets": {
         "auth_header_helper": {
             "desc": "Standard Bearer token extraction",
-            "code": "const token = req.headers.authorization?.split(' ')[1];",
+            "code": "const token = req.headers.authorization—.split(' ')[1];",
             "usage_count": 0,
             "category": "backend"
         },

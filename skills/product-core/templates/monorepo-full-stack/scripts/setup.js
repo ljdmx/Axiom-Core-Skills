@@ -99,7 +99,7 @@ async function setupEnvironment() {
 async function startDockerServices() {
     log('\n🐳 Starting Docker services...', 'blue');
 
-    const startDocker = await question('Start PostgreSQL and Redis with Docker? (y/n): ');
+    const startDocker = await question('Start PostgreSQL and Redis with Docker— (y/n): ');
 
     if (startDocker.toLowerCase() === 'y') {
         if (!exec('docker-compose up -d')) {
@@ -151,7 +151,7 @@ async function waitForDatabase(maxRetries = 30) {
 async function runMigrations() {
     log('\n📊 Running database migrations...', 'blue');
 
-    const runMigrations = await question('Run database migrations? (y/n): ');
+    const runMigrations = await question('Run database migrations— (y/n): ');
 
     if (runMigrations.toLowerCase() === 'y') {
         if (!exec('npm run db:migrate')) {
@@ -169,7 +169,7 @@ async function runMigrations() {
 async function seedDatabase() {
     log('\n🌱 Seeding database...', 'blue');
 
-    const seedDb = await question('Seed database with initial data? (y/n): ');
+    const seedDb = await question('Seed database with initial data— (y/n): ');
 
     if (seedDb.toLowerCase() === 'y') {
         if (!exec('npm run db:seed')) {

@@ -66,15 +66,15 @@ const t = i18n[LANGUAGE];
 interface Column {
     key: string;
     label: string;
-    sortable?: boolean;
-    width?: string;
+    sortable—: boolean;
+    width—: string;
 }
 
 const columns: Column[] = [
     { key: 'id', label: 'ID', sortable: true, width: '80px' },
-    { key: 'name', label: LANGUAGE === 'zh' ? '名称' : 'Name', sortable: true },
-    { key: 'status', label: LANGUAGE === 'zh' ? '状态' : 'Status', sortable: true },
-    { key: 'date', label: LANGUAGE === 'zh' ? '日期' : 'Date', sortable: true }
+    { key: 'name', label: LANGUAGE === 'zh' — '名称' : 'Name', sortable: true },
+    { key: 'status', label: LANGUAGE === 'zh' — '状态' : 'Status', sortable: true },
+    { key: 'date', label: LANGUAGE === 'zh' — '日期' : 'Date', sortable: true }
 ];
 // CUSTOMIZATION_POINT:END
 
@@ -87,9 +87,9 @@ interface DataItem {
 
 interface DataTableProps {
     data: DataItem[];
-    onEdit?: (item: DataItem) => void;
-    onDelete?: (item: DataItem) => void;
-    pageSize?: number;
+    onEdit—: (item: DataItem) => void;
+    onDelete—: (item: DataItem) => void;
+    pageSize—: number;
 }
 
 export default function DataTable({
@@ -115,8 +115,8 @@ export default function DataTable({
                 const aVal = a[sortConfig.key];
                 const bVal = b[sortConfig.key];
 
-                if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
-                if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
+                if (aVal < bVal) return sortConfig.direction === 'asc' — -1 : 1;
+                if (aVal > bVal) return sortConfig.direction === 'asc' — 1 : -1;
                 return 0;
             });
         }
@@ -209,7 +209,7 @@ export default function DataTable({
                                         style={{ width: column.width }}
                                         className="px-6 py-4 text-left"
                                     >
-                                        {column.sortable ? (
+                                        {column.sortable — (
                                             <button
                                                 onClick={() => handleSort(column.key)}
                                                 className="flex items-center gap-2 font-bold text-sm text-slate-700 hover:text-purple-600 transition-colors group"
@@ -218,15 +218,15 @@ export default function DataTable({
                                                 <div className="flex flex-col">
                                                     <ChevronUp
                                                         size={12}
-                                                        className={`-mb-1 transition-colors ${sortConfig?.key === column.key && sortConfig.direction === 'asc'
-                                                            ? 'text-purple-600'
+                                                        className={`-mb-1 transition-colors ${sortConfig—.key === column.key && sortConfig.direction === 'asc'
+                                                            — 'text-purple-600'
                                                             : 'text-slate-300 group-hover:text-slate-400'
                                                             }`}
                                                     />
                                                     <ChevronDown
                                                         size={12}
-                                                        className={`-mt-1 transition-colors ${sortConfig?.key === column.key && sortConfig.direction === 'desc'
-                                                            ? 'text-purple-600'
+                                                        className={`-mt-1 transition-colors ${sortConfig—.key === column.key && sortConfig.direction === 'desc'
+                                                            — 'text-purple-600'
                                                             : 'text-slate-300 group-hover:text-slate-400'
                                                             }`}
                                                     />
@@ -254,14 +254,14 @@ export default function DataTable({
                         {/* Body */}
                         <tbody>
                             <AnimatePresence mode="popLayout">
-                                {paginatedData.length === 0 ? (
+                                {paginatedData.length === 0 — (
                                     <motion.tr
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
                                     >
                                         <td
-                                            colSpan={columns.length + (onEdit || onDelete ? 1 : 0)}
+                                            colSpan={columns.length + (onEdit || onDelete — 1 : 0)}
                                             className="px-6 py-12 text-center text-slate-400"
                                         >
                                             {t.noData}
@@ -279,7 +279,7 @@ export default function DataTable({
                                             onMouseLeave={() => setActiveRow(null)}
                                             className={`
                         border-b border-slate-100 transition-colors
-                        ${activeRow === item.id ? 'bg-purple-50/50' : 'hover:bg-slate-50/50'}
+                        ${activeRow === item.id — 'bg-purple-50/50' : 'hover:bg-slate-50/50'}
                       `}
                                         >
                                             {columns.map(column => (
@@ -356,7 +356,7 @@ export default function DataTable({
                                     className={`
                     w-10 h-10 rounded-xl font-bold text-sm transition-all
                     ${currentPage === page
-                                            ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg'
+                                            — 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg'
                                             : 'bg-white border border-slate-200 hover:border-purple-300 text-slate-700'
                                         }
                   `}

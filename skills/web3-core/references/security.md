@@ -17,7 +17,7 @@
 
 ### Vulnerability Example
 ```solidity
-// ‚ù?DANGEROUS ‚Ä?Transfers value before mutating state
+// ‚ùåDANGEROUS ‚ÄîTransfers value before mutating state
 function withdraw(uint256 amount) external {
     require(balances[msg.sender] >= amount);
     (bool ok,) = msg.sender.call{value: amount}("");  // Attacker reenters here!
@@ -28,7 +28,7 @@ function withdraw(uint256 amount) external {
 
 ### Remediation
 ```solidity
-// ‚ú?Pattern 1: CEI Pattern (Checks-Effects-Interactions)
+// ‚úÖPattern 1: CEI Pattern (Checks-Effects-Interactions)
 function withdraw(uint256 amount) external {
     require(balances[msg.sender] >= amount);  // Checks
     balances[msg.sender] -= amount;            // Effects (Mutate state FIRST!)
@@ -36,7 +36,7 @@ function withdraw(uint256 amount) external {
     require(ok);
 }
 
-// ‚ú?Pattern 2: ReentrancyGuard (Safest)
+// ‚úÖPattern 2: ReentrancyGuard (Safest)
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 function withdraw(uint256 amount) external nonReentrant {
     require(balances[msg.sender] >= amount);
@@ -45,7 +45,7 @@ function withdraw(uint256 amount) external nonReentrant {
     require(ok);
 }
 
-// ‚ú?Pattern 3: Transient Storage Lock (Solidity 0.8.24, EIP-1153)
+// ‚úÖPattern 3: Transient Storage Lock (Solidity 0.8.24, EIP-1153)
 // Lock remains during the same Tx, cheaper than traditional storage
 bool transient locked;
 modifier noReentrant() {
@@ -58,7 +58,7 @@ modifier noReentrant() {
 
 ### Cross-Function Reentrancy
 ```solidity
-// ‚ù?DANGEROUS ‚Ä?Cross-function Reentrancy
+// ‚ùåDANGEROUS ‚ÄîCross-function Reentrancy
 mapping(address => uint256) public balances;
 
 function deposit() external payable { balances[msg.sender] += msg.value; }
@@ -69,7 +69,7 @@ function withdraw() external {
     balances[msg.sender] = 0;
 }
 
-// ‚ú?Remediation: nonReentrant used across all susceptible state changes
+// ‚úÖRemediation: nonReentrant used across all susceptible state changes
 ```
 
 ---
@@ -77,12 +77,12 @@ function withdraw() external {
 ## 2. Access Control Vulnerabilities
 
 ```solidity
-// ‚ù?DANGEROUS ‚Ä?Anyone can call initialize
+// ‚ùåDANGEROUS ‚ÄîAnyone can call initialize
 function initialize(address owner) public {
     admin = owner;
 }
 
-// ‚ú?Remediation ‚Ä?Initialized only once
+// ‚úÖRemediation ‚ÄîInitialized only once
 bool private initialized;
 function initialize(address owner) public {
     require(!initialized, "Already initialized");
@@ -91,12 +91,12 @@ function initialize(address owner) public {
 }
 // Best Practice: OpenZeppelin Initializable Pattern
 
-// ‚ù?DANGEROUS ‚Ä?tx.origin for authentication (Susceptible to phishing contracts)
+// ‚ùåDANGEROUS ‚Äîtx.origin for authentication (Susceptible to phishing contracts)
 function adminAction() external {
     require(tx.origin == admin, "Not admin");  // Hazardous!
 }
 
-// ‚ú?Remediation
+// ‚úÖRemediation
 function adminAction() external {
     require(msg.sender == admin, "Not admin");
 }
@@ -110,22 +110,22 @@ function adminAction() external {
 // Solidity 0.8+ natively protects against overflow/underflows, 
 // though manual verification is required in 'unchecked' blocks
 
-// ‚ù?DANGEROUS ‚Ä?Underflow possible inside unchecked block 
+// ‚ùåDANGEROUS ‚ÄîUnderflow possible inside unchecked block 
 unchecked {
     balances[msg.sender] -= amount;  // If amount > balance, it underflows to MAX_INT
 }
 
-// ‚ú?Remediation
+// ‚úÖRemediation
 if (balances[msg.sender] < amount) revert InsufficientBalance();
 unchecked { balances[msg.sender] -= amount; }  // Only safe here!
 
-// ‚ù?DANGEROUS ‚Ä?Precision loss (Division before multiplication)
+// ‚ùåDANGEROUS ‚ÄîPrecision loss (Division before multiplication)
 uint256 reward = totalReward / totalSupply * userBalance;  // Prevents truncation!
 
-// ‚ú?Remediation (Multiply before dividing)
+// ‚úÖRemediation (Multiply before dividing)
 uint256 reward = totalReward * userBalance / totalSupply;
 
-// ‚ù?DANGEROUS ‚Ä?Timestamp can be slightly manipulated by miners (~15 secs)
+// ‚ùåDANGEROUS ‚ÄîTimestamp can be slightly manipulated by miners (~15 secs)
 require(block.timestamp > deadline + 15 seconds);  // Small bounds are unreliable!
 ```
 
@@ -134,14 +134,14 @@ require(block.timestamp > deadline + 15 seconds);  // Small bounds are unreliabl
 ## 4. Oracle Manipulation
 
 ```solidity
-// ‚ù?DANGEROUS ‚Ä?Utilizing AMM spot price directly as Oracle
+// ‚ùåDANGEROUS ‚ÄîUtilizing AMM spot price directly as Oracle
 function getPrice(address token) internal view returns (uint256) {
     // Attackers use flash loans to skew the AMM ratio, returning manipulated data
     (uint112 r0, uint112 r1,) = IUniswapV2Pair(pair).getReserves();
     return uint256(r1) * 1e18 / uint256(r0);
 }
 
-// ‚ú?Pattern 1: Chainlink Price Oracles
+// ‚úÖPattern 1: Chainlink Price Oracles
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 function getChainlinkPrice(address feed) internal view returns (uint256) {
@@ -152,7 +152,7 @@ function getChainlinkPrice(address feed) internal view returns (uint256) {
     return uint256(price);
 }
 
-// ‚ú?Pattern 2: Uniswap V3 TWAP (Time-Weighted Average Price)
+// ‚úÖPattern 2: Uniswap V3 TWAP (Time-Weighted Average Price)
 function getTWAP(address pool, uint32 twapInterval)
     internal view returns (uint256 price)
 {
@@ -172,14 +172,14 @@ function getTWAP(address pool, uint32 twapInterval)
 ## 5. Flash Loan Attacks
 
 ```solidity
-// ‚ù?DANGEROUS ‚Ä?Reliance on balance values inside exactly 1 block
+// ‚ùåDANGEROUS ‚ÄîReliance on balance values inside exactly 1 block
 function calculateReward() external {
-    // Attacker Flash Loans massive tokens ‚Ü?Executes here ‚Ü?Repays immediately
+    // Attacker Flash Loans massive tokens ‚Üí Executes here ‚Üí Repays immediately
     uint256 share = token.balanceOf(msg.sender) * 1e18 / token.totalSupply();
     rewards[msg.sender] = share * totalRewards / 1e18;
 }
 
-// ‚ú?Remediation ‚Ä?Historical snapshots. TWAB (Time-Weighted Balances)
+// ‚úÖRemediation ‚ÄîHistorical snapshots. TWAB (Time-Weighted Balances)
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Snapshot.sol";
 
 // Alternatively: Enforce invariant checks pre & post ops
@@ -187,7 +187,7 @@ uint256 before = token.balanceOf(address(this));
 // ... operation ...
 require(token.balanceOf(address(this)) >= before, "Flash loan detected");
 
-// ‚ú?Better: Employ block-height checks on deposits/withdrawals
+// ‚úÖBetter: Employ block-height checks on deposits/withdrawals
 mapping(address => uint256) public depositBlock;
 function deposit(uint256 amount) external {
     depositBlock[msg.sender] = block.number;
@@ -204,12 +204,12 @@ function withdraw() external {
 ## 6. Front-Running
 
 ```solidity
-// ‚ù?DANGEROUS ‚Ä?Highly susceptible to MEV sandwich bots
+// ‚ùåDANGEROUS ‚ÄîHighly susceptible to MEV sandwich bots
 function buyToken(uint256 price) external payable {
     // Bots observe your tx & outbid it with higher gwei priority
 }
 
-// ‚ú?Pattern 1: Commit-Reveal Paradigm
+// ‚úÖPattern 1: Commit-Reveal Paradigm
 mapping(address => bytes32) public commitments;
 
 function commit(bytes32 hash) external {
@@ -223,14 +223,14 @@ function reveal(uint256 price, bytes32 salt) external {
     // Proceed operation ...
 }
 
-// ‚ú?Pattern 2: Slippage tolerance controls (crucial in AMMs)
+// ‚úÖPattern 2: Slippage tolerance controls (crucial in AMMs)
 function swap(uint256 amountIn, uint256 minAmountOut) external {
     uint256 amountOut = getAmountOut(amountIn);
     require(amountOut >= minAmountOut, "Slippage too high");
     // ...
 }
 
-// ‚ú?Pattern 3: RPC level (Flashbots private RPC routing)
+// ‚úÖPattern 3: RPC level (Flashbots private RPC routing)
 ```
 
 ---
@@ -238,14 +238,14 @@ function swap(uint256 amountIn, uint256 minAmountOut) external {
 ## 7. Signature Vulnerabilities
 
 ```solidity
-// ‚ù?DANGEROUS ‚Ä?Signature replay attacks (Lacking nonce/chainId constraints)
+// ‚ùåDANGEROUS ‚ÄîSignature replay attacks (Lacking nonce/chainId constraints)
 function executeWithSig(address to, uint256 amount, bytes memory sig) external {
     bytes32 hash = keccak256(abi.encodePacked(to, amount));
     address signer = ECDSA.recover(hash, sig);  // Can be repeated unconditionally entirely valid!
     // ...
 }
 
-// ‚ú?Remediation ‚Ä?Standardized EIP-712 structured sigs
+// ‚úÖRemediation ‚ÄîStandardized EIP-712 structured sigs
 import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
@@ -281,12 +281,12 @@ contract SecurePermit is EIP712 {
 
 ### Pull Payment Pattern
 ```solidity
-// ‚ù?PUSH mechanics ‚Ä?High likelihood of failure leading to total cascade
+// ‚ùåPUSH mechanics ‚ÄîHigh likelihood of failure leading to total cascade
 for (uint i = 0; i < winners.length; i++) {
     payable(winners[i]).transfer(prize);  // One bad fallback throws entire tx out!
 }
 
-// ‚ú?PULL Payments 
+// ‚úÖPULL Payments 
 mapping(address => uint256) public pendingWithdrawals;
 
 function claimPrize() external {
@@ -316,12 +316,12 @@ contract MyProtocol is Pausable, Ownable {
 ## 9. Audit Tooling
 
 ```bash
-# Slither ‚Ä?Static compilation analyzer (De-facto industry standard)
+# Slither ‚ÄîStatic compilation analyzer (De-facto industry standard)
 pip install slither-analyzer
 slither . --print human-summary
 slither . --detect reentrancy-eth,unchecked-transfer
 
-# Echidna ‚Ä?Fuzzing utility
+# Echidna ‚ÄîFuzzing utility
 docker pull trailofbits/eth-security-toolbox
 echidna-test contracts/MyContract.sol --contract MyContract
 
@@ -332,12 +332,12 @@ function testFuzz_withdraw(uint256 amount) public {
 }
 forge test --fuzz-runs 10000
 
-# Mythril ‚Ä?Symbolic Execution environment
+# Mythril ‚ÄîSymbolic Execution environment
 myth analyze contracts/MyContract.sol
 
 # Auditing checklist archives
-# https://solodit.xyz ‚Ä?Aggregated past audits from top firms
-# https://swcregistry.io ‚Ä?Detailed CWE-like catalogue of exploits
+# https://solodit.xyz ‚ÄîAggregated past audits from top firms
+# https://swcregistry.io ‚ÄîDetailed CWE-like catalogue of exploits
 ```
 
 ---

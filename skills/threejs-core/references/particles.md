@@ -1,7 +1,7 @@
 # Particle Systems Reference
 
 ## Table of Contents
-1. [THREE.Points �?Simple Particle Field](#1-threepoints--simple-particle-field)
+1. [THREE.Points —Simple Particle Field](#1-threepoints--simple-particle-field)
 2. [InstancedMesh Particles](#2-instancedmesh-particles)
 3. [GPU Particles via ShaderMaterial](#3-gpu-particles-via-shadermaterial)
 4. [@react-three/drei Sparkles & Stars](#4-react-threedrei-sparkles--stars)
@@ -9,7 +9,7 @@
 
 ---
 
-## 1. THREE.Points �?Simple Particle Field
+## 1. THREE.Points —Simple Particle Field
 
 ```javascript
 // ── 10,000 floating particles ──────────────────────────────
@@ -46,10 +46,10 @@ geometry.setAttribute('size',     new THREE.BufferAttribute(sizes, 1));
 const material = new THREE.PointsMaterial({
   size: 0.05,
   vertexColors: true,
-  sizeAttenuation: true,   // �?Perspective size falloff
+  sizeAttenuation: true,   // ★ Perspective size falloff
   transparent: true,
   alphaMap: circleTexture, // Round particles
-  depthWrite: false,       // �?Fixes transparency sorting
+  depthWrite: false,       // ★ Fixes transparency sorting
   blending: THREE.AdditiveBlending, // Glow effect
 });
 
@@ -67,7 +67,7 @@ function animate() {
 
 ## 2. InstancedMesh Particles
 
-For particles that need 3D meshes (cubes, spheres �?not just dots):
+For particles that need 3D meshes (cubes, spheres —not just dots):
 
 ```javascript
 const COUNT = 500;
@@ -79,7 +79,7 @@ const material = new THREE.MeshStandardMaterial({
 });
 
 const mesh = new THREE.InstancedMesh(geometry, material, COUNT);
-mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // �?For animated instances
+mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // ★ For animated instances
 
 const dummy    = new THREE.Object3D();
 const initials = []; // Store initial state

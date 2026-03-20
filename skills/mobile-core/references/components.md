@@ -49,7 +49,7 @@
     <!-- Nav bar main body -->
     <view class="nav-bar" :style="{ height: navBarHeight + 'px' }">
       <view class="nav-left" @click="goBack">
-        <text class="icon-back">�?/text>
+        <text class="icon-back">→ /text>
       </view>
       <!-- Title gradually appears on scroll (0 -> 100px progress) -->
       <view class="nav-title" :style="{ opacity: titleOpacity }">
@@ -601,28 +601,28 @@ const handleSwitch = (index: number) => {
 
 ## 11. Component State Matrix
 
-> **If the number of combinations is �?6, the state matrix MUST be declared before coding**
+> **If the number of combinations is ≥ 6, the state matrix MUST be declared before coding**
 
 ```text
 [Declaration Example: Submit Button]
-State × Role Combinations = 4 × 3 = 12 �?Must declare
+State × Role Combinations = 4 × 3 = 12 → Must declare
 
-[idle]    × [visitor]  �?Hidden
-[idle]    × [user]     �?Blue solid "Submit"
-[idle]    × [admin]    �?Blue solid "Submit" + Next to it "Draft" outlined button
-[loading] × [user]     �?Grayed out + spinner (Prevent duplicate clicks)
-[success] × [user]     �?Green �?"Submitted" (Cannot operate again)
-[error]   × [user]     �?Red border input + Specific error desc. + Retry button
+[idle]    × [visitor]  → Hidden
+[idle]    × [user]     → Blue solid "Submit"
+[idle]    × [admin]    → Blue solid "Submit" + Next to it "Draft" outlined button
+[loading] × [user]     → Grayed out + spinner (Prevent duplicate clicks)
+[success] × [user]     → Green ✅"Submitted" (Cannot operate again)
+[error]   × [user]     → Red border input + Specific error desc. + Retry button
 ```
 
 ```typescript
-// �?Explicitly use string enums, absolutely forbid multiple boolean combos
+// ★ Explicitly use string enums, absolutely forbid multiple boolean combos
 type ComponentState = 'idle' | 'loading' | 'success' | 'empty' | 'error' | 'disabled'
 
-// �?FOREVER forbid writing it this way:
+// ❌FOREVER forbid writing it this way:
 // const isLoading = ref(false)
 // const isError = ref(false)
-// -> When isLoading=true AND isError=true, what renders?
+// -> When isLoading=true AND isError=true, what renders—
 ```
 
 ---
@@ -651,7 +651,7 @@ provide('accordion-ctx', { activeValues, toggleItem })
 <template>
   <view class="accordion-trigger" @click="handleToggle" hover-class="btn-press">
     <text class="text-subheading"><slot></slot></text>
-    <text class="icon-chevron" :class="{'is-open': isOpen}">�?/text>
+    <text class="icon-chevron" :class="{'is-open': isOpen}">→ /text>
   </view>
 </template>
 

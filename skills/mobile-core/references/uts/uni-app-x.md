@@ -2,7 +2,7 @@
 ## UTS Language + uvue Rendering Engine + Native Performance
 <!-- TRIGGER: uni-app x, UTS, uvue, native, Kotlin, Swift, ArkTS, HarmonyOS -->
 
-> Requires HBuilderX �?3.9  
+> Requires HBuilderX ≥ 3.9  
 > Official Documentation: https://doc.dcloud.net.cn/uni-app-x/
 
 ---
@@ -24,20 +24,20 @@
 
 ```
 The essence of uni-app x:
-  UTS Code  �? Android: Kotlin native code (No JS engine)
-           �? iOS:     Swift code
-           �? Harmony: ArkTS code
-           �? Web/MP:  JavaScript
+  UTS Code  →  Android: Kotlin native code (No JS engine)
+           →  iOS:     Swift code
+           →  Harmony: ArkTS code
+           →  Web/MP:  JavaScript
 
 The essence of uvue:
-  .uvue page �?Native UI components (Not WebView)
-           �?Layout engine = flex (Only this one)
-           �?No style inheritance (Parent styles do not affect children)
-           �?Only class selectors (No tag / #id / [attr])
+  .uvue page → Native UI components (Not WebView)
+           → Layout engine = flex (Only this one)
+           → No style inheritance (Parent styles do not affect children)
+           → Only class selectors (No tag / #id / [attr])
 
 Performance Class:
-  uni-app x Android �?Native Kotlin app
-  uni-app x iOS     �?Native Swift app (In some scenarios)
+  uni-app x Android ≥ Native Kotlin app
+  uni-app x iOS     ≥ Native Swift app (In some scenarios)
 ```
 
 **Summary of Important Limitations:**
@@ -59,10 +59,10 @@ Performance Class:
 ## 2. Create Project
 
 ```
-HBuilderX �?File �?New �?Project
-�?Select "uni-app x" type
-�?Select the "Hello uni-app x" template (Official component/API demo)
-�?HBuilderX version must be �?3.9
+HBuilderX → File → New → Project
+→ Select "uni-app x" type
+→ Select the "Hello uni-app x" template (Official component/API demo)
+→ HBuilderX version must be ≥ 3.9
 ```
 
 ### Project Directory Structure
@@ -70,16 +70,16 @@ HBuilderX �?File �?New �?Project
 ```
 my-uni-app-x/
 ├── pages/
-�?  └── index/
-�?      └── index.uvue        # �?Note the extension is .uvue (not .vue)
+│    └── index/
+│        └── index.uvue        # ★ Note the extension is .uvue (not .vue)
 ├── components/
-�?  └── my-button.uvue        # Custom component
+│    └── my-button.uvue        # Custom component
 ├── static/                   # Static resources
 ├── utils/
-�?  └── request.uts           # �?Utility function extension is .uts (not .ts)
+│    └── request.uts           # ★ Utility function extension is .uts (not .ts)
 ├── uni_modules/              # Plugins (Must be compatible with uni-app x)
 ├── App.uvue                  # Global lifecycle
-├── main.uts                  # �?Entry file (not .ts)
+├── main.uts                  # ★ Entry file (not .ts)
 ├── manifest.json
 ├── pages.json
 └── uni.scss                  # Global SCSS (Compile-time variables, not CSS variables)
@@ -92,16 +92,16 @@ my-uni-app-x/
 ### UTS vs TypeScript Core Differences
 
 ```typescript
-// ─── �?Basic Syntax (Almost identical to TS) ───
+// ─── ✅Basic Syntax (Almost identical to TS) ───
 const name: string = 'hello'
 let count: number = 0
 
-// ─── �?Function Declaration ───
+// ─── ✅Function Declaration ───
 function add(a: number, b: number): number {
   return a + b
 }
 
-// ─── �?Interfaces & Types ───
+// ─── ✅Interfaces & Types ───
 interface User {
   id: number
   name: string
@@ -109,35 +109,35 @@ interface User {
 }
 
 // ─── ⚠️ No `any` type (Strong type constraint) ───
-// �?const data: any = {}      // Forbidden
-// �?const data: UTSJSONObject = {}   // Use UTSJSONObject instead
+// ❌const data: any = {}      // Forbidden
+// ✅const data: UTSJSONObject = {}   // Use UTSJSONObject instead
 
 // ─── ⚠️ No `undefined` (Use `null` instead) ───
-// �?let x: number | undefined
-// �?let x: number | null = null
+// ❌let x: number | undefined
+// ✅let x: number | null = null
 
 // ─── ⚠️ Variables MUST be initialized ───
-// �?let n: number            // Invalid, must be assigned
-// �?let n: number = 0        // Valid
-// �?let n: number | null = null  // Valid
+// ❌let n: number            // Invalid, must be assigned
+// ✅let n: number = 0        // Valid
+// ✅let n: number | null = null  // Valid
 
-// ─── �?Type Inference (Literals) ───
+// ─── ✅Type Inference (Literals) ───
 const title = 'Hello'          // Auto-inferred as string
 const num = 42                 // Auto-inferred as number
 
-// ─── �?Arrays ───
+// ─── ✅Arrays ───
 const list: string[] = ['a', 'b']
 const ids: Array<number> = [1, 2, 3]
 
-// ─── �?UTSJSONObject (Replaces `any` object) ───
+// ─── ✅UTSJSONObject (Replaces `any` object) ───
 const config: UTSJSONObject = {
   url: 'https://api.example.com',
   timeout: 10000
 }
 const url = config['url'] as string
 
-// ─── �?Optional Chaining (Supported) ───
-const len = user?.name?.length ?? 0
+// ─── ✅Optional Chaining (Supported) ───
+const len = user—.name—.length —— 0
 
 // ─── ⚠️ Platform-specific APIs (Needs conditional compilation) ───
 // #ifdef APP-ANDROID
@@ -151,7 +151,7 @@ const len = user?.name?.length ?? 0
 ### Async Processing
 
 ```typescript
-// �?async/await (Supported)
+// ✅async/await (Supported)
 async function fetchUser(): Promise<User> {
   const res = await uni.request({
     url: 'https://api.example.com/user'
@@ -160,7 +160,7 @@ async function fetchUser(): Promise<User> {
   return res.data as User
 }
 
-// �?Promise (Supported)
+// ✅Promise (Supported)
 function loadData(): Promise<string[]> {
   return new Promise<string[]>((resolve, reject) => {
     uni.request({
@@ -182,19 +182,19 @@ function loadData(): Promise<string[]> {
 |---------|------------|-----------------|
 | Layout Model | flex + block + grid | **flex ONLY** |
 | Default Direction | row (Horizontal)| **column (Vertical)**|
-| Style Inheritance | �?Supported | �?**Parent/Child isolated** |
+| Style Inheritance | ✅Supported | ❌**Parent/Child isolated** |
 | Selectors | Multiple | **Class ONLY** |
-| CSS Variables | �?`var(--xx)` | �?**Use SCSS Variables** |
-| `position: fixed` | �?| Limited Support |
-| `background-image` | �?| Limited Support |
+| CSS Variables | ✅`var(--xx)` | ❌**Use SCSS Variables** |
+| `position: fixed` | ✅| Limited Support |
+| `background-image` | ✅| Limited Support |
 | Text Style Scope | Any element | **text component ONLY** |
-| `inherit` / `unset` | �?| �?|
+| `inherit` / `unset` | ✅| ❌|
 
 ### SCSS Variables Replacing CSS Variables
 
 ```scss
 // uni.scss (Globally imported, compile-time variables, usable by both modes)
-// �?ucss does NOT support CSS custom properties (i.e., var(--xxx)), MUST use SCSS $variables instead.
+// ★ ucss does NOT support CSS custom properties (i.e., var(--xxx)), MUST use SCSS $variables instead.
 
 // Complete Design Token Variable Definitions: see design.md §2 Complete Design Token Implementation.
 // (Repetitive SCSS definitions omitted here, actual projects MUST include all color, spacing, and typography variables dictated by design.md)
@@ -240,10 +240,10 @@ function loadData(): Promise<string[]> {
 }
 
 // ─── Forbidden usage in ucss ───
-// .bad { display: block; }      // �?Only flex
-// .bad { color: inherit; }      // �?No inheritance
-// .bad { grid-template: ...; }  // �?No grid
-// #title { font-size: 32rpx; }  // �?No ID selector
+// .bad { display: block; }      // ❌Only flex
+// .bad { color: inherit; }      // ❌No inheritance
+// .bad { grid-template: ...; }  // ❌No grid
+// #title { font-size: 32rpx; }  // ❌No ID selector
 ```
 
 ---
@@ -281,7 +281,7 @@ function loadData(): Promise<string[]> {
 
     <!-- Normal Content -->
     <view v-else class="content">
-      <!-- �?Text styles MUST be on the text component in ucss -->
+      <!-- ★ Text styles MUST be on the text component in ucss -->
       <text class="page-title">{{ title }}</text>
 
       <!-- List (Note: <text> cannot nest <view>) -->
@@ -303,7 +303,7 @@ function loadData(): Promise<string[]> {
 </template>
 
 <script lang="uts">
-// �?Use script lang="uts" in uni-app x
+// ★ Use script lang="uts" in uni-app x
 import { ref, onMounted } from 'vue'
 
 // Strongly Typed Interface Definition
@@ -341,7 +341,7 @@ export default {
     }
 
     function handleClick(item: ListItem) : void {
-      uni.navigateTo({ url: `/pages/detail/detail?id=${item.id}` })
+      uni.navigateTo({ url: `/pages/detail/detail—id=${item.id}` })
     }
 
     function handleCreate() : void {
@@ -541,7 +541,7 @@ export default {
 
 ```typescript
 // ─── Routing (Identical to Classic mode) ───
-uni.navigateTo({ url: '/pages/detail/detail?id=1' })
+uni.navigateTo({ url: '/pages/detail/detail—id=1' })
 uni.navigateBack({ delta: 1 })
 uni.reLaunch({ url: '/pages/login/login' })
 
@@ -551,11 +551,11 @@ const val = uni.getStorageSync('key') as string
 
 // ─── System Info & Safe Area (Strongly Typed) ───
 const sysInfo = uni.getSystemInfoSync()
-const statusBarHeight: number = sysInfo.statusBarHeight ?? 0
+const statusBarHeight: number = sysInfo.statusBarHeight —— 0
 
 // Android Notch and iOS Bottom Home Indicator safe calculation
 const safeAreaInsets = sysInfo.safeAreaInsets
-const bottomSafeHeight: number = safeAreaInsets?.bottom ?? 0
+const bottomSafeHeight: number = safeAreaInsets—.bottom —— 0
 // At this point: .fixed-bottom { paddingBottom: `${bottomSafeHeight}px` }
 
 // Custom Navbar Calculation:
@@ -588,26 +588,26 @@ const context = UTSAndroid.getAppContext()!
 
 ```
 File Renaming:
-  �?pages/xxx/xxx.vue  �?pages/xxx/xxx.uvue
-  �?utils/xxx.ts       �?utils/xxx.uts
-  �?main.ts            �?main.uts
-  �?App.vue            �?App.uvue
+  ✅pages/xxx/xxx.vue  → pages/xxx/xxx.uvue
+  ✅utils/xxx.ts       → utils/xxx.uts
+  ✅main.ts            → main.uts
+  ✅App.vue            → App.uvue
 
 Script Reconstruction:
-  �?<script lang="ts"> �?<script lang="uts">
-  �?Remove all `any` types �?Replace with specific types or UTSJSONObject
-  �?undefined              �?null
-  �?Uninitialized vars      �?MUST be initialized
-  �?npm packages           �?Find uni-app x compatible plugins (ext.dcloud.net.cn)
+  ✅<script lang="ts"> → <script lang="uts">
+  ✅Remove all `any` types → Replace with specific types or UTSJSONObject
+  ✅undefined              → null
+  ✅Uninitialized vars      → MUST be initialized
+  ✅npm packages           → Find uni-app x compatible plugins (ext.dcloud.net.cn)
 
 CSS Reconstruction (Largest Workload):
-  �?CSS Vars var(--xx) �?SCSS Vars $xx
-  �?display: block     �?Delete (Defaults to flex column)
-  �?display: flex      �?KEEP, add flex-direction: row/column
-  �?Inherited styles   �?Explicitly declare styles in each child component
-  �?id/tag selectors   �?Change to class selectors
-  �?color/font on view �?Move to <text> component
-  �?grid layout        �?Change to nested flex implementation
+  ✅CSS Vars var(--xx) → SCSS Vars $xx
+  ✅display: block     → Delete (Defaults to flex column)
+  ✅display: flex      → KEEP, add flex-direction: row/column
+  ✅Inherited styles   → Explicitly declare styles in each child component
+  ✅id/tag selectors   → Change to class selectors
+  ✅color/font on view → Move to <text> component
+  ✅grid layout        → Change to nested flex implementation
 
 Progressive Migration Recommended Order:
   1. Migrate Web and Mini-program versions first (Only change CSS, keep JS)
@@ -620,15 +620,15 @@ Progressive Migration Recommended Order:
 ```
 Pitfall 1: ucss flex defaults to vertical
   Classic mode view defaults to row, x mode defaults to column
-  �?Explicitly add `flex-direction: row` wherever horizontal layout is needed
+  → Explicitly add `flex-direction: row` wherever horizontal layout is needed
 
 Pitfall 2: Text styles don't take effect
   Writing color/font-size on <view> is invalid on App side
-  �?Must write font-related styles on <text> components
+  → Must write font-related styles on <text> components
 
 Pitfall 3: v-html is not supported
   uni-app x does not support v-html
-  �?Use `rich-text` component instead (Be mindful of XSS protection)
+  → Use `rich-text` component instead (Be mindful of XSS protection)
 
 Pitfall 4: scroll-view direction
   In ucss, horizontal scroll-view requires setting `scroll-x="true"` and a fixed height
@@ -636,5 +636,5 @@ Pitfall 4: scroll-view direction
 Pitfall 5: Conditional compilation identifiers
   Classic App: // #ifdef APP-PLUS
   uni-app x App: // #ifdef APP
-  �?Pay attention to the distinction
+  → Pay attention to the distinction
 ```

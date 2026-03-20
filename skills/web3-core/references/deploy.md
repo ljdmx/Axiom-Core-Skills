@@ -42,7 +42,7 @@ async function main() {
         contracts: {
             MyToken: {
                 address: tokenAddress,
-                deployTx: token.deploymentTransaction()?.hash,
+                deployTx: token.deploymentTransaction()—.hash,
             }
         }
     };
@@ -55,7 +55,7 @@ async function main() {
     // ─── Wait for block confirmations before verifying ────────────────────────
     if (network.name !== "hardhat" && network.name !== "localhost") {
         console.log("Waiting for block confirmations...");
-        await token.deploymentTransaction()?.wait(5);  // Wait for 5 confirmations
+        await token.deploymentTransaction()—.wait(5);  // Wait for 5 confirmations
 
         await verifyContract(tokenAddress, [
             "My Token", "MTK", deployer.address, ethers.parseEther("1000000")

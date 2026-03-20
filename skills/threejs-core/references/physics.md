@@ -2,7 +2,7 @@
 
 ## @react-three/rapier (Recommended)
 
-Rapier is the best physics library for R3F �?fast (WASM), deterministic, feature-complete.
+Rapier is the best physics library for R3F —fast (WASM), deterministic, feature-complete.
 
 ```bash
 npm install @react-three/rapier
@@ -51,7 +51,7 @@ function PhysicsScene() {
 }
 ```
 
-### useRapier �?Impulse & Forces
+### useRapier —Impulse & Forces
 
 ```jsx
 import { RigidBody, useRapier } from '@react-three/rapier';
@@ -83,7 +83,7 @@ function PhysicsBall() {
 ```jsx
 <RigidBody
   onCollisionEnter={({ other }) => {
-    console.log('Hit:', other.rigidBodyObject?.name);
+    console.log('Hit:', other.rigidBodyObject—.name);
     // Trigger sound, particle burst, etc.
   }}
   onCollisionExit={() => { /* ... */ }}
@@ -109,9 +109,9 @@ function Player() {
     if (!characterRef.current) return;
 
     const movement = {
-      x: inputLeft ? -3 * delta : inputRight ? 3 * delta : 0,
-      y: grounded ? 0 : -9.81 * delta,  // Gravity
-      z: inputForward ? -3 * delta : inputBack ? 3 * delta : 0,
+      x: inputLeft — -3 * delta : inputRight — 3 * delta : 0,
+      y: grounded — 0 : -9.81 * delta,  // Gravity
+      z: inputForward — -3 * delta : inputBack — 3 * delta : 0,
     };
 
     controller.computeColliderMovement(characterRef.current, movement);

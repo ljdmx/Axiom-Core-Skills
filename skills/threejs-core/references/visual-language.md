@@ -28,19 +28,19 @@ World-class 3D visuals (Apple product pages, Awwwards SOTD, luxury jewelry brand
 > **One overwhelmingly strong key light creates all the tension.
 > Every other light only rescues dead blacks. No other light performs.**
 
-Traditional "3-point lighting" is an industrial studio workflow ‚Ä?not the optimal path to art.
+Traditional "3-point lighting" is an industrial studio workflow ‚Äînot the optimal path to art.
 When three lights share equal intensity, they cancel each other's shadows and produce a CAD model, not an artwork.
 
 ```javascript
-// ‚ù?Mediocre: equal intensity ‚Ä?mutual cancellation, no drama
+// ‚ùåMediocre: equal intensity ‚Äîmutual cancellation, no drama
 const key  = new THREE.DirectionalLight(0xffffff, 1.0);
 const fill = new THREE.DirectionalLight(0xffffff, 0.8);
 const rim  = new THREE.DirectionalLight(0xffffff, 0.9);
-// Result: flat, even, soulless ‚Ä?looks like a hardware product manual
+// Result: flat, even, soulless ‚Äîlooks like a hardware product manual
 
-// ‚ú?Dramatic: key dominates, everything else supports
+// ‚úÖDramatic: key dominates, everything else supports
 const key = new THREE.DirectionalLight(0xfff4e0, 4.0); // Overwhelmingly warm
-const fill = new THREE.DirectionalLight(0xb0c8ff, 0.3); // Cool ‚Ä?barely visible
+const fill = new THREE.DirectionalLight(0xb0c8ff, 0.3); // Cool ‚Äîbarely visible
 const rim  = new THREE.DirectionalLight(0xffffff, 0.8); // Separates from BG
 const amb  = new THREE.AmbientLight(0xffffff, 0.05);    // Prevents dead black only
 ```
@@ -58,7 +58,7 @@ Light source type determines shadow edge hardness. Hardness communicates emotion
 | HDR Environment only | Very soft diffuse | Cinematic, immersive | Luxury goods |
 
 ```javascript
-// SpotLight ‚Ä?the dramatic spotlight
+// SpotLight ‚Äîthe dramatic spotlight
 const spot = new THREE.SpotLight(0xfff8f0, 8.0);
 spot.position.set(3, 8, 3);
 spot.target.position.set(0, 0, 0);
@@ -70,7 +70,7 @@ spot.shadow.mapSize.set(2048, 2048);
 spot.shadow.bias = -0.001;
 scene.add(spot, spot.target);
 
-// RectAreaLight ‚Ä?studio area light (requires init)
+// RectAreaLight ‚Äîstudio area light (requires init)
 import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 RectAreaLightUniformsLib.init(); // Call once at startup
 
@@ -83,10 +83,10 @@ scene.add(rectLight);
 
 ### Light Pollution Clearance Protocol
 
-Before adding any light, three questions ‚Ä?if any answer is "no", do not add the light:
-1. **Does it fix a specific, unacceptable dead black?** (not all shadows are bad)
-2. **Is it weaker than 10% of the key light's intensity?**
-3. **Does the scene look better with it than without it ‚Ä?objectively?**
+Before adding any light, three questions ‚Äîif any answer is "no", do not add the light:
+1. **Does it fix a specific, unacceptable dead black‚Äî** (not all shadows are bad)
+2. **Is it weaker than 10% of the key light's intensity‚Äî**
+3. **Does the scene look better with it than without it ‚Äîobjectively‚Äî**
 
 ```javascript
 // Diagnostic: temporarily disable all non-key lights
@@ -111,28 +111,28 @@ rimLight.userData.role  = 'rim';
 ### Shadow Direction = Narrative Direction
 
 ```javascript
-// Upper-left key light ‚Ü?shadow falls lower-right
-// Matches Western painting convention ‚Ä?feels "normal" and stable
+// Upper-left key light ‚Üí shadow falls lower-right
+// Matches Western painting convention ‚Äîfeels "normal" and stable
 keyLight.position.set(-5, 8, 3);
 
-// Light from below ‚Ü?shadow falls upward = horror, supernatural, wrong
+// Light from below ‚Üí shadow falls upward = horror, supernatural, wrong
 keyLight.position.set(0, -5, 2);
 
-// Light from behind ‚Ü?silhouette, no cast shadow = sacred, divine, mystery
+// Light from behind ‚Üí silhouette, no cast shadow = sacred, divine, mystery
 keyLight.position.set(0, 2, -8);
 ```
 
 ### Colored Shadows
 
 ```javascript
-// Real-world shadows carry ambient light color (blue sky ‚Ü?shadows lean purple-blue)
-// Three.js default shadows are pure black ‚Ä?this never occurs in nature
+// Real-world shadows carry ambient light color (blue sky ‚Üí shadows lean purple-blue)
+// Three.js default shadows are pure black ‚Äîthis never occurs in nature
 
-// ‚ò?Use ShadowMaterial for colored, atmospheric shadows
+// ‚òÖ Use ShadowMaterial for colored, atmospheric shadows
 const shadowPlane = new THREE.Mesh(
   new THREE.PlaneGeometry(20, 20),
   new THREE.ShadowMaterial({
-    color: 0x1a0a2e,    // Deep purple-black ‚Ä?not pure black
+    color: 0x1a0a2e,    // Deep purple-black ‚Äînot pure black
     opacity: 0.4,
     transparent: true,
   })
@@ -159,20 +159,20 @@ scene.add(shadowPlane);
 ### Why RGB mix() Produces "Mud"
 
 ```glsl
-// ‚ù?RGB space interpolation ‚Ä?passes through gray midpoint, colors "die"
+// ‚ùåRGB space interpolation ‚Äîpasses through gray midpoint, colors "die"
 vec3 red  = vec3(1.0, 0.0, 0.0);
 vec3 blue = vec3(0.0, 0.0, 1.0);
-vec3 mid  = mix(red, blue, 0.5); // = vec3(0.5, 0.0, 0.5) ‚Ä?dark mud purple
+vec3 mid  = mix(red, blue, 0.5); // = vec3(0.5, 0.0, 0.5) ‚Äîdark mud purple
 
-// ‚ú?OKLAB space interpolation ‚Ä?perceptually uniform, midpoint stays vivid
-// Red to blue passes through orange ‚Ü?yellow ‚Ü?green ‚Ü?cyan ‚Ü?blue
+// ‚úÖOKLAB space interpolation ‚Äîperceptually uniform, midpoint stays vivid
+// Red to blue passes through orange ‚Üí yellow ‚Üí green ‚Üí cyan ‚Üí blue
 // Colors remain saturated and alive throughout the transition
 ```
 
 ### Complete OKLAB GLSL Implementation
 
 ```glsl
-// Source: Bj√∂rn Ottosson (oklab.org) ‚Ä?MIT License
+// Source: Bj√∂rn Ottosson (oklab.org) ‚ÄîMIT License
 // Include in every shader that does color interpolation
 
 vec3 linearToOklab(vec3 c) {
@@ -199,19 +199,19 @@ vec3 oklabToLinear(vec3 c) {
   );
 }
 
-// ‚ò?The core function: mix colors in OKLAB space
+// ‚òÖ The core function: mix colors in OKLAB space
 vec3 mixOklab(vec3 srgbA, vec3 srgbB, float t) {
-  vec3 linA = pow(srgbA, vec3(2.2)); // sRGB ‚Ü?linear
+  vec3 linA = pow(srgbA, vec3(2.2)); // sRGB ‚Üí linear
   vec3 linB = pow(srgbB, vec3(2.2));
   vec3 labA = linearToOklab(linA);
   vec3 labB = linearToOklab(linB);
   vec3 labM = mix(labA, labB, t);
-  return pow(oklabToLinear(labM), vec3(1.0/2.2)); // linear ‚Ü?sRGB
+  return pow(oklabToLinear(labM), vec3(1.0/2.2)); // linear ‚Üí sRGB
 }
 
 // Usage in fragment shader:
 // vec3 gradient = mixOklab(vec3(1.0,0.27,0.0), vec3(0.08,0.27,0.87), vUv.x);
-// Produces: red ‚Ü?orange ‚Ü?yellow ‚Ü?green ‚Ü?cyan ‚Ü?blue (vivid throughout)
+// Produces: red ‚Üí orange ‚Üí yellow ‚Üí green ‚Üí cyan ‚Üí blue (vivid throughout)
 ```
 
 ### Perceptual Luminance for Emissive Calibration
@@ -226,9 +226,9 @@ function perceivedLuminance(hex) {
 }
 
 // Calibrate emissiveIntensity by perceived luminance inverse
-const neonBlue  = { color: 0x0044ff, intensity: 3.0 }; // L=0.07 ‚Ü?needs boost
-const neonGreen = { color: 0x00ff44, intensity: 0.7 }; // L=0.71 ‚Ü?already bright
-const neonRed   = { color: 0xff2200, intensity: 1.8 }; // L=0.21 ‚Ü?moderate
+const neonBlue  = { color: 0x0044ff, intensity: 3.0 }; // L=0.07 ‚Üí needs boost
+const neonGreen = { color: 0x00ff44, intensity: 0.7 }; // L=0.71 ‚Üí already bright
+const neonRed   = { color: 0xff2200, intensity: 1.8 }; // L=0.21 ‚Üí moderate
 
 // Apply to material
 mesh.material.emissive.setHex(neonBlue.color);
@@ -238,8 +238,8 @@ mesh.material.emissiveIntensity = neonBlue.intensity;
 ### JS Layer: Linear Space Color Lerp
 
 ```javascript
-// THREE.Color.lerpColors() interpolates in sRGB ‚Ä?produces mud like GLSL mix()
-// ‚ú?Correct: interpolate in linear space
+// THREE.Color.lerpColors() interpolates in sRGB ‚Äîproduces mud like GLSL mix()
+// ‚úÖCorrect: interpolate in linear space
 function lerpColorsLinear(colorA, colorB, t) {
   const a = colorA.clone().convertSRGBToLinear();
   const b = colorB.clone().convertSRGBToLinear();
@@ -261,10 +261,10 @@ function animate() {
 
 ### FOV Emotional Language
 
-FOV is not "how much you see" ‚Ä?it is **emotional distance**:
+FOV is not "how much you see" ‚Äîit is **emotional distance**:
 
 ```javascript
-// FOV reference table ‚Ä?commit this to memory
+// FOV reference table ‚Äîcommit this to memory
 camera.fov = 20;  // Compressed epic: monumental, distant, reverent, telephoto
 camera.fov = 35;  // Cinema standard: natural, refined, premium (Apple product pages)
 camera.fov = 50;  // Human eye: neutral, documentary, honest
@@ -272,18 +272,18 @@ camera.fov = 75;  // Wide: spatial, game-like, immersive
 camera.fov = 110; // Fisheye: distorted, dramatic, claustrophobic
 camera.updateProjectionMatrix(); // Always after FOV change
 
-// ‚ò?Sweet spots by scene type:
-// Luxury product: 35‚Ä?5¬∞   (compressed compression = premium feel)
-// Architecture: 25‚Ä?5¬∞     (tall spaces feel even taller)
-// Game / exploration: 60‚Ä?5¬∞
-// Epic landscape: 20‚Ä?0¬∞
-// Intimate portrait: 45‚Ä?5¬∞
+// ‚òÖ Sweet spots by scene type:
+// Luxury product: 35‚Äî5¬∞   (compressed compression = premium feel)
+// Architecture: 25‚Äî5¬∞     (tall spaces feel even taller)
+// Game / exploration: 60‚Äî5¬∞
+// Epic landscape: 20‚Äî0¬∞
+// Intimate portrait: 45‚Äî5¬∞
 ```
 
 ### Rule of Thirds in 3D Space
 
 ```javascript
-// ‚ò?Never center the subject (unless intentional symmetric gravitas)
+// ‚òÖ Never center the subject (unless intentional symmetric gravitas)
 // Place subject at 1/3 or 2/3 of the frame
 
 // Shift lookAt to offset subject in frame
@@ -325,7 +325,7 @@ camera.position.set(0, 15, 0);  camera.lookAt(0, 0, 0);
 ### FOV Zoom Animation (Cinematic Impact)
 
 ```javascript
-// Sudden FOV narrowing = "the moment arrives" ‚Ä?used at reveal climaxes
+// Sudden FOV narrowing = "the moment arrives" ‚Äîused at reveal climaxes
 gsap.to(camera, {
   fov: 28,
   duration: 2.2,
@@ -361,7 +361,7 @@ function NarrativeDOF({ heroRef }) {
     heroRef.current.getWorldPosition(heroPos);
     const dist = camera.position.distanceTo(heroPos);
 
-    // Smooth focus tracking ‚Ä?simulates human eye's focus delay
+    // Smooth focus tracking ‚Äîsimulates human eye's focus delay
     const currentFocus = dofRef.current.circleOfConfusionMaterial
       .uniforms.focusDistance.value;
     const targetFocus = dist / camera.far;
@@ -400,7 +400,7 @@ renderer.domElement.addEventListener('click', (e) => {
   raycaster.setFromCamera(mouse, camera);
   const hits = raycaster.intersectObjects(scene.children, true);
   if (hits.length > 0) {
-    // Animate focus transition ‚Ä?smooth like a real camera
+    // Animate focus transition ‚Äîsmooth like a real camera
     gsap.to(bokeh.uniforms.focus, { value: hits[0].distance, duration: 0.5 });
   }
 });
@@ -415,48 +415,48 @@ renderer.domElement.addEventListener('click', (e) => {
 These patterns are immediate indicators of mediocre 3D work. Any match = rewrite:
 
 ```
-‚ñ?Blue-purple spinning orb with halo glow
-  ‚Ü?Every AI demo looks like this. It communicates nothing. Replace with organic displaced form.
+‚úÖBlue-purple spinning orb with halo glow
+  ‚Üí Every AI demo looks like this. It communicates nothing. Replace with organic displaced form.
 
-‚ñ?Perfectly symmetric geometric grid arrays (cubes/spheres in rows)
-  ‚Ü?No tension, no organic life, no story. Use golden angle distribution.
+‚úÖPerfectly symmetric geometric grid arrays (cubes/spheres in rows)
+  ‚Üí No tension, no organic life, no story. Use golden angle distribution.
 
-‚ñ?Particles: all same size, speed, color
-  ‚Ü?Not particles ‚Ä?it's a dot matrix. Add per-instance variation.
+‚úÖParticles: all same size, speed, color
+  ‚Üí Not particles ‚Äîit's a dot matrix. Add per-instance variation.
 
-‚ñ?OrbitControls without damping shipped to production
-  ‚Ü?Snapping feels cheap. Always: enableDamping = true, dampingFactor = 0.06.
+‚úÖOrbitControls without damping shipped to production
+  ‚Üí Snapping feels cheap. Always: enableDamping = true, dampingFactor = 0.06.
 
-‚ñ?HDR overexposed (everything at max brightness)
-  ‚Ü?No shadow depth. Tune toneMappingExposure to preserve dark areas.
+‚úÖHDR overexposed (everything at max brightness)
+  ‚Üí No shadow depth. Tune toneMappingExposure to preserve dark areas.
 
-‚ñ?Global bloom (threshold = 0 or very low)
-  ‚Ü?Everything glows equally = cheap phone filter. Selective bloom only.
+‚úÖGlobal bloom (threshold = 0 or very low)
+  ‚Üí Everything glows equally = cheap phone filter. Selective bloom only.
 
-‚ñ?Pure black background (#000000)
-  ‚Ü?Technically "wrong" ‚Ä?no real environment is pure black. Use 0x0a0a0f with fog.
+‚úÖPure black background (#000000)
+  ‚Üí Technically "wrong" ‚Äîno real environment is pure black. Use 0x0a0a0f with fog.
 
-‚ñ?Loading completes ‚Ü?objects instantly appear
-  ‚Ü?Missing entry ritual. Add 3-stage reveal (light ‚Ü?subject ‚Ü?camera).
+‚úÖLoading completes ‚Üí objects instantly appear
+  ‚Üí Missing entry ritual. Add 3-stage reveal (light ‚Üí subject ‚Üí camera).
 
-‚ñ?helvetiker font (Three.js default 3D font)
-  ‚Ü?1990s feel. Use custom typeface JSON or drei Text3D with a proper font.
+‚úÖhelvetiker font (Three.js default 3D font)
+  ‚Üí 1990s feel. Use custom typeface JSON or drei Text3D with a proper font.
 
-‚ñ?All objects same roughness (e.g., roughness=0.5 everywhere)
-  ‚Ü?No material hierarchy. Apply Hero/Supporting/Background tier system.
+‚úÖAll objects same roughness (e.g., roughness=0.5 everywhere)
+  ‚Üí No material hierarchy. Apply Hero/Supporting/Background tier system.
 ```
 
 ### Organic Distribution vs Grid Distribution
 
 ```javascript
-// ‚ù?Grid: uniform, mechanical, soulless
+// ‚ùåGrid: uniform, mechanical, soulless
 for (let i = 0; i < 1000; i++) {
   positions[i*3]   = (i % 10) * 1.0;
   positions[i*3+1] = Math.floor(i / 10) * 0.5;
 }
 
-// ‚ú?Golden angle (sunflower) distribution: natural, mathematically beautiful
-const PHI = Math.PI * (3 - Math.sqrt(5)); // Golden angle ‚â?137.508¬∞
+// ‚úÖGolden angle (sunflower) distribution: natural, mathematically beautiful
+const PHI = Math.PI * (3 - Math.sqrt(5)); // Golden angle ‚â• 137.508¬∞
 for (let i = 0; i < 1000; i++) {
   const angle = i * PHI;
   const r     = Math.sqrt(i / 1000) * 8;
@@ -472,7 +472,7 @@ for (let i = 0; i < 1000; i++) {
 ### Material Hierarchy Implementation
 
 ```javascript
-// Three tiers ‚Ä?no overlap between them
+// Three tiers ‚Äîno overlap between them
 const HERO_MAT = new THREE.MeshPhysicalMaterial({
   roughness: 0.05, metalness: 0.92,
   clearcoat: 1.0,  clearcoatRoughness: 0.08,
@@ -488,7 +488,7 @@ const SUPPORT_MAT = new THREE.MeshStandardMaterial({
 
 const BG_MAT = new THREE.MeshStandardMaterial({
   roughness: 0.85, metalness: 0.0,
-  envMapIntensity: 0.15, // Barely reflects ‚Ä?recedes from attention
+  envMapIntensity: 0.15, // Barely reflects ‚Äîrecedes from attention
 });
 ```
 
@@ -502,34 +502,34 @@ const BG_MAT = new THREE.MeshStandardMaterial({
 ### Three-Stage Entry Ritual
 
 ```javascript
-// ‚ò?The psychological contract:
-// Stage 1 (Environment): "A world exists here"  ‚Ü?atmosphere establishes before subject
-// Stage 2 (Subject):     "Something lives here" ‚Ü?hero object rises with gravity
-// Stage 3 (Approach):    "It welcomes you"      ‚Ü?camera closes in (companionship gesture)
+// ‚òÖ The psychological contract:
+// Stage 1 (Environment): "A world exists here"  ‚Üí atmosphere establishes before subject
+// Stage 2 (Subject):     "Something lives here" ‚Üí hero object rises with gravity
+// Stage 3 (Approach):    "It welcomes you"      ‚Üí camera closes in (companionship gesture)
 
 renderer.domElement.style.opacity = '0';
 
 loadingManager.onLoad = () => {
   const ritual = gsap.timeline({ delay: 0.2 });
 
-  // Stage 1: Environment (0ms‚Ä?500ms)
-  // Fog thins, key light brightens ‚Ä?space establishes
+  // Stage 1: Environment (0ms‚Äî500ms)
+  // Fog thins, key light brightens ‚Äîspace establishes
   ritual
     .fromTo(scene.fog, { density: 0.08 }, { density: 0.018, duration: 1.5,
       ease: 'power2.out' }, 0)
     .from(keyLight, { intensity: 0, duration: 2.0, ease: 'power2.inOut' }, 0.1)
     .to(renderer.domElement.style, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.1);
 
-  // Stage 2: Subject enters (400ms‚Ä?200ms)
-  // Rises from below ‚Ä?gravity, physical honesty (Respect axis: honest physics)
+  // Stage 2: Subject enters (400ms‚Äî200ms)
+  // Rises from below ‚Äîgravity, physical honesty (Respect axis: honest physics)
   ritual
     .from(heroMesh.position, { y: heroMesh.position.y - 3,
       duration: 1.8, ease: 'power3.out' }, 0.4)
     .from(heroMesh.material, { opacity: 0, duration: 1.0,
       ease: 'power2.out' }, 0.4);
 
-  // Stage 3: Camera approaches (600ms‚Ä?100ms)
-  // Closes in slowly ‚Ä?"the world comes to meet you" (Companionship axis)
+  // Stage 3: Camera approaches (600ms‚Äî100ms)
+  // Closes in slowly ‚Äî"the world comes to meet you" (Companionship axis)
   ritual
     .from(camera.position, {
       z: camera.position.z + 2.5,
@@ -545,7 +545,7 @@ loadingManager.onLoad = () => {
 ### Scene Exit Ritual (Transition Away)
 
 ```javascript
-// Exit is just as important as entry ‚Ä?Respect axis: no jarring cuts
+// Exit is just as important as entry ‚ÄîRespect axis: no jarring cuts
 function exitScene(onComplete) {
   const exit = gsap.timeline({ onComplete });
   exit

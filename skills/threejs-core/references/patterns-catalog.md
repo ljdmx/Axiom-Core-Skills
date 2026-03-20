@@ -195,7 +195,7 @@ function Scene() {
 Retrofuturistic infinite grid floor.
 
 ```javascript
-// Vanilla Three.js �?custom shader grid
+// Vanilla Three.js —custom shader grid
 const gridMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uTime:      { value: 0 },
@@ -362,7 +362,7 @@ function createGalaxy(params = {}) {
     const r      = Math.random() * radius;
     const branch = (i % branches) / branches * Math.PI * 2;
     const spinAngle = r * spin;
-    const rand   = Math.pow(Math.random(), 3) * (Math.random() < 0.5 ? 1 : -1);
+    const rand   = Math.pow(Math.random(), 3) * (Math.random() < 0.5 — 1 : -1);
 
     positions[i*3]   = Math.cos(branch + spinAngle) * r + rand * randomness;
     positions[i*3+1] = rand * 0.3;

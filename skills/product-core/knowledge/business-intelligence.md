@@ -1,6 +1,6 @@
-# Product Business Intelligence â€?Domain Analysis Framework
+# Product Business Intelligence â€”Domain Analysis Framework
 
-> **Status**: ACTIVE â€?Load when user prompt exceeds 5 Core Entities OR has cross-industry complexity.
+> **Status**: ACTIVE â€”Load when user prompt exceeds 5 Core Entities OR has cross-industry complexity.
 > **Purpose**: Provides structured decision templates for DDD analysis, User Journey mapping, and API design. These are cognitive frameworks for the AI, not executable code.
 
 ---
@@ -17,7 +17,7 @@ Before designing any data model, AI MUST classify all business concepts:
 | **Domain Service** | Business logic spanning multiple entities | `PricingService`, `InventoryAllocationService` |
 | **Domain Event** | Something that happened, past-tense named | `OrderPlaced`, `DeviceOffline`, `PaymentFailed` |
 
-**Aggregate Boundary Rule**: Every write operation MUST target exactly one Aggregate Root. Cross-aggregate consistency is handled by Domain Events + eventual consistency â€?NEVER by cross-boundary transactions.
+**Aggregate Boundary Rule**: Every write operation MUST target exactly one Aggregate Root. Cross-aggregate consistency is handled by Domain Events + eventual consistency â€”NEVER by cross-boundary transactions.
 
 ---
 
@@ -43,14 +43,14 @@ For every core user flow, AI MUST identify the **Drop-Off Risk Zone**:
 Before writing any schema, verify against this checklist:
 
 ```
-â–?All entities have: id (UUIDv7), created_at, updated_at, created_by
-â–?Soft delete: deleted_at IS NULL pattern on User, Order, Payment, Transaction
-â–?PII fields tagged with phi_ prefix (for HIPAA) or encrypted_at_rest annotation (GDPR)
-â–?Enum fields use string type with explicit values (not integers)
-â–?Foreign keys use ON DELETE RESTRICT by default (not CASCADE) â€?explicit cascade = business decision
-â–?Indexes on: all FK columns, status, created_at for time-range queries
-â–?Cursor pagination for any table > 10K rows (offset pagination scales linearly with table size)
-â–?Aggregate Roots clearly identified in ERD/Mermaid diagram
+âœ…All entities have: id (UUIDv7), created_at, updated_at, created_by
+âœ…Soft delete: deleted_at IS NULL pattern on User, Order, Payment, Transaction
+âœ…PII fields tagged with phi_ prefix (for HIPAA) or encrypted_at_rest annotation (GDPR)
+âœ…Enum fields use string type with explicit values (not integers)
+âœ…Foreign keys use ON DELETE RESTRICT by default (not CASCADE) â€”explicit cascade = business decision
+âœ…Indexes on: all FK columns, status, created_at for time-range queries
+âœ…Cursor pagination for any table > 10K rows (offset pagination scales linearly with table size)
+âœ…Aggregate Roots clearly identified in ERD/Mermaid diagram
 ```
 
 ---
@@ -58,22 +58,22 @@ Before writing any schema, verify against this checklist:
 ## 4ï¸âƒ£ API Design Decision Tree
 
 ```
-Is this a state change to a business entity?
-â”?â”œâ”€ YES â†?Use a business verb (NOT naked CRUD)
-â”?         "user submits order"  â†?POST /orders/:id/submit
-â”?         "device reports fault" â†?POST /devices/:id/report-fault
-â”?         "payment fails"       â†?POST /payments/:id/fail
-â”?â””â”€ NO â†?Is this a read for UI display?
-         â”?         â”œâ”€ Aggregate/KPI for dashboard â†?GET /metrics/{chart-name}
-         â”?  (pre-aggregate server-side, never raw rows to frontend)
-         â”?         â””â”€ Simple resource lookup â†?GET /resources/:id
+Is this a state change to a business entityâ€”
+â”‚  â”œâ”€ YES â†’ Use a business verb (NOT naked CRUD)
+â”‚           "user submits order"  â†’ POST /orders/:id/submit
+â”‚           "device reports fault" â†’ POST /devices/:id/report-fault
+â”‚           "payment fails"       â†’ POST /payments/:id/fail
+â”‚  â””â”€ NO â†’ Is this a read for UI displayâ€”
+         â”‚           â”œâ”€ Aggregate/KPI for dashboard â†’ GET /metrics/{chart-name}
+         â”‚    (pre-aggregate server-side, never raw rows to frontend)
+         â”‚           â””â”€ Simple resource lookup â†’ GET /resources/:id
 ```
 
 **Naming Conventions**:
-- `POST /resources/:id/{verb}` â€?business action on a resource
-- `GET /metrics/{scope}` â€?aggregated read model for dashboards
-- `GET /summaries/{scope}` â€?lightweight stat cards
-- `GET /exports/{scope}` â€?async export triggers (responds 202 Accepted)
+- `POST /resources/:id/{verb}` â€”business action on a resource
+- `GET /metrics/{scope}` â€”aggregated read model for dashboards
+- `GET /summaries/{scope}` â€”lightweight stat cards
+- `GET /exports/{scope}` â€”async export triggers (responds 202 Accepted)
 
 ---
 
@@ -93,5 +93,5 @@ Is this a state change to a business entity?
 
 | Version | Date | Summary |
 |---|---|---|
-| v2.0 | 2026-03-09 | Complete rewrite â€?eliminated 17KB of non-executable JS pseudocode. Replaced with 5 actionable Markdown decision frameworks. Token footprint: ~2KB (was ~4.5KB). |
-| v1.0 | 2026-02-28 | Initial version â€?contained DataModelAdvisor, APIDesignAdvisor, UXAdvisor JS classes. |
+| v2.0 | 2026-03-09 | Complete rewrite â€”eliminated 17KB of non-executable JS pseudocode. Replaced with 5 actionable Markdown decision frameworks. Token footprint: ~2KB (was ~4.5KB). |
+| v1.0 | 2026-02-28 | Initial version â€”contained DataModelAdvisor, APIDesignAdvisor, UXAdvisor JS classes. |

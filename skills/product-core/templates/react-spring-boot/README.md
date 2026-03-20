@@ -46,74 +46,74 @@ cd frontend && npm run dev
 ```
 my-project/
 ├── frontend/                         # React + Vite
-�?  ├── src/
-�?  �?  ├── components/
-�?  �?  ├── hooks/
-�?  �?  └── lib/
-�?  └── package.json
-�?
+│    ├── src/
+│    │    ├── components/
+│    │    ├── hooks/
+│    │    └── lib/
+│    └── package.json
+│  
 ├── backend/                          # Spring Boot 3
-�?  ├── src/main/java/com/company/project/
-�?  �?  ├── ProjectApplication.java
-�?  �?  ├── config/
-�?  �?  �?  ├── SecurityConfig.java
-�?  �?  �?  ├── WebConfig.java
-�?  �?  �?  └── RedisConfig.java
-�?  �?  ├── domain/
-�?  �?  �?  ├── auth/
-�?  �?  �?  �?  ├── model/
-�?  �?  �?  �?  �?  ├── User.java
-�?  �?  �?  �?  �?  ├── Role.java
-�?  �?  �?  �?  �?  └── Permission.java
-�?  �?  �?  �?  ├── repository/
-�?  �?  �?  �?  �?  ├── UserRepository.java
-�?  �?  �?  �?  �?  └── RoleRepository.java
-�?  �?  �?  �?  ├── service/
-�?  �?  �?  �?  �?  ├── AuthService.java
-�?  �?  �?  �?  �?  └── PermissionService.java
-�?  �?  �?  �?  └── dto/
-�?  �?  �?  �?      ├── LoginRequest.java
-�?  �?  �?  �?      └── JwtResponse.java
-�?  �?  �?  └── blog/
-�?  �?  �?      ├── model/
-�?  �?  �?      �?  └── Blog.java
-�?  �?  �?      ├── repository/
-�?  �?  �?      �?  └── BlogRepository.java
-�?  �?  �?      ├── service/
-�?  �?  �?      �?  └── BlogService.java
-�?  �?  �?      └── dto/
-�?  �?  �?          ├── CreateBlogRequest.java
-�?  �?  �?          └── BlogResponse.java
-�?  �?  ├── web/
-�?  �?  �?  ├── controller/
-�?  �?  �?  �?  ├── AuthController.java
-�?  �?  �?  �?  └── BlogController.java
-�?  �?  �?  └── advice/
-�?  �?  �?      └── GlobalExceptionHandler.java
-�?  �?  ├── security/
-�?  �?  �?  ├── JwtTokenProvider.java
-�?  �?  �?  ├── JwtAuthenticationFilter.java
-�?  �?  �?  └── PermissionAspect.java
-�?  �?  └── common/
-�?  �?      ├── annotation/
-�?  �?      �?  └── RequirePermission.java
-�?  �?      └── exception/
-�?  �?          └── UnauthorizedException.java
-�?  ├── src/main/resources/
-�?  �?  ├── application.yml
-�?  �?  ├── application-dev.yml
-�?  �?  └── db/migration/
-�?  �?      ├── V1__Create_users_table.sql
-�?  �?      └── V2__Create_rbac_tables.sql
-�?  └── pom.xml
-�?
+│    ├── src/main/java/com/company/project/
+│    │    ├── ProjectApplication.java
+│    │    ├── config/
+│    │    │    ├── SecurityConfig.java
+│    │    │    ├── WebConfig.java
+│    │    │    └── RedisConfig.java
+│    │    ├── domain/
+│    │    │    ├── auth/
+│    │    │    │    ├── model/
+│    │    │    │    │    ├── User.java
+│    │    │    │    │    ├── Role.java
+│    │    │    │    │    └── Permission.java
+│    │    │    │    ├── repository/
+│    │    │    │    │    ├── UserRepository.java
+│    │    │    │    │    └── RoleRepository.java
+│    │    │    │    ├── service/
+│    │    │    │    │    ├── AuthService.java
+│    │    │    │    │    └── PermissionService.java
+│    │    │    │    └── dto/
+│    │    │    │        ├── LoginRequest.java
+│    │    │    │        └── JwtResponse.java
+│    │    │    └── blog/
+│    │    │        ├── model/
+│    │    │        │    └── Blog.java
+│    │    │        ├── repository/
+│    │    │        │    └── BlogRepository.java
+│    │    │        ├── service/
+│    │    │        │    └── BlogService.java
+│    │    │        └── dto/
+│    │    │            ├── CreateBlogRequest.java
+│    │    │            └── BlogResponse.java
+│    │    ├── web/
+│    │    │    ├── controller/
+│    │    │    │    ├── AuthController.java
+│    │    │    │    └── BlogController.java
+│    │    │    └── advice/
+│    │    │        └── GlobalExceptionHandler.java
+│    │    ├── security/
+│    │    │    ├── JwtTokenProvider.java
+│    │    │    ├── JwtAuthenticationFilter.java
+│    │    │    └── PermissionAspect.java
+│    │    └── common/
+│    │        ├── annotation/
+│    │        │    └── RequirePermission.java
+│    │        └── exception/
+│    │            └── UnauthorizedException.java
+│    ├── src/main/resources/
+│    │    ├── application.yml
+│    │    ├── application-dev.yml
+│    │    └── db/migration/
+│    │        ├── V1__Create_users_table.sql
+│    │        └── V2__Create_rbac_tables.sql
+│    └── pom.xml
+│  
 ├── shared/                           # Shared types (TypeScript/Java)
-�?  ├── permissions/
-�?  �?  ├── Permissions.ts           # Frontend constants
-�?  �?  └── Permissions.java         # Backend constants
-�?  └── types/
-�?      └── api-types.ts
-�?
+│    ├── permissions/
+│    │    ├── Permissions.ts           # Frontend constants
+│    │    └── Permissions.java         # Backend constants
+│    └── types/
+│        └── api-types.ts
+│  
 ├── docker-compose.yml
 └── README.md
 ```
@@ -354,7 +354,7 @@ public class PermissionService {
 
 ---
 
-## 🗄�?Database Migrations (Flyway)
+## 🗄️—Database Migrations (Flyway)
 
 ```sql
 -- backend/src/main/resources/db/migration/V2__Create_rbac_tables.sql

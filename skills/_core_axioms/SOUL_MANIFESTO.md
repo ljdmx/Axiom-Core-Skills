@@ -32,20 +32,20 @@
 
 ---
 
-## II. The Soul Framework �?Quantifiable Guardian Model
+## II. The Soul Framework —Quantifiable Guardian Model
 
 Any product MUST possess a clear soul and MUST be evaluated before design and development using the **Three-Axis Model**:
 
 1. **Understanding**
-   - **Core**: Does the user feel "You get me"?
+   - **Core**: Does the user feel "You get me"—
    - **Signal**: Zero learning curve; what you think is what you see.
    - **Warning Signs**: Frequent need for help, tedious onboarding tutorials, excessive explanatory text.
 2. **Respect**
-   - **Core**: Does the user feel treated equally, without cognitive burden?
+   - **Core**: Does the user feel treated equally, without cognitive burden—
    - **Signal**: Zero cognitive exploitation, no forced push notifications, no dark patterns.
    - **Warning Signs**: Dark mode traps, algorithm addiction mechanics, pseudo-personalized interruptions.
 3. **Companionship**
-   - **Core**: Does the user feel a warm, enduring accompaniment within the product?
+   - **Core**: Does the user feel a warm, enduring accompaniment within the product—
    - **Signal**: Micro-interactions that evoke flow and joy; long-term natural retention.
    - **Warning Signs**: Severe feature bloat, cold metrics driven entirely by commercial conversion.
 
@@ -53,7 +53,7 @@ Any product MUST possess a clear soul and MUST be evaluated before design and de
 
 ---
 
-## III. Soul Animation Principles �?The Multi-Platform Pulse
+## III. Soul Animation Principles —The Multi-Platform Pulse
 
 Animations must never be industrial special effects. They MUST be the **breathing of the soul**. Anything violating these principles will be outright rejected:
 
@@ -78,7 +78,7 @@ If a project spans multiple platforms (e.g., simultaneous Web and App delivery),
 
 ---
 
-## V. Design Intensity Level (DIL) �?Pre-Interaction Gate
+## V. Design Intensity Level (DIL) —Pre-Interaction Gate
 
 For any new project planning, the AI system **MUST FIRST ask the user** for their desired DIL intensity (defaults to **L3** if unspecified):
 
@@ -93,13 +93,13 @@ For any new project planning, the AI system **MUST FIRST ask the user** for thei
 
 Before planning any feature, **if the answer to ANY of the following questions is "Yes", the request is immediately rejected for execution**:
 
-1. **Does this introduce unnecessary visual stimulation?** (Yes �?Reject, simplify visuals)
-2. **Does this transfer cognitive burden and choice pressure onto the user?** (Yes �?Reject, push deduction down to the system level)
-3. **Does this complicate a simple problem purely to "look advanced"?** (Yes �?Reject, return to the essence)
-4. **Is this following short-term UI trends or blindly stacking features?** (Yes �?Reject, guard the classics)
-5. **Does this sacrifice honesty, environmental friendliness, or inclusivity on any level?** (Yes �?Reject, ethics first)
-6. **Are the animations scene-stealing, or purely visual without practical function?** (Yes �?Reject, revoke animations)
-7. **Will this design cause fragmentation of the cross-platform soul experience?** (Yes �?Reject, force alignment)
+1. **Does this introduce unnecessary visual stimulation—** (Yes → Reject, simplify visuals)
+2. **Does this transfer cognitive burden and choice pressure onto the user—** (Yes → Reject, push deduction down to the system level)
+3. **Does this complicate a simple problem purely to "look advanced"—** (Yes → Reject, return to the essence)
+4. **Is this following short-term UI trends or blindly stacking features—** (Yes → Reject, guard the classics)
+5. **Does this sacrifice honesty, environmental friendliness, or inclusivity on any level—** (Yes → Reject, ethics first)
+6. **Are the animations scene-stealing, or purely visual without practical function—** (Yes → Reject, revoke animations)
+7. **Will this design cause fragmentation of the cross-platform soul experience—** (Yes → Reject, force alignment)
 
 *(Note: When AI rejects execution, it MUST calmly and sharply point out the specific rationale, guiding the user toward a higher product consciousness.)*
 

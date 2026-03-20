@@ -11,11 +11,11 @@ Axiom Core is a suite of **6 high-fidelity skill packages** optimized with the 5
 > [!TIP]
 > **[Access the Zenith v10.1 Interactive Billboard](skills/_core_axioms/zenith_billboard.html)**
 > 
-> This billboard serves as the real-time architectural manifest of Axiom Core, tracing the 4-layer hierarchy (Page �?Module �?Feature �?API) and explicitly identifying the **ADK Design Patterns** within each terminal node.
+> This billboard serves as the real-time architectural manifest of Axiom Core, tracing the 4-layer hierarchy (Page — Module — Feature — API) and explicitly identifying the **ADK Design Patterns** within each terminal node.
 
 ---
 
-## 🏗�?Core Skills (The Zenith Six)
+## 🏗️ Core Skills (The Zenith Six)
 
 1. **[Product Commander (FSPC)](skills/product-core)**: Automated workspace auditing, intent disambiguation, and phased execution gates.
 2. **[Visual Sovereign (DDFM)](skills/frontend-core)**: Aesthetic Reviewer pattern with surgical UI, bento grids, and kinetic movement.
@@ -26,12 +26,12 @@ Axiom Core is a suite of **6 high-fidelity skill packages** optimized with the 5
 
 ---
 
-## 🛠�?Design Patterns
+## 🛠️ Design Patterns
 
 Every skill in Axiom Core v2.0 is identified by one of these 5 ADK patterns:
 - **🔀 Inversion**: Interview the user to gather context *before* coding.
-- **🏗�?Generator**: Produce executable boilerplate from high-fidelity templates.
-- **🛡�?Reviewer**: Score and audit inputs against strict rubrics (A11y, Security, Ergonomics).
+- **🏗️ Generator**: Produce executable boilerplate from high-fidelity templates.
+- **🛡️ Reviewer**: Score and audit inputs against strict rubrics (A11y, Security, Ergonomics).
 - **📦 Tool Wrapper**: Load domain-specific knowledge on-demand.
 - **⛓️ Pipeline**: Multi-step checkpoints with hard-gates (0A-0D).
 
@@ -44,20 +44,20 @@ The framework architecture is highly modularizing, isolating intent, design, and
 ```text
 .
 ├── skills/
-�?  ├── _core_axioms/         # Universal Nexus & Zenith Billboard
-�?  �?  ├── KERNEL_BOOTSTRAP.md
-�?  �?  └── zenith_billboard.html
-�?  ├── product-core/         # Full-Stack Product Commander (FSPC)
-�?  ├── frontend-core/        # Design-Driven Frontend Manifesto (DDFM)
-�?  ├── backend-core/         # API-Driven Backend Manifesto (ADBM)
-�?  ├── mobile-core/          # Unified Uniapp Core
-�?  ├── web3-core/            # EVM Full-Stack Forge
-�?  └── threejs-core/         # 3D Graphics Pulse
+│   ├── _core_axioms/         # Universal Nexus & Zenith Billboard
+│   │   ├── KERNEL_BOOTSTRAP.md
+│   │   └── zenith_billboard.html
+│   ├── product-core/         # Full-Stack Product Commander (FSPC)
+│   ├── frontend-core/        # Design-Driven Frontend Manifesto (DDFM)
+│   ├── backend-core/         # API-Driven Backend Manifesto (ADBM)
+│   ├── mobile-core/          # Unified Uniapp Core
+│   ├── web3-core/            # EVM Full-Stack Forge
+│   └── threejs-core/         # 3D Graphics Pulse
 ├── references/              # Architectural artifacts
 ├── .gitignore                # Environment & Workspace exclusions
 ├── init.bat                  # Windows initialization script
 ├── init.js                   # Node.js initialization script
-├── init.py                   # Python initialization script
+├── init.py                   # Python script for cross-platform linking.
 ├── init.sh                   # Unix/macOS initialization script
 ├── LICENSE                   # MIT Open Source License
 ├── README.md                 # English Documentation

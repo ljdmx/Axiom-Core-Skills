@@ -38,61 +38,61 @@ npm run dev
 ```
 my-project/
 ├── apps/
-�?  ├── web/                          # Vue 3 + Nuxt frontend (DDFM)
-�?  �?  ├── app.vue
-�?  �?  ├── nuxt.config.ts
-�?  �?  ├── pages/
-�?  �?  �?  ├── index.vue
-�?  �?  �?  ├── blogs/
-�?  �?  �?  �?  ├── index.vue
-�?  �?  �?  �?  └── [id].vue
-�?  �?  �?  └── login.vue
-�?  �?  ├── components/
-�?  �?  �?  ├── BlogCard.vue
-�?  �?  �?  ├── UserProfile.vue
-�?  �?  �?  └── ui/
-�?  �?  �?      ├── Button.vue
-�?  �?  �?      └── Card.vue
-�?  �?  ├── composables/
-�?  �?  �?  ├── usePermission.ts     # Permission composable
-�?  �?  �?  ├── useAuth.ts
-�?  �?  �?  └── useApi.ts            # Type-safe API client
-�?  �?  ├── assets/
-�?  �?  �?  └── css/
-�?  �?  �?      └── main.css
-�?  �?  └── package.json
-�?  �?
-�?  └── api/                          # NestJS backend (ADBM)
-�?      ├── src/
-�?      �?  ├── main.ts
-�?      �?  ├── app.module.ts
-�?      �?  └── ... (same as React template)
-�?      ├── migrations/
-�?      └── package.json
-�?
+│    ├── web/                          # Vue 3 + Nuxt frontend (DDFM)
+│    │    ├── app.vue
+│    │    ├── nuxt.config.ts
+│    │    ├── pages/
+│    │    │    ├── index.vue
+│    │    │    ├── blogs/
+│    │    │    │    ├── index.vue
+│    │    │    │    └── [id].vue
+│    │    │    └── login.vue
+│    │    ├── components/
+│    │    │    ├── BlogCard.vue
+│    │    │    ├── UserProfile.vue
+│    │    │    └── ui/
+│    │    │        ├── Button.vue
+│    │    │        └── Card.vue
+│    │    ├── composables/
+│    │    │    ├── usePermission.ts     # Permission composable
+│    │    │    ├── useAuth.ts
+│    │    │    └── useApi.ts            # Type-safe API client
+│    │    ├── assets/
+│    │    │    └── css/
+│    │    │        └── main.css
+│    │    └── package.json
+│    │  
+│    └── api/                          # NestJS backend (ADBM)
+│        ├── src/
+│        │    ├── main.ts
+│        │    ├── app.module.ts
+│        │    └── ... (same as React template)
+│        ├── migrations/
+│        └── package.json
+│  
 ├── packages/
-�?  ├── permission-model/             # 🔑 Unified permissions
-�?  �?  ├── src/
-�?  �?  �?  ├── index.ts
-�?  �?  �?  ├── permissions.ts
-�?  �?  �?  ├── roles.ts
-�?  �?  �?  ├── vue/                  # 🆕 Vue composables
-�?  �?  �?  �?  └── usePermission.ts
-�?  �?  �?  └── backend/
-�?  �?  �?      └── decorators.ts
-�?  �?  └── package.json
-�?  �?
-�?  ├── shared-types/                 # 📝 Shared TypeScript types
-�?  ├── ui-vue/                       # 🎨 Vue shared components
-�?  �?  ├── src/
-�?  �?  �?  ├── Button.vue
-�?  �?  �?  ├── Card.vue
-�?  �?  �?  ├── Input.vue
-�?  �?  �?  └── index.ts
-�?  �?  └── package.json
-�?  �?
-�?  └── config/                       # 🛠�?Shared configs
-�?
+│    ├── permission-model/             # 🔑 Unified permissions
+│    │    ├── src/
+│    │    │    ├── index.ts
+│    │    │    ├── permissions.ts
+│    │    │    ├── roles.ts
+│    │    │    ├── vue/                  # 🆕 Vue composables
+│    │    │    │    └── usePermission.ts
+│    │    │    └── backend/
+│    │    │        └── decorators.ts
+│    │    └── package.json
+│    │  
+│    ├── shared-types/                 # 📝 Shared TypeScript types
+│    ├── ui-vue/                       # 🎨 Vue shared components
+│    │    ├── src/
+│    │    │    ├── Button.vue
+│    │    │    ├── Card.vue
+│    │    │    ├── Input.vue
+│    │    │    └── index.ts
+│    │    └── package.json
+│    │  
+│    └── config/                       # 🛠️Shared configs
+│  
 ├── docker-compose.yml
 ├── turbo.json
 ├── package.json
@@ -114,7 +114,7 @@ export function usePermission(permission: Permission) {
   const auth = inject('auth');
   
   return computed(() => {
-    if (!auth?.user?.value) return false;
+    if (!auth—.user—.value) return false;
     return auth.user.value.permissions.includes(permission);
   });
 }
@@ -123,7 +123,7 @@ export function usePermissions(permissions: Permission[]) {
   const auth = inject('auth');
   
   return computed(() => {
-    if (!auth?.user?.value) return false;
+    if (!auth—.user—.value) return false;
     return permissions.every(p => 
       auth.user.value.permissions.includes(p)
     );
@@ -492,8 +492,8 @@ deleteComment() { }
 ### Frontend (Nuxt)
 - **Initial load**: ~800ms (vs React: ~1.2s)
 - **Bundle size**: ~120KB gzipped (vs React: ~150KB)
-- **LCP**: < 2.0s �?
-- **TBT**: < 200ms �?
+- **LCP**: < 2.0s ✅
+- **TBT**: < 200ms ✅
 
 ### Backend (NestJS)
 - Same as React template
@@ -515,10 +515,10 @@ deleteComment() { }
 | **Type Safety** | Same (TypeScript) | Same (TypeScript) |
 
 **Both templates use**:
-- �?Same `permission-model` package
-- �?Same `shared-types` package
-- �?Same backend (NestJS)
-- �?Same quality standards (DDFM + ADBM)
+- ✅Same `permission-model` package
+- ✅Same `shared-types` package
+- ✅Same backend (NestJS)
+- ✅Same quality standards (DDFM + ADBM)
 
 ---
 
