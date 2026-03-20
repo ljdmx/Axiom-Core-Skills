@@ -15,6 +15,7 @@ token_budget:
 
 > **Anti-Entropy Protocol**: Maintain a `SOUL_MANIFEST.json` and `EVALUATION_LOG.json` in the root. `EVALUATION_LOG.json` MUST track "Rams Scores" and previous design rejections to allow cross-session autonomous evolution. AI MUST read these files upon resumption to guarantee ZERO style degradation.
 > **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` — Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **Standard Gates**: `view_file(../_core_axioms/STANDARD_GATES.md)` — Inherit 3-Axis Soul Diagnostic and Rejection Gate.
 
 ---
 

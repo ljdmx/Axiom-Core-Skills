@@ -36,9 +36,9 @@ token_budget:
 
 > [!IMPORTANT]
 > The foundational 10 Laws of Aesthetic Sovereignty and Master Keys have been extracted to optimize token context.
-> **AI MUST read `references/design-philosophy.md` if evaluating overall product design or grading UI soul.**
+> **AI MUST read `references/SOVEREIGN_AESTHETICS.md` if evaluating overall product design or grading UI soul.**
 > ```
-> view_file(references/design-philosophy.md)
+> view_file(references/SOVEREIGN_AESTHETICS.md)
 > ```
 
 ---
@@ -52,6 +52,7 @@ token_budget:
 > **Generative UI Sandbox (V10 Rule)**: DDFM components MUST NOT be directly pushed to FSPC blindly. They must be generated as isolated Micro-Frontends (MFE). AI MUST invoke a local Storybook/Sandbox environment to render the component, capture a virtual visual regression AST, and verify 100% pixel-perfect layout alignment BEFORE handing it off to `product-core`.
 > **Unified Exquisite Iconography**: NEVER mix icon families. You MUST strictly use exactly ONE premium vector icon library across the entire project. **Phosphor Icons v2.1 (Duotone or Fill weights)** is the absolute mandated world-class standard. All icons MUST have identical `stroke-width` (e.g., 1.5px), corner radius, and scale. Reject any use of native emojis or raw SVGs downloaded from random sources.
 > **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` —Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **Standard Gates**: `view_file(../_core_axioms/STANDARD_GATES.md)` —Inherit 3-Axis Soul Diagnostic and Rejection Gate.
 
 ---
 

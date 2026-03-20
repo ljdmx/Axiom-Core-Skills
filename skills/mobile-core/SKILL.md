@@ -40,10 +40,8 @@ Before outputting any solution, you MUST clarify requirements through deep inqui
 > Full code for 5-sense synergy (tactile/auditory semantics) and Aura Diffusion background engine can be found in `references/design.md` §4-§5.
 
 ### Step 2: The Rejection Gate
-If you determine the requirement meets any of the following, **you MUST explicitly reject it and guide the user to elevate it**:
-- Introduce unnecessary visual stimulation— Following short-term trends or feature bloat—
-- Transfer cognitive load to the user— Complicating things just to "look advanced"—
-- Sacrifice honesty, environmental friendliness, or inclusivity—
+AI MUST execute the formal Rejection Gate protocol defined in `STANDARD_GATES.md`.
+ If you determine the requirement meets any of the rejection criteria, **you MUST explicitly reject it and guide the user to elevate it**.
 
 ### Step 3: Environment Shield (Conflict Defense)
 - **Target Platform**: App only— Mini-program only— Multi-platform—
@@ -63,6 +61,7 @@ If you determine the requirement meets any of the following, **you MUST explicit
 ```
 *Note: This package operates independently. If `PROJECT_NEXUS.json` is detected (optional), it will automatically inherit the full-stack/backend architectural context.*
 > **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` —Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **Standard Gates**: `view_file(../_core_axioms/STANDARD_GATES.md)` —Inherit 3-Axis Soul Diagnostic and Rejection Gate.
 
 ### 🔗 FSPC-Driven Orchestration Entry Point
 
@@ -462,6 +461,7 @@ $space-4: 32rpx;
 | Design Token · Colors · Typography · Animations · Skeleton | `references/design.md` | design system, Token, animation, color, dark mode, skeleton, typography |
 | Materials/Lighting · Widescreen/Responsive · Web A11y | `references/design-advanced.md` | material, lighting, tablet, foldable, performance budget, accessibility, A11y |
 | Advanced Components · Headless · Physical Feedback | `references/components.md` | components, navbar, FAB, popup, form, input |
+| Web3-Mobile Handshake · Wallet · Transaction UX | `references/web3-mobile-handshake.md` | web3, wallet, mobile-web3, blockchain app |
 | Multi-platform Publishing · CI/CD · Certificate Mgmt | `references/publishing.md` | publishing, cloud package, certificates, AppStore, Google Play, CI/CD |
 
 ---

@@ -1,4 +1,4 @@
-# 🌌 Axiom Core Skills v2.0 (Zenith)
+# 🌌 Axiom Core Skills v2.1 (Zenith)
 
 > **The Sovereign Orchestration Engine for Autonomous AI Agents.**
 
@@ -11,7 +11,10 @@ Axiom Core is a suite of **6 high-fidelity skill packages** optimized with the 5
 > [!TIP]
 > **[Access the Zenith v10.1 Interactive Billboard](skills/_core_axioms/zenith_billboard.html)**
 > 
-> This billboard serves as the real-time architectural manifest of Axiom Core, tracing the 4-layer hierarchy (Page — Module — Feature — API) and explicitly identifying the **ADK Design Patterns** within each terminal node.
+> This billboard serves as the real-time architectural manifest of Axiom Core, tracing the 4-layer hierarchy (Page — Module — Feature — API).
+> 
+> **[NEW] Dynamic Soul Telemetry Dashboard**
+> Use `node skills/_core_axioms/telemetry-refresher.js` to synchronize the high-fidelity `telemetry_dashboard.html` with your live `PROJECT_NEXUS.json` state.
 
 ---
 
@@ -80,4 +83,4 @@ To activate the orchestrator and begin an autonomous project:
 ## 📜 License
 MIT License. Axiom Core is designed for the high-end developer who demands technical sovereignty and aesthetic excellence.
 
-*Crafted with Absolute Sincerity by the Axiom Team.*
+*Crafted with Absolute Sincerity by the Axiom Team. All core protocol files are maintained in 100% English for world-class interoperability.*

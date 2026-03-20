@@ -1,7 +1,7 @@
-# 💎 Axiom Core v2.0: Zenith Release Manifest
+# 💎 Axiom Core v2.1: Zenith Release Manifest
 
 ## 🏛️ Ecosystem Status
-- **Version**: v2.0.1 (Zenith Edition)
+- **Version**: v2.1.0 (Zenith Edition)
 - **Engine Status**: OPTIMIZED [10.0/10]
 - **Design Pattern**: 5 Agent Skill Design Patterns (2026 Compliant)
 - **License**: MIT
@@ -25,7 +25,7 @@
 
 ### Core Logic
 - `/skills`: 7 Modular segments including `_core_axioms`.
-- `/skills/_core_axioms`: Interactive Zenith Billboard (`zenith_billboard.html`).
+- `/skills/_core_axioms`: Interactive Zenith Billboard (`zenith_billboard.html`) & Dynamic Telemetry (`telemetry_dashboard.html`).
 
 ### Initialization (Cross-Platform)
 - `init.bat`: Windows Command Prompt initialization.

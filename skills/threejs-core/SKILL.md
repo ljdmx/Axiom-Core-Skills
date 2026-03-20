@@ -1,5 +1,5 @@
 ---
-name: threejs
+name: threejs-core
 description: >
   World-class Three.js and React Three Fiber (R3F) 3D scene development skill with
   DDFM Soul Framework integration. Use for any 3D, WebGL, WebGPU, shaders, or 3D 
@@ -25,6 +25,7 @@ metadata:
 > Before upgrading → `references/diagnostics.md §4` —Breaking Change Map
 
 > **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` —Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **Standard Gates**: `view_file(../_core_axioms/STANDARD_GATES.md)` —Inherit 3-Axis Soul Diagnostic and Rejection Gate.
 
 ---
 

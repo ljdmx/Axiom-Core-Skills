@@ -17,6 +17,7 @@ token_budget:
 
 # API-Driven Backend Manifesto (ADBM)
 > **Visual Manifest**: [Axiom Core Zenith Billboard](../_core_axioms/zenith_billboard.html)
+> **Standard Gates**: `view_file(../_core_axioms/STANDARD_GATES.md)` —Inherit 3-Axis Soul Diagnostic and Rejection Gate.
 
 > **MUST READ**: `view_file(references/domain-infra/protocols.md)` —RFC 2119 Rules and Core Protocols.
 > **Sovereign Interface**: Load `view_file(divine_interface.md)` for high-order API design patterns and zero-placeholder mandates.

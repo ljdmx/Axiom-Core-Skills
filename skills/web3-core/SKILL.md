@@ -103,6 +103,7 @@ Ask one question at a time. Wait for response before proceeding.
 ---
 ## 🌐 Federated Handoff & Global Nexus Protocol
 > **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` —Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
+> **Standard Gates**: `view_file(../_core_axioms/STANDARD_GATES.md)` —Inherit 3-Axis Soul Diagnostic and Rejection Gate.
 
 1. **State Injection —web3_context Write-Back**: After contract design is finalized, AI MUST write to `PROJECT_NEXUS.json.sub_skill_outputs.web3_core`:
 ```json
