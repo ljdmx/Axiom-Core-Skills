@@ -188,6 +188,7 @@ Before choosing any technical approach, identify the scene's dominant soul axis:
 | **Studio Product** | `0xffffff × 0.05` | `0xfff8f0 × 4.0` | `0xe8f0ff × 0.4` | `0xffffff × 1.2` |
 | **Sci-Fi Neon** | `0x000005 × 0.03` | `0x00ffcc × 5.0` | `0xff0088 × 0.5` | `0x0088ff × 1.0` |
 | **Warm Interior** | `0xff9944 × 0.08` | `0xffcc88 × 4.0` | `0x88aacc × 0.3` | `0xffaa66 × 0.6` |
+| **Zenith White (Studio)** | `0xffffff × 0.1` | `0xfffefc × 3.5` | `0xe0f7ff × 0.5` | `0xffffff × 1.5` |
 
 ### 3.4 Light Pollution Clearance Protocol
 
@@ -298,6 +299,7 @@ entryTl
   // Stage 1: Environment establishes (space exists before subject)
   .to(scene.fog, { density: 0.015, duration: 1.5, ease: 'power2.out' }, 0)
   .from(keyLight, { intensity: 0, duration: 2.0, ease: 'power2.inOut' }, 0.2)
+```
 
 ### 4.1 Delta-Time & Soul Easing
 

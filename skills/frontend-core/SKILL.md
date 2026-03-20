@@ -50,7 +50,8 @@ token_budget:
 > **Language Purity**: NEVER mix Chinese and English. Use i18n pattern for all text.
 > **Accessibility First (A11y)**: WCAG 2.1 AA compliance by default.
 > **Generative UI Sandbox (V10 Rule)**: DDFM components MUST NOT be directly pushed to FSPC blindly. They must be generated as isolated Micro-Frontends (MFE). AI MUST invoke a local Storybook/Sandbox environment to render the component, capture a virtual visual regression AST, and verify 100% pixel-perfect layout alignment BEFORE handing it off to `product-core`.
-> **Unified Exquisite Iconography**: NEVER mix icon families. You MUST strictly use exactly ONE premium vector icon library across the entire project. **Phosphor Icons v2.1 (Duotone or Fill weights)** is the absolute mandated world-class standard. All icons MUST have identical `stroke-width` (e.g., 1.5px), corner radius, and scale. Reject any use of native emojis or raw SVGs downloaded from random sources.
+> **Unified Exquisite Iconography (v10.1)**: NEVER mix icon families. You MUST strictly use exactly ONE premium vector icon library across the entire project. **Phosphor Icons v2.1 (Duotone or Fill weights)** is the absolute mandated world-class standard. All icons MUST have identical `stroke-width` (e.g., 1.5px), corner radius, and scale. 
+> **Icon Auto-Discovery Gate (Zenith)**: AI MUST verify the exact export names of icons (e.g., `MagnifyingGlass`, `House`) against the installed package version. If an export is missing (e.g., `Quote` vs `Quotes`), AI MUST perform an AST-level search or check documentation before generating imports to prevent `SyntaxError`.
 > **MUST READ**: `view_file(../_core_axioms/KERNEL_BOOTSTRAP.md)` —Inherit Global Nexus, Architectural Sovereign, and Soul Manifesto rules.
 > **Standard Gates**: `view_file(../_core_axioms/STANDARD_GATES.md)` —Inherit 3-Axis Soul Diagnostic and Rejection Gate.
 
@@ -269,7 +270,7 @@ To accelerate implementation, AI MUST leverage these premium templates when appl
 - **Complex Modules**: `templates/forms/multi-step-checkout.md`
 
 ## —Admin Protocols (Ecosystem, Health, Evolution)
-1. **Routing & Health**: Use `tools/aesthetic-scorer.js` for quantification. Use `templates/` for boilerplate. See `templates/_meta.json` or `references/MANIFEST.md` for ecosystem mapping. If missing, apply fallback rules inline. **Mandatory Audit**: Run `node tools/audit-skill.js [target_path]` before handoff.
+1. **Routing & Health**: Use `tools/aesthetic-scorer.js` for quantification. Use `templates/` for boilerplate. See `templates/_meta.json` or `references/MANIFEST.md` for ecosystem mapping. If missing, apply fallback rules inline. **Mandatory Audit**: Run `node tools/audit-skill.js [target_path]` before handoff. Verify Gate 0C security compliance.
 2. **Evolution**: If a rule fails 3+ times, a UI pattern is obsolete, or a tool >18mo old, generate `skill-amendment-proposal.md`.
 
 ---

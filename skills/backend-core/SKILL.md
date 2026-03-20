@@ -108,6 +108,10 @@ token_budget:
 - **Anti-Pattern Enforcement**: Any frontend component that iterates a large array (> 100 items) purely for aggregation purposes (`.reduce()`, `.filter().length`, `_.groupBy()`) is a HARD BLOCK signal —refactor into a server-side View-Model endpoint instead.
 - **Trace Visualization Mandate**: For complex business logic or multi-step sagas, AI MUST generate a **Mermaid-based Trace Diagram** within the handler's documentation/comments to provide visual structural clarity.
 
+## 21.5 Local Telemetry Sync Engine (Zenith)
+- **Mandate**: Dashboards running locally (`file://`) often fail to sync due to CORS. 
+- **Execution**: AI MUST generate a `data_bridge.js` (or `axiom_data.js`) containing a serialized version of the project's JSON state (`PROJECT_NEXUS.json`) to be loaded via a standard `<script>` tag. This ensures real-time telemetry visibility without requiring a local web server for the dashboard.
+
 ## 22 Cinematic Database Seeding (Production Demo Fidelity)
 - **Mandate**: A database seeded with `User 1`, `Product 2`, `Test Title` is a failed product. The seed data is the product's first impression. It MUST be indistinguishable from real production data at first glance.
 - **Hyper-Realistic Data Constraints**:

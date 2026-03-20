@@ -260,11 +260,11 @@ crud-controller:
 
 ---
 
-### Scenario 2: "创建用户登录页面" (Chinese)
+### Scenario 2: "Create user login page"
 
 ```typescript
 // Input
-userRequest = "创建用户登录页面";
+userRequest = "Create user login page";
 
 // Step 1: Intent
 {
@@ -272,8 +272,8 @@ userRequest = "创建用户登录页面";
   entity: 'page',
   pattern: 'Auth',
   complexity: 6,
-  keywords: ['用户', '登录', '页面'],
-  language: 'zh'      // ✅Detected Chinese
+  keywords: ['user', 'login', 'page'],
+  language: 'en'      // ✅Detected English
 }
 
 // Step 2: Filter
@@ -293,8 +293,8 @@ login-page:
   TOTAL: 0.99 ⭐
 
 // Step 4: Customization
-Template will be filled with LANGUAGE = 'zh'
-Result: 100% Chinese UI ✅
+Template will be filled with LANGUAGE = 'en'
+Result: 100% English UI ✅
 ```
 
 ---

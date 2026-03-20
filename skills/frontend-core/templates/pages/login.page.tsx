@@ -2,9 +2,9 @@
 /*
 @template-id: login-page
 @version: 1.0.0
-@description: Clean login page with language purity (no mixed Chinese-English)
+@description: Clean login page with Zenith-level design and English-only compliance
 @customization-points: BRAND_NAME, API_ENDPOINT, LANGUAGE
-@language-modes: en, zh
+@language-modes: en
 @dependencies: react, lucide-react
 @framework: React
 */
@@ -14,38 +14,21 @@ import React, { useState } from 'react';
 import { LogIn } from 'lucide-react';
 
 // CUSTOMIZATION_POINT:START - LANGUAGE
-const LANGUAGE = '{{LANGUAGE}}'; // 'en' or 'zh'
+const LANGUAGE = 'en'; // Strict English compliance
 
-const i18n = {
-    en: {
-        title: 'Sign In',
-        subtitle: 'Welcome back',
-        emailLabel: 'Email Address',
-        emailPlaceholder: 'your@email.com',
-        passwordLabel: 'Password',
-        passwordPlaceholder: 'Enter your password',
-        loginButton: 'Sign In',
-        forgotPassword: 'Forgot password—',
-        noAccount: "Don't have an account—",
-        signUp: 'Sign up',
-        loggingIn: 'Signing in...'
-    },
-    zh: {
-        title: '登录',
-        subtitle: '欢迎回来',
-        emailLabel: '邮箱地址',
-        emailPlaceholder: '请输入邮箱',
-        passwordLabel: '密码',
-        passwordPlaceholder: '请输入密码',
-        loginButton: '登录',
-        forgotPassword: '忘记密码？',
-        noAccount: '还没有账号？',
-        signUp: '注册',
-        loggingIn: '正在登录...'
-    }
+const t = {
+    title: 'Sign In',
+    subtitle: 'Welcome back',
+    emailLabel: 'Email Address',
+    emailPlaceholder: 'your@email.com',
+    passwordLabel: 'Password',
+    passwordPlaceholder: 'Enter your password',
+    loginButton: 'Sign In',
+    forgotPassword: 'Forgot password?',
+    noAccount: "Don't have an account?",
+    signUp: 'Sign up',
+    loggingIn: 'Signing in...'
 };
-
-const t = i18n[LANGUAGE];
 // CUSTOMIZATION_POINT:END
 
 interface LoginProps {

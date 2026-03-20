@@ -134,8 +134,9 @@ token_budget:
 
 ## 📋 Retrospective & Handoff
 1. **Mock Walkthrough**: AI MUST perform a Mock Walkthrough, listing test accounts and core user flows.
-2. **Telemetry Write-Back**: All sub-skills MUST record performance metrics into `PROJECT_NEXUS.json`.
-3. **Retrospective Gate**: Output `PROJECT_RETRO.md` with Rams Scores and Tech Debt log.
+2. **Visual Asset Protection (Zenith Gate)**: AI MUST verify the presence of all Hero images, Logos, and Backgrounds referenced in the UI. If new assets are generated via `generate_image`, they MUST be backed up to the `references/assets/` directory to ensure availability across sessions.
+3. **Telemetry Write-Back**: All sub-skills MUST record performance metrics into `PROJECT_NEXUS.json`.
+4. **Retrospective Gate**: Output `PROJECT_RETRO.md` with Rams Scores and Tech Debt log.
 
 ---
 

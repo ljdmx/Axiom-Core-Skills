@@ -3,270 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom Zenith v2.1 | Soul Telemetry Dashboard</title>
+    <title>Axiom Core | Telemetry Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2—family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="axiom_data.js"></script>
     <style>
         :root {
-            --bg-dark: #050505;
-            --accent-primary: #00f2ff;
-            --accent-secondary: #7000ff;
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: blur(20px);
+            /* OKLCH Color Palette - Zenith White */
+            --bg-color: oklch(0.99 0.005 200);
+            --surface-color: oklch(1 0 0 / 0.7);
+            --text-primary: oklch(0.2 0.01 200);
+            --text-secondary: oklch(0.45 0.02 200);
+            --accent-primary: oklch(0.6 0.15 200);
+            --accent-success: oklch(0.65 0.15 150);
+            --accent-warning: oklch(0.65 0.15 70);
+            --border-color: oklch(0.9 0.01 200 / 0.5);
+            --glass-blur: blur(40px);
+            --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            margin: 0;
-            padding: 40px;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, oklch(0.95 0.02 220 / 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, oklch(0.95 0.02 180 / 0.3) 0px, transparent 50%),
+                url("./assets/zenith_white_hero.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden;
         }
 
-        .background-blob {
+        /* Fine Noise Texture Overlay */
+        body::before {
+            content: "";
             position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
-            filter: blur(120px);
-            opacity: 0.15;
-            z-index: -1;
-            top: -200px;
-            right: -200px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
         }
 
         header {
+            padding: 2.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 60px;
+            backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-color);
+            background: oklch(1 0 0 / 0.3);
+            z-index: 100;
         }
 
-        .logo-area {
+        .logo-section h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 0.75rem;
         }
 
-        .logo-area i { font-size: 32px; color: var(--accent-primary); }
-        .logo-area h1 { font-size: 28px; margin: 0; letter-spacing: -1px; font-weight: 700; }
-
-        .status-badge {
-            background: rgba(0, 242, 255, 0.1);
-            border: 1px solid var(--accent-primary);
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .logo-section h1 i {
             color: var(--accent-primary);
         }
 
-        .grid {
+        .sync-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-success);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-success);
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 25px;
+            grid-template-columns: 1fr 350px;
+            gap: 2.5rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: var(--surface-color);
             backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .card:hover { border-color: rgba(255, 255, 255, 0.2); transform: translateY(-5px); }
-
-        /* Main Score Section */
-        .score-card { grid-column: span 4; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .score-circle {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: conic-gradient(var(--accent-primary) 95%, transparent 0);
+            padding: 2rem;
+            transition: var(--transition-spring);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-bottom: 25px;
-            box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+            flex-direction: column;
+            gap: 1.5rem;
+            box-shadow: 0 8px 32px -4px oklch(0 0 0 / 0.05);
         }
-        .score-circle::after {
-            content: '';
-            position: absolute;
-            width: 170px;
-            height: 170px;
-            background: var(--bg-dark);
-            border-radius: 50%;
-        }
-        .score-value { position: absolute; font-size: 64px; font-weight: 700; z-index: 1; }
-        .score-label { color: var(--text-dim); font-size: 18px; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Metrics List */
-        .metrics-card { grid-column: span 8; }
-        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .metric-item {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 20px;
-            border-radius: 16px;
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: var(--accent-primary);
+            box-shadow: 0 20px 48px -12px oklch(0 0 0 / 0.1);
+        }
+
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .metric-info { display: flex; align-items: center; gap: 12px; }
-        .metric-info i { font-size: 24px; color: var(--accent-secondary); }
-        .metric-val { font-weight: 600; font-size: 20px; }
 
-        /* Compliance Gates */
-        .gate-card { grid-column: span 12; }
-        .gate-flow { display: flex; justify-content: space-between; position: relative; padding: 20px 0; }
-        .gate-flow::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            width: 90%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 0;
+        .card-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
-        .gate-step {
+
+        .card-header i {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        /* Chart Visuals */
+        .chart-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
             position: relative;
-            z-index: 1;
-            background: var(--bg-dark);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-            text-align: center;
-            width: 180px;
         }
-        .gate-step.active { border-color: var(--accent-primary); box-shadow: 0 0 20px rgba(0, 242, 255, 0.1); }
-        .gate-step.done { border-color: #00ff88; color: #00ff88; }
-        .gate-step i { font-size: 24px; margin-bottom: 8px; }
 
-        /* Emotional Pulse */
-        .pulse-card { grid-column: span 6; }
-        .pulse-bars { display: flex; gap: 15px; height: 150px; align-items: flex-end; }
-        .bar { flex: 1; background: linear-gradient(to top, var(--accent-secondary), var(--accent-primary)); border-radius: 8px 8px 0 0; animation: grow 1.5s ease-out; }
-        @keyframes grow { from { height: 0; } to { height: 100%; } }
+        .circular-chart {
+            width: 180px;
+            height: 180px;
+        }
 
-        /* Footer */
-        footer { margin-top: 60px; text-align: center; color: var(--text-dim); font-size: 14px; font-weight: 300; }
+        .circle-bg {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 3;
+        }
+
+        .circle {
+            fill: none;
+            stroke: var(--accent-primary);
+            stroke-width: 3;
+            stroke-linecap: round;
+            transition: stroke-dasharray 1s ease;
+        }
+
+        .percentage {
+            position: absolute;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .metrics-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: oklch(1 0 0 / 0.5);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .metric-value {
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .status-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-badge.passed {
+            background: oklch(0.9 0.1 150 / 0.2);
+            color: var(--accent-success);
+            border: 1px solid var(--accent-success);
+        }
+
+        .status-badge.pending {
+            background: oklch(0.9 0.1 70 / 0.2);
+            color: var(--accent-warning);
+            border: 1px solid var(--accent-warning);
+        }
+
+        /* Sidebar - Axioms & Principles */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .axiom-box {
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .axiom-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .axiom-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .principle-tag {
+            background: oklch(0.6 0.15 200 / 0.05);
+            border: 1px solid var(--accent-primary);
+            padding: 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 1100px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="background-blob"></div>
-    
     <header>
-        <div class="logo-area">
-            <i class="ph-bold ph-chart-polar"></i>
-            <h1>Axiom Zenith Telemetry</h1>
+        <div class="logo-section">
+            <h1><i class="ph ph-cube"></i> AXIOM CORE</h1>
         </div>
-        <div class="status-badge">
-            <i class="ph-bold ph-shield-checkered"></i>
-            SOVEREIGN COMPLIANCE: 100%
+        <div class="sync-status" id="syncStatus">
+            <div class="status-dot"></div>
+            <span>LIVE SYNC ACTIVE</span>
         </div>
     </header>
 
-    <main class="grid">
-        <!-- Main Rams Score -->
-        <section class="card score-card">
-            <div class="score-label">Rams Score</div>
-            <div class="score-circle">
-                <div class="score-value">9.5</div>
-            </div>
-            <p style="color: var(--text-dim); margin: 0;">World-Class Archetype Confirmed</p>
-        </section>
-
-        <!-- Dynamic Metrics -->
-        <section class="card metrics-card">
-            <h3 style="margin-top: 0; margin-bottom: 25px;">Core System Health</h3>
-            <div class="metrics-grid">
-                <div class="metric-item">
-                    <div class="metric-info"><i class="ph-bold ph-terminal-window"></i> <span>Build Success Pulse</span></div>
-                    <div class="metric-val" style="color: #00ff88;">Stable</div>
+    <main>
+        <section class="dashboard-grid">
+            <!-- Project Overview -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Project Nexus</h2>
+                    <i class="ph ph-projector-screen-chart"></i>
                 </div>
-                <div class="metric-item">
-                    <div class="metric-info"><i class="ph-bold ph-atom"></i> <span>Emotional Resonance</span></div>
-                    <div class="metric-val">92%</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-info"><i class="ph-bold ph-link-simple-horizontal"></i> <span>Contract Gating</span></div>
-                    <div class="metric-val">4 Layers</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-info"><i class="ph-bold ph-arrows-left-right"></i> <span>Nexus Sync Delta</span></div>
-                    <div class="metric-val">0.12ms</div>
+                <div class="metrics-list" id="nexusMetrics">
+                    <div class="metric-item">
+                        <span class="metric-label">Project ID</span>
+                        <span class="metric-value" id="projectName">...</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Nexus Version</span>
+                        <span class="metric-value">v2.0</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">FSPC Core</span>
+                        <span class="metric-value">v9.6</span>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Compliance Flow -->
-        <section class="card gate-card">
-            <h3 style="margin-top: 0; margin-bottom: 25px;">Execution Gate Pipeline</h3>
-            <div class="gate-flow">
-                <div class="gate-step done">
-                    <i class="ph-bold ph-check-circle"></i>
-                    <div>Phase 0: Planning</div>
+            <!-- RAM Score Chart -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Soul Diagnostics</h2>
+                    <i class="ph ph-sparkle"></i>
                 </div>
-                <div class="gate-step done">
-                    <i class="ph-bold ph-check-circle"></i>
-                    <div>Phase 1: Standards</div>
+                <div class="chart-container">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path id="ramCircle" class="circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    </svg>
+                    <div class="percentage" id="ramScore">...</div>
                 </div>
-                <div class="gate-step active">
-                    <i class="ph-bold ph-shooting-star"></i>
-                    <div>Phase 2: Visuals</div>
+            </div>
+
+            <!-- Compliance Gates -->
+            <div class="card" style="grid-column: span 2;">
+                <div class="card-header">
+                    <h2>Architectural Gates</h2>
+                    <i class="ph ph-shield-check"></i>
                 </div>
-                <div class="gate-step">
-                    <i class="ph-bold ph-shield-star"></i>
-                    <div>Phase 3: Defensive</div>
-                </div>
-                <div class="gate-step">
-                    <i class="ph-bold ph-lightning"></i>
-                    <div>Phase 4: Optimization</div>
+                <div class="metrics-list" id="gateMetrics" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                    <!-- Hydrated by JS -->
                 </div>
             </div>
         </section>
 
-        <!-- Emotional Pulse -->
-        <section class="card pulse-card">
-            <h3 style="margin-top: 0; margin-bottom: 25px;">Soul Manifest Axis</h3>
-            <div class="pulse-bars">
-                <div class="bar" style="height: 95%;"></div>
-                <div class="bar" style="height: 88%;"></div>
-                <div class="bar" style="height: 92%;"></div>
+        <aside class="sidebar">
+            <div class="axiom-box">
+                <h3><i class="ph ph-eye"></i> VISION</h3>
+                <p id="soulVision">...</p>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-top: 15px; color: var(--text-dim); font-size: 14px;">
-                <span>Understand</span>
-                <span>Respect</span>
-                <span>Companion</span>
+            <div class="axiom-box">
+                <h3><i class="ph ph-atom"></i> PRINCIPLES</h3>
+                <div id="corePrinciples" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- Hydrated by JS -->
+                </div>
             </div>
-        </section>
-
-        <!-- Log Stream -->
-        <section class="card pulse-card">
-            <h3 style="margin-top: 0; margin-bottom: 25px;">Agent Handshake Log</h3>
-            <div style="font-family: 'Inter', monospace; font-size: 13px; line-height: 1.8;">
-                <div style="color: var(--accent-primary);">[13:08:22] [Nexus] Handshake initialized: product-core → v2.1</div>
-                <div style="color: var(--text-dim);">[13:08:45] [Soul] Manifest check passed: Zero-Dead-End verified</div>
-                <div style="color: var(--accent-secondary);">[13:09:12] [Types] axioms.d.ts injected into shared nervous system</div>
-                <div style="color: #00ff88;">[13:10:01] [UI] Telemetry Dashboard layer activated</div>
+            <div class="axiom-box">
+                <h3><i class="ph ph-palette"></i> AESTHETIC</h3>
+                <div class="metrics-list">
+                    <div class="metric-item">
+                        <span class="metric-label">Color</span>
+                        <span class="metric-value">OKLCH</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Motion</span>
+                        <span class="metric-value">Spring</span>
+                    </div>
+                </div>
             </div>
-        </section>
+        </aside>
     </main>
 
-    <footer>
-        Axiom Core Zenith Distribution v2.1 • Sovereign Multi-Agent OS • DeepMind Advanced Agentic Coding
-    </footer>
+    <script>
+        /**
+         * Dynamic Data Hydration Engine
+         * Powered by Axiom Data Bridge
+         */
+        function hydrate() {
+            const data = window.AXIOM_DATA;
+            if (!data) {
+                console.error("Sync Failed: AXIOM_DATA not found. Retrying in 2s...");
+                document.getElementById('syncStatus').innerHTML = '<div class="status-dot" style="background: red; box-shadow: 0 0 12px red;"></div><span>SYNC FAILED</span>';
+                return;
+            }
+
+            // Sync Success state
+            document.getElementById('syncStatus').innerHTML = '<div class="status-dot" style="background: var(--accent-success); box-shadow: 0 0 12px var(--accent-success);"></div><span>SYNC AUTHENTICATED</span>';
+
+            const { nexus, soul } = data;
+
+            // Update Nexus
+            document.getElementById('projectName').textContent = nexus.project_name;
+            
+            // RAM Score Update
+            const overall = nexus.soul_scorecard.overall;
+            const percentage = (overall / 10) * 100;
+            document.getElementById('ramScore').textContent = overall;
+            document.getElementById('ramCircle').setAttribute('stroke-dasharray', `${percentage}, 100`);
+
+            // Gates Update
+            const gates = nexus.discovery_gates;
+            const gateContainer = document.getElementById('gateMetrics');
+            gateContainer.innerHTML = '';
+            Object.entries(gates).forEach(([key, value]) => {
+                const label = key.replace('gate_0', 'Phase 0').replace('_', ' ').toUpperCase();
+                gateContainer.innerHTML += `
+                    <div class="metric-item">
+                        <span class="metric-label">${label}</span>
+                        <span class="status-badge ${value}">${value}</span>
+                    </div>
+                `;
+            });
+
+            // Soul Vision
+            document.getElementById('soulVision').textContent = soul.vision;
+            
+            // Principles
+            const principlesContainer = document.getElementById('corePrinciples');
+            principlesContainer.innerHTML = '';
+            soul.core_principles.forEach(p => {
+                principlesContainer.innerHTML += `
+                    <div class="principle-tag">
+                        <i class="ph ph-caret-right"></i>
+                        <span>${p}</span>
+                    </div>
+                `;
+            });
+        }
+
+        // Run Hydration
+        hydrate();
+
+        // Polling loop for pseudo-live updates (if axiom_data.js changes)
+        setInterval(() => {
+            const script = document.createElement('script');
+            script.src = 'axiom_data.js?t=' + Date.now();
+            script.onload = () => {
+                hydrate();
+                script.remove();
+            };
+            document.head.appendChild(script);
+        }, 2000);
+    </script>
 </body>
 </html>

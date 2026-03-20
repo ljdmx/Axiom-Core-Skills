@@ -2,10 +2,10 @@
 /*
 @template-id: dashboard-layout
 @version: 2.0.0
-@description: Enterprise-grade admin dashboard with glassmorphism, fluid animations, and responsive design
+@description: Enterprise-grade admin dashboard with glassmorphism, Zenith White design
 @design-level: Premium (International high-tier)
 @customization-points: SIDEBAR_ITEMS, THEME_COLORS, BRAND_NAME, LANGUAGE, USER_INFO
-@language-modes: en, zh
+@language-modes: en
 @dependencies: react, lucide-react, framer-motion
 @framework: React
 @design-features: Glassmorphism, Fluid animations, Adaptive sidebar, Premium typography, Dark mode ready
@@ -27,34 +27,19 @@ import {
 } from 'lucide-react';
 
 // CUSTOMIZATION_POINT:START - LANGUAGE
-const LANGUAGE = '{{LANGUAGE}}'; // 'en' or 'zh'
+const LANGUAGE = 'en'; // Zenith English-Only Mandate
 
-const i18n = {
-    en: {
-        search: 'Search...',
-        notifications: 'Notifications',
-        profile: 'Profile',
-        settings: 'Settings',
-        logout: 'Logout',
-        welcome: 'Welcome back',
-        dashboard: 'Dashboard',
-        users: 'Users',
-        settingsMenu: 'Settings'
-    },
-    zh: {
-        search: '搜索...',
-        notifications: '通知',
-        profile: '个人资料',
-        settings: '设置',
-        logout: '退出登录',
-        welcome: '欢迎回来',
-        dashboard: '仪表板',
-        users: '用户管理',
-        settingsMenu: '系统设置'
-    }
+const t = {
+    search: 'Search...',
+    notifications: 'Notifications',
+    profile: 'Profile',
+    settings: 'Settings',
+    logout: 'Logout',
+    welcome: 'Welcome back',
+    dashboard: 'Dashboard',
+    users: 'Users',
+    settingsMenu: 'Settings'
 };
-
-const t = i18n[LANGUAGE];
 // CUSTOMIZATION_POINT:END
 
 // CUSTOMIZATION_POINT:START - SIDEBAR_ITEMS
@@ -80,13 +65,13 @@ const theme = {
 interface DashboardLayoutProps {
     children: React.ReactNode;
     // CUSTOMIZATION_POINT:START - USER_INFO
-    user—: {
+    user: {
         name: string;
         email: string;
-        avatar—: string;
+        avatar?: string;
     };
     // CUSTOMIZATION_POINT:END
-    onLogout—: () => void;
+    onLogout: () => void;
 }
 
 export default function DashboardLayout({ children, user, onLogout }: DashboardLayoutProps) {
@@ -136,7 +121,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                       w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl
                       font-semibold transition-all duration-300 group
                       ${activeTab === item.id
-                                                — 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/30'
+                                                ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/30'
                                                 : 'text-slate-700 hover:bg-white/50 hover:shadow-md'
                                             }
                     `}
@@ -145,7 +130,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                                             size={20}
                                             className={`
                         transition-transform duration-300
-                        ${activeTab === item.id — 'scale-110' : 'group-hover:scale-105'}
+                        ${activeTab === item.id ? 'scale-110' : 'group-hover:scale-105'}
                       `}
                                         />
                                         <span className="text-sm">{item.label}</span>
@@ -171,20 +156,20 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                                 >
                                     {/* Avatar */}
                                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-cyan-600 flex items-center justify-center text-white font-bold">
-                                        {user—.name—.[0] || 'U'}
+                                        {user.name?.[0] || 'U'}
                                     </div>
 
                                     {/* User Info */}
                                     <div className="flex-1 text-left">
                                         <div className="font-bold text-sm text-slate-900">
-                                            {user—.name || 'User'}
+                                            {user.name || 'User'}
                                         </div>
-                                        <div className="text-xs text-slate-500">{user—.email || 'user@example.com'}</div>
+                                        <div className="text-xs text-slate-500">{user.email || 'user@example.com'}</div>
                                     </div>
 
                                     <ChevronDown
                                         size={16}
-                                        className={`text-slate-400 transition-transform ${userMenuOpen — 'rotate-180' : ''}`}
+                                        className={`text-slate-400 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`}
                                     />
                                 </motion.button>
 
@@ -219,7 +204,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
 
             {/* Main Content */}
             <div
-                className={`transition-all duration-300 ${sidebarOpen — 'ml-72' : 'ml-0'
+                className={`transition-all duration-300 ${sidebarOpen ? 'ml-72' : 'ml-0'
                     }`}
             >
                 {/* Top Bar */}
@@ -232,7 +217,7 @@ export default function DashboardLayout({ children, user, onLogout }: DashboardL
                             onClick={() => setSidebarOpen(!sidebarOpen)}
                             className="p-2 rounded-xl hover:bg-purple-50 transition-colors"
                         >
-                            {sidebarOpen — <X size={20} /> : <Menu size={20} />}
+                            {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
                         </motion.button>
 
                         {/* Search */}
