@@ -1,0 +1,39 @@
+{
+    "projects": {
+        "proj_a1b2": {
+            "path": "e:/aiwork_01/smart-agriculture",
+            "name": "Smart Agriculture",
+            "type": "Monorepo",
+            "stack": {
+                "frontend": "React",
+                "backend": "Express",
+                "db": "MySQL",
+                "orm": "Prisma"
+            },
+            "features": [
+                "auth-jwt",
+                "dashboard-glass",
+                "iot-integration"
+            ],
+            "status": "Active",
+            "success_score": 0.95,
+            "last_updated": "2026-01-30T16:00:00Z"
+        }
+    },
+    "cross_project_patterns": {
+        "auth-strategy": {
+            "preferred": "JWT + Refresh",
+            "confidence": 0.85,
+            "projects_used": [
+                "proj_a1b2"
+            ]
+        },
+        "ui-library": {
+            "preferred": "Shadcn UI",
+            "confidence": 0.9,
+            "projects_used": [
+                "proj_a1b2"
+            ]
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "identity": {
+        "role": "Full Stack Developer",
+        "experience_level": "Senior",
+        "language": "zh-CN"
+    },
+    "preferences": {
+        "package_manager": "pnpm",
+        "linter": "Biome",
+        "test_runner": "Vitest",
+        "css_framework": "Tailwind",
+        "orm": "Prisma"
+    },
+    "style_guide": {
+        "quotes": "single",
+        "semi": true,
+        "tab_width": 2,
+        "trailing_comma": "all",
+        "component_export": "named",
+        "file_naming": "kebab-case"
+    },
+    "interaction_style": {
+        "verbosity": "concise",
+        "proactivity": "high",
+        "tone": "professional"
+    },
+    "environment": {
+        "os": "windows",
+        "shell": "powershell",
+        "constraints": [
+            "Avoid '&&' for command chaining, use ';' or sequential steps.",
+            "Verify file existence before referencing in code (e.g. avatars).",
+            "Use 'Remove-Item -Force' for deletion."
+        ]
+    },
+    "evolution": {
+        "milestones": [
+            {
+                "date": "2026-01-30",
+                "event": "Established World-Class Skill Architecture",
+                "impact": "Enabled global cognitive grid"
+            }
+        ]
+    },
+    "last_updated": "2026-01-30T16:15:00Z"
+}

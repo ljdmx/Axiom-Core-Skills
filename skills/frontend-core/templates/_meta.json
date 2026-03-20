@@ -1,0 +1,154 @@
+{
+    "registry_version": "2.0",
+    "templates": [
+        {
+            "id": "login-page",
+            "name": "Login Page",
+            "path": "pages/login.page.tsx",
+            "category": "frontend",
+            "framework": "React",
+            "complexity": 6,
+            "reusability": 9,
+            "dependencies": [
+                "lucide-react"
+            ],
+            "useCases": [
+                "Authentication UI"
+            ],
+            "customizationPoints": [
+                "BRAND_NAME",
+                "LANGUAGE"
+            ],
+            "estimatedTimeSaving": "15 minutes",
+            "tags": [
+                "auth",
+                "login",
+                "page"
+            ]
+        },
+        {
+            "id": "dashboard-layout",
+            "name": "Glassmorphism Dashboard",
+            "path": "layouts/dashboard.layout.tsx",
+            "category": "frontend",
+            "framework": "React",
+            "complexity": 7,
+            "reusability": 10,
+            "dependencies": [
+                "framer-motion",
+                "lucide-react"
+            ],
+            "useCases": [
+                "Admin Panel",
+                "SaaS App"
+            ],
+            "customizationPoints": [
+                "SIDEBAR_ITEMS",
+                "THEME_COLORS"
+            ],
+            "estimatedTimeSaving": "25 minutes",
+            "tags": [
+                "layout",
+                "dashboard",
+                "glassmorphism"
+            ]
+        },
+        {
+            "id": "data-table",
+            "name": "Advanced Data Table",
+            "path": "components/data-table.tsx",
+            "category": "frontend",
+            "framework": "React",
+            "complexity": 7,
+            "reusability": 9,
+            "dependencies": [
+                "lucide-react"
+            ],
+            "useCases": [
+                "List View",
+                "Management Grid"
+            ],
+            "customizationPoints": [
+                "COLUMNS",
+                "ACTIONS"
+            ],
+            "estimatedTimeSaving": "20 minutes",
+            "tags": [
+                "table",
+                "data",
+                "list"
+            ]
+        },
+        {
+            "id": "error-boundary",
+            "name": "Global Error Boundary",
+            "path": "components/error-boundary.tsx",
+            "category": "frontend",
+            "framework": "React",
+            "complexity": 4,
+            "reusability": 10,
+            "dependencies": [
+                "react"
+            ],
+            "useCases": [
+                "App Stability"
+            ],
+            "customizationPoints": [
+                "fallbackUI"
+            ],
+            "estimatedTimeSaving": "10 minutes",
+            "tags": [
+                "error",
+                "handling"
+            ]
+        },
+        {
+            "id": "loading-spinner",
+            "name": "Elegant Spinner",
+            "path": "components/loading-spinner.tsx",
+            "category": "frontend",
+            "framework": "React",
+            "complexity": 2,
+            "reusability": 10,
+            "dependencies": [
+                "framer-motion"
+            ],
+            "useCases": [
+                "Loading State"
+            ],
+            "customizationPoints": [
+                "SIZE",
+                "COLOR"
+            ],
+            "estimatedTimeSaving": "5 minutes",
+            "tags": [
+                "ui",
+                "loading"
+            ]
+        },
+        {
+            "id": "api-client",
+            "name": "Axios API Client",
+            "path": "utils/api-client.ts",
+            "category": "frontend",
+            "framework": "Axios",
+            "complexity": 5,
+            "reusability": 10,
+            "dependencies": [
+                "axios"
+            ],
+            "useCases": [
+                "Data Fetching"
+            ],
+            "customizationPoints": [
+                "BASE_URL"
+            ],
+            "estimatedTimeSaving": "10 minutes",
+            "tags": [
+                "utils",
+                "api",
+                "network"
+            ]
+        }
+    ]
+}

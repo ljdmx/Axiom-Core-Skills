@@ -1,0 +1,640 @@
+# uni-app x Complete Guide
+## UTS Language + uvue Rendering Engine + Native Performance
+<!-- TRIGGER: uni-app x, UTS, uvue, native, Kotlin, Swift, ArkTS, HarmonyOS -->
+
+> Requires HBuilderX ‚â?3.9  
+> Official Documentation: https://doc.dcloud.net.cn/uni-app-x/
+
+---
+
+## Table of Contents
+
+1. [uni-app x Core Concepts](#1-uni-app-x-core-concepts)
+2. [Create Project](#2-create-project)
+3. [UTS Language Essentials](#3-uts-language-essentials)
+4. [uvue CSS Standards (Differences from Classic)](#4-uvue-css-standards-differences-from-classic)
+5. [uvue Page Development Template](#5-uvue-page-development-template)
+6. [Component Development](#6-component-development)
+7. [API Calls and Native Capabilities](#7-api-calls-and-native-capabilities)
+8. [Migration Guide (From uni-app Classic)](#8-migration-guide-from-uni-app-classic)
+
+---
+
+## 1. uni-app x Core Concepts
+
+```
+The essence of uni-app x:
+  UTS Code  ‚Ü? Android: Kotlin native code (No JS engine)
+           ‚Ü? iOS:     Swift code
+           ‚Ü? Harmony: ArkTS code
+           ‚Ü? Web/MP:  JavaScript
+
+The essence of uvue:
+  .uvue page ‚Ü?Native UI components (Not WebView)
+           ‚Ü?Layout engine = flex (Only this one)
+           ‚Ü?No style inheritance (Parent styles do not affect children)
+           ‚Ü?Only class selectors (No tag / #id / [attr])
+
+Performance Class:
+  uni-app x Android ‚â?Native Kotlin app
+  uni-app x iOS     ‚â?Native Swift app (In some scenarios)
+```
+
+**Summary of Important Limitations:**
+
+| Limitation | Explanation |
+|------|------|
+| No Hot Update | Compiled to binary; official wgt hot update not supported |
+| No npm packages | Cannot use JS ecosystem npm packages, UTS plugins required |
+| Flex Layout Only | CSS Grid / position (limited) etc. unavailable |
+| No Style Inheritance | Each component's style is isolated; `inherit` is invalid |
+| Only Class Selectors | No tag selectors, no ID selectors |
+| Default is Vertical | `flex-direction` defaults to `column` (not row) |
+| Text Styles on Text Only| `font-size` etc. only take effect on `<text>` components |
+| Strong Typing | No abuse of `any` type, variables must declare types |
+| No CSS Variables | ucss does not support `var(--xxx)`; use SCSS variables |
+
+---
+
+## 2. Create Project
+
+```
+HBuilderX ‚Ü?File ‚Ü?New ‚Ü?Project
+‚Ü?Select "uni-app x" type
+‚Ü?Select the "Hello uni-app x" template (Official component/API demo)
+‚Ü?HBuilderX version must be ‚â?3.9
+```
+
+### Project Directory Structure
+
+```
+my-uni-app-x/
+‚îú‚îÄ‚îÄ pages/
+‚î?  ‚îî‚îÄ‚îÄ index/
+‚î?      ‚îî‚îÄ‚îÄ index.uvue        # ‚ò?Note the extension is .uvue (not .vue)
+‚îú‚îÄ‚îÄ components/
+‚î?  ‚îî‚îÄ‚îÄ my-button.uvue        # Custom component
+‚îú‚îÄ‚îÄ static/                   # Static resources
+‚îú‚îÄ‚îÄ utils/
+‚î?  ‚îî‚îÄ‚îÄ request.uts           # ‚ò?Utility function extension is .uts (not .ts)
+‚îú‚îÄ‚îÄ uni_modules/              # Plugins (Must be compatible with uni-app x)
+‚îú‚îÄ‚îÄ App.uvue                  # Global lifecycle
+‚îú‚îÄ‚îÄ main.uts                  # ‚ò?Entry file (not .ts)
+‚îú‚îÄ‚îÄ manifest.json
+‚îú‚îÄ‚îÄ pages.json
+‚îî‚îÄ‚îÄ uni.scss                  # Global SCSS (Compile-time variables, not CSS variables)
+```
+
+---
+
+## 3. UTS Language Essentials
+
+### UTS vs TypeScript Core Differences
+
+```typescript
+// ‚îÄ‚îÄ‚îÄ ‚ú?Basic Syntax (Almost identical to TS) ‚îÄ‚îÄ‚îÄ
+const name: string = 'hello'
+let count: number = 0
+
+// ‚îÄ‚îÄ‚îÄ ‚ú?Function Declaration ‚îÄ‚îÄ‚îÄ
+function add(a: number, b: number): number {
+  return a + b
+}
+
+// ‚îÄ‚îÄ‚îÄ ‚ú?Interfaces & Types ‚îÄ‚îÄ‚îÄ
+interface User {
+  id: number
+  name: string
+  avatar: string | null
+}
+
+// ‚îÄ‚îÄ‚îÄ ‚ö†Ô∏è No `any` type (Strong type constraint) ‚îÄ‚îÄ‚îÄ
+// ‚ù?const data: any = {}      // Forbidden
+// ‚ú?const data: UTSJSONObject = {}   // Use UTSJSONObject instead
+
+// ‚îÄ‚îÄ‚îÄ ‚ö†Ô∏è No `undefined` (Use `null` instead) ‚îÄ‚îÄ‚îÄ
+// ‚ù?let x: number | undefined
+// ‚ú?let x: number | null = null
+
+// ‚îÄ‚îÄ‚îÄ ‚ö†Ô∏è Variables MUST be initialized ‚îÄ‚îÄ‚îÄ
+// ‚ù?let n: number            // Invalid, must be assigned
+// ‚ú?let n: number = 0        // Valid
+// ‚ú?let n: number | null = null  // Valid
+
+// ‚îÄ‚îÄ‚îÄ ‚ú?Type Inference (Literals) ‚îÄ‚îÄ‚îÄ
+const title = 'Hello'          // Auto-inferred as string
+const num = 42                 // Auto-inferred as number
+
+// ‚îÄ‚îÄ‚îÄ ‚ú?Arrays ‚îÄ‚îÄ‚îÄ
+const list: string[] = ['a', 'b']
+const ids: Array<number> = [1, 2, 3]
+
+// ‚îÄ‚îÄ‚îÄ ‚ú?UTSJSONObject (Replaces `any` object) ‚îÄ‚îÄ‚îÄ
+const config: UTSJSONObject = {
+  url: 'https://api.example.com',
+  timeout: 10000
+}
+const url = config['url'] as string
+
+// ‚îÄ‚îÄ‚îÄ ‚ú?Optional Chaining (Supported) ‚îÄ‚îÄ‚îÄ
+const len = user?.name?.length ?? 0
+
+// ‚îÄ‚îÄ‚îÄ ‚ö†Ô∏è Platform-specific APIs (Needs conditional compilation) ‚îÄ‚îÄ‚îÄ
+// #ifdef APP-ANDROID
+// Can call Android native APIs (Kotlin code)
+// #endif
+// #ifdef APP-IOS
+// Can call iOS native APIs (Swift code)
+// #endif
+```
+
+### Async Processing
+
+```typescript
+// ‚ú?async/await (Supported)
+async function fetchUser(): Promise<User> {
+  const res = await uni.request({
+    url: 'https://api.example.com/user'
+  })
+  // uni-app x's API return values are statically typed
+  return res.data as User
+}
+
+// ‚ú?Promise (Supported)
+function loadData(): Promise<string[]> {
+  return new Promise<string[]>((resolve, reject) => {
+    uni.request({
+      url: '/api/list',
+      success: (res) => resolve(res.data as string[]),
+      fail: (err) => reject(err)
+    })
+  })
+}
+```
+
+---
+
+## 4. uvue CSS Standards (Differences from Classic)
+
+### Core Difference Comparison
+
+| CSS Feature | uni-app Classic | uni-app x (ucss) |
+|---------|------------|-----------------|
+| Layout Model | flex + block + grid | **flex ONLY** |
+| Default Direction | row (Horizontal)| **column (Vertical)**|
+| Style Inheritance | ‚ú?Supported | ‚ù?**Parent/Child isolated** |
+| Selectors | Multiple | **Class ONLY** |
+| CSS Variables | ‚ú?`var(--xx)` | ‚ù?**Use SCSS Variables** |
+| `position: fixed` | ‚ú?| Limited Support |
+| `background-image` | ‚ú?| Limited Support |
+| Text Style Scope | Any element | **text component ONLY** |
+| `inherit` / `unset` | ‚ú?| ‚ù?|
+
+### SCSS Variables Replacing CSS Variables
+
+```scss
+// uni.scss (Globally imported, compile-time variables, usable by both modes)
+// ‚ò?ucss does NOT support CSS custom properties (i.e., var(--xxx)), MUST use SCSS $variables instead.
+
+// Complete Design Token Variable Definitions: see design.md ¬ß2 Complete Design Token Implementation.
+// (Repetitive SCSS definitions omitted here, actual projects MUST include all color, spacing, and typography variables dictated by design.md)
+```
+
+### uvue Practical Layout Template
+
+```scss
+// ‚îÄ‚îÄ‚îÄ Page Container (Vertical by default) ‚îÄ‚îÄ‚îÄ
+.page {
+  flex: 1;                      // Fill height
+  flex-direction: column;       // Explicit declaration (ucss default is already column)
+  background-color: $color-bg-base;
+}
+
+// ‚îÄ‚îÄ‚îÄ Horizontal Container (MUST explicitly declare row) ‚îÄ‚îÄ‚îÄ
+.row {
+  flex-direction: row;
+  align-items: center;
+}
+
+// ‚îÄ‚îÄ‚îÄ Text Styles: Write ONLY on <text> components ‚îÄ‚îÄ‚îÄ
+.text-primary {
+  font-size: $text-base;
+  font-weight: $font-medium;
+  color: $color-text-primary;   // ucss doesn't support some rgba syntax, use full rgba()
+}
+.text-secondary {
+  font-size: $text-sm;
+  color: $color-text-secondary;
+}
+
+// ‚îÄ‚îÄ‚îÄ Cards (ucss box-shadow is only partially supported on App) ‚îÄ‚îÄ‚îÄ
+.card {
+  background-color: $color-bg-surface;
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-3;
+  // App's shadow alternative: Use border or background color differences to express hierarchy
+  border-width: 1rpx;
+  border-color: $color-border;
+  border-style: solid;
+}
+
+// ‚îÄ‚îÄ‚îÄ Forbidden usage in ucss ‚îÄ‚îÄ‚îÄ
+// .bad { display: block; }      // ‚ù?Only flex
+// .bad { color: inherit; }      // ‚ù?No inheritance
+// .bad { grid-template: ...; }  // ‚ù?No grid
+// #title { font-size: 32rpx; }  // ‚ù?No ID selector
+```
+
+---
+
+## 5. uvue Page Development Template
+
+```vue
+<!-- pages/index/index.uvue -->
+<template>
+  <view class="page">
+
+    <!-- Loading (Skeleton Screen) -->
+    <view v-if="pageState === 'loading'" class="skeleton-wrap">
+      <view class="skeleton-line skeleton-line--full" />
+      <view class="skeleton-line skeleton-line--three-quarter" />
+      <view class="skeleton-line skeleton-line--half" />
+    </view>
+
+    <!-- Empty State -->
+    <view v-else-if="pageState === 'empty'" class="empty-wrap">
+      <image class="empty-img" src="/static/empty.svg" mode="aspectFit" />
+      <text class="empty-title">No data yet</text>
+      <button class="btn-primary" @click="handleCreate">
+        <text class="btn-text">+ Create Now</text>
+      </button>
+    </view>
+
+    <!-- Error State -->
+    <view v-else-if="pageState === 'error'" class="error-wrap">
+      <text class="error-text">{{ errorMsg }}</text>
+      <button class="btn-ghost" @click="loadData">
+        <text class="btn-text">Reload</text>
+      </button>
+    </view>
+
+    <!-- Normal Content -->
+    <view v-else class="content">
+      <!-- ‚ò?Text styles MUST be on the text component in ucss -->
+      <text class="page-title">{{ title }}</text>
+
+      <!-- List (Note: <text> cannot nest <view>) -->
+      <view
+        v-for="(item, index) in list"
+        :key="index"
+        class="card"
+        @click="handleClick(item)"
+      >
+        <view class="card-header row">
+          <text class="card-title">{{ item.name }}</text>
+          <text class="card-badge">{{ item.status }}</text>
+        </view>
+        <text class="card-desc">{{ item.desc }}</text>
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<script lang="uts">
+// ‚ò?Use script lang="uts" in uni-app x
+import { ref, onMounted } from 'vue'
+
+// Strongly Typed Interface Definition
+interface ListItem {
+  id: number
+  name: string
+  desc: string
+  status: string
+}
+
+// Explicit string state enum
+type PageState = 'idle' | 'loading' | 'success' | 'empty' | 'error'
+
+export default {
+  setup() {
+    const pageState = ref<PageState>('idle')
+    const errorMsg  = ref<string>('')
+    const title     = ref<string>('My List')
+    const list      = ref<ListItem[]>([])
+
+    async function loadData() : Promise<void> {
+      pageState.value = 'loading'
+      try {
+        const res = await uni.request({
+          url: 'https://api.example.com/items'
+        })
+        const data = res.data as UTSJSONObject
+        const items = data['list'] as ListItem[]
+        list.value = items
+        pageState.value = items.length > 0 ? 'success' : 'empty'
+      } catch (e) {
+        pageState.value = 'error'
+        errorMsg.value = 'Loading failed, please check network'
+      }
+    }
+
+    function handleClick(item: ListItem) : void {
+      uni.navigateTo({ url: `/pages/detail/detail?id=${item.id}` })
+    }
+
+    function handleCreate() : void {
+      uni.navigateTo({ url: '/pages/create/create' })
+    }
+
+    onMounted(() => { loadData() })
+
+    return { pageState, errorMsg, title, list, loadData, handleClick, handleCreate }
+  }
+}
+</script>
+
+<style lang="scss">
+@use '@/uni.scss' as *;
+
+.page {
+  flex: 1;
+  flex-direction: column;
+  background-color: $color-bg-base;
+}
+
+// Skeleton (Flashing animations need simplification in ucss)
+.skeleton-wrap { padding: $space-4; flex-direction: column; }
+.skeleton-line {
+  height: 28rpx;
+  background-color: $color-bg-elevated;
+  border-radius: $radius-sm;
+  margin-bottom: $space-2;
+}
+.skeleton-line--full         { width: 100%; }
+.skeleton-line--three-quarter { width: 75%; }
+.skeleton-line--half         { width: 50%; }
+
+// Empty State
+.empty-wrap {
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-12;
+}
+.empty-img   { width: 200rpx; height: 200rpx; }
+.empty-title {
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  margin-top: $space-4;
+  margin-bottom: $space-5;
+}
+
+// Content Area
+.content { padding: $space-4; flex-direction: column; }
+.page-title {
+  font-size: $text-xl;
+  font-weight: $font-bold;
+  color: $color-text-primary;
+  margin-bottom: $space-4;
+}
+
+// Card
+.card {
+  background-color: $color-bg-surface;
+  border-radius: $radius-lg;
+  padding: $space-4;
+  margin-bottom: $space-3;
+  border-width: 1rpx;
+  border-color: $color-border;
+  border-style: solid;
+  flex-direction: column;
+}
+.card-header {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $space-2;
+}
+.card-title {
+  font-size: $text-lg;
+  font-weight: $font-medium;
+  color: $color-text-primary;
+}
+.card-badge {
+  font-size: $text-xs;
+  color: $color-success;
+  background-color: rgba(45, 125, 70, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: $radius-full;
+}
+.card-desc {
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  line-height: 1.5;
+}
+
+// Button (In ucss, button text also uses the text component)
+.btn-primary {
+  background-color: $color-brand;
+  border-radius: $radius-md;
+  padding: $space-3 $space-6;
+  align-items: center;
+  justify-content: center;
+}
+.btn-ghost {
+  background-color: transparent;
+  border-width: 1rpx;
+  border-color: $color-brand;
+  border-style: solid;
+  border-radius: $radius-md;
+  padding: $space-3 $space-6;
+  align-items: center;
+  justify-content: center;
+}
+.btn-text {
+  font-size: $text-base;
+  font-weight: $font-medium;
+  color: #FFFFFF;
+}
+.btn-ghost .btn-text { color: $color-brand; }
+
+// Error State
+.error-wrap {
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-8;
+}
+.error-text {
+  font-size: $text-base;
+  color: $color-error;
+  margin-bottom: $space-4;
+  text-align: center;
+}
+
+// Row Layout Helper
+.row { flex-direction: row; align-items: center; }
+</style>
+```
+
+---
+
+## 6. Component Development
+
+```vue
+<!-- components/stat-card.uvue -->
+<template>
+  <view class="stat-card">
+    <text class="stat-label">{{ label }}</text>
+    <text class="stat-value">{{ value }}</text>
+    <text class="stat-unit">{{ unit }}</text>
+  </view>
+</template>
+
+<script lang="uts">
+// uni-app x Component Props MUST be strongly typed
+export default {
+  props: {
+    label: { type: String,  required: true  },
+    value: { type: Number,  required: true  },
+    unit:  { type: String,  default: ''     }
+  }
+}
+</script>
+
+<style lang="scss">
+@use '@/uni.scss' as *;
+.stat-card {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: $space-4;
+}
+.stat-label {
+  font-size: $text-xs;
+  color: $color-text-tertiary;
+  font-weight: $font-medium;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.stat-value {
+  font-size: $text-display;
+  font-weight: $font-bold;
+  color: $color-text-primary;
+  line-height: 1.1;
+  margin-top: $space-1;
+}
+.stat-unit {
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  margin-top: 4rpx;
+}
+</style>
+```
+
+---
+
+## 7. API Calls and Native Capabilities
+
+```typescript
+// ‚îÄ‚îÄ‚îÄ Routing (Identical to Classic mode) ‚îÄ‚îÄ‚îÄ
+uni.navigateTo({ url: '/pages/detail/detail?id=1' })
+uni.navigateBack({ delta: 1 })
+uni.reLaunch({ url: '/pages/login/login' })
+
+// ‚îÄ‚îÄ‚îÄ Storage (Identical to Classic mode) ‚îÄ‚îÄ‚îÄ
+uni.setStorageSync('key', 'value')
+const val = uni.getStorageSync('key') as string
+
+// ‚îÄ‚îÄ‚îÄ System Info & Safe Area (Strongly Typed) ‚îÄ‚îÄ‚îÄ
+const sysInfo = uni.getSystemInfoSync()
+const statusBarHeight: number = sysInfo.statusBarHeight ?? 0
+
+// Android Notch and iOS Bottom Home Indicator safe calculation
+const safeAreaInsets = sysInfo.safeAreaInsets
+const bottomSafeHeight: number = safeAreaInsets?.bottom ?? 0
+// At this point: .fixed-bottom { paddingBottom: `${bottomSafeHeight}px` }
+
+// Custom Navbar Calculation:
+// statusBarHeight acts as top placeholder padding-top, plus a 44px fixed navbar content area
+
+// ‚îÄ‚îÄ‚îÄ Network Requests (Strongly typed return) ‚îÄ‚îÄ‚îÄ
+async function fetchData() : Promise<void> {
+  const res = await uni.request({ url: 'https://api.example.com/data' })
+  // res.data is `any`, requires type assertion
+  const data = res.data as UTSJSONObject
+}
+
+// ‚îÄ‚îÄ‚îÄ Call Android Native API (Only in .uts files) ‚îÄ‚îÄ‚îÄ
+// #ifdef APP-ANDROID
+import Context from 'android.content.Context'
+const context = UTSAndroid.getAppContext()!
+// #endif
+
+// ‚îÄ‚îÄ‚îÄ Call iOS Native API ‚îÄ‚îÄ‚îÄ
+// #ifdef APP-IOS
+// import Foundation from 'Foundation'
+// #endif
+```
+
+---
+
+## 8. Migration Guide (From uni-app Classic)
+
+### Migration Checklist
+
+```
+File Renaming:
+  ‚ú?pages/xxx/xxx.vue  ‚Ü?pages/xxx/xxx.uvue
+  ‚ú?utils/xxx.ts       ‚Ü?utils/xxx.uts
+  ‚ú?main.ts            ‚Ü?main.uts
+  ‚ú?App.vue            ‚Ü?App.uvue
+
+Script Reconstruction:
+  ‚ú?<script lang="ts"> ‚Ü?<script lang="uts">
+  ‚ú?Remove all `any` types ‚Ü?Replace with specific types or UTSJSONObject
+  ‚ú?undefined              ‚Ü?null
+  ‚ú?Uninitialized vars      ‚Ü?MUST be initialized
+  ‚ú?npm packages           ‚Ü?Find uni-app x compatible plugins (ext.dcloud.net.cn)
+
+CSS Reconstruction (Largest Workload):
+  ‚ú?CSS Vars var(--xx) ‚Ü?SCSS Vars $xx
+  ‚ú?display: block     ‚Ü?Delete (Defaults to flex column)
+  ‚ú?display: flex      ‚Ü?KEEP, add flex-direction: row/column
+  ‚ú?Inherited styles   ‚Ü?Explicitly declare styles in each child component
+  ‚ú?id/tag selectors   ‚Ü?Change to class selectors
+  ‚ú?color/font on view ‚Ü?Move to <text> component
+  ‚ú?grid layout        ‚Ü?Change to nested flex implementation
+
+Progressive Migration Recommended Order:
+  1. Migrate Web and Mini-program versions first (Only change CSS, keep JS)
+  2. Modify iOS (After changing CSS, iOS Swift driver is still compatible with JS)
+  3. Modify Android last (Must convert all JS to UTS)
+```
+
+### Common Pitfalls
+
+```
+Pitfall 1: ucss flex defaults to vertical
+  Classic mode view defaults to row, x mode defaults to column
+  ‚Ü?Explicitly add `flex-direction: row` wherever horizontal layout is needed
+
+Pitfall 2: Text styles don't take effect
+  Writing color/font-size on <view> is invalid on App side
+  ‚Ü?Must write font-related styles on <text> components
+
+Pitfall 3: v-html is not supported
+  uni-app x does not support v-html
+  ‚Ü?Use `rich-text` component instead (Be mindful of XSS protection)
+
+Pitfall 4: scroll-view direction
+  In ucss, horizontal scroll-view requires setting `scroll-x="true"` and a fixed height
+
+Pitfall 5: Conditional compilation identifiers
+  Classic App: // #ifdef APP-PLUS
+  uni-app x App: // #ifdef APP
+  ‚Ü?Pay attention to the distinction
+```

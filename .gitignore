@@ -1,0 +1,20 @@
+# OS / IDE files
+.agent/
+.gemini/
+.vscode/
+.idea/
+
+# Distribution
+node_modules/
+dist/
+build/
+*.log
+
+# Workspace
+PROJECT_NEXUS.json
+SOUL_MANIFEST.json
+EVALUATION_LOG.json
+
+# System
+Thumbs.db
+.DS_Store

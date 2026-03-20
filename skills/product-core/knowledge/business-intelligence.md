@@ -1,0 +1,97 @@
+# Product Business Intelligence ‚Ä?Domain Analysis Framework
+
+> **Status**: ACTIVE ‚Ä?Load when user prompt exceeds 5 Core Entities OR has cross-industry complexity.
+> **Purpose**: Provides structured decision templates for DDD analysis, User Journey mapping, and API design. These are cognitive frameworks for the AI, not executable code.
+
+---
+
+## 1Ô∏è‚É£ DDD Domain Analysis Checklist
+
+Before designing any data model, AI MUST classify all business concepts:
+
+| Type | Criterion | Examples |
+|---|---|---|
+| **Core Entity** | Has unique identity + lifecycle | `User`, `Order`, `Device`, `Invoice` |
+| **Value Object** | Immutable, defined by attributes only | `Address`, `Money`, `DateRange`, `SKU` |
+| **Aggregate Root** | Controls consistency boundary, has inbound FK arrows | `Order` (owns `OrderItems`) |
+| **Domain Service** | Business logic spanning multiple entities | `PricingService`, `InventoryAllocationService` |
+| **Domain Event** | Something that happened, past-tense named | `OrderPlaced`, `DeviceOffline`, `PaymentFailed` |
+
+**Aggregate Boundary Rule**: Every write operation MUST target exactly one Aggregate Root. Cross-aggregate consistency is handled by Domain Events + eventual consistency ‚Ä?NEVER by cross-boundary transactions.
+
+---
+
+## 2Ô∏è‚É£ User Journey Anti-Friction Diagnosis
+
+For every core user flow, AI MUST identify the **Drop-Off Risk Zone**:
+
+| Signal | Risk Level | Required Action |
+|---|---|---|
+| Form has > 5 fields in one step | üî¥ High | Split into multi-step wizard |
+| Primary CTA is below the fold | üü° Medium | Move CTA into visible viewport |
+| Registration required before value | üî¥ High | Add Guest / Social login first |
+| Error state shows only red text | üü° Medium | Add `human_readable_cause` + action hint |
+| Loading state is a bare spinner | üü° Medium | Replace with Skeleton + progress message |
+| "Aha Moment" is not defined | üî¥ Critical | Define it in PRD before sprint planning |
+
+**Aha Moment Protocol**: Every product MUST define the single action that predicts 30-day retention (e.g., "User creates their first dashboard" for SaaS, "First 3 IoT readings received" for IIoT). All onboarding funnels optimize toward this moment, not toward registration completion.
+
+---
+
+## 3Ô∏è‚É£ Data Model Quality Gates
+
+Before writing any schema, verify against this checklist:
+
+```
+‚ñ?All entities have: id (UUIDv7), created_at, updated_at, created_by
+‚ñ?Soft delete: deleted_at IS NULL pattern on User, Order, Payment, Transaction
+‚ñ?PII fields tagged with phi_ prefix (for HIPAA) or encrypted_at_rest annotation (GDPR)
+‚ñ?Enum fields use string type with explicit values (not integers)
+‚ñ?Foreign keys use ON DELETE RESTRICT by default (not CASCADE) ‚Ä?explicit cascade = business decision
+‚ñ?Indexes on: all FK columns, status, created_at for time-range queries
+‚ñ?Cursor pagination for any table > 10K rows (offset pagination scales linearly with table size)
+‚ñ?Aggregate Roots clearly identified in ERD/Mermaid diagram
+```
+
+---
+
+## 4Ô∏è‚É£ API Design Decision Tree
+
+```
+Is this a state change to a business entity?
+‚î?‚îú‚îÄ YES ‚Ü?Use a business verb (NOT naked CRUD)
+‚î?         "user submits order"  ‚Ü?POST /orders/:id/submit
+‚î?         "device reports fault" ‚Ü?POST /devices/:id/report-fault
+‚î?         "payment fails"       ‚Ü?POST /payments/:id/fail
+‚î?‚îî‚îÄ NO ‚Ü?Is this a read for UI display?
+         ‚î?         ‚îú‚îÄ Aggregate/KPI for dashboard ‚Ü?GET /metrics/{chart-name}
+         ‚î?  (pre-aggregate server-side, never raw rows to frontend)
+         ‚î?         ‚îî‚îÄ Simple resource lookup ‚Ü?GET /resources/:id
+```
+
+**Naming Conventions**:
+- `POST /resources/:id/{verb}` ‚Ä?business action on a resource
+- `GET /metrics/{scope}` ‚Ä?aggregated read model for dashboards
+- `GET /summaries/{scope}` ‚Ä?lightweight stat cards
+- `GET /exports/{scope}` ‚Ä?async export triggers (responds 202 Accepted)
+
+---
+
+## 5Ô∏è‚É£ UI/UX Conversion Optimization Playbook
+
+| Scenario | Root Cause | Intervention |
+|---|---|---|
+| Low signup conversion | High-friction form | Social OAuth + Magic Link first |
+| Cart abandonment | Trust gap or payment friction | Security badges + guest checkout + Stripe-hosted page |
+| Low feature adoption | Poor discoverability | Progressive disclosure + contextual empty states |
+| High bounce on complex flows | Cognitive overload | Step indicators + smart defaults + save-draft |
+| No repeat usage | No "Aha Moment" captured | Define + track activation event; optimize boarding toward it |
+
+---
+
+## üìã Changelog
+
+| Version | Date | Summary |
+|---|---|---|
+| v2.0 | 2026-03-09 | Complete rewrite ‚Ä?eliminated 17KB of non-executable JS pseudocode. Replaced with 5 actionable Markdown decision frameworks. Token footprint: ~2KB (was ~4.5KB). |
+| v1.0 | 2026-02-28 | Initial version ‚Ä?contained DataModelAdvisor, APIDesignAdvisor, UXAdvisor JS classes. |

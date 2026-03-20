@@ -1,0 +1,343 @@
+{
+    "registry_version": "2.2",
+    "templates": [
+        {
+            "id": "crud-controller",
+            "name": "CRUD Controller",
+            "path": "typescript/controllers/crud.controller.ts",
+            "category": "backend",
+            "language": "typescript",
+            "framework": "Express",
+            "complexity": 6,
+            "reusability": 9,
+            "dependencies": [
+                "@prisma/client",
+                "zod",
+                "express"
+            ],
+            "useCases": [
+                "Standard REST API",
+                "Resource Management"
+            ],
+            "customizationPoints": [
+                "MODEL_NAME",
+                "VALIDATION_SCHEMA"
+            ],
+            "estimatedTimeSaving": "12 minutes",
+            "tags": [
+                "crud",
+                "rest",
+                "prisma"
+            ]
+        },
+        {
+            "id": "auth-controller",
+            "name": "Auth Controller (JWT)",
+            "path": "typescript/controllers/auth.controller.ts",
+            "category": "backend",
+            "language": "typescript",
+            "framework": "Express",
+            "complexity": 8,
+            "reusability": 10,
+            "dependencies": [
+                "jsonwebtoken",
+                "bcryptjs",
+                "zod"
+            ],
+            "useCases": [
+                "User Authentication",
+                "Login/Register"
+            ],
+            "customizationPoints": [
+                "USER_MODEL",
+                "JWT_SECRET"
+            ],
+            "estimatedTimeSaving": "20 minutes",
+            "tags": [
+                "auth",
+                "jwt",
+                "security"
+            ]
+        },
+        {
+            "id": "rest-routes",
+            "name": "REST Routes",
+            "path": "typescript/routes/rest.routes.ts",
+            "category": "backend",
+            "language": "typescript",
+            "framework": "Express",
+            "complexity": 3,
+            "reusability": 8,
+            "dependencies": [
+                "express"
+            ],
+            "useCases": [
+                "Route Definition"
+            ],
+            "customizationPoints": [
+                "RESOURCE_NAME",
+                "CONTROLLER_IMPORT"
+            ],
+            "estimatedTimeSaving": "5 minutes",
+            "tags": [
+                "routes",
+                "api"
+            ]
+        },
+        {
+            "id": "service-layer",
+            "name": "Business Service",
+            "path": "typescript/services/generic.service.ts",
+            "category": "backend",
+            "language": "typescript",
+            "framework": "Express",
+            "complexity": 5,
+            "reusability": 7,
+            "dependencies": [
+                "@prisma/client"
+            ],
+            "useCases": [
+                "Complex Business Logic"
+            ],
+            "customizationPoints": [
+                "METHOD_NAME"
+            ],
+            "estimatedTimeSaving": "8 minutes",
+            "tags": [
+                "service",
+                "logic"
+            ]
+        },
+        {
+            "id": "java-security-config",
+            "name": "Spring Security Config",
+            "path": "java/spring-boot/SecurityConfig.java",
+            "category": "backend",
+            "language": "java",
+            "framework": "Spring Boot",
+            "complexity": 8,
+            "reusability": 10,
+            "dependencies": [
+                "spring-boot-starter-security",
+                "io.jsonwebtoken"
+            ],
+            "useCases": [
+                "Enterprise Auth"
+            ],
+            "customizationPoints": [
+                "JWT_SECRET"
+            ],
+            "estimatedTimeSaving": "30 minutes",
+            "tags": [
+                "java",
+                "security",
+                "spring"
+            ]
+        },
+        {
+            "id": "java-auth-controller",
+            "name": "Spring Auth Controller",
+            "path": "java/spring-boot/AuthController.java",
+            "category": "backend",
+            "language": "java",
+            "framework": "Spring Boot",
+            "complexity": 7,
+            "reusability": 10,
+            "dependencies": [
+                "spring-boot-starter-web"
+            ],
+            "useCases": [
+                "Login/Register"
+            ],
+            "customizationPoints": [
+                "USER_SERVICE"
+            ],
+            "estimatedTimeSaving": "15 minutes",
+            "tags": [
+                "java",
+                "auth",
+                "controller"
+            ]
+        },
+        {
+            "id": "java-global-exception",
+            "name": "Spring Exception Handler",
+            "path": "java/spring-boot/GlobalExceptionHandler.java",
+            "category": "backend",
+            "language": "java",
+            "framework": "Spring Boot",
+            "complexity": 5,
+            "reusability": 10,
+            "dependencies": [
+                "spring-boot-starter-web"
+            ],
+            "useCases": [
+                "Error Handling"
+            ],
+            "customizationPoints": [
+                "PACKAGE_NAME"
+            ],
+            "estimatedTimeSaving": "10 minutes",
+            "tags": [
+                "java",
+                "error",
+                "handler"
+            ]
+        },
+        {
+            "id": "python-fastapi-app",
+            "name": "FastAPI Main App",
+            "path": "python/fastapi/main.py",
+            "category": "backend",
+            "language": "python",
+            "framework": "FastAPI",
+            "complexity": 4,
+            "reusability": 10,
+            "dependencies": [
+                "fastapi",
+                "uvicorn"
+            ],
+            "useCases": [
+                "Microservice Entry"
+            ],
+            "customizationPoints": [
+                "APP_TITLE",
+                "VERSION"
+            ],
+            "estimatedTimeSaving": "5 minutes",
+            "tags": [
+                "python",
+                "app",
+                "main"
+            ]
+        },
+        {
+            "id": "python-db-config",
+            "name": "Async DB Config",
+            "path": "python/fastapi/database.py",
+            "category": "backend",
+            "language": "python",
+            "framework": "FastAPI",
+            "complexity": 5,
+            "reusability": 9,
+            "dependencies": [
+                "sqlalchemy",
+                "asyncpg"
+            ],
+            "useCases": [
+                "Database Connection"
+            ],
+            "customizationPoints": [
+                "DB_URL"
+            ],
+            "estimatedTimeSaving": "10 minutes",
+            "tags": [
+                "python",
+                "db",
+                "async"
+            ]
+        },
+        {
+            "id": "python-auth-router",
+            "name": "FastAPI Auth Router",
+            "path": "python/fastapi/auth_router.py",
+            "category": "backend",
+            "language": "python",
+            "framework": "FastAPI",
+            "complexity": 7,
+            "reusability": 10,
+            "dependencies": [
+                "python-jose",
+                "passlib"
+            ],
+            "useCases": [
+                "OAuth2 Auth"
+            ],
+            "customizationPoints": [
+                "SECRET_KEY"
+            ],
+            "estimatedTimeSaving": "15 minutes",
+            "tags": [
+                "python",
+                "auth",
+                "router"
+            ]
+        },
+        {
+            "id": "go-gin-main",
+            "name": "Gin Server Main",
+            "path": "go/gin/main.go",
+            "category": "backend",
+            "language": "go",
+            "framework": "Gin",
+            "complexity": 5,
+            "reusability": 10,
+            "dependencies": [
+                "github.com/gin-gonic/gin",
+                "cors"
+            ],
+            "useCases": [
+                "High Perf Service"
+            ],
+            "customizationPoints": [
+                "PORT"
+            ],
+            "estimatedTimeSaving": "10 minutes",
+            "tags": [
+                "go",
+                "gin",
+                "server"
+            ]
+        },
+        {
+            "id": "go-auth-handler",
+            "name": "Gin Auth Handler",
+            "path": "go/gin/auth_handler.go",
+            "category": "backend",
+            "language": "go",
+            "framework": "Gin",
+            "complexity": 6,
+            "reusability": 9,
+            "dependencies": [
+                "jwt-go"
+            ],
+            "useCases": [
+                "JWT Auth"
+            ],
+            "customizationPoints": [
+                "JWT_SECRET"
+            ],
+            "estimatedTimeSaving": "15 minutes",
+            "tags": [
+                "go",
+                "auth",
+                "jwt"
+            ]
+        },
+        {
+            "id": "go-gorm-models",
+            "name": "GORM User Models",
+            "path": "go/gin/models.go",
+            "category": "backend",
+            "language": "go",
+            "framework": "Gin",
+            "complexity": 4,
+            "reusability": 8,
+            "dependencies": [
+                "gorm.io/gorm"
+            ],
+            "useCases": [
+                "Database Structs"
+            ],
+            "customizationPoints": [
+                "TABLE_PREFIX"
+            ],
+            "estimatedTimeSaving": "8 minutes",
+            "tags": [
+                "go",
+                "gorm",
+                "models"
+            ]
+        }
+    ]
+}
