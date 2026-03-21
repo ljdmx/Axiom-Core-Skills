@@ -1,0 +1,40 @@
+{
+  "finops_estimator_template": {
+    "version": "1.0",
+    "methodology": "pay-as-you-go",
+    "compute": {
+      "aws_lambda": {
+        "unit": "1M requests",
+        "avg_duration_ms": 100,
+        "memory_mb": 512,
+        "monthly_estimate_usd": 0.20
+      },
+      "vercel_edge": {
+        "unit": "1M requests",
+        "monthly_estimate_usd": 0.65
+      }
+    },
+    "database": {
+      "neon_postgres": {
+        "tier": "scale-to-zero",
+        "monthly_estimate_usd": 0.00,
+        "active_storage_gb": 0.15
+      },
+      "aws_rds_t4g_micro": {
+        "tier": "always-on",
+        "monthly_estimate_usd": 15.00
+      }
+    },
+    "llm_ai": {
+      "anthropic_claude_3_haiku": {
+        "unit": "1M input tokens + 1M output tokens",
+        "monthly_estimate_usd": 1.50
+      },
+      "openai_gpt4o_mini": {
+        "unit": "1M input tokens + 1M output tokens",
+        "monthly_estimate_usd": 0.75
+      }
+    },
+    "formula": "T(total_cost) = C(compute_volume) + D(database_tier) + L(llm_token_volume)"
+  }
+}

@@ -1,85 +1,111 @@
-# 🌌 Axiom Core Skills v2.1 (Zenith) - 中文文档
+# Axiom Core Skills
 
-> **面向自主 AI Agent 的至高主权编排引擎。**
+> **用于自动化软件交付的模块化技能包生态。**
 
-Axiom Core 是一套包含 **6 个高高保定技能包** 的套件，基于 5 个 Agent 技能设计模式（Tool Wrapper, Generator, Reviewer, Inversion, Pipeline）进行了深度优化。它桥接了静态 LLM 知识与自主的企业级执行力。
-
----
-
-## 🎨 系统视觉中心 (Visual Sovereign)
-
-> **[点击访问：Zenith v10.1 交互式看板](skills/_core_axioms/zenith_billboard.html)**
-> 
-> 此看板是 Axiom Core 的实时架构视图。它不仅展示了 4 层架构（页面→模块→功能点→接口），还标识了每个深层模块所采用的 **ADK 设计模式**。
-> 
-> **[新增] 动态灵魂遥测看板 (Dynamic Telemetry)**
-> 运行 `node skills/_core_axioms/telemetry-refresher.js` 可将高保真 `telemetry_dashboard.html` 与您的实时 `PROJECT_NEXUS.json` 状态同步。
+Axiom Core 是一个旨在为大语言模型（LLM）提供结构化架构模式和设计标准的框架。它为跨平台和不同技术栈的自动化产品开发建立了统一的基准。
 
 ---
 
-## 🏗️ 核心技能 (至高六维)
+## 🌟 为什么选择 Axiom Core？
 
-1. **[Product Commander (FSPC)](skills/product-core)**: 自动化工作区审计、意图消除歧义以及分段执行门禁。
-2. **[Visual Sovereign (DDFM)](skills/frontend-core)**: 具备外科手术般的 UI、Bento 网格和动力学运动的美学评审员模式。
-3. **[Architect (ADBM)](skills/backend-core)**: 填充了 NestJS 与 FastAPI 生产级样板代码的 API 优先蓝图。
-4. **[Guardian Aegis](skills/mobile-core)**: 针对大拇指热区安全和多平台一致性的人体工学评审员通行证。
-5. **[Forge Chain](skills/web3-core)**: 代币经济学反转面试及安全 Solidity 脚手架生成器。
-6. **[Pulse Dimension](skills/threejs-core)**: 世界级的 R3F/Three.js 场景生成器和情感相机脚本。
+在 AI 辅助开发的时代，“运行的代码”与“企业级软件”之间往往存在着巨大的鸿沟。Axiom Core 通过以下方式弥合这一差距：
 
----
-
-## 🛠️ 设计模式
-
-Axiom Core v2.0 中的每一个技能都由以下 5 种 ADK 模式之一标识：
-- **🔀 Inversion (反转)**: 在编码前采访用户以获取上下文。
-- **🏗️ Generator (生成器)**: 从高保真模板生成可执行的样板。
-- **🛡️ Reviewer (评审员)**: 根据严格的准则（A11y、安全、人体工学）对输入进行评分和审计。
-- **📦 Tool Wrapper (工具包装器)**: 按需加载特定领域的知识。
-- **⛓️ Pipeline (管道)**: 具备硬门禁（0A-0D）的多步检查点。
+*   **标准化质量**：自动强制执行架构模式（六边形架构、ADBM）和设计标记（HSL、间距）。
+*   **可预测的交付物**：从随机的 LLM 输出转向确定性的、经过 Schema 验证的结构。
+*   **减少 Token 消耗**：将复杂逻辑卸载到静态模板和 JIT 编译的微服务中。
+*   **私有的自我进化**：允许智能体根据本地项目上下文进行学习，而不会污染全局核心代码库。
 
 ---
 
-## 📂 仓库结构
+## 🚀 核心技术优势
 
-框架架构高度模块化，隔离了意图、设计与执行。
+*   **蜂群并发调度 (FSPC)**：使用依赖图方法协调开发任务，实现后端和前端层的并行执行。
+*   **JIT 技能编译**：动态地将复杂的计算任务卸载到 MCP（模型上下文协议）网关，以保留 LLM 的上下文窗口。
+*   **审美反馈环**：采用双轨对抗评审机制，确保 UI 设计符合专业视觉标准。
+*   **经济模拟推演**：集成宏观经济沙盒，模拟极端市场条件下的代币经济模型韧性。
+
+---
+
+## 🗂️ 目录结构说明
 
 ```text
-.
-├── skills/
-│   ├── _core_axioms/         # 全局 Nexus 与至高看板
-│   │   ├── KERNEL_BOOTSTRAP.md
-│   │   └── zenith_billboard.html
-│   ├── product-core/         # 全栈产品指挥官 (FSPC)
-│   ├── frontend-core/        # 设计驱动前端宣言 (DDFM)
-│   ├── backend-core/         # API 驱动后端宣言 (ADBM)
-│   ├── mobile-core/          # 统一 Uniapp 核心
-│   ├── web3-core/            # EVM 全链锻造
-│   └── threejs-core/         # 3D 渲染脉冲
-├── references/              # 架构产物
-├── .gitignore                # 环境与工作区排除规则
-├── init.bat                  # Windows 初始化脚本
-├── init.js                   # Node.js 初始化脚本
-├── init.py                   # Python 初始化脚本
-├── init.sh                   # Unix/macOS 初始化脚本
-├── LICENSE                   # MIT 开源许可证
-├── README.md                 # 英文文档
-├── README_CN.md              # 中文文档
-└── SUMMARY.md                # 发布清单与校验和
+Axiom-Core-Skills/
+├── _core_axioms/          # 核心设计哲学与全局协议
+│   ├── protocols/         # 验证门控与拒绝逻辑
+│   ├── references/        # 客户端功能与质量标准
+│   ├── tokens/            # 设计 Token (颜色、排版、间距)
+│   └── SOUL_MANIFESTO.md  # 基础指南与计算卸载
+├── product-core/          # 项目编排层 (FSPC)
+│   ├── scripts/           # 依赖图与遥测分析
+│   ├── templates/         # 项目 Schema 与 PRD 蓝图
+│   └── SKILL.md           # 编排逻辑
+├── frontend-core/         # 界面与交互标准
+│   ├── references/        # 设计 Token 系统与审美评审规则
+│   └── templates/         # UI 组件与交互模式
+├── backend-core/          # 后端架构与数据完整性 (ADBM)
+│   ├── references/        # 六边形模式与 ADBM 核心
+│   └── templates/         # 服务架构与混沌工程
+├── mobile-core/           # 移动端人体工学与优化
+│   ├── references/        # 布局与动画约束
+│   └── templates/         # 组合式函数与离线同步模式
+├── web3-core/             # 区块链与代币经济集成
+│   ├── references/        # 安全与 Solidity 模式
+│   └── templates/         # 智能合约与经济模拟
+├── threejs-core/          # 3D 图形与空间计算
+│   ├── references/        # 着色器管理与性能标准
+│   └── templates/         # R3F 与后期处理模板
+├── init.js                # 环境初始化引导脚本
+├── LICENSE                # MIT 许可证
+└── README.md              # 项目文档
 ```
 
 ---
 
-## 🚀 快速开始
+## 🌌 生态组件解析
 
-要激活编排器并开始自主项目：
-1. 加载 `skills/product-core`。
-2. FSPC 将触发 `Step 0: Archetype Interview`。
-3. FSPC 将执行 `scripts/audit-workspace.js` 以扫描您的环境。
-4. 遵循 `Phase-Gate` 序列直到完全部署。
+### 1. `_core_axioms` — 哲学框架
+定义了以可用性和尊重用户体验为核心的基础设计原则。处理核心协议并负责 **JIT 技能编译**。
+
+### 2. `product-core` — 全栈项目编排
+使用依赖图方法协调开发任务，确保后端和前端层的并行执行。
+
+### 3. `frontend-core` — UI 标准层
+实现了一种审美评审机制，根据既定的视觉标准评估提案设计。
+
+### 4. `backend-core` — 韧性基础设施
+专注于 API 优先的开发、六边形架构模式以及混沌工程容错机制与数据完整性。
+
+### 5. `mobile-core` — 跨端移动标准
+提供高性能移动开发的标准，强调人体工学、拇指热区和原生感动画。
+
+### 6. `web3-core` — 智能合约与经济安全
+提供智能合约安全工具，并包含用于代币模型的宏观经济模拟层以降低经济风险。
+
+### 7. `threejs-core` — 3D 与空间计算
+管理复杂的 3D 场景和 WebGPU 图形，同时通过着色器提取针对 Token 消耗进行优化。
 
 ---
 
-## 📜 许可证
-MIT 许可证。Axiom Core 为追求技术主权和美学巅峰的高端开发者而设计。
+## 🧬 本地适配（自我进化）
 
-*由 Axiom 团队以绝对诚意打造。所有核心协议文件均保持 100% 英文纯净，以确保全球化的互操作性。*
+Axiom Core 利用结构化的反馈循环顺应特定的项目需求。所有学习到的模式和自定义补丁都存储在本地的 `.axiom_evolution/` 目录中，以确保核心库的完整性和隐私。
+
+### 快速开始
+
+1. **克隆本仓库。**
+2. **执行初始化：**
+   ```bash
+   node init.js
+   ```
+   *这将初始化本地状态目录 (`.axiom_evolution/`)。*
+
+---
+
+## 🤝 参与贡献
+
+我们欢迎各位开发者参与贡献，共同扩展 Axiom Core 生态。无论是添加新的技能模板、完善架构协议，还是改进自我进化引擎，您的参与都将助力于塑造自动化工程的未来。
+
+---
+
+## ⚖️ 许可证
+本项目采用 MIT License - 详情请参阅 [LICENSE](LICENSE) 文件。

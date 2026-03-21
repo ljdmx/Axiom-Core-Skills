@@ -1,0 +1,24 @@
+{
+  "colors": {
+    "bg": "#050505",
+    "accent_primary": "#00f2ff",
+    "accent_secondary": "#7000ff",
+    "text_main": "#ffffff",
+    "text_dim": "#a0a0a0",
+    "card_bg": "rgba(255, 255, 255, 0.03)",
+    "card_border": "rgba(255, 255, 255, 0.08)"
+  },
+  "geometry": {
+    "border_radius_card": "24px",
+    "border_radius_inner": "16px",
+    "glass_blur": "20px"
+  },
+  "typography": {
+    "font_family_main": "'Outfit', sans-serif",
+    "font_family_mono": "'Inter', monospace"
+  },
+  "physics": {
+    "standard_transition": "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+    "hover_lift": "translateY(-5px)"
+  }
+}

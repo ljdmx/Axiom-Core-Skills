@@ -1,0 +1,36 @@
+{
+  "common": {
+    "actions": {
+      "save": "Save Changes",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "confirm": "Confirm",
+      "submit": "Submit"
+    },
+    "status": {
+      "loading": "Loading...",
+      "success": "Operation successful.",
+      "error": "An error occurred. Please try again.",
+      "offline": "You are currently offline."
+    }
+  },
+  "dashboard": {
+    "title": "Command Center",
+    "widgets": {
+      "revenue": "Revenue Analytics",
+      "users": "Active Users",
+      "performance": "System Performance"
+    },
+    "empty_states": {
+      "no_data_title": "Nothing to display here",
+      "no_data_desc": "Your data will appear here once activity begins.",
+      "add_first_item_cta": "Add First Item"
+    }
+  },
+  "auth": {
+    "login_title": "Welcome Back",
+    "email_placeholder": "name@company.com",
+    "password_placeholder": "Enter your password",
+    "forgot_password": "Forgot password?"
+  }
+}

@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: Axiom Core API Specification
+  description: API-first design manifesting the Architectural Sovereignty Framework (ADBM). 
+  version: 1.0.0
+  contact:
+    name: Axiom Architect
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local development server
+  - url: https://api.axiom-core.local/v1
+    description: Production environment
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Verifies API liveliness and connects to the telemetry dashboard.
+      operationId: getHealth
+      tags:
+        - System
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "operational"
+                  timestamp:
+                    type: string
+                    format: date-time
+        '503':
+          description: Service Unavailable
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          example: "UNAUTHORIZED"
+        message:
+          type: string
+          example: "Invalid or expired token"

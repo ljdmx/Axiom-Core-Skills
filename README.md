@@ -1,86 +1,111 @@
-# 🌌 Axiom Core Skills v2.1 (Zenith)
+# Axiom Core Skills
 
-> **The Sovereign Orchestration Engine for Autonomous AI Agents.**
+> **A modular ecosystem of skill packages for autonomous software delivery.**
 
-Axiom Core is a suite of **6 high-fidelity skill packages** optimized with the 5 Agent Skill Design Patterns (Tool Wrapper, Generator, Reviewer, Inversion, Pipeline). It bridges the gap between static LLM knowledge and autonomous enterprise-grade execution.
-
----
-
-## 🎨 Visual Center (Zenith Sovereign)
-
-> [!TIP]
-> **[Access the Zenith v10.1 Interactive Billboard](skills/_core_axioms/zenith_billboard.html)**
-> 
-> This billboard serves as the real-time architectural manifest of Axiom Core, tracing the 4-layer hierarchy (Page — Module — Feature — API).
-> 
-> **[NEW] Dynamic Soul Telemetry Dashboard**
-> Use `node skills/_core_axioms/telemetry-refresher.js` to synchronize the high-fidelity `telemetry_dashboard.html` with your live `PROJECT_NEXUS.json` state.
+Axiom Core is a framework designed to provide Large Language Models (LLMs) with structured architectural patterns and design standards. It establishes a consistent baseline for autonomous product development across different platforms and technology stacks.
 
 ---
 
-## 🏗️ Core Skills (The Zenith Six)
+## 🌟 Why Axiom Core?
 
-1. **[Product Commander (FSPC)](skills/product-core)**: Automated workspace auditing, intent disambiguation, and phased execution gates.
-2. **[Visual Sovereign (DDFM)](skills/frontend-core)**: Aesthetic Reviewer pattern with surgical UI, bento grids, and kinetic movement.
-3. **[Architect (ADBM)](skills/backend-core)**: API-first blueprints hydrated with NestJS & FastAPI production boilerplate.
-4. **[Guardian Aegis](skills/mobile-core)**: Ergonomic Reviewer pass for thumb-zone safety and multi-platform consistency.
-5. **[Forge Chain](skills/web3-core)**: Tokenomics Inversion interview & secure Solidity scaffold generators.
-6. **[Pulse Dimension](skills/threejs-core)**: World-class R3F/Three.js scene generators and emotional camera scripting.
+In the era of AI-assisted coding, the gap between "working code" and "enterprise-grade software" is often human-intensive. Axiom Core bridges this gap by:
 
----
-
-## 🛠️ Design Patterns
-
-Every skill in Axiom Core v2.0 is identified by one of these 5 ADK patterns:
-- **🔀 Inversion**: Interview the user to gather context *before* coding.
-- **🏗️ Generator**: Produce executable boilerplate from high-fidelity templates.
-- **🛡️ Reviewer**: Score and audit inputs against strict rubrics (A11y, Security, Ergonomics).
-- **📦 Tool Wrapper**: Load domain-specific knowledge on-demand.
-- **⛓️ Pipeline**: Multi-step checkpoints with hard-gates (0A-0D).
+*   **Standardizing Quality**: Enforcing architectural patterns (Hexagonal, ADBM) and design tokens (HSL, spacing) automatically.
+*   **Predictable Deliverables**: Moving from random LLM outputs to deterministic, schema-validated structures.
+*   **Reducing Token Waste**: Offloading heavy logic into static templates and JIT-compiled micro-services.
+*   **Safe Self-Evolution**: Allowing agents to learn from local project context without contaminating the core codebase.
 
 ---
 
-## 📂 Repository Structure
+## 🚀 Key Technical Advantages
 
-The framework architecture is highly modularizing, isolating intent, design, and execution.
+*   **Swarm Concurrency (FSPC)**: Orchestrates development using a dependency-graph approach, allowing parallel execution of backend and frontend layers.
+*   **JIT Skill Compilation**: Dynamically offloads complex computations to an MCP (Model Context Protocol) gateway to preserve LLM context.
+*   **Aesthetic Feedback Loop**: Uses a dual-track adversarial review mechanism to ensure UI designs meet professional visual standards.
+*   **Economic Simulation**: Integrates a macro-economic sandbox to stress-test tokenomics models against extreme market conditions.
+
+---
+
+## 🗂️ Directory Structure
 
 ```text
-.
-├── skills/
-│   ├── _core_axioms/         # Universal Nexus & Zenith Billboard
-│   │   ├── KERNEL_BOOTSTRAP.md
-│   │   └── zenith_billboard.html
-│   ├── product-core/         # Full-Stack Product Commander (FSPC)
-│   ├── frontend-core/        # Design-Driven Frontend Manifesto (DDFM)
-│   ├── backend-core/         # API-Driven Backend Manifesto (ADBM)
-│   ├── mobile-core/          # Unified Uniapp Core
-│   ├── web3-core/            # EVM Full-Stack Forge
-│   └── threejs-core/         # 3D Graphics Pulse
-├── references/              # Architectural artifacts
-├── .gitignore                # Environment & Workspace exclusions
-├── init.bat                  # Windows initialization script
-├── init.js                   # Node.js initialization script
-├── init.py                   # Python script for cross-platform linking.
-├── init.sh                   # Unix/macOS initialization script
-├── LICENSE                   # MIT Open Source License
-├── README.md                 # English Documentation
-├── README_CN.md              # Chinese Documentation
-└── SUMMARY.md                # Release manifest & checksums
+Axiom-Core-Skills/
+├── _core_axioms/          # Core Design Philosophy & Global Protocols
+│   ├── protocols/         # Validation Gates & Rejection Logic
+│   ├── references/        # Client Capabilities & QA Standards
+│   ├── tokens/            # Design Tokens (Color, Typography, Spacing)
+│   └── SOUL_MANIFESTO.md  # Fundamental Guidelines & Compute Offloading
+├── product-core/          # Project Orchestration Layer (FSPC)
+│   ├── scripts/           # Dependency-Graph & Telemetry Analysis
+│   ├── templates/         # Project Schema & PRD Blueprints
+│   └── SKILL.md           # Orchestration Logic
+├── frontend-core/         # Interface & Interaction Standards
+│   ├── references/        # Design Token System & Aesthetic Review Rules
+│   └── templates/         # UI Components & Interaction Patterns
+├── backend-core/          # Backend Architecture & Data Integrity (ADBM)
+│   ├── references/        # Hexagonal Patterns & ADBM Core
+│   └── templates/         # Service Architecture & Chaos Engineering
+├── mobile-core/           # Mobile Ergonomics & Optimization
+│   ├── references/        # Layout & Animation Constraints
+│   └── templates/         # Composables & Offline Sync Patterns
+├── web3-core/             # Blockchain & Tokenomics Integration
+│   ├── references/        # Security & Solidity Patterns
+│   └── templates/         # Smart Contract & Economic Simulation
+├── threejs-core/          # 3D Graphics & Spatial Computing
+│   ├── references/        # Shader Management & Performance Standards
+│   └── templates/         # R3F & Post-Processing Templates
+├── init.js                # Environment Initialization Script
+├── LICENSE                # MIT License
+└── README.md              # Project Documentation
 ```
 
 ---
 
-## 🚀 Quick Start (FSPC)
+## 🌌 Ecosystem Components
 
-To activate the orchestrator and begin an autonomous project:
-1. Load `skills/product-core`.
-2. FSPC will trigger `Step 0: Archetype Interview`.
-3. FSPC will execute `scripts/audit-workspace.js` to scan your environment.
-4. Follow the `Phase-Gate` sequence to full deployment.
+### 1. `_core_axioms` — Philosophical Framework
+Defines fundamental design principles focused on usability and respect for user experience. Handles core protocols and **JIT Skill Compilation**.
+
+### 2. `product-core` — Full-Stack Project Orchestration
+Coordinates development tasks using a dependency-graph approach to ensure concurrent execution of backend and frontend layers.
+
+### 3. `frontend-core` — UI Standards Layer
+Implements an aesthetic review mechanism where proposed designs are evaluated against established visual excellence standards.
+
+### 4. `backend-core` — Resilient Infrastructure
+Focuses on API-first development, hexagonal architecture patterns, and chaos engineering for fault tolerance and data integrity.
+
+### 5. `mobile-core` — Cross-Platform Mobility
+Provides standards for high-performance mobile development, emphasizing ergonomics, thumb zones, and native-feel animations.
+
+### 6. `web3-core` — Smart Contract & Economic Security
+Provides tools for smart contract security and macro-economic simulation for token models to mitigate economic risks.
+
+### 7. `threejs-core` — 3D & Spatial Computing
+Manages complex 3D scenes and WebGPU graphics while optimizing for token consumption through shader extraction.
 
 ---
 
-## 📜 License
-MIT License. Axiom Core is designed for the high-end developer who demands technical sovereignty and aesthetic excellence.
+## 🧬 Local Adaptation (Self-Evolution)
 
-*Crafted with Absolute Sincerity by the Axiom Team. All core protocol files are maintained in 100% English for world-class interoperability.*
+Axiom Core utilizes a structured feedback loop to adapt to project-specific requirements. All learned patterns and custom patches are stored in a local `.axiom_evolution/` directory to ensure core integrity and privacy.
+
+### Getting Started
+
+1. **Clone the repository.**
+2. **Run Initialization:**
+   ```bash
+   node init.js
+   ```
+   *This initializes the local state directory (`.axiom_evolution/`).*
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions to expand the Axiom Core ecosystem. Whether it's adding new skill templates, refining architectural protocols, or improving the self-evolution engine, your input helps shape the future of autonomous engineering.
+
+---
+
+## ⚖️ License
+MIT License - See [LICENSE](LICENSE) for details.

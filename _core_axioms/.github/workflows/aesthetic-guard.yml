@@ -1,0 +1,36 @@
+name: Aesthetic Token Guard
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate-tokens:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Token Guardian Script
+        run: |
+          echo "Running Axiom Aesthetic Token Guardian..."
+          # Find all CSS/SCSS and JSON config files modified in this PR
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(css|scss|json)$' || true)
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No stylings or config files modified. Passing."
+            exit 0
+          fi
+          
+          # Assuming validate-tokens.js is executed from the project root
+          # and the _core_axioms folder mapped relative to the executor
+          for file in $CHANGED_FILES; do
+            node .agent/skills/_core_axioms/scripts/validate-tokens.js "$file"
+          done

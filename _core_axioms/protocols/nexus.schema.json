@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Axiom Core Project Nexus",
+  "type": "object",
+  "required": ["nexus_version", "project_name", "scale_tier"],
+  "properties": {
+    "nexus_version": {
+      "type": "string",
+      "enum": ["v1", "v2", "v3"]
+    },
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scale_tier": {
+      "type": "string",
+      "enum": ["Startup", "Growth", "Enterprise"]
+    },
+    "compliance_tier": {
+      "type": "string",
+      "enum": ["Standard", "GDPR", "HIPAA", "SOC2 Type II"]
+    },
+    "active_frontend": {
+      "type": "string"
+    },
+    "active_backend": {
+      "type": "string"
+    },
+    "sub_skill_outputs": {
+      "type": "object"
+    }
+  }
+}

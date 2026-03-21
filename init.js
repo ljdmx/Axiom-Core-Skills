@@ -1,36 +1,77 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
-const CORE_AXIOMS_MEM = path.join(__dirname, '_core_axioms', 'memory');
-const CORE_AXIOMS_EVO = path.join(__dirname, '_core_axioms', 'evolution');
+console.log("🌌 Axiom Core Skills - Environment Initialization");
+console.log("=================================================");
 
-const userProfile = {
-  identity: { role: "Architect", experience_level: "Adaptive", language: "auto" },
-  preferences: { package_manager: "npm", linter: "Biome", css_framework: "Tailwind", orm: "Prisma" },
-  style_guide: { quotes: "single", semi: true, component_export: "named" }
+// Detect OS
+const platform = os.platform();
+console.log(`[SYS] Detected Platform: ${platform} (${os.release()})`);
+
+// Define evolution directories
+const evolutionDir = path.join(__dirname, '.axiom_evolution');
+const dirsToCreate = [
+    evolutionDir,
+    path.join(evolutionDir, 'logs'),
+    path.join(evolutionDir, 'custom_templates'),
+    path.join(evolutionDir, 'patches')
+];
+
+// Define core state files
+const stateFiles = {
+    'SOUL_MANIFEST.json': {
+        initialized_at: new Date().toISOString(),
+        evolution_stage: "genesis",
+        rams_score_history: [],
+        aesthetic_gan_rejections: 0,
+        platform: platform
+    },
+    'EVALUATION_LOG.json': {
+        fatal_errors_caught: 0,
+        patches_generated: 0,
+        incidents: []
+    }
 };
 
-const projectGraph = { projects: {}, cross_project_patterns: {} };
-const patchHistory = { template_mutations: {} };
+try {
+    // Scaffold Directories
+    console.log("\n[1/3] Scaffolding isolated evolution matrix...");
+    dirsToCreate.forEach(dir => {
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+            console.log(`  ✓ Created directory: ${path.relative(__dirname, dir)}`);
+        } else {
+            console.log(`  - Directory exists: ${path.relative(__dirname, dir)}`);
+        }
+    });
 
-function ensureDirSync(dirPath) {
-  if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
+    // Scaffold State Files
+    console.log("\n[2/3] Writing neural state files...");
+    Object.entries(stateFiles).forEach(([filename, content]) => {
+        const filePath = path.join(evolutionDir, filename);
+        if (!fs.existsSync(filePath)) {
+            fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
+            console.log(`  ✓ Initialized state: ${filename}`);
+        } else {
+            console.log(`  - State preserved: ${filename}`);
+        }
+    });
+
+    // Write Environment Bindings
+    console.log("\n[3/3] Binding environment capabilities...");
+    const envFile = path.join(__dirname, '.axiom_env');
+    const envContent = `AXIOM_EVOLUTION_PATH=${evolutionDir}\nAXIOM_PLATFORM=${platform}\nAXIOM_STRICT_MODE=true`;
+    fs.writeFileSync(envFile, envContent);
+    console.log(`  ✓ Wrote environment bindings (.axiom_env)`);
+
+    console.log("\n✅ INITIALIZATION COMPLETE.");
+    console.log("\nYour Sovereign Agent ecosystem is now isolated. All future architecture learnings,");
+    console.log("aesthetic self-corrections, and custom templates will be securely stored in the");
+    console.log("'.axiom_evolution/' directory. This directory should typically be added to .gitignore");
+    console.log("if you are distributing this engine, but backed up securely for your own 'Agent Brain'.");
+
+} catch (error) {
+    console.error("\n❌ INITIALIZATION FAILED:", error.message);
+    process.exit(1);
 }
-
-function writeJsonSync(filePath, data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-}
-
-console.log('🔄 Wiping old memories and initializing World-Class Axiom Core Skills...');
-
-ensureDirSync(CORE_AXIOMS_MEM);
-ensureDirSync(CORE_AXIOMS_EVO);
-ensureDirSync(path.join(CORE_AXIOMS_MEM, 'vector_vault'));
-
-writeJsonSync(path.join(CORE_AXIOMS_MEM, 'user_profile.json'), userProfile);
-writeJsonSync(path.join(CORE_AXIOMS_MEM, 'project_graph.json'), projectGraph);
-writeJsonSync(path.join(CORE_AXIOMS_MEM, 'snippet_vault.json'), { snippets: {} });
-writeJsonSync(path.join(CORE_AXIOMS_EVO, 'patch_history.json'), patchHistory);
-writeJsonSync(path.join(CORE_AXIOMS_EVO, 'analytics.json'), { runs: 0, rejections: 0 });
-
-console.log('✨ 🌌 Axiom Core Sentient Cognitive Memory has been completely reset.\n✨ Your AI is now a blank canvas ready for evolution.');
