@@ -1,20 +1,10 @@
-# OS / IDE files
-.agent/
-.gemini/
-.vscode/
-.idea/
-
-# Distribution
+# Axiom Core Skills - Git Exclusion
 node_modules/
 dist/
-build/
+.DS_Store
 *.log
 
-# Workspace
+# Evolution & Privacy (Hardened by init.js)
+.axiom_evolution/
+.axiom_env
 PROJECT_NEXUS.json
-SOUL_MANIFEST.json
-EVALUATION_LOG.json
-
-# System
-Thumbs.db
-.DS_Store
