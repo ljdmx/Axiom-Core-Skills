@@ -30,31 +30,18 @@ Axiom Core 是一个旨在为大语言模型（LLM）提供结构化架构模式
 
 ```text
 Axiom-Core-Skills/
-├── _core_axioms/          # 核心设计哲学与全局协议
-│   ├── protocols/         # 验证门控与拒绝逻辑
-│   ├── references/        # 客户端功能与质量标准
-│   ├── tokens/            # 设计 Token (颜色、排版、间距)
-│   └── SOUL_MANIFESTO.md  # 基础指南与计算卸载
-├── product-core/          # 项目编排层 (FSPC)
-│   ├── scripts/           # 依赖图与遥测分析
-│   ├── templates/         # 项目 Schema 与 PRD 蓝图
-│   └── SKILL.md           # 编排逻辑
-├── frontend-core/         # 界面与交互标准
-│   ├── references/        # 设计 Token 系统与审美评审规则
-│   └── templates/         # UI 组件与交互模式
-├── backend-core/          # 后端架构与数据完整性 (ADBM)
-│   ├── references/        # 六边形模式与 ADBM 核心
-│   └── templates/         # 服务架构与混沌工程
-├── mobile-core/           # 移动端人体工学与优化
-│   ├── references/        # 布局与动画约束
-│   └── templates/         # 组合式函数与离线同步模式
-├── web3-core/             # 区块链与代币经济集成
-│   ├── references/        # 安全与 Solidity 模式
-│   └── templates/         # 智能合约与经济模拟
-├── threejs-core/          # 3D 图形与空间计算
-│   ├── references/        # 着色器管理与性能标准
-│   └── templates/         # R3F 与后期处理模板
-├── init.js                # 环境初始化引导脚本
+├── skills/
+│   ├── _core_axioms/          # 核心设计哲学与全局协议
+│   │   ├── protocols/         # 验证门控与拒绝逻辑
+│   │   ├── SOUL_MANIFESTO.md  # 基础指南与计算卸载
+│   │   └── ...
+│   ├── product-core/          # 项目编排层 (FSPC)
+│   ├── frontend-core/         # 界面与交互标准
+│   ├── backend-core/          # 后端架构与数据完整性 (ADBM)
+│   ├── mobile-core/           # 移动端人体工学与优化
+│   ├── web3-core/             # 区块链与代币经济集成
+│   └── threejs-core/          # 3D 图形与空间计算
+├── init.js                # 环境初始化引导脚本 (Zenith)
 ├── LICENSE                # MIT 许可证
 └── README.md              # 项目文档
 ```
@@ -86,18 +73,32 @@ Axiom-Core-Skills/
 
 ---
 
+## 🧬 环境运行模式
+
+Axiom Core 支持两种运行模式，以确保“规则全球化，状态本地化”：
+
+### 模式 A：引擎开发模式 (Engine Development)
+在克隆的仓库根目录下直接运行。用于对技能包本身进行更新、测试和审美审计。
+```bash
+node init.js
+```
+
+### 模式 B：项目集成模式 (Project Integration)
+在您的 **目标项目项目根目录** 下运行。这是生产使用的标准方式，它会将您的项目与 Axiom 引擎绑定。
+```bash
+# 在您的项目目录下运行（假设引擎在 E:\Axiom-Core-Skills）
+node E:\Axiom-Core-Skills\init.js
+```
+
+---
+
 ## 🧬 本地适配（自我进化）
 
 Axiom Core 利用结构化的反馈循环顺应特定的项目需求。所有学习到的模式和自定义补丁都存储在本地的 `.axiom_evolution/` 目录中，以确保核心库的完整性和隐私。
 
-### 快速开始
-
-1. **克隆本仓库。**
-2. **执行初始化：**
-   ```bash
-   node init.js
-   ```
-   *这将初始化本地状态目录 (`.axiom_evolution/`)。*
+1. **项目隔离**：每个项目拥有独立的 `.axiom_evolution/`，包含专属的抗体（Antibodies）和遥测日志。
+2. **状态共享**：通过根目录的 `PROJECT_NEXUS.json` 实现跨技能包的上下文对齐。
+3. **隐私安全**：`.axiom_evolution/` 和 `PROJECT_NEXUS.json` 已预置在 `.gitignore` 中，确保私有进化数据不外泄。
 
 ---
 

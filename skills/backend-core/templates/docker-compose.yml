@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - REDIS_URL=redis://cache:6379
+      - CHAOS_ENGINE_ENABLED=true  # Enforce chaos testing in dev
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=axiom_user
+      - POSTGRES_PASSWORD=axiom_pass
+      - POSTGRES_DB=axiom_core
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U axiom_user"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  cache:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  chaos-mesh:
+    image: chaosmesh/chaos-daemon:v2.5.1
+    # Minimal Chaos Engineering container placeholder for the sandbox
+    privileged: true

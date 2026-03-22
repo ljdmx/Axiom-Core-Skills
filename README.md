@@ -30,31 +30,18 @@ In the era of AI-assisted coding, the gap between "working code" and "enterprise
 
 ```text
 Axiom-Core-Skills/
-├── _core_axioms/          # Core Design Philosophy & Global Protocols
-│   ├── protocols/         # Validation Gates & Rejection Logic
-│   ├── references/        # Client Capabilities & QA Standards
-│   ├── tokens/            # Design Tokens (Color, Typography, Spacing)
-│   └── SOUL_MANIFESTO.md  # Fundamental Guidelines & Compute Offloading
-├── product-core/          # Project Orchestration Layer (FSPC)
-│   ├── scripts/           # Dependency-Graph & Telemetry Analysis
-│   ├── templates/         # Project Schema & PRD Blueprints
-│   └── SKILL.md           # Orchestration Logic
-├── frontend-core/         # Interface & Interaction Standards
-│   ├── references/        # Design Token System & Aesthetic Review Rules
-│   └── templates/         # UI Components & Interaction Patterns
-├── backend-core/          # Backend Architecture & Data Integrity (ADBM)
-│   ├── references/        # Hexagonal Patterns & ADBM Core
-│   └── templates/         # Service Architecture & Chaos Engineering
-├── mobile-core/           # Mobile Ergonomics & Optimization
-│   ├── references/        # Layout & Animation Constraints
-│   └── templates/         # Composables & Offline Sync Patterns
-├── web3-core/             # Blockchain & Tokenomics Integration
-│   ├── references/        # Security & Solidity Patterns
-│   └── templates/         # Smart Contract & Economic Simulation
-├── threejs-core/          # 3D Graphics & Spatial Computing
-│   ├── references/        # Shader Management & Performance Standards
-│   └── templates/         # R3F & Post-Processing Templates
-├── init.js                # Environment Initialization Script
+├── skills/
+│   ├── _core_axioms/          # Core Design Philosophy & Global Protocols
+│   │   ├── protocols/         # Validation Gates & Rejection Logic
+│   │   ├── SOUL_MANIFESTO.md  # Fundamental Guidelines & Compute Offloading
+│   │   └── ...
+│   ├── product-core/          # Project Orchestration Layer (FSPC)
+│   ├── frontend-core/         # Interface & Interaction Standards
+│   ├── backend-core/          # Backend Architecture & Data Integrity (ADBM)
+│   ├── mobile-core/           # Mobile Ergonomics & Optimization
+│   ├── web3-core/             # Blockchain & Tokenomics Integration
+│   └── threejs-core/          # 3D Graphics & Spatial Computing
+├── init.js                # Environment Initialization Script (Zenith)
 ├── LICENSE                # MIT License
 └── README.md              # Project Documentation
 ```
@@ -86,18 +73,32 @@ Manages complex 3D scenes and WebGPU graphics while optimizing for token consump
 
 ---
 
+## 🧬 Operational Modes
+
+Axiom Core supports two primary modes to ensure "Global Rules, Local State":
+
+### Mode A: Engine Development
+Run directly in the cloned repository root to update, test, or audit the skill packages themselves.
+```bash
+node init.js
+```
+
+### Mode B: Project Integration
+Run in your **Target Project Root**. This is the standard way to use the engine for your own products.
+```bash
+# Run from your project directory (Assuming engine is at /path/to/Axiom-Core-Skills)
+node /path/to/Axiom-Core-Skills/init.js
+```
+
+---
+
 ## 🧬 Local Adaptation (Self-Evolution)
 
 Axiom Core utilizes a structured feedback loop to adapt to project-specific requirements. All learned patterns and custom patches are stored in a local `.axiom_evolution/` directory to ensure core integrity and privacy.
 
-### Getting Started
-
-1. **Clone the repository.**
-2. **Run Initialization:**
-   ```bash
-   node init.js
-   ```
-   *This initializes the local state directory (`.axiom_evolution/`).*
+1. **Project Isolation**: Every project maintains its own `.axiom_evolution/`, containing unique antibodies and telemetry logs.
+2. **Context Synchronization**: Cross-skill alignment is achieved via the `PROJECT_NEXUS.json` in your project root.
+3. **Privacy by Design**: Both `.axiom_evolution/` and `PROJECT_NEXUS.json` are automatically added to your `.gitignore`.
 
 ---
 
